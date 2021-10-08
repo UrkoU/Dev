@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+
+<body>
+	<img id="imgL1" src="imagenes/letras/P.gif" onClick="quitarImagen(1)"/>
+	<img id="imgL2" src="imagenes/letras/L.gif" onClick="quitarImagen(2)"/>
+	<img id="imgL3" src="imagenes/letras/A.gif" onClick="quitarImagen(3)"/>
+	<img id="imgL4" src="imagenes/letras/I.gif" onClick="quitarImagen(4)"/>
+	<img id="imgL5" src="imagenes/letras/A.gif" onClick="quitarImagen(5)"/>
+	<img id="imgL6" src="imagenes/letras/U.gif" onClick="quitarImagen(6)"/>
+	<img id="imgL7" src="imagenes/letras/N.gif" onClick="quitarImagen(7)"/>
+	<img id="imgL8" src="imagenes/letras/D.gif" onClick="quitarImagen(8)"/>
+	<img id="imgL9" src="imagenes/letras/I.gif" onClick="quitarImagen(9)"/>
+	
+	
+	<script>
+		function quitarImagen(index){
+			document.getElementById('imgL'+index).src="imagenes/letras/Blanco.gif";
+		}
+	</script>
+</body>
+</html>

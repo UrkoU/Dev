@@ -1,0 +1,33 @@
+BOX_IMAGE = "ubuntu/focal64"
+equipos = {
+  "dns" => {:ip=> "10.10.17.85", :cpus => 1, :mem => 1024},
+  "apache1" => {:ip=> "10.10.17.86", :cpus => 1, :mem => 1024},
+  "apache2" => {:ip=> "10.10.17.87", :cpus => 1, :mem => 1024},
+  "nginx" => {:ip=> "10.10.17.88", :cpus => 1, :mem => 1024},
+}
+
+Vagrant.configure("2") do |config|
+    equipos.each_with_index do |(hostname, info), index|
+      config.vm.define hostname do |cfg|
+        cfg.vm.provider :virtualbox do |vb, override|
+          config.vm.box = BOX_IMAGE
+          override.vm.network :public_network, ip:"#{info[:ip]}", netmask: "255.255.255.0"
+          override.vm.hostname = "#{hostname}.aula104"
+          vb.name = hostname
+          vb.customize ["modifyvm", :id, "--memory", info[:mem], "--cpus", info[:cpus], "--hwvirtex", "on"]
+        end
+      end
+    end
+
+    config.vm.provision "shell", inline: <<-SHELL
+    echo -e "\n --> PRIMER UPDATE-\n\n"
+    apt update
+    #apt-get install -y net-tools
+    #route add default gw 10.10.17.254 enp0s8
+    echo -e "\n --> WEBMIN.\n\n"
+    sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.https://dns:10000"'
+    wget -q0 - http://www.webmin.com/jcameron-key.asc \sudo apt-key add -
+    apt update
+    apt install -y webmin
+    SHELL
+end

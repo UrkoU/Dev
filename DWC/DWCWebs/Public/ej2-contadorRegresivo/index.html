@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regresivo</title>
+  </head>
+  <body>
+    <script>
+      var interval;
+      var cifras;
+      var num;
+      var num10;
+
+      function enviarNumCifras() {
+        var txtNumCifras = document.getElementById("txtNumCifras");
+        cifras = txtNumCifras.value;
+        var divImagenes = document.getElementById("divImagenes");
+        divImagenes.innerHTML = "";
+        for (var i = 0; i < cifras; i++) {
+          divImagenes.innerHTML += `<img src="imagenes/n0.gif" id="img${i}">`;
+        }
+        txtNumCifras.setAttribute("maxlength", txtNumCifras.value);
+      }
+
+      function enviarNumRegresivo() {
+        if (interval) {
+          clearInterval(interval);
+        }
+        if (!document.getElementById(`img0`)) {
+          enviarNumCifras();
+        }
+
+        cifras = document.getElementById("txtNumCifras").value;
+        num = document.getElementById("txtNumRegresivo").value;
+        num10 = num;
+        var divImagenes = document.getElementById("divImagenes");
+        var n;
+        for (var i = cifras - 1; i >= 0; i--) {
+          document.getElementById(`img${i}`).src = `imagenes/n${
+            num10 % 10
+          }.gif`;
+          num10 = Math.floor(num10 / 10);
+        }
+
+        interval = setInterval(regresivo, 1);
+      }
+
+      function regresivo() {
+        if (num > 0) {
+          num--;
+          num10 = num;
+          for (var i = cifras - 1; i >= 0; i--) {
+            document.getElementById(`img${i}`).src = `imagenes/n${
+              num10 % 10
+            }.gif`;
+            num10 = Math.floor(num10 / 10);
+          }
+        } else {
+          clearInterval(interval);
+          interval = null;
+        }
+      }
+
+      function comprobarInt() {
+        var input = document.getElementById("txtNumCifras").value;
+        var regex = /^[0-9]+$/;
+        if (!input.match(regex)) {
+          alert("Solo admite números");
+          return false;
+        }
+      }
+
+      function comprobarInt2() {
+        var input = document.getElementById("txtNumRegresivo").value;
+        var regex = /^[0-9]+$/;
+        if (!input.match(regex)) {
+          alert("Solo admite números");
+          return false;
+        }
+      }
+    </script>
+    <div>
+      <p>Cantidad de cifras máximas a mostrar</p>
+      <form>
+        <input
+          id="txtNumCifras"
+          type="text"
+          placeholder="Cantidad de cifras"
+          maxlength="3"
+          value="3"
+          onchange="comprobarInt()"
+        />
+        <input
+          id="btnEnviarCifras"
+          type="button"
+          value="Enviar"
+          onclick="enviarNumCifras()"
+        />
+      </form>
+      <p>Número del que regresar</p>
+      <form>
+        <input
+          id="txtNumRegresivo"
+          type="text"
+          placeholder="Número regresivo"
+          maxlength="5"
+          onchange="comprobarInt2()"
+        />
+        <input
+          id="btnEnviarRegresivo"
+          type="button"
+          value="Enviar"
+          onclick="enviarNumRegresivo()"
+        />
+      </form>
+      <br />
+    </div>
+    <div id="divImagenes"></div>
+  </body>
+</html>

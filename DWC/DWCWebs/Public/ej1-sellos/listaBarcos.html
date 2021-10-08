@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Lista Barcos</title>
+	<link rel="stylesheet" href="estilos.css">
+	<script type="text/javascript">
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+    </script>
+</head>
+
+<body onLoad="MM_preloadImages('imagenes/barcos535.jpg', 'imagenes/barcos536.jpg', 'imagenes/barcos537.jpg', 'imagenes/barcos538.jpg')">
+	<h2 id="h2Barcos">BARCOS</h2>
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td><img id="imgBarco1" src="imagenes/50/barcos535.jpg"></td>
+      <td><img id="imgBarco2" src="imagenes/50/barcos536.jpg"></td>
+      <td><img id="imgBarco3" src="imagenes/50/barcos537.jpg"></td>
+      <td><img id="imgBarco4" src="imagenes/50/barcos538.jpg"></td>
+    </tr>
+    <tr>
+      <td><input type="button" id="btnVer1" onClick="MM_swapImage('imgGrande1','','imagenes/barcos535.jpg',1)" value="Ver" ><input type="button" id="btnOcultar1" onClick="MM_swapImage('imgGrande1','','',1)" value="Ocultar" ></td>
+      <td><input type="button" id="btnVer2" onClick="MM_swapImage('imgGrande2','','imagenes/barcos536.jpg',1)" value="Ver" ><input type="button" id="btnOcultar2" onClick="MM_swapImage('imgGrande2','','',1)" value="Ocultar" ></td>
+	<td><input type="button" id="btnVer3" onClick="MM_swapImage('imgGrande3','','imagenes/barcos537.jpg',1)" value="Ver" ><input type="button" id="btnOcultar3" onClick="MM_swapImage('imgGrande3','','',1)" value="Ocultar" ></td>
+		<td><input type="button" id="btnVer4" onClick="MM_swapImage('imgGrande4','','imagenes/barcos538.jpg',1)" value="Ver" ><input type="button" id="btnOcultar4" onClick="MM_swapImage('imgGrande4','','',1)" value="Ocultar" ></td>
+    </tr>
+  </tbody>
+</table>
+	<img id="imgGrande1" style="position: absolute; left: 331px; top: 270px;" src="/imagenes/TransBarcos.png">
+		<img id="imgGrande2" style="position: absolute; left: 564px; top: 270px;" src="/imagenes/TransBarcos.png">
+		<img id="imgGrande3" style="position: absolute; left: 807px; top: 270px;" src="/imagenes/TransBarcos.png">
+		<img id="imgGrande4" style="position: absolute; left: 1051px; top: 270px;" src="/imagenes/TransBarcos.png">
+<a class="aVolver" href="index.html">Volver</a>
+</body>
+</html>

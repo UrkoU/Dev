@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var i = 0;
+      var reloj;
+
+      function iniciar() {
+        reloj = setInterval(cambiar, 1);
+        document.getElementById("bIniciar").value = "Parar";
+        document.getElementById("bIniciar").onclick = parar;
+      }
+
+      function parar() {
+        clearInterval(reloj);
+        document.getElementById("bIniciar").value = "Iniciar";
+        document.getElementById("bIniciar").onclick = iniciar;
+      }
+
+      function cambiar() {
+        document.getElementById("pCronometro").innerHTML = i;
+        i++;
+      }
+    </script>
+    <p id="pCronometro"></p>
+    <input id="bIniciar" type="button" value="Iniciar" onclick="iniciar()" />
+  </body>
+</html>

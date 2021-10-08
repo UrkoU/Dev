@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      var n = 6;
+      for (i = 0; i < 6; i++) {
+        if (i < 9)
+          document.write(
+            `<img onClick='document.getElementById("imgA0${
+              i + 1
+            }").src=\"imagenes/AVerde.gif\"' src='imagenes/ANegra.gif' id="imgA0${
+              i + 1
+            }"/>`
+          );
+        else
+          document.write(
+            `<img onClick='document.getElementById("imgA${
+              i + 1
+            }").src=\"imagenes/AVerde.gif\"' src='imagenes/ANegra.gif' id="imgA${
+              i + 1
+            }"/>`
+          );
+      }
+    </script>
+  </body>
+</html>

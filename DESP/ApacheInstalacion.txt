@@ -1,0 +1,36 @@
+Instalación Apache
+sudo apt install apache2
+
+Lanzarlo
+apache2ctl start
+
+Comprobar
+systemctl status apache2
+
+Configuración Apache2:
+disabled  ---- NO habilitada
+enabled   ---- Habilitada
+available ---- Disponible, puede o no estar habilitada
+
+/etc/apache2/apache2.conf
+
+Configuración Windows nombres e ips
+c:/Windows/System32/Drivers/etc/hosts
+añadir ip y nombre:
+10.10.17.86   apache1
+
+Dos nombres, una ip
+10.10.17.86   apache1
+10.10.17.86   apachito
+
+Configurar más de un servidor apache en una dirección
+Hacer copia del etc/apache2/sites-available/000-default.conf
+Modificar la copia, y crear tantos <VirtualHost> como nombres haya para nuestra dirección en hosts.
+Ejemplo:
+<VirtualHost>
+	ServerName apache1
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/apache1
+</VirtualHost>
+
+Crear las carpetas para cada web en el DocumentRoot

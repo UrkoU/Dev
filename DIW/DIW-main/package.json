@@ -1,0 +1,21 @@
+{
+  "name": "dos",
+  "version": "0.0.2",
+  "description": "Exercise two",
+  "repository": "https://github.com/mmozos/DIW",
+  "author": "mmozos <martinmozos@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "parcel build *.html",
+    "start": "parcel serve *.html --open"
+  },
+  "devDependencies": {
+    "@parcel/transformer-image": "2.0.0-rc.0",
+    "@parcel/transformer-sass": "2.0.0-rc.0",
+    "autoprefixer": "^10.3.6",
+    "parcel": "^2.0.0-rc.0",
+    "posthtml-extend": "^0.6.0",
+    "posthtml-include": "^1.7.1"
+  }
+}

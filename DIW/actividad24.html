@@ -1,0 +1,54 @@
+<head>
+  <style>
+    i + b {
+      color: red;
+    }
+    .nivel1 {
+      color: green;
+    }
+    .nivel2 {
+      color: blue;
+    }
+    ul ul .nivel2 {
+      font-size: x-small;
+    }
+    ul ul li {
+      font-size: x-small;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+        Interpretación: 
+        Titulo en color rojo, excepto "de selectores"
+        Lista 1:
+            Elemento 1 color verde, tamaño normal
+            Elemento 2 color verde, tamaño normal
+            Lista2:
+                Elemento 1 color azul, tamaño extra pequeño
+                Elemento 2 color azul, tamaño extra pequeño
+                Elemento 3 color rojo, tamaño extra pequeño
+        Resultado:
+        Titulo en color rojo, excepto "de selectores" y "Título:" (último en cursiva)
+        Lista 1:
+            Elemento 1 color negro, tamaño normal
+            Elemento 2 color negro, tamaño normal
+            Lista2:
+                Elemento 1 color rojo, tamaño extra pequeño
+                Elemento 2 color rojo, tamaño extra pequeño
+                Elemento 3 color rojo, tamaño extra pequeño
+     -->
+  <h1>
+    <p><i>Título</i>: <b> Anidamiento y agrupamiento </b> de selectores</p>
+  </h1>
+  <ul>
+    <li class="”nivel1”">Agrupamiento</li>
+    <li class="”nivel1”">Anidamiento</li>
+    <ul>
+      <li class="”nivel2”">Anidamiento de hijos</li>
+      <li class="”nivel2”">Anidamiento de adyacentes</li>
+      <li>Anidamiento común</li>
+    </ul>
+  </ul>
+</body>

@@ -1,0 +1,16 @@
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\bin\Debug\net5.0\TokyoKyoto.exe
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\bin\Debug\net5.0\TokyoKyoto.deps.json
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\bin\Debug\net5.0\TokyoKyoto.runtimeconfig.json
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\bin\Debug\net5.0\TokyoKyoto.runtimeconfig.dev.json
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\bin\Debug\net5.0\TokyoKyoto.dll
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\bin\Debug\net5.0\ref\TokyoKyoto.dll
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\bin\Debug\net5.0\TokyoKyoto.pdb
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.csproj.AssemblyReference.cache
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.AssemblyInfoInputs.cache
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.AssemblyInfo.cs
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.csproj.CoreCompileInputs.cache
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.dll
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\ref\TokyoKyoto.dll
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.pdb
+C:\Users\2daw3\Dev\SERV\TokyoKyoto\obj\Debug\net5.0\TokyoKyoto.genruntimeconfig.cache

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<style type="text/css">
+body {
+    background-color: #FF9999;
+}
+</style>
+<script type="text/javascript">
+function MM_setTextOfLayer(objId,x,newText) { //v9.0
+  with (document) if (getElementById && ((obj=getElementById(objId))!=null))
+    with (obj) innerHTML = unescape(newText);
+}
+function MM_changeProp(objId,x,theProp,theValue) { //v9.0
+  var obj = null; with (document){ if (getElementById)
+  obj = getElementById(objId); }
+  if (obj){
+    if (theValue == true || theValue == false)
+      eval("obj.style."+theProp+"="+theValue);
+    else eval("obj.style."+theProp+"='"+theValue+"'");
+  }
+}
+</script>
+</head>
+
+<body >
+	<div>
+	<table width="57" height="259" border="1">
+	  <tbody>
+	    <tr>
+	      <td>
+			  <div>			  
+				  <a href="pWord.html"><img src="imagenes/Word.GIF" alt="" width="41" height="45" id="imWord" onMouseOver="MM_setTextOfLayer('dTexto','','&lt;h1 style=&quot;color:red&quot;&gt;Word&lt;/h1&gt;')" onMouseOut="MM_setTextOfLayer('dTexto','','')"/></a>
+			  </div>
+		  </td>
+			  
+        </tr>
+	    <tr>
+	      <td>
+			  <div id="dExcel">
+				  <a href="pExcel.html"><img src="imagenes/Excel.GIF" alt="" width="41" height="45" id="imExcel" onMouseOver="MM_setTextOfLayer('dTexto','','&lt;h1 style=&quot;color:red&quot;&gt;Excel&lt;/h1&gt;')" onMouseOut="MM_setTextOfLayer('dTexto','','')"/></a>
+			  </div>
+		  </td>
+        </tr>
+	    <tr>
+	      <td>
+			  <div id="dAccess">
+				  <a href="pAccess.html"><img src="imagenes/Access.GIF" alt="" width="41" height="45" id="imAccess" onMouseOver="MM_setTextOfLayer('dTexto','','&lt;h1 style=&quot;color:red&quot;&gt;Access&lt;/h1&gt;')" onMouseOut="MM_setTextOfLayer('dTexto','','')"/></a>
+			  </div>
+		  </td>
+        </tr>
+      </tbody>
+	</table>
+	<input type="button" id="bBotonR" onClick="MM_changeProp('dTexto','','backgroundColor','red','DIV')" value="Rojo">
+		<input type="button" id="bBotonV" onClick="MM_changeProp('dTexto','','backgroundColor','green','DIV')" value="Verde">
+		<input type="button" id="bBotonL" onClick="MM_changeProp('dTexto','','backgroundColor','transparent','DIV')" value="Quitar color">
+		<div style="position: absolute; left: 536px; width: 221px; height: 49px; top: 103px;" id="dTexto"></div>
+</div>
+</body>
+</html>

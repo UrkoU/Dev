@@ -1,0 +1,20 @@
+body {
+  background: -webkit-gradient(
+    linear,
+    left top, right top,
+    from(rgba(2, 0, 36, 1)),
+    color-stop(35%, rgba(9, 9, 121, 1)),
+    to(rgba(0, 212, 255, 1))
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/*# sourceMappingURL=index.33fdad38.css.map */

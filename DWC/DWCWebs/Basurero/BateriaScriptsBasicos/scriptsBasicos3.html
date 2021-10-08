@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      for (i = 0; i < 5; i++)
+        document.write(
+          `<img id="imgSello${i}" onclick="alert('Hola, soy el sello ${
+            i + 1
+          }, soy ${i + 1}.gif')" src="imagenes/${i + 1}.jpg" />`
+        );
+    </script>
+  </body>
+</html>

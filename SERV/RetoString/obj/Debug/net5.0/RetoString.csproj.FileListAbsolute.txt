@@ -1,0 +1,16 @@
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.csproj.AssemblyReference.cache
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.AssemblyInfoInputs.cache
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.AssemblyInfo.cs
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.csproj.CoreCompileInputs.cache
+C:\Users\2daw3\Dev\SERV\RetoString\bin\Debug\net5.0\RetoString.exe
+C:\Users\2daw3\Dev\SERV\RetoString\bin\Debug\net5.0\RetoString.deps.json
+C:\Users\2daw3\Dev\SERV\RetoString\bin\Debug\net5.0\RetoString.runtimeconfig.json
+C:\Users\2daw3\Dev\SERV\RetoString\bin\Debug\net5.0\RetoString.runtimeconfig.dev.json
+C:\Users\2daw3\Dev\SERV\RetoString\bin\Debug\net5.0\RetoString.dll
+C:\Users\2daw3\Dev\SERV\RetoString\bin\Debug\net5.0\ref\RetoString.dll
+C:\Users\2daw3\Dev\SERV\RetoString\bin\Debug\net5.0\RetoString.pdb
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.dll
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\ref\RetoString.dll
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.pdb
+C:\Users\2daw3\Dev\SERV\RetoString\obj\Debug\net5.0\RetoString.genruntimeconfig.cache

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Imágenes</title>
+  </head>
+  <body onload="cambiarCadena()">
+    <script>
+      var sCadena = "Plaiaundi";
+
+      function cambiarCadena() {
+        sCadena = document.getElementById("txtCadena").value;
+        let div = document.getElementById("divCadena");
+        let cadenaMayusc = sCadena.toUpperCase();
+        div.innerHTML = "";
+
+        for (i = 0; i < cadenaMayusc.length; i++) {
+          if (cadenaMayusc[i].match(/[a-z]/i))
+            div.innerHTML += `<img src="letras/${cadenaMayusc[i]}.gif">`;
+          else if (cadenaMayusc[i].match(/[0-9]/i)) {
+            div.innerHTML += `<img width="55px" height="51px" src="letras/n${cadenaMayusc[i]}.gif">`;
+          } else div.innerHTML += `<img src="letras/${"Vacio"}.gif">`;
+        }
+      }
+    </script>
+    <input type="button" value="Cambiar cadena" onclick="cambiarCadena()" />
+    <input
+      id="txtCadena"
+      type="text"
+      placeholder="Texto a cambiar"
+      value="Plaiaundi"
+    />
+    <div id="divCadena"></div>
+  </body>
+</html>

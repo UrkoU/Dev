@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+
+<body>
+<script>
+		/**
+		 * Plaiaundi con P
+		 * Plaiaundi con P y h2
+		 * Plaiaundi con P y h2 diez veces
+		 * Tabla 5x5 con Plaiaundi
+		 * Click en tabla alert 
+		 */
+		document.write("<b>1: Plaiaundi con P</b>");
+		document.write("<p>Plaiaundi</p>");
+
+		document.write("<b>2: Plaiaundi con P y h2</b>");
+		document.write("<p>Plaiaundi</p>");
+		document.write("<h2>Plaiaundi</h2>");
+
+		document.write("<b>3: Plaiaundi con P y h2 diez veces</b>");
+		for(i = 0; i < 10; i++){
+			document.write("<p>Plaiaundi</p>");
+			document.write("<h2>Plaiaundi</h2>");
+		}
+
+		document.write("<b>4: Tabla 5x5 con Plaiaundi escrito</b>");
+		document.write("<table style='border: 1px solid black'>");
+		for (i = 0; i < 5; i++) {
+				document.write("<tr>");
+					for (j = 0; j < 5; j++) {
+						document.write("<td>Plaiaundi</td>");
+					}
+				document.write("</tr>");
+			}
+		document.write("</table>");
+
+		document.write("<b>5: Tabla 5x5 con Plaiaundi escrito y alert onClick</b>");
+		document.write("<table style='border: 1px solid black'>");
+			for (i = 0; i < 5; i++) {
+				document.write("<tr>");
+				for (j = 0; j < 5; j++) {
+					document.write("<td><p onClick='alert(\"Hola\")'>Plaiaundi</p></td>");
+				}
+				document.write("</tr>");
+			}
+			document.write("</table>");
+		
+		document.write("<b>6: Tabla 5x5 con Plaiaundi escrito y alert onClick con la columna y fila</b>");
+			document.write("<table style='border: 1px solid black'>");
+			for (i = 0; i < 5; i++) {
+				document.write("<tr>");
+				for (j = 0; j < 5; j++) {
+					document.write("<td><p onClick='alert(\"Hola, es la fila: \" + i + \", y la columna: \" + (j))'>Plaiaundi</p></td>");
+				}
+				document.write("</tr>");
+			}
+			document.write("</table>");
+	
+		document.write("<b>7: Colocar la imagen del número 0 y conseguir que al hacer click vaya variando el valor hasta el 9.</b><br/>");
+		document.write("<img src='imagenes/n0.gif' id='imgNumero' onClick='cambiarImagen()'>")
+	
+	var imageIndex = 0;
+	function cambiarImagen(){
+		if(imageIndex<9){
+			imageIndex++;
+			document.getElementById('imgNumero').src="imagenes/n"+imageIndex+".gif";
+		}else{
+			imageIndex = 0;
+				document.getElementById('imgNumero').src="imagenes/n"+imageIndex+".gif";
+		}
+	}
+	
+	document.write("<br/><b>8: Colocar 2 botones debajo de la imagen del 0 (+ y -) de modo que cada uno incremente o decremente el valor de la imagen. Del 9 pasa al 0 y del 0 al 9</b><br/>");
+		document.write("<img src='imagenes/n0.gif' id='imgNumeroConBotones'><input type='button' value='+' onClick='cambiarImagenConBotones(1)'><input type='button' value='-' onClick='cambiarImagenConBotones(-1)'><br/><input type='button' value='reset' onClick='reset()'");
+	
+	var imageIndex2 = 0;
+	function cambiarImagenConBotones(iSentido){
+		imageIndex+=iSentido;
+		if(imageIndex2>9){
+			imageIndex2 = 0; 
+		}else if(imageIndex2 < 0){
+			imageIndex2 = 9;
+		}	
+		document.getElementById('imgNumeroConBotones').src="imagenes/n"+imageIndex2+".gif";
+		
+		
+	}
+	
+	function reset(){
+		imageIndex2 = 0;
+		document.getElementById('imgNumeroConBotones').src="imagenes/n"+imageIndex2+".gif";
+	}
+	</script>
+</body>
+</html>

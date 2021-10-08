@@ -1,0 +1,10 @@
+BOX_IMAGE = "ubuntu/focal64"
+equipos = ["dns","apache1", "apache2", "nginx" ]
+Vagrant.configure("2") do |config|
+    equipos.each_with_index do |(hostname, info), index|
+      config.vm.define hostname do |subconfig|
+          subconfig.vm.box = BOX_IMAGE
+          subconfig.vm.network "public_network"
+      end
+    end
+end
