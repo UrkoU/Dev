@@ -7,66 +7,136 @@
     <title>Document</title>
   </head>
   <body>
-    <span>Dia 1</span>
-    <input type="date" id="txtDias1" />
-    <input
-      type="button"
-      id="btnNDia"
-      onclick="nombredias()"
-      value="Nombre día"
-    />
-    <span id="spanNDia">:NDIASEMANA</span>
+    <div id="divTitulo">GESTION DE DÍAS</div>
+    <br />
+    <div id="divNDiaSemana">
+      <span>Día 1</span>
+      <input type="date" id="txtDias1" />
+      <input
+        type="button"
+        id="btnNDiaSemana"
+        onclick="nombredia()"
+        value="Nombre día"
+      />
+      <span id="spanNDia">:NDIASEMANA</span>
+    </div>
     <br />
 
-    <span>Dia 2</span>
-    <input type="date" id="txtDias2" />
-    <input
-      type="button"
-      id="btnNMes"
-      onclick="nombremes()"
-      value="Nombre mes"
-    />
-    <span id="spanNDia">:NDIASEMANA</span>
+    <div id="divNDiaSemana">
+      <span>Día 2</span>
+      <input type="date" id="txtDias2" />
+      <input
+        type="button"
+        id="btnNMes"
+        onclick="nombremes()"
+        value="Nombre mes"
+      />
+      <span id="spanNMes">:NMes</span>
+    </div>
     <br />
 
-    <input
-      type="button"
-      id="btnDifdias"
-      onclick="funcion()"
-      value="Diferencia días"
-    />
-    <span id="spanDDiferencia">:DiasDiferencia</span>
+    <div id="divDifDias">
+      <input
+        type="button"
+        id="btnDifdias"
+        onclick="diferenciadias()"
+        value="Diferencia días"
+      />
+      <span id="spanDDiferencia">:DiasDiferencia</span>
+    </div>
+    <br />
+
+    <div id="divBisiesto">
+      <input
+        type="button"
+        id="btnBisiesto"
+        onclick="bisiesto()"
+        value="¿Fecha día 1 bisiesto?"
+      />
+      <span id="spanBisiesto">:SINO</span>
+    </div>
+    <br />
+
+    <div id="divDiasFAno">
+      <input
+        type="button"
+        id="btnDiasFAno"
+        onclick="diasfano()"
+        value="Días hasta fin de año"
+      />
+      <span id="spanDiasFAno">:DIAS</span>
+    </div>
+    <br />
+
+    <div id="divDiasDespues">
+      <input type="number" id="chkDiasDespues" />
+      <input
+        type="button"
+        id="btnDiasDespues"
+        onclick="diasdespues()"
+        value="Días después de 1"
+      />
+      <span id="spanDiasDespues">:FECHA</span>
+    </div>
+    <br />
 
     <script language="JavaScript">
-      function funcion() {
-        var dia1 = document.getElementById("txtDias1").value;
-        var dia2 = new Date(document.getElementById("txtDias2").value);
+      function nombredia() {
+        var fecha = document.getElementById("txtDias1").value;
+        var resultado = DiaSemana(fecha);
+        document.getElementById("spanNDia").innerHTML = resultado;
+      }
 
-        var dif = DifDias("1000000", 2000000000);
+      function nombremes() {
+        var fecha = document.getElementById("txtDias2").value;
+        var resultado = NombreMes(fecha);
+        document.getElementById("spanNMes").innerHTML = resultado;
+      }
+
+      function diferenciadias() {
+        var dia1 = document.getElementById("txtDias1").value;
+        var dia2 = document.getElementById("txtDias2").value;
+
+        var dif = DifDias(dia1, dia2);
 
         document.getElementById("spanDDiferencia").innerHTML = dif;
       }
 
-      // Versión 1.2, Unai y Urko
-      function DifDias(dia1, dia2) {
-        try {
-          var d2 = new Date(dia2);
-          var d1 = new Date(dia1);
-
-          // Calcular diferencia de días, comparando milisegundos y convirtiendo a días
-          var result = (d2.getTime() - d1.getTime()) / 1000 / 60 / 60 / 24;
-
-          if (isNaN(result)) return "Error";
-
-          // Si el resultado es negativo, convertir a positivo
-          result < 0 ? (result *= -1) : (result = result);
-
-          return Math.floor(result);
-        } catch (error) {
-          // Comprobar errores
-          return "Error";
-        }
+      function bisiesto() {
+        var fecha = document.getElementById("txtDias1").value;
+        var resultado = esBisiesto(fecha);
+        document.getElementById("spanBisiesto").innerHTML = resultado;
       }
+
+      function diasfano() {
+        var resultado = AFinDeAgno();
+        document.getElementById("spanDiasFAno").innerHTML = resultado;
+      }
+
+      // Versión 1.2, Unai y Urko
+      // function DifDias(dia1, dia2) {
+      //   try {
+      //     var d2 = new Date(dia2);
+      //     var d1 = new Date(dia1);
+
+      //     // Calcular diferencia de días, comparando milisegundos y convirtiendo a días
+      //     var result = (d2.getTime() - d1.getTime()) / 1000 / 60 / 60 / 24;
+
+      //     if (isNaN(result)) return "Error";
+
+      //     // Si el resultado es negativo, convertir a positivo
+      //     result < 0 ? (result *= -1) : (result = result);
+
+      //     return Math.floor(result);
+      //   } catch (error) {
+      //     // Comprobar errores
+      //     return "Error";
+      //   }
+      // }
     </script>
+    <script
+      language="JavaScript"
+      src="http://185.60.40.210/2daw3/Fechas.js"
+    ></script>
   </body>
 </html>
