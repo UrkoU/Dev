@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reloj</title>
+    <style>
+      h1,
+      .dReloj {
+        display: inline;
+      }
+
+      .dReloj {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body onload="ObtenerFecha()">
+    <div id="dReloj">
+      <img id="iMins0" src="imagenes/n0.gif" />
+      <img id="iMins1" src="imagenes/n0.gif" />
+      <h1>:</h1>
+      <img id="iSecs0" src="imagenes/n0.gif" />
+      <img id="iSecs1" src="imagenes/n0.gif" />
+    </div>
+    <script language="javascript">
+      var dFecha;
+
+      setInterval(ObtenerFecha, 1000);
+      function ObtenerFecha() {
+        dFecha = new Date();
+
+        PonerFecha(dFecha);
+      }
+
+      function PonerFecha(dFecha) {
+        let mins = dFecha.getMinutes();
+        let secs = dFecha.getSeconds();
+        document.getElementById("iMins0").src = `imagenes/n${Math.trunc(
+          mins / 10
+        )}.gif`;
+        document.getElementById("iMins1").src = `imagenes/n${mins % 10}.gif`;
+        document.getElementById("iSecs0").src = `imagenes/n${Math.trunc(
+          secs / 10
+        )}.gif`;
+        document.getElementById("iSecs1").src = `imagenes/n${secs % 10}.gif`;
+      }
+    </script>
+  </body>
+</html>

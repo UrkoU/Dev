@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Documento sin título</title>
+    <style type="text/css">
+      body {
+        font-family: Consolas, "Andale Mono", "Lucida Console",
+          "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+        font-size: 21px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="position: absolute; left: 271px; top: 100px">
+      <input type="text" id="sCadena" value="Cadena Modelo" />
+    </div>
+    <div style="position: absolute; left: 271px; top: 155px">
+      <span id="sResultado">AQUÍ EL RESULTADO</span>
+    </div>
+    <p>FUNCIONES DE CADENAS DE CARACTERES</p>
+    <p><button onclick="funcionString('invertir')">Invertir</button></p>
+    <p><button onclick="funcionString('camel')">CaMeL</button></p>
+    <p><button onclick="funcionString('sinvocales')">Sin vocales</button></p>
+    <p><button onclick="funcionString('cripto+1')">Cripto +1</button></p>
+    <p><button onclick="funcionString('descripto-1')">Descripto -1</button></p>
+    <p><button onclick="funcionString('trim')">Trim</button></p>
+
+    <script>
+      function funcionString(i) {
+        var sCadena = document.getElementById("sCadena").value;
+        var sNuevaCadena;
+        switch (i) {
+          case "invertir":
+            sNuevaCadena = Invertir(sCadena);
+            break;
+          case "camel":
+            sNuevaCadena = Camel(sCadena);
+            break;
+          case "sinvocales":
+            sNuevaCadena = SinVocales(sCadena);
+            break;
+          case "cripto+1":
+            sNuevaCadena = Cripto(sCadena);
+            break;
+          case "descripto-1":
+            sNuevaCadena = Descripto(sCadena);
+            break;
+          case "trim":
+            sNuevaCadena = SinBlancos(sCadena);
+            break;
+          default:
+            alert("Error al acceder a la función");
+        }
+
+        document.getElementById("sResultado").innerHTML = sNuevaCadena;
+      }
+
+      // 1.0 Urko y Unai
+      // Reemplaza todas las vocales, sean mayúsculas o minúsculas por espacios en blanco
+      function SinVocales(Cadena) {
+        return Cadena.replace(/[aeiou]/gi, "i");
+      }
+    </script>
+    <script
+      language="JavaScript"
+      src="http://185.60.40.210/2daw3/Strings.js"
+    ></script>
+  </body>
+</html>

@@ -1,20 +1,29 @@
 @import url('https://rsms.me/inter/inter-ui.css')
+@import 'partial/variables'
 
-*
+*, *::after, *::before
   box-sizing: border-box
 
+html
+  block-size: 100%
+  inline-size: 100%
+
+/* uncss:ignore start */
 body
-  background-color: yellowgreen
-  display: flex
+  background-size: cover
   font:
     family: 'Inter UI', sans-serif
     style: normal
     size: medium
   flex-wrap: wrap
+  height: 100vh
+  min-block-size: 100%
+  min-inline-size: 100%
   margin: 0
   overflow-y: hidden
   padding: 0
-  height: 100vh
   width: 100vw
 
-  @import 'content'
+  @import 'partial/main'
+  @import 'partial/content'
+/* uncss:ignore end */

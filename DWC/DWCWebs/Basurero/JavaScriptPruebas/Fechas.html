@@ -113,26 +113,22 @@
         document.getElementById("spanDiasFAno").innerHTML = resultado;
       }
 
-      // Versión 1.2, Unai y Urko
-      // function DifDias(dia1, dia2) {
-      //   try {
-      //     var d2 = new Date(dia2);
-      //     var d1 = new Date(dia1);
+      // Versión 1.3, Unai y Urko
+      // Compara dos fechas y devuelve la diferencia en días entre ambas fechas
+      function DifDias(sDia1, sDia2) {
+        if (FechaValida(sDia1) && FechaValida(sDia2)) {
+          var fDia1 = new Date(sDia1);
+          var fDia2 = new Date(sDia2);
 
-      //     // Calcular diferencia de días, comparando milisegundos y convirtiendo a días
-      //     var result = (d2.getTime() - d1.getTime()) / 1000 / 60 / 60 / 24;
+          // Calcular diferencia de días, comparando milisegundos y convirtiendo a días
+          var iResult = (fDia2 - fDia1) / 1000 / 60 / 60 / 24;
 
-      //     if (isNaN(result)) return "Error";
+          // Si el resultado es negativo, convertir a positivo
+          iResult < 0 ? (iResult *= -1) : (iResult = iResult);
 
-      //     // Si el resultado es negativo, convertir a positivo
-      //     result < 0 ? (result *= -1) : (result = result);
-
-      //     return Math.floor(result);
-      //   } catch (error) {
-      //     // Comprobar errores
-      //     return "Error";
-      //   }
-      // }
+          return Math.floor(iResult);
+        } else return "Error";
+      }
     </script>
     <script
       language="JavaScript"
