@@ -1,0 +1,17 @@
+Dada la red 192.168.0.0/22
+
+¿Qué tipo clase de red es? 
+	Ip clase C
+
+Si queremos dedicar 6 bits para hosts.
+	¿Cuántos hosts tendríamos como máximo en cada subred?
+	
+	¿Cuántas subredes tendríamos?
+	¿Cuál sería el host mínimo de la red?
+	¿Cuál sería el host máximo de la red?
+Elige una sub red e indica el host mayor y menor.
+¿192.168.4.27 es un host válido en alguna subred?
+Indica tus respuestas en un txt y las subes a la carpeta
+
+
+
