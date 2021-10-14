@@ -1,0 +1,24 @@
+Te indico una serie de redes:
+
+Dime si reconoces por algún motivo estas redes
+Dime a qué clase pertenecen
+Calcula las distintas subredes que puede tener.
+Calcula cuantos host pueden tener cada una de las subredes
+Si hay varias redes, dime el menor y el mayor host de la tercera subred.
+RED             MASCARA DE SUBRED	Clase	Subredes	Hosts/Subred	Menor host 3subred	Mayor host 3subred	¿Me suena la red?
+
+172.16.0.0/12   16			B	16		65534		172.18.0.1		172.18.255.254		No
+
+10.0.0.0/28     30			A	4		2		10.0.0.9		10.0.0.10		Se puede utilizar para acceder al router
+
+192.168.0.0/16  24			C	256		254		192.168.2.1		192.168.2.254		Puerta de enlace en redes locales
+
+127.0.0.0/8     24			A	65536		254		127.0.2.1		127.0.2.254		Red local de cada ordenador
+
+2..- El siguiente host 192.192.63.66 pertenece a una subred de 20 bits, cuya red es de 18 bits.
+A que subred pertenece?
+La subred es 192.192.48.0
+Cual es la red indicada a la que pertenece?
+192.192.0.0
+La subred 192.192.192.0/20 pertenece a la red calculada?
+No, no pertenece a esa red. El mayor host de esta red sería 192.192.63.254

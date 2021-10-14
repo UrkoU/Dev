@@ -5,12 +5,17 @@ Dada la red 192.168.0.0/22
 
 Si queremos dedicar 6 bits para hosts.
 	¿Cuántos hosts tendríamos como máximo en cada subred?
-	
+	62 hosts
 	¿Cuántas subredes tendríamos?
+	16 subredes
 	¿Cuál sería el host mínimo de la red?
+	192.168.0.1
 	¿Cuál sería el host máximo de la red?
+	192.168.3.254
 Elige una sub red e indica el host mayor y menor.
+	Subred 192.168.2.64, host mínimo 192.168.2.65, host máximo 192.168.2.126
 ¿192.168.4.27 es un host válido en alguna subred?
+	No, ya que el host máximo sería 192.168.3.254.
 Indica tus respuestas en un txt y las subes a la carpeta
 
 
