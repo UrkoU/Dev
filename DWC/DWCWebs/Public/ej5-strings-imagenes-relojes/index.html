@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var texto = "kaixo";
+      Inicializar();
+      Avanzar();
+
+      function Inicializar() {
+        document.write(`<img id="img-2" src="letras/blanco.gif">`);
+        document.write(`<img id="img-1" src="letras/blanco.gif">`);
+        for (let i = 0; i < texto.length; i++) {
+          document.write(
+            `<img id="img${i}" src="letras/${texto[i].toUpperCase()}.gif">`
+          );
+        }
+        document.write(`<img id="img${texto.length}" src="letras/blanco.gif">`);
+        document.write(
+          `<img id="img${texto.length + 1}" src="letras/blanco.gif">`
+        );
+      }
+
+      function Avanzar() {
+        for (let i = -2; i < texto.length + 2; i++) {
+          //let temp = texto[i];
+          document.getElementById(`img${i + 1}`).src = document.getElementById(
+            `img${i}`
+          ).src;
+        }
+      }
+    </script>
+  </body>
+</html>

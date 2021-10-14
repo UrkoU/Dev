@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var nums = [];
+
+      crearArray(6, 1, 49);
+
+      function crearArray(iCant, iMin, iMax) {
+        var i = 0;
+        while (i < iCant) {
+          var num = Math.floor(Math.random() * (iMax - iMin + 1) + iMin);
+          if (!nums.includes(num)) {
+            nums.push(num);
+            i++;
+          }
+        }
+
+        nums.forEach((n) => {
+          if (n > 9) {
+            a = Math.trunc(n / 10);
+            b = Math.trunc(n % 10);
+            document.write(`<img src="imagenes/n${a}.gif">`);
+            document.write(`<img src="imagenes/n${b}.gif">`);
+          } else {
+            document.write(`<img src="imagenes/n${n}.gif">`);
+          }
+          document.write(`<br/>`);
+        });
+      }
+    </script>
+  </body>
+</html>

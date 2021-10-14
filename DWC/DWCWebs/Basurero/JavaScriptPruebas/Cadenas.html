@@ -26,6 +26,7 @@
     <p><button onclick="funcionString('cripto+1')">Cripto +1</button></p>
     <p><button onclick="funcionString('descripto-1')">Descripto -1</button></p>
     <p><button onclick="funcionString('trim')">Trim</button></p>
+    <p><button onclick="funcionString('palindromo')">Palíndromo</button></p>
 
     <script>
       function funcionString(i) {
@@ -50,8 +51,11 @@
           case "trim":
             sNuevaCadena = SinBlancos(sCadena);
             break;
+          case "palindromo":
+            sNuevaCadena = Palindromo(sCadena);
+            break;
           default:
-            alert("Error al acceder a la función");
+            alert("Not implemented yet");
         }
 
         document.getElementById("sResultado").innerHTML = sNuevaCadena;
