@@ -1,0 +1,18 @@
+En un PDF indica qué librerías has utilizado señalándolo en el código, a qué nivel de la pila OSI/TCP estás trabajando.
+Muestra capturas de que has utilizado un cliente y funciona.
+
+
+
+Responde a las siguiente preguntas:
+
+¿Cuál es el cliente natural para tu programa? Verifica que funciona.
+	El navegador
+Qué más haría falta para que:
+Trabajase con una base de datos
+	Una base de datos, y una API que sirva como intermediaria
+Sirviese páginas web con datos de la base de datos
+	Obtener los datos desde la API y usar controladores para cogerlos y mostrarlos
+Admitiese múltiples conexiones simultaneas
+	IDK
+Distinguiese distintos tipos de peticiones por parte del cliente
+	IDK

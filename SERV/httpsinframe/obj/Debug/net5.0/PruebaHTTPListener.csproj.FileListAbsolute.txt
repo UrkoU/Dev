@@ -1,0 +1,16 @@
+C:\Users\2daw3\Dev\SERV\httpsinframe\bin\Debug\net5.0\PruebaHTTPListener.exe
+C:\Users\2daw3\Dev\SERV\httpsinframe\bin\Debug\net5.0\PruebaHTTPListener.deps.json
+C:\Users\2daw3\Dev\SERV\httpsinframe\bin\Debug\net5.0\PruebaHTTPListener.runtimeconfig.json
+C:\Users\2daw3\Dev\SERV\httpsinframe\bin\Debug\net5.0\PruebaHTTPListener.runtimeconfig.dev.json
+C:\Users\2daw3\Dev\SERV\httpsinframe\bin\Debug\net5.0\PruebaHTTPListener.dll
+C:\Users\2daw3\Dev\SERV\httpsinframe\bin\Debug\net5.0\ref\PruebaHTTPListener.dll
+C:\Users\2daw3\Dev\SERV\httpsinframe\bin\Debug\net5.0\PruebaHTTPListener.pdb
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.csproj.AssemblyReference.cache
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.AssemblyInfoInputs.cache
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.AssemblyInfo.cs
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.csproj.CoreCompileInputs.cache
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.dll
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\ref\PruebaHTTPListener.dll
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.pdb
+C:\Users\2daw3\Dev\SERV\httpsinframe\obj\Debug\net5.0\PruebaHTTPListener.genruntimeconfig.cache

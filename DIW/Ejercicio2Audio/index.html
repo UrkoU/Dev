@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio Patio</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    </style>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Radio patio</h1>
+    <div id="divReproductor">
+      <a onclick="previous()"><span class="material-icons"> skip_previous </span></a>
+      <a onclick="replay10()"><span class="material-icons">
+        replay_10
+        </span></a>
+      <a onclick="play()"><span class="material-icons"> play_arrow </span></a>
+      <a onclick="pause()"><span class="material-icons"> pause </span></a>
+      <a onclick="forward10()"><span class="material-icons">
+        forward_10
+        </span></a>
+      <a onclick="next()"><span class="material-icons"> skip_next </span></a>
+      <a onclick="volumeDown()"><span class="material-icons"> volume_down </span></a>
+      <a onclick="volumeUp()"><span class="material-icons"> volume_up </span></a>
+      <a onclick="mute()"><span class="material-icons">
+        volume_off
+        </span></a>
+    </div>
+
+    <script>
+        var i = 0;
+        var songs = [
+            'audio/AC-DC.mp3',
+            'audio/Aretha.mp3',
+            'audio/Bob Marley.mp3',
+            'audio/Red Hot Chili Peppers.mp3',
+        ]
+        
+        var player; //Maybe params
+
+        function play(){
+            if(!player)
+                player = new Audio(songs[i]);
+            player.play();
+        }
+
+        function pause(){
+            player.pause();
+        }
+
+        function previous(){
+            player.pause();
+            i>0?i--:i=songs.length-1;
+            player = new Audio(songs[i]);
+            player.play();
+        }
+
+        function next(){
+            player.pause();
+            i<songs.length-1?i++:i=0;
+            player = new Audio(songs[i]);
+            player.play();
+        }
+
+        function volumeDown(){
+            player.volume>0.1?player.volume-=0.1:()=>{};
+        }
+
+        function volumeUp(){
+            player.volume<1?player.volume+=0.1:()=>{};
+        }
+
+        function mute(){
+            player.volume=0;
+        }
+
+        function replay10(){
+            player.currentTime>10?player.currentTime-=10:player.currentTime=0;
+        }
+
+        function forward10(){
+            player.currentTime<player.duration?player.currentTime+=10:player.currentTime=player.duration;
+        }
+        </script>
+  </body>
+</html>
