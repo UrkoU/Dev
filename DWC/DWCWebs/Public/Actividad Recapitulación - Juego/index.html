@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body id="body">
+    <script src="http://10.10.17.1/2daw3/FuncionesJuegos.js"></script>
+    <script>
+      var n = 3;
+      var nums = CrearTabla(n);
+      var f0 = n - 1;
+      var c0 = n - 1;
+
+      mostrarNums();
+
+      function mostrarNums() {
+        let i = 0;
+        let j = 0;
+        document.getElementById(
+          "body"
+        ).innerHTML = `<table id="tJuego" style="border-collapse: collapse;"></table>`;
+
+        // for (let i = 0; i < nums.length; i++) {
+        //   document.getElementById("tJuego").innerHTML += `<tr id=tr${i}></tr>`;
+        //   for (let j = 0; j < nums[i].length; j++) {
+        //     document.getElementById(
+        //       `tr${i}`
+        //     ).innerHTML += `<td id=td${i}-${j}  style="border: 1px solid"><img id="Bola${i}${j}" src="numbers/n${nums[i][j]}.gif"></td>`;
+        //   }
+        // }
+        nums.forEach((n) => {
+          document.getElementById("tJuego").innerHTML += `<tr id=tr${i}></tr>`;
+          j = 0;
+          n.forEach((n2) => {
+            document.getElementById(
+              `tr${i}`
+            ).innerHTML += `<td id=td${i}-${j} style="border: 1px solid"><img id="Bola${i}${j}" src="numbers/n${nums[i][j]}.gif" onclick="Cambiar(${i}, ${j})"></td>`;
+            j++;
+          });
+          i++;
+        });
+      }
+
+      function Cambiar(f, c) {
+        if (
+          (f == f0 && (c == c0 - 1 || c == c0 + 1)) ||
+          (c == c0 && (f == f0 - 1 || f == f0 + 1))
+        ) {
+          alert("true");
+        } else {
+          alert(false);
+        }
+      }
+    </script>
+  </body>
+</html>

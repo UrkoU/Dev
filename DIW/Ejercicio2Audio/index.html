@@ -42,11 +42,14 @@
             'audio/Red Hot Chili Peppers.mp3',
         ]
         
-        var player; //Maybe params
+        var player = new Audio(songs[0]);
+        function mostrarLista(){
+          document
+        }
 
         function play(){
             if(!player)
-                player = new Audio(songs[i]);
+                player.src = songs[i];
             player.play();
         }
 
@@ -55,16 +58,14 @@
         }
 
         function previous(){
-            player.pause();
             i>0?i--:i=songs.length-1;
-            player = new Audio(songs[i]);
+            player.src = songs[i];
             player.play();
         }
 
         function next(){
-            player.pause();
             i<songs.length-1?i++:i=0;
-            player = new Audio(songs[i]);
+            player.src = songs[i];
             player.play();
         }
 
