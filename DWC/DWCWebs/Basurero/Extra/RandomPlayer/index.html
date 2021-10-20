@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: black">
+    <!-- <audio id="audioPlayer" autoplay muted controls>
+        <source src="audio/El Juego del Calamar _  Camino de Regreso.mp3">
+        Not supported
+    </audio> -->
+    <input type="button" onclick="start()" id="btnStart" />
+    <script>
+      var songs = [
+        "audio/El Juego del Calamar _  Camino de Regreso.mp3",
+        "audio/El Juego del Calamar _ _Fly Me To The Moon (Jazz Cover).mp3",
+        "audio/El Juego del Calamar _ Aguja y Dalgona Candy.mp3",
+        "audio/El Juego del Calamar _ Despertando.mp3",
+        "audio/El Juego del Calamar _ Grasa y Ratas.mp3",
+        "audio/El Juego del Calamar _ Asesinato Sin Violencia.mp3",
+        "audio/El Juego del Calamar _ La Cuerda Está Atada.mp3",
+        "audio/El Juego del Calamar _ Música, Voces, Coro.mp3",
+        "audio/El Juego del Calamar _ Vals   El Danubio Azul.mp3",
+      ];
+
+      var player = new Audio();
+
+      var previousSong;
+
+      player.onended = () => {
+        let time = getRandomTime();
+        wait(time);
+      };
+
+      function start() {
+        let time = getRandomTime();
+        wait(time);
+      }
+
+      function play(iSong) {
+        player.pause();
+
+        player.src = songs[iSong];
+
+        player.play();
+      }
+
+      function getRandomSong() {
+        newSong = Math.floor(Math.random() * (songs.length - 0) + 0);
+        while (newSong == previousSong)
+          newSong = Math.floor(Math.random() * (songs.length - 0) + 0);
+        previousSong = newSong;
+        return newSong;
+      }
+
+      function wait(iTime) {
+        console.log("Wait for :" + iTime / 1000 + " seconds");
+        setTimeout(() => {
+          let song = getRandomSong();
+          play(song);
+        }, iTime);
+      }
+
+      function getRandomTime() {
+        return Math.floor(Math.random() * (300000 - 60000) + 120000);
+      }
+    </script>
+    <script src=""></script>
+  </body>
+</html>
