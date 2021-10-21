@@ -5,13 +5,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   </head>
   <body>
-    <video width="720" height="480" controls>
-      <source src="video/AC_DC - Who Made Who.m4a" />
+    <h1>Video patio</h1>
+    <div id="divReproductor">
+      <a onclick="previous()"><span class="material-icons"> skip_previous </span></a>
+      <a onclick="replay10()"><span class="material-icons"> replay_10 </span></a>
+      <a onclick="play()"><span class="material-icons"> play_arrow </span></a>
+      <a onclick="pause()"><span class="material-icons"> pause </span></a>
+      <a onclick="forward10()"><span class="material-icons"> forward_10 </span></a>
+      <a onclick="next()"><span class="material-icons"> skip_next </span></a>
+      <a onclick="volumeDown()"><span class="material-icons"> volume_down </span></a>
+      <a onclick="volumeUp()"><span class="material-icons"> volume_up </span></a>
+      <a onclick="mute()"><span class="material-icons"> volume_off </span></a>
+    </div>
+
+    <video width="720" height="480" controls id="videoPlayer">
+      <!-- <source src="video/AC_DC - Who Made Who.webm" /> -->
       <source src="video/AC_DC - Who Made Who.mp4" />
-      <source src="video/AC_DC - Who Made Who.webm" />
+      <source src="video/AC_DC - Who Made Who.m4a" />
       Your browser does not support the video tag.
     </video>
   </body>
+  <script>
+    var i = 0;
+    var songs = ["audio/AC-DC.mp3", "audio/Aretha.mp3", "audio/Bob Marley.mp3", "audio/Red Hot Chili Peppers.mp3"];
+
+    var player = document.getElementById("videoPlayer");
+
+    function mostrarLista() {
+      document;
+    }
+
+    function play() {
+      if (!player) player.src = songs[i];
+      player.play();
+    }
+
+    function pause() {
+      player.pause();
+    }
+
+    function previous() {
+      i > 0 ? i-- : (i = songs.length - 1);
+      player.src = songs[i];
+      player.play();
+    }
+
+    function next() {
+      i < songs.length - 1 ? i++ : (i = 0);
+      player.src = songs[i];
+      player.play();
+    }
+
+    function volumeDown() {
+      player.volume > 0.1 ? (player.volume -= 0.1) : () => {};
+    }
+
+    function volumeUp() {
+      player.volume < 1 ? (player.volume += 0.1) : () => {};
+    }
+
+    function mute() {
+      player.volume = 0;
+    }
+
+    function replay10() {
+      player.currentTime > 10 ? (player.currentTime -= 10) : (player.currentTime = 0);
+    }
+
+    function forward10() {
+      player.currentTime < player.duration ? (player.currentTime += 10) : (player.currentTime = player.duration);
+    }
+  </script>
 </html>

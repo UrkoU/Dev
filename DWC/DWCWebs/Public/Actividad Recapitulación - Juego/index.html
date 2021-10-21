@@ -7,52 +7,98 @@
     <title>Document</title>
   </head>
   <body id="body">
+    <input list="browsers" />
+    <datalist id="browsers">
+      <option value="Internet Explorer"></option>
+      <option value="Firefox"></option>
+      <option value="Chrome"></option>
+      <option value="Opera"></option>
+      <option value="Safari"></option>
+    </datalist>
+
     <script src="http://10.10.17.1/2daw3/FuncionesJuegos.js"></script>
     <script>
       var n = 3;
       var nums = CrearTabla(n);
+      var numsOrdenados = CrearTablaOrdenada();
       var f0 = n - 1;
       var c0 = n - 1;
+      var bBotonesActivados = true;
+      var clicks = 0;
 
-      mostrarNums();
+      MostrarNums();
+      if (Comprobar()) TerminarJuego(true);
 
-      function mostrarNums() {
+      function MostrarNums() {
         let i = 0;
         let j = 0;
-        document.getElementById(
-          "body"
-        ).innerHTML = `<table id="tJuego" style="border-collapse: collapse;"></table>`;
+        document.getElementById("body").innerHTML = `<table id="tJuego" style="border-collapse: collapse;"></table>`;
 
-        // for (let i = 0; i < nums.length; i++) {
-        //   document.getElementById("tJuego").innerHTML += `<tr id=tr${i}></tr>`;
-        //   for (let j = 0; j < nums[i].length; j++) {
-        //     document.getElementById(
-        //       `tr${i}`
-        //     ).innerHTML += `<td id=td${i}-${j}  style="border: 1px solid"><img id="Bola${i}${j}" src="numbers/n${nums[i][j]}.gif"></td>`;
-        //   }
-        // }
-        nums.forEach((n) => {
+        for (let i = 0; i < nums.length; i++) {
           document.getElementById("tJuego").innerHTML += `<tr id=tr${i}></tr>`;
-          j = 0;
-          n.forEach((n2) => {
+          for (let j = 0; j < nums[i].length; j++) {
             document.getElementById(
               `tr${i}`
-            ).innerHTML += `<td id=td${i}-${j} style="border: 1px solid"><img id="Bola${i}${j}" src="numbers/n${nums[i][j]}.gif" onclick="Cambiar(${i}, ${j})"></td>`;
-            j++;
-          });
-          i++;
-        });
+            ).innerHTML += `<td id=td${i}-${j}  style="border: 1px solid"><img id="Bola${i}${j}" src="numbers/n${nums[i][j]}.gif"  onclick="Cambiar(${i}, ${j})"></td>`;
+          }
+        }
+      }
+
+      function CrearTablaOrdenada() {
+        let a = new Array(n);
+        let x = 1;
+        for (let i = 0; i < n; i++) {
+          a[i] = new Array(n);
+          for (let j = 0; j < n; j++) {
+            a[i][j] = x;
+            x++;
+          }
+        }
+        a[n - 1][n - 1] = 0;
+        return a;
       }
 
       function Cambiar(f, c) {
-        if (
-          (f == f0 && (c == c0 - 1 || c == c0 + 1)) ||
-          (c == c0 && (f == f0 - 1 || f == f0 + 1))
-        ) {
-          alert("true");
-        } else {
-          alert(false);
+        if (bBotonesActivados) {
+          clicks++;
+          if ((f == f0 && (c == c0 - 1 || c == c0 + 1)) || (c == c0 && (f == f0 - 1 || f == f0 + 1))) {
+            Intercambiar(nums, f0, c0, f, c);
+            c0 = c;
+            f0 = f;
+            MostrarNums();
+            if (Comprobar()) TerminarJuego(true);
+          }
         }
+      }
+
+      function Comprobar(valor) {
+        let bIgual = true;
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (nums[i][j] != numsOrdenados[i][j]) {
+              bIgual = false;
+              break;
+            }
+          }
+          if (bIgual == false) break;
+        }
+        if (bIgual) return true;
+        else return false;
+      }
+
+      function TerminarJuego(ganado) {
+        IntercambiarBotonesActivados();
+        if (ganado) MostrarMensaje("Juego terminado con éxito");
+        else MostrarMensaje("No has conseguido completar el juego con éxito, tiempo agotado");
+        bBotonesActivados = false;
+      }
+
+      function IntercambiarBotonesActivados() {
+        bBotonesActivados = !bBotonesActivados;
+      }
+
+      function MostrarMensaje(mensaje) {
+        document.getElementById("body").innerHTML += `<h1>${mensaje}</h1>`;
       }
     </script>
   </body>

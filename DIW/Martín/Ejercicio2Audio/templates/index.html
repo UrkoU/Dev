@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    Hola
+    <audio muted autoplay controls>
+      <source type="audio/mpeg" />
+      <!-- <source src="/media/AC-DC.mp3" />
+      <source src="/media/Aretha.mp3" />
+      <source src="/media/Bob Marley.mp3" />
+      <source src="/media/Red Hot Chili Peppers.mp3" /> -->
+    </audio>
+    <div class="control-btn">
+      <a href="" id="control-previous" class="material-icons text-body" title="Previous">skip_previous</a>
+    </div>
+    <div class="control-btn">
+      <a href="" id="control-stop" class="material-icons text-body" title="Stop">stop</a>
+    </div>
+    <div class="control-btn">
+      <a href="" id="control-play" class="material-icons text-body" title="Play">play_arrow</a>
+    </div>
+    <div class="control-btn">
+      <a href="" id="control-next" class="material-icons text-body" title="Next">skip_next</a>
+    </div>
+
+    <h2 class="text-center">Audios</h2>
+    <section class="d-flex justify-content-center">
+      <button class="btn" onclick="playAudio(1)">one</button>
+      <button class="btn" onclick="playAudio(2)">two</button>
+      <button class="btn" onclick="playAudio(3)">three</button>
+      <button class="btn" onclick="playAudio(4)">four</button>
+    </section>
+  </body>
+
+  <script>
+    function playAudio(num) {
+      switch (num) {
+        case 1:
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+        case 4:
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+  <script src="../scripts/main.js"></script>
+</html>
