@@ -9,38 +9,32 @@
   <body>
     <div id="divTexto"></div>
     <script>
-      var texto = "EY MUY BUENAS A TODOS AQUI WILLYREX COMENTANDO";
+      var sTexto = "Kaixo";
       Inicializar();
-      Avanzar();
 
-      setInterval(Avanzar, 100);
+      setInterval(Rotar, 250);
 
       function Inicializar() {
-        texto = "  " + texto + "  ";
-        Mostrar();
+        sTexto = "  " + sTexto + "  ";
+        Mostrar(sTexto);
       }
 
-      function Mostrar() {
+      function Mostrar(text) {
         document.getElementById("divTexto").innerHTML = "";
-        for (let i = 0; i < texto.length; i++) {
-          if (texto[i] == " ")
-            document.getElementById(
-              "divTexto"
-            ).innerHTML += `<img id="img${i}" src="letras/Blanco.gif">`;
-          else
-            document.getElementById(
-              "divTexto"
-            ).innerHTML += `<img id="img${i}" src="letras/${texto[
-              i
-            ].toUpperCase()}.gif">`;
+        for (let i = 0; i < text.length; i++) {
+          if (text[i] == " ") document.getElementById("divTexto").innerHTML += `<img id="img${i}" src="letras/Blanco.gif">`;
+          else document.getElementById("divTexto").innerHTML += `<img id="img${i}" src="letras/${text[i].toUpperCase()}.gif">`;
         }
       }
 
-      function Avanzar() {
-        let ltr = texto.slice(texto.length - 1);
-        texto = ltr + texto.slice(0, texto.length - 1);
+      function Avanzar(text) {
+        let ltr = text.slice(text.length - 1);
+        return (text = ltr + text.slice(0, text.length - 1));
+      }
 
-        Mostrar();
+      function Rotar() {
+        sTexto = Avanzar(sTexto);
+        Mostrar(sTexto);
       }
     </script>
   </body>
