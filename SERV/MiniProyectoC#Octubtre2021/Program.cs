@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Servicios;
+using Negocio;
+using UI.Consola;
 
-namespace MiniProyectoC_Octubtre2021
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
-    }
-}
+System.Console.WriteLine("> Inicio Mascotas");
+
+var repositorio = new RepositorioCSV();
+var sistema = new GestorDeMascotas(repositorio);
+var vista = new View();
+var controlador = new Controlador(sistema, vista);
+
+controlador.Run();
+
+System.Console.WriteLine("> Mascotas finalizada");
+
+
+

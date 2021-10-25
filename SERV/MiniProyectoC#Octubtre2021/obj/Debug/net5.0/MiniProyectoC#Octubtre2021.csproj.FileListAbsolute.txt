@@ -1,0 +1,16 @@
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\bin\Debug\net5.0\MiniProyectoC#Octubtre2021.exe
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\bin\Debug\net5.0\MiniProyectoC#Octubtre2021.deps.json
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\bin\Debug\net5.0\MiniProyectoC#Octubtre2021.runtimeconfig.json
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\bin\Debug\net5.0\MiniProyectoC#Octubtre2021.runtimeconfig.dev.json
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\bin\Debug\net5.0\MiniProyectoC#Octubtre2021.dll
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\bin\Debug\net5.0\ref\MiniProyectoC#Octubtre2021.dll
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\bin\Debug\net5.0\MiniProyectoC#Octubtre2021.pdb
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.csproj.AssemblyReference.cache
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.AssemblyInfoInputs.cache
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.AssemblyInfo.cs
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.csproj.CoreCompileInputs.cache
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.dll
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\ref\MiniProyectoC#Octubtre2021.dll
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.pdb
+C:\Users\Dev\Desktop\DAW\Dev\SERV\MiniProyectoC#Octubtre2021\obj\Debug\net5.0\MiniProyectoC#Octubtre2021.genruntimeconfig.cache
