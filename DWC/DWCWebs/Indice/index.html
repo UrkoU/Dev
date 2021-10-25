@@ -9,28 +9,46 @@
   </head>
   <body>
     <div class="top">
-      <div class="title" id="dTitle">
-        <h2 class="centerText">URKO URBIETA BUENO</h2>
+      <div class="title">
+        <h2 class="centered-text">URKO URBIETA BUENO</h2>
       </div>
     </div>
 
-    <div class="content" id="dContent">
+    <div class="content">
       <br />
       <div class="exercises">
-        <div class="cardRow">
-          <div class="card whiteText" onclick="location.href='../Public/ej1-sellos'">
-            <img class="rounded-image card-image" src="/Indice/imagenes/ej1-sellos.png" />
+        <div class="card-row">
+          <div class="card white-text" onclick="location.href='../Public/ej1-sellos'">
+            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej1-sellos.png" />
             Sellos
           </div>
-          <div class="card whiteText" onclick="location.href='../Public/ej2-contadorRegresivo'">
-            <img class="rounded-image card-image" src="/Indice/imagenes/ej2-regresivo.png" />
+          <div class="card white-text" onclick="location.href='../Public/ej2-contadorRegresivo'">
+            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej2-regresivo.png" />
             Contador Regresivo
           </div>
         </div>
-        <div class="cardRow">
-          <div class="card whiteText">
-            <img src="as" class="rounded-image card-image" onerror="ImageError(this)" />
-            Contador Regresivo
+        <div class="card-row">
+          <div class="card white-text" onclick="location.href='../Public/ej3-reloj'">
+            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej3-reloj.png" />
+            Reloj
+          </div>
+          <div class="card white-text" onclick="location.href='../Public/ej4-stringsImagenes'">
+            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej4-string-imagenes.png" />
+            String imagenes
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="card white-text" onclick="location.href='../Public/ej5-stringsImagenesRelojes'">
+            <img
+              class="rounded-image card-image"
+              onerror="ImageError(this)"
+              src="./imagenes/ej5-string-imagenes-relojes.png"
+            />
+            Strings imágenes relojes
+          </div>
+          <div class="card white-text" onclick="location.href='../Public/ej6-juegoRecapitulacion'">
+            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej6-recapitulacion.png" />
+            Recapitulación
           </div>
         </div>
       </div>
@@ -38,12 +56,12 @@
         <!-- <div id="horizontalLine">&nbsp;</div> -->
         <!-- Footer links -->
         <div id="divFooterLinks">
-          <a class="aFooterLink whiteText active-page">Página principal</a>
-          <a class="aFooterLink whiteText">Trabajos</a>
-          <a class="aFooterLink whiteText">Sobre mí</a>
+          <a class="footer-link white-text active-page">Página principal</a>
+          <a class="footer-link white-text">Trabajos</a>
+          <a class="footer-link white-text">Sobre mí</a>
         </div>
       </div>
     </div>
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>

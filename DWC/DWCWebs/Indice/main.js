@@ -1,4 +1,4 @@
-var footerLinks = document.querySelectorAll(".aFooterLink");
+var footerLinks = document.querySelectorAll(".footer-link");
 var activePage = document.querySelector(".activePage");
 
 var index = 0;
@@ -22,5 +22,5 @@ function CambiarLinks(i) {
 function ImageError(self) {
   console.log(self);
   self.onerror = null;
-  self.src = "/Indice/imagenes/default.png";
+  self.src = "./imagenes/default.png";
 }

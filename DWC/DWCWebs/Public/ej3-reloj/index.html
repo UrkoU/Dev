@@ -1,50 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reloj</title>
-    <style>
-      h1,
-      .dReloj {
-        display: inline;
-      }
-
-      .dReloj {
-        text-align: center;
-      }
-    </style>
   </head>
-  <body onload="ObtenerFecha()">
-    <div id="dReloj">
-      <img id="iMins0" src="imagenes/n0.gif" />
-      <img id="iMins1" src="imagenes/n0.gif" />
-      <h1>:</h1>
-      <img id="iSecs0" src="imagenes/n0.gif" />
-      <img id="iSecs1" src="imagenes/n0.gif" />
+  <body style="height: 100%" onload="ObtenerFecha()">
+    <div style="min-height: 100%; position: relative">
+      <div
+        id="dReloj"
+        style="
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+        "
+      >
+        <img id="iMins0" src="imagenes/n0.gif" />
+        <img id="iMins1" src="imagenes/n0.gif" />
+        <h1 style="font-size: 80px">:</h1>
+        <img id="iSecs0" src="imagenes/n0.gif" />
+        <img id="iSecs1" src="imagenes/n0.gif" />
+      </div>
     </div>
     <script language="javascript">
-      var dFecha;
-
       setInterval(ObtenerFecha, 1000);
       function ObtenerFecha() {
-        dFecha = new Date();
+        let dFecha = new Date();
 
         PonerFecha(dFecha);
       }
 
       function PonerFecha(dFecha) {
-        let mins = dFecha.getMinutes();
-        let secs = dFecha.getSeconds();
-        document.getElementById("iMins0").src = `imagenes/n${Math.trunc(
-          mins / 10
-        )}.gif`;
-        document.getElementById("iMins1").src = `imagenes/n${mins % 10}.gif`;
-        document.getElementById("iSecs0").src = `imagenes/n${Math.trunc(
-          secs / 10
-        )}.gif`;
-        document.getElementById("iSecs1").src = `imagenes/n${secs % 10}.gif`;
+        let dMins = dFecha.getMinutes();
+        let dSecs = dFecha.getSeconds();
+        document.getElementById("iMins0").src = `imagenes/n${Math.trunc(dMins / 10)}.gif`;
+        document.getElementById("iMins1").src = `imagenes/n${dMins % 10}.gif`;
+        document.getElementById("iSecs0").src = `imagenes/n${Math.trunc(dSecs / 10)}.gif`;
+        document.getElementById("iSecs1").src = `imagenes/n${dSecs % 10}.gif`;
       }
     </script>
   </body>

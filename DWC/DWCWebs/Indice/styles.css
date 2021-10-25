@@ -14,7 +14,7 @@ body {
   background-color: rgb(31, 28, 30);
 }
 
-.centerText {
+.centered-text {
   text-align: center;
 }
 
@@ -73,7 +73,7 @@ body {
   border-radius: 25px;
 }
 
-.aFooterLink {
+.footer-link {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,9 +84,12 @@ body {
 
 .active-page {
   background-color: rgb(65, 60, 60);
+  animation: HoverMove;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
 }
 
-.whiteText {
+.white-text {
   color: white;
 }
 
@@ -99,7 +102,7 @@ body {
   /* align-content: space-around; */
 }
 
-.cardRow {
+.card-row {
   width: 100%;
   height: 30%;
   display: flex;
@@ -118,7 +121,6 @@ body {
 }
 
 .card-image {
-  background-image: "/Indice/imagenes/default.png";
   max-width: 250px;
   max-height: 250px;
   min-width: 75px;
@@ -131,4 +133,27 @@ body {
 
 .rounded-image {
   border-radius: 25px;
+}
+
+@keyframes HoverMove {
+  /* 0% {
+    width: auto;
+  } */
+  47.5% {
+    width: 50%;
+  }
+  95% {
+    width: 200%;
+  }
+  100% {
+    width: 50%;
+  }
+  /* from {
+    left: 0px;
+    background-color: red;
+  }
+  to {
+    top: 300px;
+    background-color: red;
+  } */
 }

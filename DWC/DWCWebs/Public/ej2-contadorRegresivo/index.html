@@ -38,13 +38,11 @@
         var divImagenes = document.getElementById("divImagenes");
         var n;
         for (var i = cifras - 1; i >= 0; i--) {
-          document.getElementById(`img${i}`).src = `imagenes/n${
-            num10 % 10
-          }.gif`;
+          document.getElementById(`img${i}`).src = `imagenes/n${num10 % 10}.gif`;
           num10 = Math.floor(num10 / 10);
         }
 
-        interval = setInterval(regresivo, 1);
+        interval = setInterval(regresivo, 100);
       }
 
       function regresivo() {
@@ -52,9 +50,7 @@
           num--;
           num10 = num;
           for (var i = cifras - 1; i >= 0; i--) {
-            document.getElementById(`img${i}`).src = `imagenes/n${
-              num10 % 10
-            }.gif`;
+            document.getElementById(`img${i}`).src = `imagenes/n${num10 % 10}.gif`;
             num10 = Math.floor(num10 / 10);
           }
         } else {
@@ -92,12 +88,7 @@
           value="3"
           onchange="comprobarInt()"
         />
-        <input
-          id="btnEnviarCifras"
-          type="button"
-          value="Enviar"
-          onclick="enviarNumCifras()"
-        />
+        <input id="btnEnviarCifras" type="button" value="Enviar" onclick="enviarNumCifras()" />
       </form>
       <p>Número del que regresar</p>
       <form>
@@ -108,12 +99,7 @@
           maxlength="5"
           onchange="comprobarInt2()"
         />
-        <input
-          id="btnEnviarRegresivo"
-          type="button"
-          value="Enviar"
-          onclick="enviarNumRegresivo()"
-        />
+        <input id="btnEnviarRegresivo" type="button" value="Enviar" onclick="enviarNumRegresivo()" />
       </form>
       <br />
     </div>

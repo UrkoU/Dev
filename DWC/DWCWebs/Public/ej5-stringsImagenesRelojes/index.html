@@ -7,7 +7,19 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="divTexto"></div>
+    <div
+      id="divTexto"
+      style="
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+      "
+    ></div>
     <script>
       var sTexto = "Kaixo";
       Inicializar();
@@ -22,8 +34,12 @@
       function Mostrar(text) {
         document.getElementById("divTexto").innerHTML = "";
         for (let i = 0; i < text.length; i++) {
-          if (text[i] == " ") document.getElementById("divTexto").innerHTML += `<img id="img${i}" src="letras/Blanco.gif">`;
-          else document.getElementById("divTexto").innerHTML += `<img id="img${i}" src="letras/${text[i].toUpperCase()}.gif">`;
+          if (text[i] == " ")
+            document.getElementById("divTexto").innerHTML += `<img id="img${i}" src="letras/Blanco.gif">`;
+          else
+            document.getElementById("divTexto").innerHTML += `<img id="img${i}" src="letras/${text[
+              i
+            ].toUpperCase()}.gif">`;
         }
       }
 

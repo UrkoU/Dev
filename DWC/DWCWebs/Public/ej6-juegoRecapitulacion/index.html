@@ -7,32 +7,31 @@
     <title>Document</title>
   </head>
   <body id="body">
-    <input list="browsers" />
-    <datalist id="browsers">
-      <option value="Internet Explorer"></option>
-      <option value="Firefox"></option>
-      <option value="Chrome"></option>
-      <option value="Opera"></option>
-      <option value="Safari"></option>
-    </datalist>
-
-    <script src="http://10.10.17.1/2daw3/FuncionesJuegos.js"></script>
+    <div id="divGame"></div>
+    <div id="divTime"></div>
+    <div id="divResult"></div>
+    <script src="http://185.60.40.210/2daw3/FuncionesJuegos.js"></script>
     <script>
       var n = 3;
+      var timeLimit = [1, 5, 8, 11, 14, 20];
       var nums = CrearTabla(n);
       var numsOrdenados = CrearTablaOrdenada();
       var f0 = n - 1;
       var c0 = n - 1;
       var bBotonesActivados = true;
       var clicks = 0;
-
       MostrarNums();
-      if (Comprobar()) TerminarJuego(true);
+      // Si la tabla viene resuelta por defecto volver a crearla
+      while (Comprobar()) {
+        nums = CrearTabla(n);
+        MostrarNums();
+      }
+      var iIntervalo = setInterval(Reloj, 1000);
 
       function MostrarNums() {
         let i = 0;
         let j = 0;
-        document.getElementById("body").innerHTML = `<table id="tJuego" style="border-collapse: collapse;"></table>`;
+        document.getElementById("divGame").innerHTML = `<table id="tJuego" style="border-collapse: collapse;"></table>`;
 
         for (let i = 0; i < nums.length; i++) {
           document.getElementById("tJuego").innerHTML += `<tr id=tr${i}></tr>`;
@@ -61,6 +60,7 @@
       function Cambiar(f, c) {
         if (bBotonesActivados) {
           clicks++;
+          MostrarClicks(clicks);
           if ((f == f0 && (c == c0 - 1 || c == c0 + 1)) || (c == c0 && (f == f0 - 1 || f == f0 + 1))) {
             Intercambiar(nums, f0, c0, f, c);
             c0 = c;
@@ -71,7 +71,7 @@
         }
       }
 
-      function Comprobar(valor) {
+      function Comprobar() {
         let bIgual = true;
         for (let i = 0; i < n; i++) {
           for (let j = 0; j < n; j++) {
@@ -82,8 +82,7 @@
           }
           if (bIgual == false) break;
         }
-        if (bIgual) return true;
-        else return false;
+        return bIgual;
       }
 
       function TerminarJuego(ganado) {
@@ -91,6 +90,7 @@
         if (ganado) MostrarMensaje("Juego terminado con éxito");
         else MostrarMensaje("No has conseguido completar el juego con éxito, tiempo agotado");
         bBotonesActivados = false;
+        clearInterval(iIntervalo);
       }
 
       function IntercambiarBotonesActivados() {
@@ -98,7 +98,30 @@
       }
 
       function MostrarMensaje(mensaje) {
-        document.getElementById("body").innerHTML += `<h1>${mensaje}</h1>`;
+        document.getElementById("divResult").innerHTML += `<h1>${mensaje}</h1>`;
+      }
+
+      function MostrarClicks(clicks) {
+        // alert("Clicks: " + clicks);
+        document.getElementById("divResult").innerHTML = `<h1>${clicks}</h1>`;
+      }
+
+      var hora = new Date();
+      var nueva = new Date(hora.getTime() + timeLimit[n - 2] * 60000);
+
+      function Reloj() {
+        var tiempoRestante = new Date(nueva - new Date());
+        if (tiempoRestante.getMinutes() == 0 && tiempoRestante.getSeconds() == 0) {
+          bBotonesActivados = false;
+          TerminarJuego(false);
+        }
+        let time =
+          tiempoRestante.getMinutes().toString() +
+          ":" +
+          (tiempoRestante.getSeconds() > 9
+            ? tiempoRestante.getSeconds().toString()
+            : `0${tiempoRestante.getSeconds().toString()}`);
+        document.getElementById("divTime").innerHTML = time;
       }
     </script>
   </body>
