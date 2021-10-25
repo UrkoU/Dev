@@ -10,6 +10,7 @@ html {
 
 body {
   height: 100%;
+  margin: 0 0.5%;
   background-color: rgb(31, 28, 30);
 }
 
@@ -32,7 +33,8 @@ body {
   left: 50%;
   width: 60%;
   padding: 1% 3%;
-  border-radius: 35px;
+  max-height: 65%;
+  border-radius: 25px;
   background-color: rgb(151, 210, 247);
 }
 
@@ -72,7 +74,6 @@ body {
 }
 
 .aFooterLink {
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,7 +82,7 @@ body {
   border-radius: 25px;
 }
 
-.activePage {
+.active-page {
   background-color: rgb(65, 60, 60);
 }
 
@@ -92,21 +93,42 @@ body {
 .exercises {
   height: 89%;
   width: 70%;
+  margin: auto;
+  /* display: flex; */
+  flex-wrap: wrap;
+  /* align-content: space-around; */
+}
+
+.cardRow {
+  width: 100%;
+  height: 30%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-content: space-around;
+  justify-content: space-around;
 }
 
 .card {
   display: flex;
-  flex: 1 0 41%;
-  max-width: 50%;
-  height: 15%;
+  /* flex: 1 0 41%; */
+  margin: 1.5% 2.5%;
+  padding: 1%;
+  min-width: 45%;
   background-color: rgb(31, 28, 30);
   border-radius: 25px;
 }
 
+.card-image {
+  background-image: "/Indice/imagenes/default.png";
+  max-width: 250px;
+  max-height: 250px;
+  min-width: 75px;
+  min-height: 75px;
+}
+
 .card:hover {
   background-color: rgb(151, 210, 247);
+}
+
+.rounded-image {
+  border-radius: 25px;
 }
