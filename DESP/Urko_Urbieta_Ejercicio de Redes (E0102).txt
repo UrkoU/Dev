@@ -20,3 +20,26 @@ Indica tus respuestas en un txt y las subes a la carpeta
 
 
 
+Dada la red 192.168.0.0/21
+
+¿Qué tipo clase de red es? 
+	Ip clase C
+
+Si queremos dedicar 7 bits para hosts.
+	¿Cuántos hosts tendríamos como máximo en toda la red?
+	2046
+	¿Cuántos hosts tendríamos como máximo en cada subred?
+	126 hosts
+	¿Cuántas subredes tendríamos?
+	16 subredes
+	¿Cuál sería el host mínimo de la red?
+	192.168.0.1
+	¿Cuál sería el host máximo de la red?
+	192.168.7.254
+Menciona la subred 4 e indica el host mayor y menor.
+	Subred 192.168.1.128, host mínimo 192.168.1.129, host máximo 192.168.1.254
+¿192.168.4.27 es un host válido en alguna subred?
+	Sí, forma parte de la subred 9.
+Indica tus respuestas en un txt y las subes a la carpeta
+
+

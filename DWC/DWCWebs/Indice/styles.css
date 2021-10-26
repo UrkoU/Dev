@@ -20,7 +20,7 @@ body {
 
 .top {
   width: 100%;
-  height: 15%;
+  height: 20%;
   position: relative;
 }
 
@@ -39,10 +39,23 @@ body {
 }
 
 .content {
-  height: 85%;
+  box-sizing: border-box;
+  height: 80%;
+  width: 85%;
+  margin: auto;
+  padding-top: 3%;
   background-color: rgb(65, 60, 60);
   border-top-right-radius: 60px;
   border-top-left-radius: 60px;
+}
+
+.exercises {
+  overflow: hidden;
+}
+
+.exercises:hover {
+  overflow: auto;
+  padding-right: 1px;
 }
 
 #horizontalLine {
@@ -53,13 +66,13 @@ body {
 }
 
 .footer {
-  height: 6%;
-  width: 90%;
+  height: 11%;
+  width: 80%;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   margin: auto;
-  background-color: rgb(31, 28, 30);
-  border-radius: 25px;
+  /* background-color: rgb(31, 28, 30);
+  border-radius: 25px; */
 }
 
 #divFooterLinks {
@@ -68,7 +81,7 @@ body {
   align-items: center;
   margin: auto;
   width: 99%;
-  height: 90%;
+  height: 50%;
   background-color: rgb(31, 28, 30);
   border-radius: 25px;
 }
@@ -77,15 +90,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 90%;
+  width: 33%;
+  height: 80%;
   border-radius: 25px;
 }
 
 .active-page {
   background-color: rgb(65, 60, 60);
-  animation: HoverMove;
-  animation-duration: 5s;
+  /* animation: HoverMove; */
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
@@ -93,9 +106,13 @@ body {
   color: white;
 }
 
+.bold-text {
+  font-weight: bold;
+}
+
 .exercises {
   height: 89%;
-  width: 70%;
+  width: 80%;
   margin: auto;
   /* display: flex; */
   flex-wrap: wrap;
@@ -135,18 +152,28 @@ body {
   border-radius: 25px;
 }
 
+.rounded-pill {
+  width: 25%;
+  height: 10%;
+  border-radius: 50px;
+  background-color: rgb(151, 210, 247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes HoverMove {
-  /* 0% {
-    width: auto;
-  } */
-  47.5% {
-    width: 50%;
+  0% {
+    width: 33%;
   }
+  /* 47.5% {
+    width: 50%;
+  } */
   95% {
-    width: 200%;
+    width: 150%;
   }
   100% {
-    width: 50%;
+    width: 33%;
   }
   /* from {
     left: 0px;
@@ -155,5 +182,5 @@ body {
   to {
     top: 300px;
     background-color: red;
-  } */
+  }*/
 }

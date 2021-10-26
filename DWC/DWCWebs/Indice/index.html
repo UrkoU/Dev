@@ -8,47 +8,28 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <script>
+      // Put default image if loading image gives error
+      function ImageError(self) {
+        self.onerror = null;
+        self.src = "./imagenes/default.png";
+      }
+    </script>
     <div class="top">
       <div class="title">
         <h2 class="centered-text">URKO URBIETA BUENO</h2>
       </div>
     </div>
 
-    <div class="content">
-      <br />
-      <div class="exercises">
-        <div class="card-row">
-          <div class="card white-text" onclick="location.href='../Public/ej1-sellos'">
-            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej1-sellos.png" />
-            Sellos
+    <div class="content" id="divContent">
+      <div class="exercises" id="divExercises">
+        <div style="height: 100%; width: 100%; display: flex; flex-direction: row">
+          <div style="height: 100%; width: 75%">
+            <div class="rounded-pill bold-text">Estudios</div>
+            <div class="rounded-pill bold-text">Experiencia profesional</div>
           </div>
-          <div class="card white-text" onclick="location.href='../Public/ej2-contadorRegresivo'">
-            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej2-regresivo.png" />
-            Contador Regresivo
-          </div>
-        </div>
-        <div class="card-row">
-          <div class="card white-text" onclick="location.href='../Public/ej3-reloj'">
-            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej3-reloj.png" />
-            Reloj
-          </div>
-          <div class="card white-text" onclick="location.href='../Public/ej4-stringsImagenes'">
-            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej4-string-imagenes.png" />
-            String imagenes
-          </div>
-        </div>
-        <div class="card-row">
-          <div class="card white-text" onclick="location.href='../Public/ej5-stringsImagenesRelojes'">
-            <img
-              class="rounded-image card-image"
-              onerror="ImageError(this)"
-              src="./imagenes/ej5-string-imagenes-relojes.png"
-            />
-            Strings imágenes relojes
-          </div>
-          <div class="card white-text" onclick="location.href='../Public/ej6-juegoRecapitulacion'">
-            <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej6-recapitulacion.png" />
-            Recapitulación
+          <div style="height: 100%; width: 25%; display: flex; justify-content: flex-end">
+            <img class="rounded-image card-image" style="justify-content: right" onerror="ImageError(this)" src="a" />
           </div>
         </div>
       </div>
@@ -62,6 +43,7 @@
         </div>
       </div>
     </div>
+
     <script src="./main.js"></script>
   </body>
 </html>
