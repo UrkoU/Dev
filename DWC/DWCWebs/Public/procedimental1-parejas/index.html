@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="divCartas"></div>
+    <script src="http://185.60.40.210/2daw3/FuncionesJuegos.js"></script>
+    <script>
+      const N = 4;
+      const M = 10;
+      var aCartas = CrearTablaCartas(N, M);
+      var aCartasMostradas = [];
+      var divCartas = document.getElementById("divCartas");
+      // Booleano. Si es false, hay que coger otra carta
+      // Si es true, comprueba las cartas y hay que escoger las dos cartas otra vez
+      var bComprobarCartas = false;
+      var cCarta1 = {};
+      var cCarta2 = {};
+      var iAciertos = 0;
+      let bDesactivarClicks = false;
+
+      CrearArrayBools();
+      MostrarCartas();
+
+      function MostrarCartas() {
+        // Función inicial que muestra todas las cartas boca abajo
+        for (let i = 0; i < aCartas.length; i++) {
+          for (let j = 0; j < aCartas[i].length; j++) {
+            divCartas.innerHTML += `<img id="imgCarta${i}-${j}" src="Baraja/0.png" onclick="Voltear(${i},${j})">`;
+          }
+          divCartas.innerHTML += `<br/>`;
+        }
+      }
+
+      function CrearArrayBools() {
+        // Crea un array de booleanos de las mismas dimensiones que aCartas,
+        // En él se guarda si cada carta está boca arriba o boca abajo
+        // Inicialmente, false
+        for (let i = 0; i < N; i++) {
+          aCartasMostradas.push([]);
+          for (let j = 0; j < M; j++) {
+            aCartasMostradas[i].push(false);
+          }
+        }
+      }
+
+      function Voltear(i, j) {
+        // Muestra la carta de la posición i-j
+        document.getElementById(`imgCarta${i}-${j}`).src = `Baraja/${aCartas[i][j]}.png`;
+        // Si hay dos cartas seleccionadas, se comprueba que sean iguales
+        if (bComprobarCartas) {
+          // Asigna carta2
+          cCarta2.valor = aCartas[i][j];
+          cCarta2.posicion = { i, j };
+          // Si la carta seleccionada es la misma dos veces, no hace nada
+          if (cCarta1.posicion.i == cCarta2.posicion.i && cCarta1.posicion.j == cCarta2.posicion.j) {
+            bComprobarCartas = !bComprobarCartas;
+          } else ComprobarCartas(cCarta1, cCarta2);
+        } else {
+          // Asigna carta1
+          cCarta1.valor = aCartas[i][j];
+          cCarta1.posicion = { i, j };
+        }
+        // Cambia el valor de bComprobar cartas
+        // Si hay una carta escogida, hay que coger otra
+        // Si se han cogido las dos, hay que comprobarlas
+        bComprobarCartas = !bComprobarCartas;
+      }
+
+      function VoltearDos(i, j, x, y) {
+        // Devuelve las cartas boca abajo, y reactiva los botones
+        document.getElementById(`imgCarta${i}-${j}`).src = "Baraja/0.png";
+        document.getElementById(`imgCarta${x}-${y}`).src = "Baraja/0.png";
+        bDesactivarClicks = false;
+      }
+
+      function DesactivarBoton(i, j) {
+        // Desactiva el click de la carta deseada
+        document.getElementById(`imgCarta${i}-${j}`).onclick = "return false";
+      }
+
+      function ComprobarCartas(c1, c2) {
+        // Comprueba el valor de las dos cartas
+        if (c1.valor == c2.valor) {
+          // Cambiar el valor en la tabla de booleanos
+          aCartasMostradas[c1.posicion.i][c1.posicion.j] = true;
+          aCartasMostradas[c2.posicion.i][c2.posicion.j] = true;
+          DesactivarBoton(c1.posicion.i, c1.posicion.j);
+          DesactivarBoton(c2.posicion.i, c2.posicion.j);
+          iAciertos++;
+          ComprobarJuegoTerminado();
+        } else {
+          //   console.log("Son diferentes");
+          bDesactivarClicks = true;
+          setTimeout(() => {
+            VoltearDos(c1.posicion.i, c1.posicion.j, c2.posicion.i, c2.posicion.j);
+            // document.getElementById(`imgCarta${}-${}`).src = "Baraja/0.png";
+            // document.getElementById(`imgCarta${}-${}`).src = "Baraja/0.png";
+          }, 1000);
+        }
+      }
+
+      function ComprobarJuegoTerminado() {
+        // Manera (a mi juicio) más eficiente
+        if (iAciertos == N*M/2) {
+          TerminarJuego();
+        }
+        // Forma de comprobar para usar el array de booleanos obligatorio
+        // Si todos los valores son true, terminar juego
+        // let terminar = true;
+        // i = 0;
+        // while (i < N && terminar) {
+        //   for (let j = 0; j < M; j++)
+        //     if (!aCartasMostradas[i][j]) {
+        //       terminar = false;
+        //       break;
+        //     }
+
+        //   i++;
+        // }
+        // if (terminar) TerminarJuego();
+      }
+
+      function TerminarJuego() {
+        alert("Juego terminado");
+      } // just modify that variable to disable all clics events
+
+      // Desactivar el click en cualquier parte del documento
+      // si bDesactivarClicks es true
+      document.addEventListener(
+        "click",
+        (e) => {
+          if (bDesactivarClicks) {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        },
+        true
+      );
+    </script>
+  </body>
+</html>
