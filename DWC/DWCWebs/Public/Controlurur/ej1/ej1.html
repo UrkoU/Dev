@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="divImagenes"></div>
+    <script>
+      // Nombre a mostrar
+      var sNombre = "Urko";
+      // Edad (bolitas) a mostrar
+      var iEdad = 22;
+      // Div en el que motrar el nombre y la edad
+      var divImagenes = document.getElementById("divImagenes");
+
+      // Llama a las funciones para mostrar el nombre y la edad
+      MostrarNombre();
+      MostrarEdad();
+
+      function MostrarNombre() {
+        // Muestra el nombre
+        for (i = 0; i < sNombre.length; i++) {
+          divImagenes.innerHTML += `<img id="imgNombre${i}" src="../letras/${sNombre[
+            i
+          ].toUpperCase()}.gif" onclick="CambiarImagen('imgNombre${i}')">`;
+        }
+      }
+
+      function MostrarEdad() {
+        let iCont = 1;
+        // Añade salto de línea
+        divImagenes.innerHTML += `<br/>`;
+        // Mientras que iCont sea menor que iEdad, muestra una bolita vacía
+        while (iCont <= iEdad) {
+          divImagenes.innerHTML += `<img id="imgEdad${iCont - 1}" src="../letras/Blanco.gif" onclick="CambiarImagen('imgEdad${
+            iCont - 1
+          }')">`;
+          // Si es divisible entre cinco, añade salto de línea
+          if (iCont % 5 == 0) {
+            divImagenes.innerHTML += `<br>`;
+          }
+          iCont++;
+        }
+      }
+
+      function CambiarImagen(sId) {
+        // Pone la imagen "Vacio.gif" a la imagen cuya id sea sId
+        document.getElementById(sId).src = "../letras/Vacio.gif";
+      }
+    </script>
+  </body>
+</html>

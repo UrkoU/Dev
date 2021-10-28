@@ -154,12 +154,59 @@ body {
 
 .rounded-pill {
   width: 25%;
-  height: 10%;
+  height: 25%;
   border-radius: 50px;
   background-color: rgb(151, 210, 247);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.w-133 {
+  width: 133%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.h-60 {
+  height: 60%;
+}
+
+.h-40 {
+  height: 40%;
+}
+
+.h-25 {
+  height: 25%;
+}
+
+li {
+  list-style: none;
+}
+
+.li-image::before {
+  content: "";
+  display: inline-block;
+}
+
+.logo-ceit::before {
+  height: 16px;
+  width: 30px;
+  background-image: url("imagenes/CeitLogo.png");
 }
 
 @keyframes HoverMove {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="Valor">5</p>
+
+    <script>
+      var pParrafo = document.getElementById("Valor");
+      // Texto inicial del párrafo
+      var iValor = pParrafo.textContent;
+      // Booleano Rojo. Si es true, cambiará a rojo el párrafo. Si es false, a azul
+      var bRojo = true;
+      // Cada segundo llamará a la función Aumentar
+      setInterval(Aumentar, 1000);
+
+      function Aumentar() {
+        // Multiplica iValor * 2
+        iValor *= 2;
+        // Si es mayor o igual a 10000, lo devuelve a 5
+        if (iValor >= 10000) iValor = 5;
+        // Establece el valor de pParrafo
+        pParrafo.textContent = iValor;
+        // Si es bRojo, párrafo en rojo, si no en azul
+        bRojo ? (pParrafo.style.color = "red") : (pParrafo.style.color = "blue");
+        // Cambia el valor de bRojo por el contrario de bRojo
+        bRojo = !bRojo;
+      }
+    </script>
+  </body>
+</html>
