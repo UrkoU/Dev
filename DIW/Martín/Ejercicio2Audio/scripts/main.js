@@ -1,10 +1,67 @@
-const songs = ["media/AC-DC.mp3", "media/Aretha.mp3", "media/Bob Marley.mp3", "media/Red Hot Chili Peppers.mp3"];
+// const songs = ["media/AC-DC.mp3", "media/Aretha.mp3", "media/Bob Marley.mp3", "media/Red Hot Chili Peppers.mp3"];
 const reproductor = document.getElementById("audio");
 let current = 0;
 
+const songs = [
+  {
+    src: "media/AC-DC.mp3",
+    img: "/media/images/razors_edge.jfif",
+    title: "Thunderstruck",
+    album: "The Razor's edge",
+    author: "AC/DC",
+    length: "4:52",
+  },
+  {
+    src: "media/Aretha.mp3",
+    img: "media/images/aretha_now.jfif",
+    title: "I say a little prayer",
+    album: "Aretha Now",
+    author: "Aretha Franklin",
+    length: "3:36",
+  },
+  {
+    src: "media/Bob Marley.mp3",
+    img: "media/images/exodus.jpg",
+    title: "One Love",
+    album: "Exodus",
+    author: "Bob Marley",
+    length: "2:51",
+  },
+  {
+    src: "media/Red Hot Chili Peppers.mp3",
+    img: "/media/images/by_the_way.jpg",
+    title: "By The Way",
+    album: "By The Way",
+    author: "Red Hot Chili Peppers",
+    length: "3:39",
+  },
+];
+
+showSongs();
+
+function showSongs() {
+  let divSongs = document.getElementById("divSongs");
+  for (let i = 0; i < songs.length; i++) {
+    divSongs.innerHTML += `
+    <div id="song${i}" class="song text-light bold" onclick="playAudio(${i})">
+      <div class="d-flex justify-content-center align-items-center">
+          <img src="${songs[i].img}" height="80%" class="album-cover">
+      </div>
+      <div class="d-flex flex-direction-column w-80 justify-content-start align-items-start text-left title">
+        ${songs[i].title}<br/>
+        ${songs[i].author}
+      </div>
+      <div class="d-flex w-20 justify-content-end align-items-center timestamp">
+          ${songs[i].length}       
+      </div>
+    </div>`;
+  }
+  document.getElementById(`song${songs.length - 1}`).classList.add("song-last");
+}
+
 function playAudio(num) {
   current = num;
-  reproductor.src = songs[current];
+  reproductor.src = songs[current].src;
   reproductor.load();
   reproductor.play();
 
@@ -39,7 +96,11 @@ document.querySelector("#control-next").addEventListener("click", (ev) => {
 
 document.querySelector("#control-play").addEventListener("click", (ev) => {
   ev.preventDefault();
-  reproductor.play();
+  if (reproductor.paused) {
+    reproductor.play();
+  } else {
+    reproductor.pause();
+  }
 });
 
 const neatTime = (time) => {
@@ -53,6 +114,7 @@ const neatTime = (time) => {
 
 const progressFill = document.querySelector(".progress-filled");
 const textCurrent = document.querySelector(".time-current");
+const speedBtns = document.querySelectorAll(".speed-list");
 
 reproductor.addEventListener("timeupdate", (ev) => {
   progressFill.style.width = `${(reproductor.currentTime / reproductor.duration) * 100}%`;

@@ -98,31 +98,29 @@
           bDesactivarClicks = true;
           setTimeout(() => {
             VoltearDos(c1.posicion.i, c1.posicion.j, c2.posicion.i, c2.posicion.j);
-            // document.getElementById(`imgCarta${}-${}`).src = "Baraja/0.png";
-            // document.getElementById(`imgCarta${}-${}`).src = "Baraja/0.png";
           }, 1000);
         }
       }
 
       function ComprobarJuegoTerminado() {
         // Manera (a mi juicio) más eficiente
-        if (iAciertos == N*M/2) {
-          TerminarJuego();
-        }
+        // if (iAciertos == (N * M) / 2) {
+        //   TerminarJuego();
+        // }
         // Forma de comprobar para usar el array de booleanos obligatorio
         // Si todos los valores son true, terminar juego
-        // let terminar = true;
-        // i = 0;
-        // while (i < N && terminar) {
-        //   for (let j = 0; j < M; j++)
-        //     if (!aCartasMostradas[i][j]) {
-        //       terminar = false;
-        //       break;
-        //     }
+        let terminar = true;
+        i = 0;
+        while (i < N && terminar) {
+          for (let j = 0; j < M; j++)
+            if (!aCartasMostradas[i][j]) {
+              terminar = false;
+              break;
+            }
 
-        //   i++;
-        // }
-        // if (terminar) TerminarJuego();
+          i++;
+        }
+        if (terminar) TerminarJuego();
       }
 
       function TerminarJuego() {

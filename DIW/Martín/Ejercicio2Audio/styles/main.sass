@@ -1,6 +1,10 @@
+/*
+    Colors: 
+    background-color: rgb(31, 28, 30)
+    */
 body
     height: 100vh
-    background-color: rgb(31, 28, 30)
+    background-color: black
     color: rgba(179, 179, 179, 0.6)
 
 .pill
@@ -61,3 +65,35 @@ body
     height: 100%
     border-radius: 6px
     transition: width 0.2s ease-in-out
+
+.song
+    display: flex
+    width: 50%
+    height: 4em
+    border-top: 1px solid gray
+    padding: 0.5em
+
+    .title
+        margin-left: 0.5em
+    
+    .album-cover 
+        margin-left: 0.5em
+        border-radius: 2px
+
+    .timestamp
+        margin-right: 0.5em
+
+.song:hover
+    background-color: rgba(179, 179, 179, 0.6)
+
+.song-last
+    border-bottom: 1px solid gray
+
+.bold
+    font-weight: bold
+
+.w-80
+    width: 80%
+
+.w-20
+    width: 20%

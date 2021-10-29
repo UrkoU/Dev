@@ -4,16 +4,12 @@ var aPreguntas = new Array();
 var aRespuestas = new Array();
 aPreguntas[0] = "Quiero irme a casa";
 aRespuestas[0] = "V";
-aPreguntas[1] = "Andoitz es feo";
-aRespuestas[1] = "V";
-aPreguntas[2] = "París es la capital de Alemania";
-aRespuestas[2] = "F";
-aPreguntas[3] = "El grillo es un insecto";
-aRespuestas[3] = "V";
-aPreguntas[4] = "Ander es el delegado de clase";
-aRespuestas[4] = "V";
-aPreguntas[5] = "El instituto Plaiaundi está en Hondarribia";
-aRespuestas[5] = "F";
+aPreguntas[1] = "París es la capital de Alemania";
+aRespuestas[1] = "F";
+aPreguntas[2] = "El grillo es un insecto";
+aRespuestas[2] = "V";
+aPreguntas[3] = "El instituto Plaiaundi está en Hondarribia";
+aRespuestas[3] = "F";
 
 var index = 0;
 
