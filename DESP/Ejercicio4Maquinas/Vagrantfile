@@ -1,6 +1,6 @@
 BOX_IMAGE = "ubuntu/focal64"
 equipos = {
-  "dns" => {:ip=> "10.10.17.85", :cpus => 1, :mem => 1024},
+  "dns_" => {:ip=> "10.10.17.85", :cpus => 1, :mem => 1024},
   "apache1" => {:ip=> "10.10.17.86", :cpus => 1, :mem => 1024},
   "apache2" => {:ip=> "10.10.17.87", :cpus => 1, :mem => 1024},
   "nginx" => {:ip=> "10.10.17.88", :cpus => 1, :mem => 1024},
