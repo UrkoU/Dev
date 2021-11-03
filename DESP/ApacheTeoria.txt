@@ -1,3 +1,0 @@
-Las conexiones son dirigidas, van a una dirección y vuelven a otra (X cliente a Y servidor p.e.)
-
-Hosting basado en nombre, en ip y en puertos

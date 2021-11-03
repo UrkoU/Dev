@@ -11,18 +11,19 @@
   <body>
     <h1>Video patio</h1>
     <div id="divReproductor">
-      <a onclick="previous()"><span class="material-icons"> skip_previous </span></a>
-      <a onclick="replay10()"><span class="material-icons"> replay_10 </span></a>
-      <a onclick="play()"><span class="material-icons"> play_arrow </span></a>
-      <a onclick="pause()"><span class="material-icons"> pause </span></a>
-      <a onclick="forward10()"><span class="material-icons"> forward_10 </span></a>
-      <a onclick="next()"><span class="material-icons"> skip_next </span></a>
-      <a onclick="volumeDown()"><span class="material-icons"> volume_down </span></a>
-      <a onclick="volumeUp()"><span class="material-icons"> volume_up </span></a>
-      <a onclick="mute()"><span class="material-icons"> volume_off </span></a>
+      <a onclick="previous()" class="material-icons">skip_previous </a>
+      <a onclick="replay10()" class="material-icons">replay_10</a>
+      <a id="btnPlay" onclick="play()" class="material-icons">play_arrow</a>
+      <a onclick="stop()" class="material-icons">stop</a>
+      <a onclick="forward10()" class="material-icons">forward_10</a>
+      <a onclick="next()" class="material-icons">skip_next</a>
+      <a onclick="volumeDown()" class="material-icons">volume_down</a>
+      <a onclick="volumeUp()" class="material-icons">volume_up</a>
+      <a onclick="mute()" class="material-icons">volume_off</a>
+      <a onclick="toggleFullscreen()" class="material-icons">fullscreen</a>
     </div>
 
-    <video width="720" height="480" controls id="videoPlayer">
+    <video width="720" height="480" id="videoPlayer">
       <!-- <source src="video/AC_DC - Who Made Who.webm" /> -->
       <source src="video/AC_DC - Who Made Who.mp4" />
       <source src="video/AC_DC - Who Made Who.m4a" />
@@ -34,6 +35,7 @@
     var songs = ["audio/AC-DC.mp3", "audio/Aretha.mp3", "audio/Bob Marley.mp3", "audio/Red Hot Chili Peppers.mp3"];
 
     var player = document.getElementById("videoPlayer");
+    var btnPlay = document.getElementById("btnPlay");
 
     function mostrarLista() {
       document;
@@ -41,11 +43,19 @@
 
     function play() {
       if (!player) player.src = songs[i];
-      player.play();
+      if (player.paused || player.currentTime == 0) {
+        player.play();
+        btnPlay.textContent = "pause";
+      } else {
+        player.pause();
+        btnPlay.textContent = "play_arrow";
+      }
     }
 
-    function pause() {
+    function stop() {
       player.pause();
+      player.currentTime = 0;
+      btnPlay.textContent = "play_arrow";
     }
 
     function previous() {
@@ -79,5 +89,43 @@
     function forward10() {
       player.currentTime < player.duration ? (player.currentTime += 10) : (player.currentTime = player.duration);
     }
+
+    function launchIntoFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
+    
+    function exitFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+
+    let fullscreen = false;
+    function toggleFullscreen() {
+      if (fullscreen) {
+        exitFullscreen();
+        fullscreenBtn.textContent = "fullscreen";
+      } else {
+        launchIntoFullscreen(player);
+        fullscreenBtn.textContent = "fullscreen_exit";
+      }
+      fullscreen = !fullscreen;
+    }
+
+    player.addEventListener("ended", () => {
+      btnPlay.textContent = "play_arrow";
+    });
   </script>
 </html>
