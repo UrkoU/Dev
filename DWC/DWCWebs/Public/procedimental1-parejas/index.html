@@ -18,8 +18,8 @@
       // Booleano. Si es false, hay que coger otra carta
       // Si es true, comprueba las cartas y hay que escoger las dos cartas otra vez
       var bComprobarCartas = false;
-      var cCarta1 = {};
-      var cCarta2 = {};
+      var oCarta1 = {};
+      var oCarta2 = {};
       var iAciertos = 0;
       let bDesactivarClicks = false;
 
@@ -54,16 +54,16 @@
         // Si hay dos cartas seleccionadas, se comprueba que sean iguales
         if (bComprobarCartas) {
           // Asigna carta2
-          cCarta2.valor = aCartas[i][j];
-          cCarta2.posicion = { i, j };
+          oCarta2.valor = aCartas[i][j];
+          oCarta2.posicion = { i, j };
           // Si la carta seleccionada es la misma dos veces, no hace nada
-          if (cCarta1.posicion.i == cCarta2.posicion.i && cCarta1.posicion.j == cCarta2.posicion.j) {
+          if (oCarta1.posicion.i == oCarta2.posicion.i && oCarta1.posicion.j == oCarta2.posicion.j) {
             bComprobarCartas = !bComprobarCartas;
-          } else ComprobarCartas(cCarta1, cCarta2);
+          } else ComprobarCartas(oCarta1, oCarta2);
         } else {
           // Asigna carta1
-          cCarta1.valor = aCartas[i][j];
-          cCarta1.posicion = { i, j };
+          oCarta1.valor = aCartas[i][j];
+          oCarta1.posicion = { i, j };
         }
         // Cambia el valor de bComprobar cartas
         // Si hay una carta escogida, hay que coger otra

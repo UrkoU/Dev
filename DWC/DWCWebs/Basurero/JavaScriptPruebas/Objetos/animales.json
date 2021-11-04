@@ -1,0 +1,26 @@
+[
+  {
+    "Nombre": "Elefante",
+    "Mamifero": true
+  },
+  {
+    "Nombre": "Colibrí",
+    "Mamifero": false
+  },
+  {
+    "Nombre": "Buho",
+    "Mamifero": false
+  },
+  {
+    "Nombre": "Caballo",
+    "Mamifero": true
+  },
+  {
+    "Nombre": "Avestruz",
+    "Mamifero": false
+  },
+  {
+    "Nombre": "Txantxangorri",
+    "Mamifero": false
+  }
+]

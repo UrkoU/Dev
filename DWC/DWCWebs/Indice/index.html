@@ -7,7 +7,7 @@
     <title>Ejercicios de Urko</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body onload="">
     <script>
       // Put default image if loading image gives error
       function ImageError(self) {
@@ -34,7 +34,7 @@
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </div>
             </div>
-            <div class="w-133 h-40">
+            <div class="w-100 h-40">
               <div class="rounded-pill bold-text">Experiencia profesional</div>
               <div class="w-100 h-60">
                 <ul>
@@ -47,7 +47,7 @@
                 </ul>
               </div>
             </div>
-            <div class="w-133 h-40">
+            <div class="w-100 h-40">
               <div class="rounded-pill bold-text">Conocimientos técnicos</div>
               <div class="w-100 h-60">
                 <ul>
@@ -59,7 +59,7 @@
                 </ul>
               </div>
             </div>
-            <div class="w-133 h-40">
+            <div class="w-100 h-40">
               <div class="rounded-pill bold-text">Otros conocimientos</div>
               <div class="w-100 h-60">
                 <ul>
@@ -68,8 +68,12 @@
               </div>
             </div>
           </div>
-          <div class="h-100 w-25" style="display: flex; justify-content: flex-end">
-            <img class="rounded-image card-image" style="justify-content: right" onerror="ImageError(this)" src="a" />
+          <div class="h-100 w-25" style="display: flex; flex-direction: column">
+            <img class="rounded-image" style="justify-content: right" onerror="ImageError(this)" src="a" />
+            <div class="w-100 h-25 flex" style="flex-direction: column">
+              <b class="centered-text w-100">01-05-1999, Donostia</b>
+              <b class="centered-text w-100">650989938</b>
+            </div>
           </div>
         </div>
       </div>
@@ -77,7 +81,7 @@
         <!-- <div id="horizontalLine">&nbsp;</div> -->
         <!-- Footer links -->
         <div id="divFooterLinks">
-          <button class="footer-link white-text active-page">Página principal</button>
+          <a class="footer-link white-text active-page">Página principal</a>
           <a class="footer-link white-text">Trabajos</a>
           <a class="footer-link white-text">Sobre mí</a>
         </div>

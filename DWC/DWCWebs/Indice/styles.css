@@ -95,6 +95,14 @@ body {
   border-radius: 25px;
 }
 
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+}
+
 .active-page {
   background-color: rgb(65, 60, 60);
   /* animation: HoverMove; */
@@ -230,4 +238,8 @@ li {
     top: 300px;
     background-color: red;
   }*/
+}
+
+.clear {
+  clear: both;
 }
