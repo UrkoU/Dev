@@ -31,9 +31,9 @@ const content = [
     </div>
   </div>
   <div class="card-row">
-    <div class="card white-text" onclick="location.href='../Public/ej5-stringsImagenesRelojes'">
-      <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej5-string-imagenes-relojes.png" />
-      Strings imágenes relojes
+    <div class="card white-text" onclick="location.href='../Public/ej7-actividadTest/index.html'">
+      <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej7-actividadTest.png" />
+      Actividad test
     </div>
     <div class="card white-text" onclick="location.href='../Public/ej6-juegoRecapitulacion'">
       <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/j6-recapitulacion.png" />
@@ -93,6 +93,7 @@ const content = [
 
 var footerLinks = document.querySelectorAll(".footer-link");
 var activePage = document.querySelector(".activePage");
+var divExercises = document.getElementById("divExercises");
 
 var index = 0;
 var current = 0;
@@ -114,6 +115,8 @@ function CambiarLinks(i) {
 }
 
 function CambiarContent(i) {
-  if (current != i) document.getElementById("divExercises").innerHTML = content[i];
+  if (current != i) divExercises.innerHTML = content[i];
   current = i;
+  // Scroll to top
+  divExercises.scrollTop = 0;
 }
