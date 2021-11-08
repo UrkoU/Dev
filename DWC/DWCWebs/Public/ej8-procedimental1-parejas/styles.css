@@ -1,0 +1,58 @@
+body {
+  background-color: rgba(12, 86, 73, 255);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#divTexto {
+  /* flex: 1; */
+  height: 35%;
+  width: 5%;
+  padding: 1%;
+  border: 3px solid red;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 1%;
+}
+
+#divClicks {
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#divTiempo {
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#divContent {
+  /* flex: 1; */
+  padding: 1%;
+  border: 3px solid red;
+  border-radius: 25px;
+  height: 35%;
+  /* width: 40%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#pFin {
+  visibility: hidden;
+  padding: 3%;
+  font-size: xx-large;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 2;
+}

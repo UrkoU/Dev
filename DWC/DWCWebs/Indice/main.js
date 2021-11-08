@@ -35,9 +35,9 @@ const content = [
       <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej7-actividadTest.png" />
       Actividad test
     </div>
-    <div class="card white-text" onclick="location.href='../Public/ej6-juegoRecapitulacion'">
-      <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/j6-recapitulacion.png" />
-      Ejercicio no encontrado
+    <div class="card white-text" onclick="location.href='../Public/ej8-procedimental1-parejas/index.html'">
+      <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej8-procedimental1-parejas.png" />
+      Procedimental parejas
     </div>
   </div>`,
   `<div class="w-100 h-100" style="display: flex; flex-direction: row">

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      tr,
+      td {
+        border: 2px solid #666;
+        padding: 10px;
+      }
+    </style>
+    <script src="Carrito.js"></script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td><img id="imgArticulo" src="" /></td>
+        <td><p id="pNombreArticulo">Nombre</p></td>
+        <td><input type="number" value="1" id="inpCantidad" /></td>
+        <td><button id="btnComprar" onclick="AnadirCompra()">Comprar</button></td>
+      </tr>
+    </table>
+    <script>
+      var Articulo = {};
+
+      LoadData();
+
+      function LoadData() {
+        let id = sessionStorage.IdComprando;
+        console.log("ID: " + id);
+        Articulo =
+          aArticulos[
+            aArticulos
+              .map(function (e) {
+                return e.id;
+              })
+              .indexOf(id)
+          ];
+
+        console.log("Articulo" + Articulo.toString());
+        document.getElementById("imgArticulo").src = Articulo.src();
+        document.getElementById("pNombreArticulo").textContent = Articulo.nombre;
+      }
+
+      function AnadirCompra() {
+        let iCantidad = document.getElementById("inpCantidad").value;
+        console.log("Anadir Compra: " + Articulo.id + " cantidad: " + iCantidad);
+
+        let compra = JSON.parse(sessionStorage.Compra);
+        compra[Articulo.id] = iCantidad;
+        sessionStorage.Compra = JSON.stringify(compra);
+        window.location = "Carrito.html";
+      }
+    </script>
+  </body>
+</html>

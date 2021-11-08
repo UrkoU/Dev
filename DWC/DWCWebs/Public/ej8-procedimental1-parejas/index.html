@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="divCartas"></div>
+    <div id="divTexto">
+      <div id="divClicks">
+        <h1>Clicks</h1>
+        <h1 id="h1Clicks">0</h1>
+      </div>
+      <div id="divTiempo">
+        <h1>Tiempo</h1>
+        <h1 id="h1Tiempo">0:00</h1>
+      </div>
+    </div>
+    <div id="divContent">
+      <div id="divCartas"></div>
+    </div>
+    <p id="pFin"></p>
+
     <script src="http://185.60.40.210/2daw3/FuncionesJuegos.js"></script>
     <script>
       const N = 4;
@@ -22,6 +37,7 @@
       var oCarta2 = {};
       var iAciertos = 0;
       let bDesactivarClicks = false;
+      let iClicks = 0;
 
       CrearArrayBools();
       MostrarCartas();
@@ -49,6 +65,7 @@
       }
 
       function Voltear(i, j) {
+        Aumentar();
         // Muestra la carta de la posición i-j
         document.getElementById(`imgCarta${i}-${j}`).src = `Baraja/${aCartas[i][j]}.png`;
         // Si hay dos cartas seleccionadas, se comprueba que sean iguales
@@ -102,6 +119,29 @@
         }
       }
 
+      function Aumentar() {
+        iClicks++;
+        document.getElementById("h1Clicks").textContent = iClicks;
+      }
+
+      function Tiempo() {}
+
+      // 7.5 minutos = 450000 (/1000/60)
+      var iTiempo = 180000;
+      var fAhora = new Date();
+      var fNueva = new Date(fAhora.getTime() + iTiempo);
+      var iIntervalo = setInterval(Reloj, 1000);
+
+      function Reloj() {
+        var fTiempoRestante = new Date(fNueva - new Date());
+        if (fTiempoRestante.getMinutes() == 0 && fTiempoRestante.getSeconds() == 0) {
+          TerminarJuego(false);
+        }
+        let iSecs =
+          fTiempoRestante.getSeconds() < 10 ? "0" + fTiempoRestante.getSeconds().toString() : fTiempoRestante.getSeconds().toString();
+        document.getElementById("h1Tiempo").innerHTML = fTiempoRestante.getMinutes().toString() + ":" + iSecs;
+      }
+
       function ComprobarJuegoTerminado() {
         // Manera (a mi juicio) más eficiente
         // if (iAciertos == (N * M) / 2) {
@@ -123,8 +163,17 @@
         if (terminar) TerminarJuego();
       }
 
-      function TerminarJuego() {
-        alert("Juego terminado");
+      function TerminarJuego(ganado = true) {
+        let pFin = document.getElementById("pFin");
+        if (!ganado) {
+          bDesactivarClicks = true;
+          pFin.textContent = "Se te ha acabado el tiempo. Has perdido";
+          pFin.style.visibility = "visible";
+        } else {
+          pFin.textContent = "Has ganado, ¡enhorabuena!";
+          pFin.style.visibility = "visible";
+        }
+        clearInterval(iIntervalo);
       } // just modify that variable to disable all clics events
 
       // Desactivar el click en cualquier parte del documento

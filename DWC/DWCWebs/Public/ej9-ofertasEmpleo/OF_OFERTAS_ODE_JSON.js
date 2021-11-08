@@ -10910,9 +10910,30 @@ var sOfertas = `[
 
 var aOfertas = JSON.parse(sOfertas);
 
-var aOfertasIrun = aOfertas.filter((oferta) => oferta.municipio == "IRUN");
+var aOfertasFiltradas = aOfertas.filter((oferta) => oferta.municipio == "IRUN");
 
-aOfertasIrun.forEach((element) => {
-  console.log("Oferta: " + element.desEmpleo + "\n" + element.pais);
-  document.write(`Oferta: ${element.desEmpleo} <a href="${element.url}">Link</a><br/>`);
-});
+DibujarTabla();
+AnadirInfoTabla();
+
+var selectBox = document.getElementById("selectCiudad");
+var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+function AnadirInfoTabla() {
+  divTabla = document.getElementById("divTabla");
+  aOfertasFiltradas.forEach((element) => {
+    divTabla.innerHTML += `<tr><td>${element.desEmpleo}</td><td><a href="${element.url}">Link</a></td></tr>`;
+    // console.log("Oferta: " + element.desEmpleo + "\n" + element.pais);
+    // document.write(`Oferta: ${element.desEmpleo} <a href="${element.url}">Link</a><br/>`);
+  });
+}
+
+function DibujarTabla() {
+  let divTabla = document.getElementById("divTabla");
+  divTabla.innerHTML = `<table><thead><td>Oferta</td><td>Link</td></thead>`;
+}
+
+function CambiarInfoTabla() {
+  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+  aOfertasFiltradas = aOfertas.filter((oferta) => oferta.municipio == selectedValue);
+  AnadirInfoTabla();
+}
