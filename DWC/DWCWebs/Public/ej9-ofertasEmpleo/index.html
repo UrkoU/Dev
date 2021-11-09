@@ -3,25 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
-    <style>
-      table {
-        border-collapse: collapse;
-      }
-      table,
-      tr,
-      td {
-        border: 1px solid black;
-      }
-    </style>
+    <script src="http://10.10.17.1/2daw3/Cookies.js"></script>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <select id="selectCiudad" onchange="CambiarInfoTabla()">
       <option value="IRUN" onclick="">Irún</option>
       <option value="HONDARRIBIA">Hondarribia</option>
       <option value="ERRENTERIA">Errenteria</option>
-      <option value="DONOSTIA">Donostia</option>
+      <option value="DONOSTIA/SAN SEBASTI�N">Donostia</option>
     </select>
-    <div id="divTabla"></div>
+    <div id="divTabla"><table id="tTabla"></table></div>
     <script src="OF_OFERTAS_ODE_JSON.js"></script>
   </body>
 </html>
