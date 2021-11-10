@@ -19,11 +19,13 @@
     <script src="Carrito.js"></script>
   </head>
   <body>
+    <img src="Mercado/atras.png" height="32px" onclick="window.location='Carrito.html'" />
     <table>
       <tr>
         <td><img id="imgArticulo" src="" /></td>
         <td><p id="pNombreArticulo">Nombre</p></td>
         <td><input type="number" value="1" id="inpCantidad" /></td>
+        <td><p id="pPrecio">Precio</p></td>
         <td><button id="btnComprar" onclick="AnadirCompra()">Comprar</button></td>
       </tr>
     </table>
@@ -46,6 +48,7 @@
 
         console.log("Articulo" + Articulo.toString());
         document.getElementById("imgArticulo").src = Articulo.src();
+        document.getElementById("pPrecio").textContent = Articulo.precio;
         document.getElementById("pNombreArticulo").textContent = Articulo.nombre;
       }
 

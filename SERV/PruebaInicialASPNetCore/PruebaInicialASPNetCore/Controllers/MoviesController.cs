@@ -55,13 +55,35 @@ namespace PruebaInicialASPNetCore.Controllers
             return "From [HttpPost]Index: filter on " + searchString;
         }
 
-        // GET: Movies/Details/5
-        public async Task<IActionResult> Details(int? id)
+        //// GET: Movies/Details/5
+        //[Route("Movies/Details/{id:int}")]
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+            
+
+        //    var movie = await _context.Movie
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (movie == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(movie);
+        //}
+
+        // GET: Movies/Details/5/true
+        //[Route("Movies/Details/{id:int}/{mostrarId:bool}=false")]
+        public async Task<IActionResult> Details(int? id, bool mostrarId = false)
         {
             if (id == null)
             {
                 return NotFound();
             }
+            ViewData["mostrarId"] = mostrarId;
 
             var movie = await _context.Movie
                 .FirstOrDefaultAsync(m => m.Id == id);

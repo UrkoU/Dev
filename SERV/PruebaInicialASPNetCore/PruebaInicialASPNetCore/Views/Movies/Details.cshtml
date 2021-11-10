@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "Details";
+
 }
 
 <h1>Details</h1>
 
 <div>
-    <h4>Movie</h4>
+    <h4>Movie #@Html.DisplayFor(model => model.Id)</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -38,5 +39,26 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a> |
+
+    @*foreach(Models@.Movie peli in Model.Movies)
+            {
+                Console.WriteLine("peli" + peli.nombre)
+            }*@
+    @if ((bool)@ViewData["mostrarId"])
+    {
+        <span>
+            <a asp-action="Details" asp-route-id="@Model.Id+1" asp-route-mostrarId="true">Previous</a> |
+            <a>#@Model.Id</a> |
+            <a asp-action="Details" asp-route-id="@Model.Id+1" asp-route-mostrarId="true">Next</a>
+        </span>
+    }
+    else
+    {
+        <span>
+            <a asp-action="Details" asp-route-id="@Model.Id+1">Previous</a> |
+            <a asp-action="Details" asp-route-id="@Model.Id-1">Next</a>
+        </span>
+    }
+
 </div>

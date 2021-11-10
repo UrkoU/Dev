@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      td,
+      th {
+        border: 1px solid black;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="tTabla">
+      <thead>
+        <td>Artículo</td>
+        <td>Imagen</td>
+        <td>Cantidad</td>
+        <td>Precio</td>
+        <td>Total</td>
+      </thead>
+    </table>
+    <script src="Carrito.js"></script>
+    <script>
+      let tTabla = document.getElementById("tTabla");
+      let aCompra;
+      var dTotal = 0;
+
+      GetCompras();
+
+      function GetCompras() {
+        aCompra = sessionStorage.Compra;
+        aCompra = JSON.parse(aCompra);
+
+        MostrarCompras();
+      }
+
+      function MostrarCompras() {
+        dTotal = 0;
+        tTabla.innerHTML = `<thead><td>Artículo</td><td>Imagen</td><td>Cantidad</td><td>Precio</td><td>Total</td></thead>`;
+        Object.keys(aCompra).forEach((key) => {
+          aArticulos.forEach((articulo) => {
+            if (key == articulo.id && aCompra[key] > 0) {
+              tTabla.innerHTML += `<tr><td>${articulo.nombre}</td><td><img src="${articulo.src()}"></td><td>${aCompra[key]}</td><td>${
+                articulo.precio
+              }</td><td>${
+                articulo.precio * aCompra[key]
+              }</td><td><button onclick="Eliminar('${key.toString()}')">Eliminar</button></td></tr>`;
+              dTotal += articulo.precio * aCompra[key];
+            }
+          });
+        });
+        tTabla.innerHTML += `<tr><td colspan="6">${dTotal} €<button onclick="Pagar()">Pagar</button></td></tr>`;
+      }
+
+      function Eliminar(id) {
+        console.log("Eliminar: " + id);
+        aCompra[id] = 0;
+        sessionStorage.Compra = JSON.stringify(aCompra);
+
+        GetCompras();
+      }
+
+      function Pagar() {
+        alert("Ha comprado los artículos por valor de " + dTotal + " €");
+        for (const key in aCompra) {
+          aCompra[key] = 0;
+        }
+        sessionStorage.Compra = JSON.stringify(aCompra);
+
+        GetCompras();
+      }
+    </script>
+  </body>
+</html>
