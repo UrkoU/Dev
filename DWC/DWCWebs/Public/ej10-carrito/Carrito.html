@@ -41,6 +41,7 @@
       }
 
       iTotal = 0;
+      let iItems = 0;
 
       //Crear tabla
       for (i = 0; i < aArticulos.length; i++) {
@@ -52,14 +53,15 @@
         sCadena += "</tr>";
 
         iTotal += parseInt(aCompra[aArticulos[i].id]);
+        if (aCompra[aArticulos[i].id]) iItems++;
       }
       sCadena += "</table>";
 
       if (iTotal == 0) {
-        sCadena = '<img src="Mercado/carrovacio.jpg" id="imCarro" width="108" height="98" alt="" />' + sCadena;
+        sCadena = `<img src="Mercado/carrovacio.jpg" id="imCarro" width="108" height="98" alt="" />` + sCadena;
       } else {
         sCadena =
-          '<img style="cursor:pointer" src="Mercado/carrolleno.jpg" id="imCarro" width="108" height="98" alt="" onclick="VerCarro()"; />' +
+          `<img style="cursor:pointer" src="Mercado/carrolleno.jpg" id="imCarro" width="108" height="98" alt="" onclick="VerCarro()"; /><h1>${iItems}</h1>` +
           sCadena;
       }
       document.write(sCadena);

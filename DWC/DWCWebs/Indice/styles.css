@@ -1,3 +1,4 @@
+/*#region Variables*/
 /* Colors: 
     dark-gray: rgb(31, 28, 30);
     not-so-dark-gray: rgb(79, 72, 72);
@@ -7,7 +8,6 @@
     purple: rgb(223, 151, 247);
     red: rgb(247, 151, 151);
 */
-
 :root {
   --dark-gray: rgb(31, 28, 30);
   --not-so-dark-gray: rgb(79, 72, 72);
@@ -18,11 +18,19 @@
   --purple: rgb(223, 151, 247);
   --red: rgb(247, 151, 151);
 
-  --background-color: rgb(79, 72, 72);
-  --background-color-2: rgb(31, 28, 30);
+  --background-color: var(--not-so-dark-gray);
+  --background-color-2: var(--dark-gray);
+
+  --text-white: rgb(255, 255, 255);
+  --text-black: rgb(0, 0, 0);
+  --text-color: var(--text-white);
 
   --main-color: var(--green);
 }
+
+/*#endregion */
+
+/*#region body & html*/
 
 html {
   height: 100%;
@@ -34,12 +42,29 @@ body {
   background-image: url("imagenes/background-green.png");
   background-repeat: no-repeat;
   background-size: cover;
+  color: var(--text-color);
 }
 
+/*#endregion */
+
+/*#region text*/
 .centered-text {
   text-align: center;
 }
+.white-text {
+  color: var(--text-white);
+}
 
+.black-text {
+  color: var(--text-black);
+}
+
+.bold-text {
+  font-weight: bold;
+}
+/*#endregion */
+
+/*#region Top*/
 .top {
   width: 100%;
   height: 25%;
@@ -60,6 +85,9 @@ body {
   border: 1px solid var(--background-color);
   background-color: var(--main-color);
 }
+/*#endregion */
+
+/*#region Views*/
 
 .content {
   box-sizing: border-box;
@@ -72,14 +100,58 @@ body {
   border-top-left-radius: 60px;
 }
 
-.exercises {
+.main {
+  height: 89%;
+  width: 80%;
+  margin: auto;
+  flex-wrap: wrap;
   overflow: auto;
 }
 
-.exercises:hover {
-  /* overflow: auto; */
-  /* overflow:scroll; */
-  padding-right: 1px;
+.exercises {
+  margin: auto;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.card-row {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  /* flex: 1 0 41%; */
+  margin: 1.5% 2.5%;
+  padding: 1%;
+  min-width: 45%;
+  background-color: var(--background-color-2);
+  border-radius: 25px;
+}
+
+.rounded-image {
+  border-radius: 25px;
+}
+
+.rounded-pill {
+  width: 25%;
+  height: 4em;
+  border-radius: 50px;
+  background-color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-item {
+  margin-right: 5em;
+}
+
+.info-item-content {
+  padding: 1em 2em;
 }
 
 #horizontalLine {
@@ -88,6 +160,69 @@ body {
   width: 85%;
   height: 1%;
 }
+
+.card-image {
+  max-width: 250px;
+  max-height: 250px;
+  min-width: 75px;
+  min-height: 75px;
+}
+
+.card:hover {
+  background-color: var(--main-color);
+  color: var(--text-black);
+}
+/*#endregion */
+
+/*#region Forms*/
+
+.selector {
+  padding: 1.5em;
+  /* padding-right: 2em; */
+  color: var(--text-color);
+  /* appearance: none; */
+  background-color: var(--background-color);
+  border: 1px solid var(--background-color-2);
+  border-radius: 55px;
+}
+
+.selector-option {
+  padding: 1.5em;
+  /* background-color: red; */
+}
+
+.last-option {
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.color-button-div {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 1em;
+  right: 1em;
+  border-radius: 50px;
+  background-color: var(--main-color);
+  box-shadow: 2px 2px 3px black;
+}
+
+.color-button {
+  background-color: var(--main-color);
+  width: 93%;
+  height: 93%;
+  border-radius: 50px;
+  border: 3px solid var(--background-color-2);
+  text-align: center;
+}
+
+.color-button:hover{
+  
+}
+
+/*#endregion*/
+
+/*#region Footer*/
 
 .footer {
   height: 11%;
@@ -119,14 +254,6 @@ body {
   border-radius: 25px;
 }
 
-.flex {
-  display: flex;
-}
-
-.flex-center {
-  display: flex;
-}
-
 .active-page {
   background-color: var(--background-color);
   /* animation: HoverMove; */
@@ -134,65 +261,37 @@ body {
   animation-fill-mode: forwards;
 }
 
-.white-text {
-  color: white;
-}
+/*#endregion */
 
-.bold-text {
-  font-weight: bold;
-}
-
-.exercises {
-  height: 89%;
-  width: 80%;
-  margin: auto;
-  /* display: flex; */
-  flex-wrap: wrap;
-  /* align-content: space-around; */
-}
-
-.card-row {
-  width: 100%;
-  height: 30%;
+/*#region Flex and positioning*/
+.flex {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 }
 
-.card {
+.flex-center {
   display: flex;
-  /* flex: 1 0 41%; */
-  margin: 1.5% 2.5%;
-  padding: 1%;
-  min-width: 45%;
-  background-color: var(--background-color-2);
-  border-radius: 25px;
-}
-
-.card-image {
-  max-width: 250px;
-  max-height: 250px;
-  min-width: 75px;
-  min-height: 75px;
-}
-
-.card:hover {
-  background-color: var(--main-color);
-}
-
-.rounded-image {
-  border-radius: 25px;
-}
-
-.rounded-pill {
-  width: 25%;
-  height: 25%;
-  border-radius: 50px;
-  background-color: var(--main-color);
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
+/*#endregion */
+
+/*#region Margin and positioning*/
+
+.no-margin {
+  margin: 0;
+}
+
+.no-top-margin {
+  margin-top: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+/*#endregion */
+
+/*#region h-xx w-xx*/
 
 .w-133 {
   width: 133%;
@@ -200,6 +299,18 @@ body {
 
 .w-100 {
   width: 100%;
+}
+
+.w-95 {
+  width: 95%;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+.w-85 {
+  width: 85%;
 }
 
 .w-75 {
@@ -214,6 +325,14 @@ body {
   height: 100%;
 }
 
+.h-90 {
+  height: 90%;
+}
+
+.h-85 {
+  height: 85%;
+}
+
 .h-60 {
   height: 60%;
 }
@@ -225,6 +344,16 @@ body {
 .h-25 {
   height: 25%;
 }
+
+.h-15 {
+  height: 15%;
+}
+
+.h-10 {
+  height: 10%;
+}
+
+/*#endregion */
 
 li {
   list-style: none;
@@ -263,12 +392,7 @@ li {
     background-color: red;
   }*/
 }
-
-/*
-  Custom scrollbar
-*/
-
-/* width */
+/*#region Scrollbar*/
 ::-webkit-scrollbar {
   margin-right: 1%;
   width: 40px;
@@ -292,3 +416,5 @@ li {
   border: 8px solid transparent;
   background-clip: content-box;
 }
+
+/*#endregion */

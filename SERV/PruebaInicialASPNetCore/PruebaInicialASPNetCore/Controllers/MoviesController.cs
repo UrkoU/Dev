@@ -12,7 +12,7 @@ namespace PruebaInicialASPNetCore.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly PruebaInicialASPNetCoreContext _context;
+        public PruebaInicialASPNetCoreContext _context;
 
         public MoviesController(PruebaInicialASPNetCoreContext context)
         {
@@ -55,43 +55,42 @@ namespace PruebaInicialASPNetCore.Controllers
             return "From [HttpPost]Index: filter on " + searchString;
         }
 
-        //// GET: Movies/Details/5
-        //[Route("Movies/Details/{id:int}")]
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-            
-
-        //    var movie = await _context.Movie
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (movie == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(movie);
-        //}
-
-        // GET: Movies/Details/5/true
-        //[Route("Movies/Details/{id:int}/{mostrarId:bool}=false")]
         public async Task<IActionResult> Details(int? id, bool mostrarId = false)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            ViewData["mostrarId"] = mostrarId;
 
-            var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
+            List<int> ids = new();
+            foreach (Movie m in _context.Movie)
+            {
+                ids.Add(m.Id);
+            };
+
+            var first = ids[0];
+            var last = ids[ids.Count - 1];
+            var current = id;
+            ViewData["BloqPrev"] = false;
+            ViewData["BloqNext"] = false;
+            if (current == first)
+            {
+                ViewData["prev"] = current;
+                ViewData["next"] = ids[ids.IndexOf((int)current) + 1];
+                ViewData["BloqPrev"] = true;
+            }else if (current == last)
+            {
+                ViewData["next"] = current;
+                ViewData["prev"] = ids[ids.IndexOf((int)current) - 1];
+                ViewData["BloqNext"] = true;
+            }
+
+            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == current);
             if (movie == null)
             {
                 return NotFound();
             }
-
+            ViewData["mostrarId"] = mostrarId;
             return View(movie);
         }
 

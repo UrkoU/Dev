@@ -69,13 +69,17 @@
       }
 
       function Pagar() {
-        alert("Ha comprado los artículos por valor de " + dTotal + " €");
-        for (const key in aCompra) {
-          aCompra[key] = 0;
-        }
-        sessionStorage.Compra = JSON.stringify(aCompra);
+        if (dTotal == 0) {
+          alert("El carrito no puede estar vacío");
+        } else {
+          alert("Ha comprado los artículos por valor de " + dTotal + " €");
+          for (const key in aCompra) {
+            aCompra[key] = 0;
+          }
+          sessionStorage.Compra = JSON.stringify(aCompra);
 
-        GetCompras();
+          window.location = "Carrito.html";
+        }
       }
     </script>
   </body>
