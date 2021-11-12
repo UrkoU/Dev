@@ -198,8 +198,10 @@ body {
 
 .color-button-div {
   position: fixed;
-  width: 60px;
-  height: 60px;
+  /* width: 60px;
+  height: 60px; */
+  width: 4em;
+  height: 4em;
   bottom: 1em;
   right: 1em;
   border-radius: 50px;
@@ -209,15 +211,39 @@ body {
 
 .color-button {
   background-color: var(--main-color);
-  width: 93%;
-  height: 93%;
+  width: 4.5em;
+  height: 4.5em;
   border-radius: 50px;
   border: 3px solid var(--background-color-2);
   text-align: center;
 }
 
-.color-button:hover{
-  
+.color-button-small {
+  width: 3.5em;
+  height: 3.5em;
+  margin-top: 0.5em;
+  /* z-index: 3; */
+  background-color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.color-button-div:hover + .hidden {
+  display: flex;
+}
+
+.color-button-list {
+  position: fixed;
+
+  flex-direction: column;
+  bottom: 5.3em;
+  right: 1.5em;
+}
+
+.color-button-list:hover + .hidden {
+  display: flex;
 }
 
 /*#endregion*/

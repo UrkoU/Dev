@@ -102,6 +102,14 @@ const content = [
 </div>`,
 ];
 
+var aColores = [
+  { name: "blue", value: "rgb(151, 210, 247)" },
+  { name: "green", value: "rgb(151, 247, 186)" },
+  { name: "yellow", value: "rgb(247, 247, 151)" },
+  { name: "purple", value: "rgb(223, 151, 247)" },
+  { name: "red", value: "rgb(247, 151, 151)" },
+];
+
 var footerLinks = document.querySelectorAll(".footer-link");
 var activePage = document.querySelector(".activePage");
 var divMain = document.getElementById("divMain");
@@ -185,4 +193,36 @@ function CambiarAsignatura() {
   console.log("selected option " + selectedOption.toString());
 
   document.getElementById("divExercises").innerHTML = asignaturas[selectedOption].html;
+}
+
+function CargarBotonesColor() {
+  document.getElementsByTagName("body")[0].innerHTML += `
+    <div class="color-button-div flex-center" id="divBotonColor>
+      <button class="color-button"></button>
+    </div>
+    <div class="color-button-list hidden" id="divButtonList">
+      
+    </div>
+  `;
+
+  let divBotones = document.getElementById("divButtonList");
+  let sColor = getComputedStyle(document.documentElement).getPropertyValue("--main-color");
+  let i = 0;
+  aColores.forEach((oColor) => {
+    console.log("oColor= '" + oColor.value + "' sColor'" + sColor + "'");
+    if (oColor.value.replace(/ /g, "") == sColor.replace(/ /g, "")) {
+      aColores.splice(i, 1);
+      // document.getElementById("divBotonColor");
+    } else {
+      divBotones.innerHTML += `<button class="color-button color-button-small" style="background-color: ${oColor.value}" onclick="CambiarColor('${oColor.name}', '${oColor.value}')"></button>`;
+    }
+    i++;
+  });
+}
+
+CargarBotonesColor();
+
+function CambiarColor(sName, sValue) {
+  document.documentElement.style.setProperty("--main-color", sValue);
+  document.getElementsByTagName("body")[0].style.backgroundImage = `url('imagenes/background-${sName}.png')`;
 }
