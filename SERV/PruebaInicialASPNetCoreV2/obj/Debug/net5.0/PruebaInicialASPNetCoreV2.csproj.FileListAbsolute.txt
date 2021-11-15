@@ -38,3 +38,5 @@ C:\Users\2daw3\Dev\SERV\PruebaInicialASPNetCoreV2\obj\Debug\net5.0\ref\PruebaIni
 C:\Users\2daw3\Dev\SERV\PruebaInicialASPNetCoreV2\obj\Debug\net5.0\PruebaInicialASPNetCoreV2.pdb
 C:\Users\2daw3\Dev\SERV\PruebaInicialASPNetCoreV2\obj\Debug\net5.0\PruebaInicialASPNetCoreV2.genruntimeconfig.cache
 C:\Users\2daw3\Dev\SERV\PruebaInicialASPNetCoreV2\obj\Debug\net5.0\PruebaInicialASPNetCoreV2.csproj.CopyComplete
+C:\Users\2daw3\Dev\SERV\PruebaInicialASPNetCoreV2\obj\Debug\net5.0\Razor\Views\HelloWorld\Index.cshtml.g.cs
+C:\Users\2daw3\Dev\SERV\PruebaInicialASPNetCoreV2\obj\Debug\net5.0\Razor\Views\HelloWorld\Welcome.cshtml.g.cs

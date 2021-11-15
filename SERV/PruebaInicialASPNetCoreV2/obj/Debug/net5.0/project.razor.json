@@ -15649,6 +15649,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\HelloWorld\\Index.cshtml",
+      "TargetPath": "Views\\HelloWorld\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\HelloWorld\\Welcome.cshtml",
+      "TargetPath": "Views\\HelloWorld\\Welcome.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"

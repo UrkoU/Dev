@@ -1,3 +1,6 @@
 @{
+    var ctrl = Context.Request.RouteValues["Controller"].ToString();
     Layout = "_Layout";
+
+    @if (ctrl == "Home") Layout = "";
 }
