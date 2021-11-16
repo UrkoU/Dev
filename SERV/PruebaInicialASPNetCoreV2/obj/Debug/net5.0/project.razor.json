@@ -15629,6 +15629,21 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\Movies\\Details.cshtml",
+      "TargetPath": "Views\\Movies\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\Movies\\Edit.cshtml",
+      "TargetPath": "Views\\Movies\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\Movies\\Index.cshtml",
+      "TargetPath": "Views\\Movies\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -15654,6 +15669,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\Movies\\Delete.cshtml",
+      "TargetPath": "Views\\Movies\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\HelloWorld\\Welcome.cshtml",
       "TargetPath": "Views\\HelloWorld\\Welcome.cshtml",
       "FileKind": "mvc"
@@ -15661,6 +15681,11 @@
     {
       "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\2daw3\\Dev\\SERV\\PruebaInicialASPNetCoreV2\\Views\\Movies\\Create.cshtml",
+      "TargetPath": "Views\\Movies\\Create.cshtml",
       "FileKind": "mvc"
     }
   ],
