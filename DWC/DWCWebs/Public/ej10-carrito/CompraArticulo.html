@@ -19,7 +19,7 @@
     <script src="Carrito.js"></script>
   </head>
   <body>
-    <img src="Mercado/atras.png" height="32px" onclick="window.location='Carrito.html'" />
+    <img src="Mercado/atras.png" height="32px" onclick="window.location='index.html'" />
     <table>
       <tr>
         <td><img id="imgArticulo" src="" /></td>
@@ -59,7 +59,7 @@
         let compra = JSON.parse(sessionStorage.Compra);
         compra[Articulo.id] = iCantidad;
         sessionStorage.Compra = JSON.stringify(compra);
-        window.location = "Carrito.html";
+        window.location = "index.html";
       }
     </script>
   </body>

@@ -7,7 +7,9 @@
     <title>Ejercicios de Urko</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body onload="">
+  <body onload="CambiarLinks(1, true)">
+    <!-- JQuery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       // Put default image if loading image gives error
       function ImageError(self) {
@@ -22,67 +24,25 @@
     </div>
 
     <div class="content" id="divContent">
-      <div class="main" id="divMain">
-        <div class="subject-selector h-15">
-          <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
-            <option class="selector-option">Desarrollo Web Entorno Cliente</option>
-            <option class="selector-option last-option">Diseño de Interfaces Web</option>
-          </select>
-        </div>
-        <div class="exercises h-85 w-100" id="divExercises">
-          <div class="card-row">
-            <div class="card no-top-margin" onclick="location.href='../Public/ej1-sellos/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej1-sellos.png" />
-              Sellos
-            </div>
-            <div class="card no-top-margin" onclick="location.href='../Public/ej2-contadorRegresivo/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej2-regresivo.png" />
-              Contador Regresivo
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card white-text" onclick="location.href='../Public/ej3-reloj/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej3-reloj.png" />
-              Reloj
-            </div>
-            <div class="card white-text" onclick="location.href='../Public/ej4-stringsImagenes/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej4-string-imagenes.png" />
-              String imagenes
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card white-text" onclick="location.href='../Public/ej5-stringsImagenesRelojes/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej5-string-imagenes-relojes.png" />
-              Strings imágenes relojes
-            </div>
-            <div class="card white-text" onclick="location.href='../Public/ej6-juegoRecapitulacion/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej6-recapitulacion.png" />
-              Recapitulación
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card white-text" onclick="location.href='../Public/ej7-actividadTest/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej7-actividadTest.png" />
-              Actividad test
-            </div>
-            <div class="card white-text" onclick="location.href='../Public/ej8-procedimental1-parejas/index.html'">
-              <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej8-procedimental1-parejas.png" />
-              Procedimental parejas
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="main" id="divMain"></div>
       <div class="footer">
         <!-- <div id="horizontalLine">&nbsp;</div> -->
         <!-- Footer links -->
         <div id="divFooterLinks">
-          <a class="footer-link white-text active-page">Página principal</a>
-          <a class="footer-link white-text">Trabajos</a>
-          <a class="footer-link white-text">Sobre mí</a>
+          <button class="reset-this footer-link active-page" onclick="CambiarLinks(0)">Página principal</button>
+          <button class="reset-this footer-link" onclick="CambiarLinks(1)">Trabajos</button>
+          <button class="reset-this footer-link" onclick="CambiarLinks(2)">Sobre mí</button>
         </div>
       </div>
     </div>
-
+    <div id="show">
+      <div class="flex-center color-button-div-parent">
+        <div class="color-button-div flex-center" id="divBotonColor">
+          <button class="color-button"></button>
+        </div>
+      </div>
+      <div class="color-button-list hidden" id="divButtonList"></div>
+    </div>
     <script src="./main.js"></script>
   </body>
 </html>

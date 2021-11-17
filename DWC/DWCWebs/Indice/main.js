@@ -116,6 +116,7 @@ var divMain = document.getElementById("divMain");
 
 var index = 0;
 var current = 0;
+var iAsignatura = 0;
 
 footerLinks.forEach((link) => {
   link.i = index;
@@ -125,104 +126,228 @@ footerLinks.forEach((link) => {
   index++;
 });
 
-function CambiarLinks(i) {
+function CambiarLinks(i, firstLoad) {
   footerLinks.forEach((e) => {
     e.classList.remove("active-page");
   });
-  CambiarContent(i);
+  CambiarContent(i, firstLoad);
   footerLinks[i].classList.add("active-page");
 }
 
-function CambiarContent(i) {
-  if (current != i) divMain.innerHTML = content[i];
+function CambiarContent(i, firstLoad = false) {
+  // Cambiar el contenido del div principal
+  if (current != i || firstLoad)
+    if (i == 1) {
+      document.getElementById("divMain").innerHTML = `
+      <div class="subject-selector h-15">
+      <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
+        <option class="selector-option">Desarrollo Web Entorno Cliente</option>
+        <option class="selector-option last-option">Diseño de Interfaces Web</option>
+      </select>
+      </div>
+      <div class="exercises h-85 w-100" id="divExercises"></div>
+      `;
+      CargarEjercicios();
+    } else {
+      divMain.innerHTML = content[i];
+    }
   current = i;
   // Scroll to top
   divMain.scrollTop = 0;
 }
 
-const asignaturas = [
-  {
-    id: "DWC",
-    html: `<div class="card-row">
-  <div class="card no-top-margin" onclick="location.href='../Public/ej1-sellos/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej1-sellos.png" />
-    Sellos
-  </div>
-  <div class="card no-top-margin" onclick="location.href='../Public/ej2-contadorRegresivo/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej2-regresivo.png" />
-    Contador Regresivo
-  </div>
-</div>
-<div class="card-row">
-  <div class="card white-text" onclick="location.href='../Public/ej3-reloj/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej3-reloj.png" />
-    Reloj
-  </div>
-  <div class="card white-text" onclick="location.href='../Public/ej4-stringsImagenes/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej4-string-imagenes.png" />
-    String imagenes
-  </div>
-</div>
-<div class="card-row">
-  <div class="card white-text" onclick="location.href='../Public/ej5-stringsImagenesRelojes/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej5-string-imagenes-relojes.png" />
-    Strings imágenes relojes
-  </div>
-  <div class="card white-text" onclick="location.href='../Public/ej6-juegoRecapitulacion/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej6-recapitulacion.png" />
-    Recapitulación
-  </div>
-</div>
-<div class="card-row">
-  <div class="card white-text" onclick="location.href='../Public/ej7-actividadTest/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej7-actividadTest.png" />
-    Actividad test
-  </div>
-  <div class="card white-text" onclick="location.href='../Public/ej8-procedimental1-parejas/index.html'">
-    <img class="rounded-image card-image" onerror="ImageError(this)" src="./imagenes/ej8-procedimental1-parejas.png" />
-    Procedimental parejas
-  </div>
-</div>`,
-  },
-  { id: "DIW", html: `` },
+const Ejercicios = [
+  [
+    {
+      nombre: "Sellos",
+      descripcion:
+        "Portafolio con distintos sellos, donde cada tipo de sello redirige a una página distinta, y en cada una hemos visto cómo utilizar distintos eventos con DreamWeaver",
+      href: "../Public/ej1-sellos/index.html",
+      image: "./imagenes/ej1-sellos.png",
+    },
+    {
+      nombre: "Contador regresivo",
+      descripcion:
+        "Dos cuadros de texto, uno con la cantidad de dígitos, el otro con el número desde el que empezar. Es una cuenta atrás, con la que aprendemos a utilzar relojes y cambios dinámicos de imágenes",
+      href: "../Public/ej2-ContadorRegresivo/index.html",
+      image: "./imagenes/ej2-regresivo.png",
+    },
+    {
+      nombre: "Reloj",
+      descripcion: "Un simple reloj que muestra los minutos y segundos del equipo cliente",
+      href: "../Public/ej3-reloj/index.html",
+      image: "./imagenes/ej3-reloj.png",
+    },
+    {
+      nombre: "Strings imágenes",
+      descripcion:
+        "Escribiendo el texto que queramos en el cuadro de texto, nos lo mostrará en imágenes. Mejoramos nuestra habilidad para cambiar dinámicamente imágenes",
+      href: "../Public/ej4-stringsImagenes/index.html",
+      image: "./imagenes/ej4-string-imagenes.png",
+    },
+    {
+      nombre: "Strings imágenes relojes",
+      descripcion:
+        "Aquí se juntan nuestros conocimientos en relojes y cambios de imágenes, así como cierta lógica añadida a la hora de cambiar las palabras",
+      href: "../Public/ej5-stringsImagenesRelojes/index.html",
+      image: "./imagenes/ej5-string-imagenes-relojes.png",
+    },
+    {
+      nombre: "Recapitulación",
+      descripcion:
+        "Un minijuego de lógica con cierta dificultad para elaborar, así como crear las primeras validaciones comprobando el final del juego y más.",
+      href: "../Public/ej6-juegoRecapitulacion/index.html",
+      image: "./imagenes/ej6-recapitulacion.png",
+    },
+    {
+      nombre: "Actividad test",
+      descripcion: "Una simple actividad para trabajar con checkboxes y estilos",
+      href: "../Public/ej7-actividadTest/index.html",
+      image: "./imagenes/ej7-actividadTest.png",
+    },
+    {
+      nombre: "Procedimental parejas",
+      descripcion:
+        "Juego de memoria, con unas cuantas validaciones y comprobaciones, así como ciertos estilos algo más avanzados que los vistos anteriormente",
+      href: "../Public/ej8-procedimental1-parejas/index.html",
+      image: "./imagenes/ej8-procedimental1-parejas.png",
+    },
+    {
+      nombre: "Ofertas de empleo",
+      descripcion: "Primer ejercicio con un json, además de funciones como sort y orderby, que no se habían utilizado hasta ahora",
+      href: "../Public/ej9-ofertasEmpleo/index.html",
+      image: "./imagenes/ej9-ofertasEmpleo.png",
+    },
+    {
+      nombre: "Carrito",
+      descripcion: "Primera interacción con sessionstorage para simular un carrito de la compra, con actualizaciones y pago",
+      href: "../Public/ej10-carrito/index.html",
+      image: "./imagenes/ej10-carrito.jpg",
+    },
+  ],
+  [
+    {
+      nombre: "Contador regresivo",
+      descripcion: "",
+      href: "../Public/ej1-sellos/index.html",
+      image: "./imagenes/ej1-sellos.png",
+    },
+    {
+      nombre: "Contador regresivo",
+      descripcion: "",
+      href: "../Public/ej1-sellos/index.html",
+      image: "./imagenes/ej1-sellos.png",
+    },
+  ],
 ];
+
+// window.onload(CambiarAsignatura());
 
 function CambiarAsignatura() {
   let selector = document.getElementById("subject-selector");
   let selectedOption = selector.selectedIndex;
-  console.log("selected option " + selectedOption.toString());
+  iAsignatura = selectedOption;
 
-  document.getElementById("divExercises").innerHTML = asignaturas[selectedOption].html;
+  CargarEjercicios();
+}
+
+function CargarEjercicios() {
+  var divEjercicios = document.getElementById("divExercises");
+  var impar = true;
+  let divCard = document.createElement("div");
+  divCard.classList.add("card-row");
+  divEjercicios.innerHTML = "";
+  let item = "";
+
+  Ejercicios[iAsignatura].forEach((ejercicio) => {
+    item = `
+    <div class="card white-text" onclick="location.href='${ejercicio.href}'">
+      <img class="rounded-image card-image" onerror="ImageError(this)" src="${ejercicio.image}" alt="${ejercicio.descripcion}"/>
+      <div style="padding:0.5em 1em 0em 1em; overflow:auto">
+        <h4 style="margin:0">${ejercicio.nombre}</h4>
+        <p style="margin:0;margin-top:0.5em">${ejercicio.descripcion}</p>
+      </div>
+    </div>`;
+    if (impar) {
+      divCard.innerHTML = "";
+      divCard.innerHTML += item;
+    } else {
+      divCard.innerHTML += item;
+      divEjercicios.innerHTML += divCard.outerHTML;
+    }
+    impar = !impar;
+  });
+
+  if (!impar) {
+    divCard.innerHTML = item;
+    divEjercicios.innerHTML += divCard.outerHTML;
+  }
+}
+
+CargarColorInicial();
+CargarBotonesColor();
+
+function CargarColorInicial() {
+  let color = consultarCookie("color");
+  if (typeof color == "undefined") color = "green";
+  let valor;
+  aColores.forEach((element) => {
+    if (element.name == color) {
+      valor = element.value;
+    }
+  });
+  CambiarColor(color, valor);
+}
+
+function CambiarColor(sName, sValue) {
+  mandarCookie("color", sName);
+  document.documentElement.style.setProperty("--main-color", sValue);
+  document.getElementsByTagName("body")[0].style.backgroundImage = `url('imagenes/background-${sName}.png')`;
+  CargarBotonesColor();
 }
 
 function CargarBotonesColor() {
-  document.getElementsByTagName("body")[0].innerHTML += `
-    <div class="color-button-div flex-center" id="divBotonColor>
-      <button class="color-button"></button>
-    </div>
-    <div class="color-button-list hidden" id="divButtonList">
-      
-    </div>
-  `;
-
   let divBotones = document.getElementById("divButtonList");
+  divBotones.innerHTML = "";
   let sColor = getComputedStyle(document.documentElement).getPropertyValue("--main-color");
   let i = 0;
   aColores.forEach((oColor) => {
-    console.log("oColor= '" + oColor.value + "' sColor'" + sColor + "'");
     if (oColor.value.replace(/ /g, "") == sColor.replace(/ /g, "")) {
-      aColores.splice(i, 1);
       // document.getElementById("divBotonColor");
     } else {
       divBotones.innerHTML += `<button class="color-button color-button-small" style="background-color: ${oColor.value}" onclick="CambiarColor('${oColor.name}', '${oColor.value}')"></button>`;
+      i++;
     }
-    i++;
   });
 }
 
-CargarBotonesColor();
+$(document).ready(function () {
+  //your code here
+  $("#show").mouseover(function () {
+    $("#divButtonList").css("display", "flex");
+  });
+  $("#show").mouseout(function () {
+    $("#divButtonList").css("display", "none");
+  });
+});
 
-function CambiarColor(sName, sValue) {
-  document.documentElement.style.setProperty("--main-color", sValue);
-  document.getElementsByTagName("body")[0].style.backgroundImage = `url('imagenes/background-${sName}.png')`;
+// Cookies
+function mandarCookie(nombre, valor, caducidad = new Date(new Date().getDay + 15)) {
+  // console.log("mandarCookie: " + nombre + " " + valor);
+  document.cookie = nombre + "=" + escape(valor) + (caducidad == null ? "" : "; expires=" + caducidad.toGMTString());
+}
+
+function consultarCookie(nombre) {
+  var buscamos = nombre + "=";
+  if (document.cookie.length > 0) {
+    i = document.cookie.indexOf(buscamos);
+    if (i != -1) {
+      i += buscamos.length;
+      j = document.cookie.indexOf(";", i);
+      j = document.cookie.indexOf(";", i);
+      if (j == -1) j = document.cookie.length;
+      // console.log("Consultar cookie: " + nombre + " " + unescape(document.cookie.substring(i, j)));
+      return unescape(document.cookie.substring(i, j));
+    }
+  }
 }
