@@ -1,4 +1,4 @@
-const content = [
+const aContenido = [
   `<div class="w-100 h-100 flex-center"><img src="imagenes/wip.png" height="480px"></div>`,
   `<div class="subject-selector h-15">
   <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
@@ -102,7 +102,7 @@ const content = [
 </div>`,
 ];
 
-var aColores = [
+const aColores = [
   { name: "blue", value: "rgb(151, 210, 247)" },
   { name: "green", value: "rgb(151, 247, 186)" },
   { name: "yellow", value: "rgb(247, 247, 151)" },
@@ -110,53 +110,7 @@ var aColores = [
   { name: "red", value: "rgb(247, 151, 151)" },
 ];
 
-var footerLinks = document.querySelectorAll(".footer-link");
-var activePage = document.querySelector(".activePage");
-var divMain = document.getElementById("divMain");
-
-var index = 0;
-var current = 0;
-var iAsignatura = 0;
-
-footerLinks.forEach((link) => {
-  link.i = index;
-  link.addEventListener("click", function () {
-    CambiarLinks(link.i);
-  });
-  index++;
-});
-
-function CambiarLinks(i, firstLoad) {
-  footerLinks.forEach((e) => {
-    e.classList.remove("active-page");
-  });
-  CambiarContent(i, firstLoad);
-  footerLinks[i].classList.add("active-page");
-}
-
-function CambiarContent(i, firstLoad = false) {
-  // Cambiar el contenido del div principal
-  if (current != i || firstLoad)
-    if (i == 1) {
-      document.getElementById("divMain").innerHTML = `
-      <div class="subject-selector h-15">
-      <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
-        <option class="selector-option">Desarrollo Web Entorno Cliente</option>
-        <option class="selector-option last-option">Diseño de Interfaces Web</option>
-      </select>
-      </div>
-      <div class="exercises h-85 w-100" id="divExercises"></div>
-      `;
-      CargarEjercicios();
-    } else {
-      divMain.innerHTML = content[i];
-    }
-  current = i;
-  // Scroll to top
-  divMain.scrollTop = 0;
-}
-
-const Ejercicios = [
+const aEjercicios = [
   [
     {
       nombre: "Sellos",
@@ -214,13 +168,15 @@ const Ejercicios = [
     },
     {
       nombre: "Ofertas de empleo",
-      descripcion: "Primer ejercicio con un json, además de funciones como sort y orderby, que no se habían utilizado hasta ahora",
+      descripcion:
+        "Primer ejercicio con un json, además de funciones como sort y orderby, que no se habían utilizado hasta ahora",
       href: "../Public/ej9-ofertasEmpleo/index.html",
       image: "./imagenes/ej9-ofertasEmpleo.png",
     },
     {
       nombre: "Carrito",
-      descripcion: "Primera interacción con sessionstorage para simular un carrito de la compra, con actualizaciones y pago",
+      descripcion:
+        "Primera interacción con sessionstorage para simular un carrito de la compra, con actualizaciones y pago",
       href: "../Public/ej10-carrito/index.html",
       image: "./imagenes/ej10-carrito.jpg",
     },
@@ -241,9 +197,56 @@ const Ejercicios = [
   ],
 ];
 
-// window.onload(CambiarAsignatura());
+var aFooterLinks = document.querySelectorAll(".footer-link");
+var divActivePage = document.querySelector(".activePage");
+var divMain = document.getElementById("divMain");
+
+var index = 0;
+var iContenidoActual = 0;
+var iAsignatura = 0;
+
+function Iniciar() {
+  CambiarLinks(1, true);
+  CargarColorInicial();
+  CargarBotonesColor();
+  CargarEventosBotonFlotante();
+}
+
+function CambiarLinks(i, bPrimeraCarga) {
+  // Cambia el link activo del footer
+  aFooterLinks.forEach((e) => {
+    e.classList.remove("active-page");
+  });
+  CambiarContent(i, bPrimeraCarga);
+  aFooterLinks[i].classList.add("active-page");
+}
+
+function CambiarContent(i, bPrimeraCarga = false) {
+  // Cambiar el contenido del div principal
+  if (iContenidoActual != i || bPrimeraCarga)
+    if (i == 1) {
+      // Select de ejercicios
+      document.getElementById("divMain").innerHTML = `
+      <div class="subject-selector h-15">
+      <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
+        <option class="selector-option">Desarrollo Web Entorno Cliente</option>
+        <option class="selector-option last-option">Diseño de Interfaces Web</option>
+      </select>
+      </div>
+      <div class="exercises h-85 w-100" id="divExercises"></div>
+      `;
+      // Cargar la vista de ejercicios
+      CargarEjercicios();
+    } else {
+      divMain.innerHTML = aContenido[i];
+    }
+  iContenidoActual = i;
+  // Scroll arriba
+  divMain.scrollTop = 0;
+}
 
 function CambiarAsignatura() {
+  // Cambia la asignatura escogida
   let selector = document.getElementById("subject-selector");
   let selectedOption = selector.selectedIndex;
   iAsignatura = selectedOption;
@@ -252,6 +255,7 @@ function CambiarAsignatura() {
 }
 
 function CargarEjercicios() {
+  // Carga los ejercicios dependiendo de la asignatura escogida
   var divEjercicios = document.getElementById("divExercises");
   var impar = true;
   let divCard = document.createElement("div");
@@ -259,7 +263,7 @@ function CargarEjercicios() {
   divEjercicios.innerHTML = "";
   let item = "";
 
-  Ejercicios[iAsignatura].forEach((ejercicio) => {
+  aEjercicios[iAsignatura].forEach((ejercicio) => {
     item = `
     <div class="card white-text" onclick="location.href='${ejercicio.href}'">
       <img class="rounded-image card-image" onerror="ImageError(this)" src="${ejercicio.image}" alt="${ejercicio.descripcion}"/>
@@ -272,23 +276,23 @@ function CargarEjercicios() {
       divCard.innerHTML = "";
       divCard.innerHTML += item;
     } else {
+      // Mete nuevos ejercicios de dos en dos, cuando va por el segundo
       divCard.innerHTML += item;
       divEjercicios.innerHTML += divCard.outerHTML;
     }
     impar = !impar;
   });
 
+  // Si se queda en el último ejercicio, lo añade solo
   if (!impar) {
     divCard.innerHTML = item;
     divEjercicios.innerHTML += divCard.outerHTML;
   }
 }
 
-CargarColorInicial();
-CargarBotonesColor();
-
 function CargarColorInicial() {
-  let color = consultarCookie("color");
+  // Carga el color inicial según la cookie
+  let color = ConsultarCookie("color");
   if (typeof color == "undefined") color = "green";
   let valor;
   aColores.forEach((element) => {
@@ -300,18 +304,21 @@ function CargarColorInicial() {
 }
 
 function CambiarColor(sName, sValue) {
-  mandarCookie("color", sName);
+  // Cambia el color predominante de la web, cambiando la variable --main-color del css
+  MandarCookie("color", sName);
   document.documentElement.style.setProperty("--main-color", sValue);
   document.getElementsByTagName("body")[0].style.backgroundImage = `url('imagenes/background-${sName}.png')`;
   CargarBotonesColor();
 }
 
 function CargarBotonesColor() {
+  // Carga los botones de los colores != mainColor
   let divBotones = document.getElementById("divButtonList");
   divBotones.innerHTML = "";
   let sColor = getComputedStyle(document.documentElement).getPropertyValue("--main-color");
   let i = 0;
   aColores.forEach((oColor) => {
+    // Si no es el color principal, añade el botón
     if (oColor.value.replace(/ /g, "") == sColor.replace(/ /g, "")) {
       // document.getElementById("divBotonColor");
     } else {
@@ -321,28 +328,40 @@ function CargarBotonesColor() {
   });
 }
 
-$(document).ready(function () {
-  //your code here
-  $("#show").mouseover(function () {
-    $("#divButtonList").css("display", "flex");
+function CargarEventosBotonFlotante() {
+  // Cuando se haga hover sobre show, mostrará divButtonList
+  document.querySelector("#show").addEventListener("mouseover", function () {
+    document.getElementById("divButtonList").style.display = "flex";
   });
-  $("#show").mouseout(function () {
-    $("#divButtonList").css("display", "none");
+  document.querySelector("#show").addEventListener("mouseout", function () {
+    document.getElementById("divButtonList").style.display = "none";
   });
-});
-
-// Cookies
-function mandarCookie(nombre, valor, caducidad = new Date(new Date().getDay + 15)) {
-  // console.log("mandarCookie: " + nombre + " " + valor);
-  document.cookie = nombre + "=" + escape(valor) + (caducidad == null ? "" : "; expires=" + caducidad.toGMTString());
 }
 
-function consultarCookie(nombre) {
-  var buscamos = nombre + "=";
+// $(document).ready(function () {
+//   // Query para hacer funcionar el botón flotante de css
+//   $("#show").mouseover(function () {
+//     $("#divButtonList").css("display", "flex");
+//   });
+//   $("#show").mouseout(function () {
+//     $("#divButtonList").css("display", "none");
+//   });
+// });
+
+// Cookies
+function MandarCookie(sNombre, sValor, fCaducidad = new Date(new Date().getDay + 15)) {
+  // Manda una cookie
+  document.cookie =
+    sNombre + "=" + escape(sValor) + (fCaducidad == null ? "" : "; expires=" + fCaducidad.toGMTString());
+}
+
+function ConsultarCookie(sNombre) {
+  // Consulta una cookie
+  var sBuscamos = sNombre + "=";
   if (document.cookie.length > 0) {
-    i = document.cookie.indexOf(buscamos);
+    i = document.cookie.indexOf(sBuscamos);
     if (i != -1) {
-      i += buscamos.length;
+      i += sBuscamos.length;
       j = document.cookie.indexOf(";", i);
       j = document.cookie.indexOf(";", i);
       if (j == -1) j = document.cookie.length;

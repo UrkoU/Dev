@@ -10927,9 +10927,11 @@ var aOfertas = JSON.parse(sOfertas);
 var selectBox = document.getElementById("selectCiudad");
 var selectedValue = consultarCookie("poblacion");
 var aOfertasFiltradas = aOfertas.filter((oferta) => oferta.municipio == selectedValue);
-var options = Array.apply(null, selectBox.options);
-for (i = 0; i < options.length; i++) {
-  if (options[i].value == selectedValue) {
+var aOptions = Array.apply(null, selectBox.options);
+
+// Cambiar el valor del select según la cookie
+for (i = 0; i < aOptions.length; i++) {
+  if (aOptions[i].value == selectedValue) {
     selectBox.selectedIndex = i;
     break;
   }
@@ -10941,6 +10943,7 @@ let tTabla = document.getElementById("tTabla");
 CambiarInfoTabla();
 
 function CambiarInfoTabla() {
+  // Cambiar la información de la tabla según el select
   selectedValue = selectBox.options[selectBox.selectedIndex].value;
   mandarCookie("poblacion", selectedValue, new Date(new Date().getDate + 15));
   tTabla.innerHTML = `<thead><td id="tdDesEmpleo">Oferta</td><td id="tdDesPuesto">Descripción</td><td id="tdFecPub">Fecha de publicación</td><td id="tdLink">Link</td>`;
@@ -10949,15 +10952,20 @@ function CambiarInfoTabla() {
   AnadirInfoTabla();
 }
 
-function AnadirInfoTabla() {
-  aOfertasFiltradas.forEach((element) => {
-    // let row = table.insertRow();
-    // let cell = row.insertCell();
-    tTabla.innerHTML += `<td id="tdDesEmpleo">${element.desEmpleo}</td><td id="tdDesPuesto">${element.desPuesto}</td><td id="tdFecPub">${element.fecPub}</td><td id="tdLink"><a href="${element.url}">Link</a></td>`;
-  });
-}
-
 function CambiarOfertas() {
+  // Cambiar las ofertas filtradas
   aOfertasFiltradas = aOfertas.filter((oferta) => oferta.municipio == selectedValue);
   aOfertasFiltradas = aOfertasFiltradas.sort((a, b) => new Date(b.fecPub).getTime() - new Date(a.fecPub).getTime());
+}
+
+function AnadirInfoTabla() {
+  // Añadir las ofertas en la tabla
+  aOfertasFiltradas.forEach((element) => {
+    tTabla.innerHTML += `
+      <td id="tdDesEmpleo">${element.desEmpleo}</td>
+      <td id="tdDesPuesto">${element.desPuesto}</td>
+      <td id="tdFecPub">${element.fecPub}</td>
+      <td id="tdLink"><a href="${element.url}">Link</a></td>
+    `;
+  });
 }

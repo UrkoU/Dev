@@ -6,44 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body id="body">
+  <body id="body" onload="Iniciar()">
     <div id="divGame"></div>
+    <div id="divSelect">
+      <select id="selectSize" onchange="CambiarTamano()">
+        <option value="2">2</option>
+        <option value="3" selected="selected">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
+    </div>
     <div id="divTime"></div>
     <div id="divResult"></div>
+
     <script src="http://185.60.40.210/2daw3/FuncionesJuegos.js"></script>
+    <script src="http://185.60.40.210/2daw3/Cookies.js"></script>
     <script>
-      var n = 3;
-      var timeLimit = [1, 5, 8, 11, 14, 20];
-      var nums = CrearTabla(n);
-      var numsOrdenados = CrearTablaOrdenada();
+      var n = null;
+      var aTimeLimit = [1, 5, 8, 11, 14, 20];
+      var aNums;
+      var aNumsOrdenados;
       var f0 = n - 1;
       var c0 = n - 1;
       var bBotonesActivados = true;
-      var clicks = 0;
-      MostrarNums();
-      // Si la tabla viene resuelta por defecto volver a crearla
-      while (Comprobar()) {
-        nums = CrearTabla(n);
+      var iClicks = 0;
+      var iIntervalo;
+      var selSelect = document.getElementById("selectSize");
+
+      var dHora = new Date();
+      var dNueva = new Date(dHora.getTime() + aTimeLimit[n - 2] * 60000);
+
+      function Iniciar() {
+        // Obtiene la cookie del tamaño del juego y muestra el juego con esee tamaño
+        if (n) mandarCookie("tamano", n);
+        let iTamano = consultarCookie("tamano");
+        if (typeof iTamano == "undefined") n = 3;
+        else {
+          n = iTamano;
+          let aOptions = Array.apply(null, selSelect.options);
+          aOptions.forEach((option) => {
+            if (option.value == n) selSelect.value = option.value;
+          });
+        }
+        // Valores por defecto
+        f0 = n - 1;
+        c0 = n - 1;
+        bBotonesActivados = true;
+        iClicks = 0;
+        aNums = CrearTabla(n);
+        aNumsOrdenados = CrearTablaOrdenada();
         MostrarNums();
+        // Si la tabla viene resuelta por defecto volver a crearla
+        while (Comprobar()) {
+          aNums = CrearTabla(n);
+          MostrarNums();
+        }
+
+        dHora = new Date();
+        dNueva = new Date(dHora.getTime() + aTimeLimit[n - 2] * 60000);
+        iIntervalo = setInterval(Reloj, 1000);
       }
-      var iIntervalo = setInterval(Reloj, 1000);
+
+      // Cambiar el tamaño del juego
+      function CambiarTamano() {
+        n = selSelect.value;
+        Iniciar();
+      }
 
       function MostrarNums() {
+        // Mostrar el juego
         let i = 0;
         let j = 0;
         document.getElementById("divGame").innerHTML = `<table id="tJuego" style="border-collapse: collapse;"></table>`;
 
-        for (let i = 0; i < nums.length; i++) {
+        for (let i = 0; i < aNums.length; i++) {
           document.getElementById("tJuego").innerHTML += `<tr id=tr${i}></tr>`;
-          for (let j = 0; j < nums[i].length; j++) {
+          for (let j = 0; j < aNums[i].length; j++) {
             document.getElementById(
               `tr${i}`
-            ).innerHTML += `<td id=td${i}-${j}  style="border: 1px solid"><img id="Bola${i}${j}" src="numbers/n${nums[i][j]}.gif"  onclick="Cambiar(${i}, ${j})"></td>`;
+            ).innerHTML += `<td id=td${i}-${j}  style="border: 1px solid"><img id="Bola${i}${j}" src="numbers/n${aNums[i][j]}.gif"  onclick="Cambiar(${i}, ${j})"></td>`;
           }
         }
       }
 
       function CrearTablaOrdenada() {
+        // Tabla con el juego resuelto para comparar con la del juego
         let a = new Array(n);
         let x = 1;
         for (let i = 0; i < n; i++) {
@@ -58,37 +107,43 @@
       }
 
       function Cambiar(f, c) {
+        // Cambiar los números si es posible
         if (bBotonesActivados) {
-          clicks++;
-          MostrarClicks(clicks);
+          iClicks++;
+          MostrarClicks(iClicks);
           if ((f == f0 && (c == c0 - 1 || c == c0 + 1)) || (c == c0 && (f == f0 - 1 || f == f0 + 1))) {
-            Intercambiar(nums, f0, c0, f, c);
+            Intercambiar(aNums, f0, c0, f, c);
             c0 = c;
             f0 = f;
             MostrarNums();
+            // Finalizar el juego si está resuelto
             if (Comprobar()) TerminarJuego(true);
           }
         }
       }
 
       function Comprobar() {
+        // Comprobar si el juego está resuelto comparando el array resuelto con el del juego
         let bIgual = true;
         for (let i = 0; i < n; i++) {
           for (let j = 0; j < n; j++) {
-            if (nums[i][j] != numsOrdenados[i][j]) {
+            // Si hay cualquier diferencia, salir
+            if (aNums[i][j] != aNumsOrdenados[i][j]) {
               bIgual = false;
               break;
             }
           }
-          if (bIgual == false) break;
+          if (!bIgual) break;
         }
         return bIgual;
       }
 
       function TerminarJuego(ganado) {
+        // Terminar el juego mostrando mensaje de ganado o no
         IntercambiarBotonesActivados();
         if (ganado) MostrarMensaje("Juego terminado con éxito");
         else MostrarMensaje("No has conseguido completar el juego con éxito, tiempo agotado");
+        // Desactivar los botones
         bBotonesActivados = false;
         clearInterval(iIntervalo);
       }
@@ -102,15 +157,12 @@
       }
 
       function MostrarClicks(clicks) {
-        // alert("Clicks: " + clicks);
         document.getElementById("divResult").innerHTML = `<h1>${clicks}</h1>`;
       }
 
-      var hora = new Date();
-      var nueva = new Date(hora.getTime() + timeLimit[n - 2] * 60000);
-
       function Reloj() {
-        var tiempoRestante = new Date(nueva - new Date());
+        // Cada segundo cambia el tiempo restante, y si se termina el tiempo termina el juego
+        var tiempoRestante = new Date(dNueva - new Date());
         if (tiempoRestante.getMinutes() == 0 && tiempoRestante.getSeconds() == 0) {
           bBotonesActivados = false;
           TerminarJuego(false);

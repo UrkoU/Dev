@@ -22,16 +22,18 @@
     ></div>
     <script>
       var sTexto = "Kaixo";
-      Inicializar();
 
+      Inicializar();
       setInterval(Rotar, 250);
 
       function Inicializar() {
+        // Cambiar el texto y mostrarlo inicialmente
         sTexto = "  " + sTexto + "  ";
         Mostrar(sTexto);
       }
 
       function Mostrar(text) {
+        // Muestra el texto, letra o blanco
         document.getElementById("divTexto").innerHTML = "";
         for (let i = 0; i < text.length; i++) {
           if (text[i] == " ")
@@ -43,14 +45,17 @@
         }
       }
 
-      function Avanzar(text) {
-        let ltr = text.slice(text.length - 1);
-        return (text = ltr + text.slice(0, text.length - 1));
-      }
-
       function Rotar() {
+        // Coge el texto cambiado y lo muestra
         sTexto = Avanzar(sTexto);
         Mostrar(sTexto);
+      }
+
+      function Avanzar(text) {
+        // Devuelve el text con su última letra al principio
+        // hola => ahol
+        let cLetra = text.slice(text.length - 1);
+        return (text = cLetra + text.slice(0, text.length - 1));
       }
     </script>
   </body>

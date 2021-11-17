@@ -30,14 +30,14 @@
       </tr>
     </table>
     <script>
-      var Articulo = {};
+      var oArticulo = {};
 
-      LoadData();
+      CargarProducto();
 
-      function LoadData() {
+      function CargarProducto() {
+        // Mostrar el producto a comprar
         let id = sessionStorage.IdComprando;
-        console.log("ID: " + id);
-        Articulo =
+        oArticulo =
           aArticulos[
             aArticulos
               .map(function (e) {
@@ -46,18 +46,17 @@
               .indexOf(id)
           ];
 
-        console.log("Articulo" + Articulo.toString());
-        document.getElementById("imgArticulo").src = Articulo.src();
-        document.getElementById("pPrecio").textContent = Articulo.precio;
-        document.getElementById("pNombreArticulo").textContent = Articulo.nombre;
+        document.getElementById("imgArticulo").src = oArticulo.src();
+        document.getElementById("pPrecio").textContent = oArticulo.precio;
+        document.getElementById("pNombreArticulo").textContent = oArticulo.nombre;
       }
 
       function AnadirCompra() {
+        // Añadir nueva compra
         let iCantidad = document.getElementById("inpCantidad").value;
-        console.log("Anadir Compra: " + Articulo.id + " cantidad: " + iCantidad);
 
         let compra = JSON.parse(sessionStorage.Compra);
-        compra[Articulo.id] = iCantidad;
+        compra[oArticulo.id] = iCantidad;
         sessionStorage.Compra = JSON.stringify(compra);
         window.location = "index.html";
       }

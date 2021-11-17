@@ -8,58 +8,64 @@
   </head>
   <body>
     <script>
-      var interval;
-      var cifras;
-      var num;
-      var num10;
+      var iInterval;
+      var iCifras;
+      var iNum;
+      var iNum10;
 
       function enviarNumCifras() {
+        // Guardar y mostrar la cantidad de cifras
         var txtNumCifras = document.getElementById("txtNumCifras");
-        cifras = txtNumCifras.value;
+        iCifras = txtNumCifras.value;
         var divImagenes = document.getElementById("divImagenes");
         divImagenes.innerHTML = "";
-        for (var i = 0; i < cifras; i++) {
+        for (var i = 0; i < iCifras; i++) {
           divImagenes.innerHTML += `<img src="imagenes/n0.gif" id="img${i}">`;
         }
         txtNumCifras.setAttribute("maxlength", txtNumCifras.value);
       }
 
       function enviarNumRegresivo() {
-        if (interval) {
-          clearInterval(interval);
+        // Guardar y mostrar el número regresivo
+        if (iInterval) {
+          clearInterval(iInterval);
         }
         if (!document.getElementById(`img0`)) {
           enviarNumCifras();
         }
 
-        cifras = document.getElementById("txtNumCifras").value;
-        num = document.getElementById("txtNumRegresivo").value;
-        num10 = num;
+        iCifras = document.getElementById("txtNumCifras").value;
+        iNum = document.getElementById("txtNumRegresivo").value;
+        iNum10 = iNum;
         var divImagenes = document.getElementById("divImagenes");
-        var n;
-        for (var i = cifras - 1; i >= 0; i--) {
-          document.getElementById(`img${i}`).src = `imagenes/n${num10 % 10}.gif`;
-          num10 = Math.floor(num10 / 10);
+        // Mostrar los números de izquierda a derecha
+        for (var i = iCifras - 1; i >= 0; i--) {
+          document.getElementById(`img${i}`).src = `imagenes/n${iNum10 % 10}.gif`;
+          iNum10 = Math.floor(iNum10 / 10);
         }
 
-        interval = setInterval(regresivo, 100);
+        iInterval = setInterval(regresivo, 100);
       }
 
       function regresivo() {
-        if (num > 0) {
-          num--;
-          num10 = num;
-          for (var i = cifras - 1; i >= 0; i--) {
-            document.getElementById(`img${i}`).src = `imagenes/n${num10 % 10}.gif`;
-            num10 = Math.floor(num10 / 10);
+        // Contar hacia atrás
+        if (iNum > 0) {
+          iNum--;
+          iNum10 = iNum;
+          for (var i = iCifras - 1; i >= 0; i--) {
+            // Actualizar cada cifra
+            document.getElementById(`img${i}`).src = `imagenes/n${iNum10 % 10}.gif`;
+            iNum10 = Math.floor(iNum10 / 10);
           }
         } else {
-          clearInterval(interval);
-          interval = null;
+          // Cuando sea 0, parar
+          clearInterval(iInterval);
+          iInterval = null;
         }
       }
 
       function comprobarInt() {
+        // Comprobar que es un entero el número
         var input = document.getElementById("txtNumCifras").value;
         var regex = /^[0-9]+$/;
         if (!input.match(regex)) {
@@ -69,6 +75,7 @@
       }
 
       function comprobarInt2() {
+        // Comprobar que es un entero el número
         var input = document.getElementById("txtNumRegresivo").value;
         var regex = /^[0-9]+$/;
         if (!input.match(regex)) {

@@ -38,39 +38,41 @@ function Mostrar() {
 }
 
 function Indeterminar() {
+  // Poner los checkboxes como indeterminados
   let cbs = document.querySelectorAll("input[type=checkbox]");
   cbs.forEach((cb) => (cb.indeterminate = true));
 }
 
 function Corregir() {
   var i = 0;
-  var respuestas = [];
-  var aciertos = 0;
-  var puntos = 0;
+  var aRespuestas = [];
+  var iAciertos = 0;
+  var iPuntos = 0;
 
   // Guardar las respuestas de las preguntas
   aPreguntas.forEach(() => {
-    if (document.getElementById(`cb${i}`).indeterminate) respuestas.push("indeterminate");
-    else respuestas.push(document.getElementById(`cb${i}`).checked);
+    if (document.getElementById(`cb${i}`).indeterminate) aRespuestas.push("indeterminate");
+    else aRespuestas.push(document.getElementById(`cb${i}`).checked);
     i++;
   });
+  // Comprobar las respuestas, V = true, F = false
   for (let j = 0; j < aRespuestas.length; j++) {
-    // Comprobar las respuestas, V = true, F = false
-    if (respuestas[j] == "indeterminate") {
+    // Si es indeterminado, no suma ni resta, fondo gris
+    if (aRespuestas[j] == "indeterminate") {
       document.getElementById(`pPregunta${j}`).setAttribute(`style`, `background-color: gray`);
-    } else if ((aRespuestas[j] == "V" && respuestas[j]) || (aRespuestas[j] == "F" && !respuestas[j])) {
+    } else if ((aRespuestas[j] == "V" && aRespuestas[j]) || (aRespuestas[j] == "F" && !aRespuestas[j])) {
       // Si es verdadero, fondo en blanco, sumar un punto y un acierto
       document.getElementById(`pPregunta${j}`).setAttribute(`style`, `background-color: white`);
-      aciertos++;
-      puntos++;
+      iAciertos++;
+      iPuntos++;
     } else {
       // Si es falso, fondo en rojo, restar 0.25 puntos
       document.getElementById(`pPregunta${j}`).setAttribute(`style`, `background-color: red`);
-      puntos -= 0.25;
+      iPuntos -= 0.25;
     }
   }
 
   // Mostrar aciertos y puntos
   document.getElementById("divResultado").innerHTML =
-    `<p> Aciertos: ` + aciertos + "/" + aRespuestas.length + `</p><p>Puntuación: ` + puntos + `</p>`;
+    `<p> Aciertos: ` + iAciertos + "/" + aRespuestas.length + `</p><p>Puntuación: ` + iPuntos + `</p>`;
 }

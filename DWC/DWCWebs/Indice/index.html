@@ -7,7 +7,7 @@
     <title>Ejercicios de Urko</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body onload="CambiarLinks(1, true)">
+  <body onload="Iniciar()">
     <!-- JQuery script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -17,6 +17,8 @@
         self.src = "./imagenes/default.png";
       }
     </script>
+
+    <!-- Title with name -->
     <div class="top">
       <div class="title">
         <h2 class="centered-text black-text">URKO URBIETA BUENO</h2>
@@ -26,7 +28,6 @@
     <div class="content" id="divContent">
       <div class="main" id="divMain"></div>
       <div class="footer">
-        <!-- <div id="horizontalLine">&nbsp;</div> -->
         <!-- Footer links -->
         <div id="divFooterLinks">
           <button class="reset-this footer-link active-page" onclick="CambiarLinks(0)">Página principal</button>
@@ -35,6 +36,7 @@
         </div>
       </div>
     </div>
+    <!-- Floating buttons to change color -->
     <div id="show">
       <div class="flex-center color-button-div-parent">
         <div class="color-button-div flex-center" id="divBotonColor">

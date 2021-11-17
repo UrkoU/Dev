@@ -111,7 +111,6 @@
           iAciertos++;
           ComprobarJuegoTerminado();
         } else {
-          //   console.log("Son diferentes");
           bDesactivarClicks = true;
           setTimeout(() => {
             VoltearDos(c1.posicion.i, c1.posicion.j, c2.posicion.i, c2.posicion.j);
@@ -120,30 +119,33 @@
       }
 
       function Aumentar() {
+        // Aumentar los clicks
         iClicks++;
         document.getElementById("h1Clicks").textContent = iClicks;
       }
 
-      function Tiempo() {}
-
       // 7.5 minutos = 450000 (/1000/60)
-      var iTiempo = 180000;
+      var iTiempo = 450000;
       var fAhora = new Date();
       var fNueva = new Date(fAhora.getTime() + iTiempo);
       var iIntervalo = setInterval(Reloj, 1000);
 
       function Reloj() {
+        // Resta tiempo, si llega a 0 fin
         var fTiempoRestante = new Date(fNueva - new Date());
         if (fTiempoRestante.getMinutes() == 0 && fTiempoRestante.getSeconds() == 0) {
           TerminarJuego(false);
         }
         let iSecs =
-          fTiempoRestante.getSeconds() < 10 ? "0" + fTiempoRestante.getSeconds().toString() : fTiempoRestante.getSeconds().toString();
+          fTiempoRestante.getSeconds() < 10
+            ? "0" + fTiempoRestante.getSeconds().toString()
+            : fTiempoRestante.getSeconds().toString();
         document.getElementById("h1Tiempo").innerHTML = fTiempoRestante.getMinutes().toString() + ":" + iSecs;
       }
 
       function ComprobarJuegoTerminado() {
         // Manera (a mi juicio) más eficiente
+        // Simplemente si hay 20 aciertos (4 * 10 / 2) significa que está terminado
         // if (iAciertos == (N * M) / 2) {
         //   TerminarJuego();
         // }
@@ -164,6 +166,7 @@
       }
 
       function TerminarJuego(ganado = true) {
+        // Mostrar mensaje de fin de juego, habiendo ganado o perdido y desactivar clicks
         let pFin = document.getElementById("pFin");
         if (!ganado) {
           bDesactivarClicks = true;

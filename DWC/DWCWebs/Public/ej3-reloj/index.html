@@ -29,20 +29,24 @@
       </div>
     </div>
     <script language="javascript">
+      // Obtener la fecha cada segundo
       setInterval(ObtenerFecha, 1000);
+
       function ObtenerFecha() {
         let dFecha = new Date();
 
-        PonerFecha(dFecha);
+        PonerFecha(dFecha); // Mostrar la fecha
       }
 
       function PonerFecha(dFecha) {
-        let dMins = dFecha.getMinutes();
-        let dSecs = dFecha.getSeconds();
-        document.getElementById("iMins0").src = `imagenes/n${Math.trunc(dMins / 10)}.gif`;
-        document.getElementById("iMins1").src = `imagenes/n${dMins % 10}.gif`;
-        document.getElementById("iSecs0").src = `imagenes/n${Math.trunc(dSecs / 10)}.gif`;
-        document.getElementById("iSecs1").src = `imagenes/n${dSecs % 10}.gif`;
+        let iMins = dFecha.getMinutes();
+        let iSecs = dFecha.getSeconds();
+        // Minutos
+        document.getElementById("iMins0").src = `imagenes/n${Math.trunc(iMins / 10)}.gif`;
+        document.getElementById("iMins1").src = `imagenes/n${iMins % 10}.gif`;
+        // Segundos
+        document.getElementById("iSecs0").src = `imagenes/n${Math.trunc(iSecs / 10)}.gif`;
+        document.getElementById("iSecs1").src = `imagenes/n${iSecs % 10}.gif`;
       }
     </script>
   </body>

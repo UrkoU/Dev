@@ -36,6 +36,7 @@
       GetCompras();
 
       function GetCompras() {
+        // Obtener las compras desde el session storage
         aCompra = sessionStorage.Compra;
         aCompra = JSON.parse(aCompra);
 
@@ -43,14 +44,15 @@
       }
 
       function MostrarCompras() {
+        // Mostrar las compras
         dTotal = 0;
         tTabla.innerHTML = `<thead><td>Artículo</td><td>Imagen</td><td>Cantidad</td><td>Precio</td><td>Total</td></thead>`;
         Object.keys(aCompra).forEach((key) => {
           aArticulos.forEach((articulo) => {
             if (key == articulo.id && aCompra[key] > 0) {
-              tTabla.innerHTML += `<tr><td>${articulo.nombre}</td><td><img src="${articulo.src()}"></td><td>${aCompra[key]}</td><td>${
-                articulo.precio
-              }</td><td>${
+              tTabla.innerHTML += `<tr><td>${articulo.nombre}</td><td><img src="${articulo.src()}"></td><td>${
+                aCompra[key]
+              }</td><td>${articulo.precio}</td><td>${
                 articulo.precio * aCompra[key]
               }</td><td><button onclick="Eliminar('${key.toString()}')">Eliminar</button></td></tr>`;
               dTotal += articulo.precio * aCompra[key];
@@ -61,14 +63,16 @@
       }
 
       function Eliminar(id) {
-        console.log("Eliminar: " + id);
+        // Eliminar del session storage la compra
         aCompra[id] = 0;
         sessionStorage.Compra = JSON.stringify(aCompra);
 
+        // Volver a mostrar la tabla
         GetCompras();
       }
 
       function Pagar() {
+        // Pagar, si hay algún producto en el carrito
         if (dTotal == 0) {
           alert("El carrito no puede estar vacío");
         } else {

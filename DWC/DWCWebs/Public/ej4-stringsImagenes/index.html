@@ -13,17 +13,21 @@
     <script>
       var sCadena = "Plaiaundi";
 
+      // Cambiar la cadena cuando se pinche
       function cambiarCadena() {
         sCadena = document.getElementById("txtCadena").value;
-        let div = document.getElementById("divCadena");
-        let cadenaMayusc = sCadena.toUpperCase();
-        div.innerHTML = "";
+        let divCadena = document.getElementById("divCadena");
+        let sCadenaMayusc = sCadena.toUpperCase();
+        divCadena.innerHTML = "";
 
-        for (i = 0; i < cadenaMayusc.length; i++) {
-          if (cadenaMayusc[i].match(/[a-z]/i)) div.innerHTML += `<img src="letras/${cadenaMayusc[i]}.gif">`;
-          else if (cadenaMayusc[i].match(/[0-9]/i)) {
-            div.innerHTML += `<img width="55px" height="51px" src="letras/n${cadenaMayusc[i]}.gif">`;
-          } else div.innerHTML += `<img src="letras/${"Vacio"}.gif">`;
+        for (i = 0; i < sCadenaMayusc.length; i++) {
+          // Si es una letra
+          if (sCadenaMayusc[i].match(/[a-z]/i)) divCadena.innerHTML += `<img src="letras/${sCadenaMayusc[i]}.gif">`;
+          else if (sCadenaMayusc[i].match(/[0-9]/i)) {
+            // Si es un número
+            divCadena.innerHTML += `<img width="55px" height="51px" src="letras/n${sCadenaMayusc[i]}.gif">`;
+            // Si no, blanco
+          } else divCadena.innerHTML += `<img src="letras/${"Vacio"}.gif">`;
         }
       }
     </script>
