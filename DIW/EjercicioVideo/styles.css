@@ -1,0 +1,104 @@
+html {
+  height: 100%;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(31, 28, 30);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#divMain {
+  height: 90%;
+  width: 85%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#divTitulo {
+  /* width: 70%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(151, 247, 186);
+  /* padding: 3em; */
+}
+
+#divReproductor {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#divVideo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#divInferior {
+  background-color: rgb(79, 72, 72);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  width: 46em;
+  height: 2.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#divSlider {
+  width: 100%;
+}
+
+#divBotones {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.progress {
+  cursor: pointer;
+  height: 8px;
+  width: 46em;
+  background: rgba(179, 179, 179, 0.6);
+  margin: auto;
+  border-radius: 6px;
+  left: 20px;
+  bottom: 100%;
+  transition: height 0.1s ease-in-out;
+}
+
+progress:hover {
+  height: 10px;
+}
+
+.progress-filled {
+  background: rgb(151, 247, 186);
+  width: 0;
+  height: 100%;
+  border-radius: 6px;
+  transition: all 0.1s;
+}

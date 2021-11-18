@@ -18,5 +18,8 @@
     "parcel": "^2.0.1",
     "posthtml-extend": "^0.6.1",
     "posthtml-include": "^1.7.2"
+  },
+  "dependencies": {
+    "yarn": "^1.22.17"
   }
 }
