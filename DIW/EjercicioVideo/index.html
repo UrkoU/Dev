@@ -32,7 +32,7 @@
   </body>
   <script>
     var i = 0;
-    var songs = ["audio/AC-DC.mp3", "audio/Aretha.mp3", "audio/Bob Marley.mp3", "audio/Red Hot Chili Peppers.mp3"];
+    var videos = ["video/AC_DC - Who Made Who.mp4"];
 
     var player = document.getElementById("videoPlayer");
     var btnPlay = document.getElementById("btnPlay");
@@ -42,7 +42,7 @@
     }
 
     function play() {
-      if (!player) player.src = songs[i];
+      if (!player) player.src = videos[i];
       if (player.paused || player.currentTime == 0) {
         player.play();
         btnPlay.textContent = "pause";
@@ -59,14 +59,14 @@
     }
 
     function previous() {
-      i > 0 ? i-- : (i = songs.length - 1);
-      player.src = songs[i];
+      i > 0 ? i-- : (i = videos.length - 1);
+      player.src = videos[i];
       player.play();
     }
 
     function next() {
-      i < songs.length - 1 ? i++ : (i = 0);
-      player.src = songs[i];
+      i < videos.length - 1 ? i++ : (i = 0);
+      player.src = videos[i];
       player.play();
     }
 

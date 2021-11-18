@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objetos</title>
+  <style>
+    table {
+      font-family: 'Consolas', Courier, monospace;
+      margin: auto;
+      font-size: 16px;
+      border: 1px solid #1C6EA4;
+      width: 50%;
+      text-align: left;
+      border-collapse: collapse;
+    }
+
+    table td,
+    table th {
+      border: 1px solid #AAAAAA;
+      padding: 3px 3px;
+    }
+
+    table tr:nth-child(even) {
+      background: #D0E4F5;
+    }
+  </style>
+</head>
+<script src="OF_OFERTAS_ODE_JSON.js"></script>
+
+<body>
+  <div id="dOfertas">
+    <script>
+      aOfertas = JSON.parse(sOfertas);
+      aOfertas.sort(function(a,b){
+          if (a.municipio > b.municipio){ // Ordenar alfabéticamente
+            return 1;
+          }else{
+            return -1;
+          }
+      });
+      oPueblos = aOfertas.reduce(function (oPueblos, Oferta) {
+        if (Oferta.municipio in oPueblos) {
+          oPueblos[Oferta.municipio] ++; // Sumar +1 a las ofertas del municipio
+        }
+        else {
+          oPueblos[Oferta.municipio] = 1; // Inicializar 1 las ofertas del municipio
+        }
+        return oPueblos;
+      }, {});
+
+      let sTabla = [];
+      sTabla.push('<table><tr><td>Pueblo</td><td>Ofertas</td>');
+      for (sPueblo in oPueblos) {
+        sTabla.push(`<tr><td>${sPueblo}</td>`);
+        sTabla.push(`<td>${oPueblos[sPueblo]}</td></tr>`);
+      }
+      sTabla.push('</table>');
+      dOfertas.innerHTML = sTabla.join(" ");
+    </script>
+</body>
+
+</html>
