@@ -1,91 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Radio Patio</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Radio patio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link
-      rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.mi
+n.css"
+      integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-    </style>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
   </head>
-  <body>
-    <h1>Radio patio</h1>
-    <div id="divReproductor">
-      <a onclick="previous()"><span class="material-icons"> skip_previous </span></a>
-      <a onclick="replay10()"><span class="material-icons">
-        replay_10
-        </span></a>
-      <a onclick="play()"><span class="material-icons"> play_arrow </span></a>
-      <a onclick="pause()"><span class="material-icons"> pause </span></a>
-      <a onclick="forward10()"><span class="material-icons">
-        forward_10
-        </span></a>
-      <a onclick="next()"><span class="material-icons"> skip_next </span></a>
-      <a onclick="volumeDown()"><span class="material-icons"> volume_down </span></a>
-      <a onclick="volumeUp()"><span class="material-icons"> volume_up </span></a>
-      <a onclick="mute()"><span class="material-icons">
-        volume_off
-        </span></a>
-    </div>
-
-    <script>
-        var i = 0;
-        var songs = [
-            'audio/AC-DC.mp3',
-            'audio/Aretha.mp3',
-            'audio/Bob Marley.mp3',
-            'audio/Red Hot Chili Peppers.mp3',
-        ]
+  <body class="h-100">
+    <audio id="audio">
+      <source src="media/AC-DC.mp3" type="audio/mpeg" />
+    </audio>
+    <div class="h-100 d-flex flex-column justify-content-space-between">
+      <!-- Top -->
+      <div class="d-flex h-100 w-100 flex-row">
+        <div class="d-flex justify-content-center align-items-center" style="flex:6">
+          <img id="imgBig" height="60%">
+        </div>
+        <div class="d-flex w-100 h-100 align-items-center justify-content-center mx-auto" style="flex:4">
+                <section class="d-flex w-100 justify-content-center align-items-center mx-auto">
+                <section id="divSongs" class="d-flex w-100 flex-column justify-content-center align-items-center">
+                    <input id="selected" type="hidden">
+                </section> 
+        </div>
+      </div>
+      
+      <!-- Time bar -->
+      <div class="control-btn progress w-100">
+        <div class="progress-filled"></div>
+      </div>
+      <!-- Controls -->
+      <div class="d-flex w-100 align-items-center justify-content-center mx-auto text-center controls">
         
-        var player = new Audio(songs[0]);
-        function mostrarLista(){
-          document
-        }
 
-        function play(){
-            if(!player)
-                player.src = songs[i];
-            player.play();
-        }
-
-        function pause(){
-            player.pause();
-        }
-
-        function previous(){
-            i>0?i--:i=songs.length-1;
-            player.src = songs[i];
-            player.play();
-        }
-
-        function next(){
-            i<songs.length-1?i++:i=0;
-            player.src = songs[i];
-            player.play();
-        }
-
-        function volumeDown(){
-            player.volume>0.1?player.volume-=0.1:()=>{};
-        }
-
-        function volumeUp(){
-            player.volume<1?player.volume+=0.1:()=>{};
-        }
-
-        function mute(){
-            player.volume=0;
-        }
-
-        function replay10(){
-            player.currentTime>10?player.currentTime-=10:player.currentTime=0;
-        }
-
-        function forward10(){
-            player.currentTime<player.duration?player.currentTime+=10:player.currentTime=player.duration;
-        }
-        </script>
+        <!-- <h3 class="text-center">Controles</h3> -->
+        <div class="d-flex w-100 justify-content-space-around " style="margin-left: 3em;">
+          <!-- Buttons -->
+          <div class="d-flex" style="flex:1">
+            <div class="control-btn">
+              <a href="" id="control-previous" class="material-icons text-body text-decoration-none" title="Previous">skip_previous</a>
+            </div>
+            <div class="control-btn">
+              <a href="" id="control-stop" class="material-icons text-body text-decoration-none" title="Stop">stop</a>
+            </div>
+            <div class="control-btn">
+              <a href="" id="control-play" class="material-icons text-body text-decoration-none" title="Play / Pause">play_arrow</a>
+            </div>
+            <div class="control-btn">
+              <a href="" id="control-next" class="material-icons text-body text-decoration-none" title="Next">skip_next</a>
+            </div>
+            <div class="control-btn d-flex justify-content-center align-items-center" style="margin-left: 2em;">
+              <span class="time-current"></span>
+            </div>
+          </div>
+          <!-- Mid view -->
+          <div class="d-flex justify-content-center" style="flex:1">
+            <div class="d-flex align-items-center">
+              <ul class="speed-list">
+                <li class="speed-item" data-speed="0.5">0.5x</li>
+                <li class="speed-item" data-speed="0.75">0.75x</li>
+                <li class="speed-item active" data-speed="1">1x</li>
+                <li class="speed-item" data-speed="1.5">1.5x</li>
+                <li class="speed-item" data-speed="2">2x</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Volume -->
+          <div class="d-flex" style="margin-right: 3em;flex:1; justify-content:flex-end">
+            <div class="d-flex align-items-center">
+              <div class="volume-slider">
+                <div class="volume-filled"></div>
+              </div>
+              <a href="" id="control-volume" class="material-icons text-decoration-none" title="Volume">volume_up</a>
+            </div>
+            <!-- <div class="control-btn">
+              <span class="text-body time-current"></span>
+            </div> -->
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <script src="scripts/main.js"></script>
   </body>
 </html>

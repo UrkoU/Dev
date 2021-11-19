@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div id="divMain">
+      <!-- <div id="divTitulo">
+        <h1>Video patio</h1>
+      </div> -->
+
+      <div id="divReproductor">
+        <div id="divVideo">
+          <video style="max-width: 46em; max-height: 46em" id="videoPlayer">
+            <!-- <source src="video/AC_DC - Who Made Who.webm" /> -->
+            <source src="video/AC_DC - Who Made Who.mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div id="divInferior">
+          <div id="slider">
+            <div class="control-btn progress">
+              <div class="progress-filled"></div>
+            </div>
+          </div>
+          <div id="divBotones">
+            <div>
+              <button onclick="previous()" class="material-icons">skip_previous</button>
+              <button onclick="stop()" class="material-icons">stop</button>
+              <button id="btnPlay" onclick="play()" class="material-icons">play_arrow</button>
+              <button onclick="next()" class="material-icons">skip_next</button>
+            </div>
+            <div>
+              <button onclick="replay10()" class="material-icons">replay_10</button>
+              <button onclick="forward10()" class="material-icons">forward_10</button>
+            </div>
+            <div>
+              <button onclick="volumeDown()" class="material-icons">volume_down</button>
+              <button onclick="volumeUp()" class="material-icons">volume_up</button>
+              <button onclick="mute()" class="material-icons">volume_off</button>
+              <button onclick="toggleFullscreen()" class="material-icons">fullscreen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

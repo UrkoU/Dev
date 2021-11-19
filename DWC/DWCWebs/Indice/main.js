@@ -168,31 +168,30 @@ const aEjercicios = [
     },
     {
       nombre: "Ofertas de empleo",
-      descripcion:
-        "Primer ejercicio con un json, además de funciones como sort y orderby, que no se habían utilizado hasta ahora",
+      descripcion: "Primer ejercicio con un json, además de funciones como sort y orderby, que no se habían utilizado hasta ahora",
       href: "../Public/ej9-ofertasEmpleo/index.html",
       image: "./imagenes/ej9-ofertasEmpleo.png",
     },
     {
       nombre: "Carrito",
-      descripcion:
-        "Primera interacción con sessionstorage para simular un carrito de la compra, con actualizaciones y pago",
+      descripcion: "Primera interacción con sessionstorage para simular un carrito de la compra, con actualizaciones y pago",
       href: "../Public/ej10-carrito/index.html",
       image: "./imagenes/ej10-carrito.jpg",
     },
   ],
+  // DIW
   [
     {
-      nombre: "Contador regresivo",
+      nombre: "Radio patio",
       descripcion: "",
-      href: "../Public/ej1-sellos/index.html",
-      image: "./imagenes/ej1-sellos.png",
+      href: "../Public/diw-ejAudio/index.html",
+      image: "./imagenes/diw-ejAudio.png",
     },
     {
-      nombre: "Contador regresivo",
+      nombre: "Video patio",
       descripcion: "",
-      href: "../Public/ej1-sellos/index.html",
-      image: "./imagenes/ej1-sellos.png",
+      href: "../Public/diw-ejVideo/index.html",
+      image: "./imagenes/diw-ejVideo.png",
     },
   ],
 ];
@@ -351,8 +350,7 @@ function CargarEventosBotonFlotante() {
 // Cookies
 function MandarCookie(sNombre, sValor, fCaducidad = new Date(new Date().getDay + 15)) {
   // Manda una cookie
-  document.cookie =
-    sNombre + "=" + escape(sValor) + (fCaducidad == null ? "" : "; expires=" + fCaducidad.toGMTString());
+  document.cookie = sNombre + "=" + escape(sValor) + (fCaducidad == null ? "" : "; expires=" + fCaducidad.toGMTString());
 }
 
 function ConsultarCookie(sNombre) {
