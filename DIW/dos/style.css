@@ -1,0 +1,22 @@
+body {
+  color: black;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 12pt;
+  line-height: 1.2em;
+}
+
+p {
+  text-align: center;
+}
+
+a {
+  font-style: italic;
+  color: gray;
+}
+
+a:visited {
+  color: red;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}

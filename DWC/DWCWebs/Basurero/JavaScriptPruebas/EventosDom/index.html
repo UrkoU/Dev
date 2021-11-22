@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="EstilosBotones.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="divContextMenu">
+      <p><a href="https://google.es">Google</a></p>
+      <p><a href="https://yahoo.com">Yahoo</a></p>
+      <p><a href="https://bing.com">Bing</a></p>
+    </div>
+    <p>
+      Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su
+      diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como
+      por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
+    </p>
+    <div class="divBoton">Botón Pulsado: <span id="Boton">?</span></div>
+    <div class="divPosicion">Posición: <span id="Posicion">x - y</span></div>
+
+    <script>
+      var bContextMenuOpen = false;
+      const boton = ["Izquierdo", "Central", "Derecho"];
+      let divBoton = document.getElementsByClassName("divBoton")[0];
+      let posicion = document.getElementById("Posicion");
+
+      divBoton.addEventListener("mousedown", (event) => {
+        if (event.button == 2) {
+          event.preventDefault();
+        }
+        document.getElementById("Boton").innerText = boton[event.button];
+        // document.getElementById("Posicion").innerText = "x: " + event.screenX + " - y: " + event.screenY;
+      });
+
+      function ShowContextMenu(event) {
+        bContextMenuOpen = true;
+        document.getElementById("divContextMenu").style.display = "block";
+        document.getElementById("divContextMenu").style.left = event.clientX + "px";
+        document.getElementById("divContextMenu").style.top = event.clientY + "px";
+      }
+
+      function HiddeContextMenu() {
+        bContextMenuOpen = false;
+        document.getElementById("divContextMenu").style.display = "none";
+      }
+
+      document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        ShowContextMenu(event);
+      });
+
+      document.addEventListener("mousedown", (event) => {
+        // Si se clicka en cualquier parte (menos el menú) con botón izquierdo o derecho, oculta el menú
+        if (event.button == 0 || event.button == 1) {
+          if (!document.getElementById("divContextMenu").contains(event.target)) HiddeContextMenu();
+        }
+      });
+
+      document.addEventListener("mousemove", (event) => {
+        document.getElementById("Posicion").innerText = "x: " + event.clientX + " - y: " + event.clientY;
+      });
+    </script>
+  </body>
+</html>
