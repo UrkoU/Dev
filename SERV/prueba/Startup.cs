@@ -26,8 +26,8 @@ namespace prueba
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<PruebaContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PruebaContext")));
+            services.AddDbContext<MvcRepasoContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MvcRepasoContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

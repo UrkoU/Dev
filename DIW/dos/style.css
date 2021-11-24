@@ -1,12 +1,23 @@
+/* La fuente base de la página será de color negro, con tipografía Comic Sans, un tamaño de 12 puntos e interlineado a 1.2. */
 body {
   color: black;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 12pt;
-  line-height: 1.2em;
+  line-height: 1.2;
 }
 
+/*
+Debe haber, al menos, tres bloques compuestos por elementos de tipo título <h1> y elementos de párrafo <p>. El resto de los elementos se deja a criterio del diseñador
+Los títulos serán de color seguro, y su tamaño debe ser el doble del texto base del resto de la página.
+*/
+h1 {
+  font-size: 24pt;
+}
+
+/* Los elementos que forman parte del listado deben aparecer centrados y subrayados. */
 p {
   text-align: center;
+  text-decoration: underline;
 }
 
 a {

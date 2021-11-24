@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using prueba.Models;
+using prueba;
 
 namespace prueba.Controllers
 {
     public class MascotasController : Controller
     {
-        private readonly PruebaContext _context;
+        private readonly MvcRepasoContext _context;
 
-        public MascotasController(PruebaContext context)
+        public MascotasController(MvcRepasoContext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace prueba.Controllers
         // GET: Mascotas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Mascota.ToListAsync());
+            var mvcRepasoContext = _context.Mascota.Include(m => m.Usuario);
+            return View(await mvcRepasoContext.ToListAsync());
         }
 
         // GET: Mascotas/Details/5
@@ -33,7 +34,8 @@ namespace prueba.Controllers
             }
 
             var mascota = await _context.Mascota
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(m => m.Usuario)
+                .FirstOrDefaultAsync(m => m.MascotaId == id);
             if (mascota == null)
             {
                 return NotFound();
@@ -45,6 +47,8 @@ namespace prueba.Controllers
         // GET: Mascotas/Create
         public IActionResult Create()
         {
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Id");
+            ViewData["UsuarioNombre"] = new SelectList(_context.Set<Usuario>(), "Nombre", "Nombre");
             return View();
         }
 
@@ -53,7 +57,7 @@ namespace prueba.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,UsuarioId")] Mascota mascota)
+        public async Task<IActionResult> Create([Bind("MascotaId,Nombre,Raza,UsuarioId")] Mascota mascota)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +65,7 @@ namespace prueba.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Id", mascota.UsuarioId);
             return View(mascota);
         }
 
@@ -77,6 +82,7 @@ namespace prueba.Controllers
             {
                 return NotFound();
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Id", mascota.UsuarioId);
             return View(mascota);
         }
 
@@ -85,9 +91,9 @@ namespace prueba.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,UsuarioId")] Mascota mascota)
+        public async Task<IActionResult> Edit(int id, [Bind("MascotaId,Nombre,Raza,UsuarioId")] Mascota mascota)
         {
-            if (id != mascota.Id)
+            if (id != mascota.MascotaId)
             {
                 return NotFound();
             }
@@ -101,7 +107,7 @@ namespace prueba.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MascotaExists(mascota.Id))
+                    if (!MascotaExists(mascota.MascotaId))
                     {
                         return NotFound();
                     }
@@ -112,6 +118,7 @@ namespace prueba.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Id", mascota.UsuarioId);
             return View(mascota);
         }
 
@@ -124,7 +131,8 @@ namespace prueba.Controllers
             }
 
             var mascota = await _context.Mascota
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(m => m.Usuario)
+                .FirstOrDefaultAsync(m => m.MascotaId == id);
             if (mascota == null)
             {
                 return NotFound();
@@ -146,7 +154,7 @@ namespace prueba.Controllers
 
         private bool MascotaExists(int id)
         {
-            return _context.Mascota.Any(e => e.Id == id);
+            return _context.Mascota.Any(e => e.MascotaId == id);
         }
     }
 }

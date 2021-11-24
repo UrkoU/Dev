@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using prueba.Models;
+using prueba;
 
 namespace prueba.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly PruebaContext _context;
+        private readonly MvcRepasoContext _context;
 
-        public UsuariosController(PruebaContext context)
+        public UsuariosController(MvcRepasoContext context)
         {
             _context = context;
         }
