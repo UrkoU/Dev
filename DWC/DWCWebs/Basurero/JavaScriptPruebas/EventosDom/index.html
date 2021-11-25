@@ -10,8 +10,8 @@
   <body>
     <div id="divContextMenu">
       <p><a id="aGoogle" href="https://www.google.es/search?q=" target="_blank">Google</a></p>
-      <p><a id="aYahoo" href="https://search.yahoo.com?p=" target="_blank">Yahoo</a></p>
-      <p><a id="aBing" href="https://bing.com?q=" target="_blank">Bing</a></p>
+      <p><a id="aYahoo" href="https://search.yahoo.com/search?p=" target="_blank">Yahoo</a></p>
+      <p><a id="aBing" href="https://bing.com/search?q=" target="_blank">Bing</a></p>
     </div>
     <p>
       Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su
@@ -93,8 +93,8 @@
       document.addEventListener("selectionchange", () => {
         let sBusqueda = window.getSelection();
         document.getElementById("aGoogle").href = "https://www.google.es/search?q=" + sBusqueda;
-        document.getElementById("aYahoo").href = "https://search.yahoo.com?q=" + sBusqueda;
-        document.getElementById("aBing").href = "https://bing.com?p=" + sBusqueda;
+        document.getElementById("aYahoo").href = "https://search.yahoo.com/search?q=" + sBusqueda;
+        document.getElementById("aBing").href = "https://bing.com/search?q=" + sBusqueda;
       });
 
       document.addEventListener("keydown", () => {
