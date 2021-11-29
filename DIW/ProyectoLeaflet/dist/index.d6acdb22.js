@@ -11796,7 +11796,9 @@ aCiudades.forEach((element)=>{
 });
 function CambiarInfoTabla(selectedValue) {
     // Cambiar la información de la tabla según el select
-    tTabla.innerHTML = `<thead><td id="tdDesEmpleo">Oferta</td><td id="tdDesPuesto">Descripción</td><td id="tdFecPub">Fecha de publicación</td><td id="tdLink">Link</td>`;
+    tTabla.innerHTML = `
+  <thead><td id="tdDesEmpleo">Oferta</td><td id="tdDesPuesto">Descripción</td><td id="tdFecPub">Fecha de publicación</td><td id="tdLink">Link</td></thead>
+  `;
     CambiarOfertas(selectedValue);
     AnadirInfoTabla();
 }

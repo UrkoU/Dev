@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jQuery</title>
+    <link rel="stylesheet" type="text/css" href="jqpruebas.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {
+        $("#btnP").click(function () {
+          $("p").hide();
+        });
+        $("#btnID").click(function () {
+          $("#test").hide();
+        });
+        $("#btnClase").click(function () {
+          $(".test").hide();
+        });
+      });
+    </script>
+
+    <p>Esto está en una etiqueta p</p>
+    <p>Esto está en una segunda etiqueta p</p>
+    <div id="test">Esto tiene un id test</div>
+    <div class="test">Esto es de clase test</div>
+
+    <button id="btnP">Oculta P</button>
+    <button id="btnID">Oculta ID</button>
+    <button id="btnClase">Oculta Clase</button>
+  </body>
+</html>
