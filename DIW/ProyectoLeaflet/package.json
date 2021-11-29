@@ -1,0 +1,23 @@
+{
+  "name": "proyectoleaflet",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "parcel build index.html",
+    "start": "parcel serve index.html --open"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
+    "parcel": "^2.0.1",
+    "sass": "^1.43.5"
+  },
+  "dependencies": {
+    "leaflet": "^1.7.1"
+  },
+  "alias": {
+    "leaflet": {
+      "global": "L"
+    }
+  }
+}

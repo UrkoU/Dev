@@ -9,6 +9,7 @@ namespace EFRepaso
         static void Main(string[] args)
         {
             WriteLine("Hello World!");
+            pruebaUNO();
         }
 
         static void pruebaUNO()
@@ -44,9 +45,9 @@ namespace EFRepaso
                 WriteLine(blog);
 
                 // Delete
-                Console.WriteLine("Delete the blog");
-                db.Remove(blog);
-                db.SaveChanges();
+                // Console.WriteLine("Delete the blog");
+                // db.Remove(blog);
+                // db.SaveChanges();
             }
         }
     }

@@ -117,9 +117,9 @@ aTest.forEach((element) => {
   </div>
   <div id="foto${element.ID}"></div>
     <div class="opciones${element.ID}">
-        A<input type="radio" name="cb${element.ID}" id="cb${element.ID}-A"/>${element.RESP1}<br/>
-        B<input type="radio" name="cb${element.ID}" id="cb${element.ID}-B"/>${element.RESP2}<br/>
-        C<input type="radio" name="cb${element.ID}" id="cb${element.ID}-C"/>${element.RESP3}<br/>
+        <div id="div${element.ID}-A" onclick="CambiarRadio('cb${element.ID}-A')">A<input type="radio" name="cb${element.ID}" id="cb${element.ID}-A"/>${element.RESP1}<br/></div>
+        <div id="div${element.ID}-B" onclick="CambiarRadio('cb${element.ID}-B')">B<input type="radio" name="cb${element.ID}" id="cb${element.ID}-B"/>${element.RESP2}<br/></div>
+        <div id="div${element.ID}-C" onclick="CambiarRadio('cb${element.ID}-C')">C<input type="radio" name="cb${element.ID}" id="cb${element.ID}-C"/>${element.RESP3}<br/></div>
     </div>
   </div>`;
   if (element.FOTO != "") {
@@ -127,10 +127,26 @@ aTest.forEach((element) => {
   }
 });
 
+function CambiarRadio(id) {
+  document.getElementById(id).checked = true;
+}
+
 function Corregir() {
   let fallos = 0;
+  let letras = ["A", "B", "C"];
   aTest.forEach((element) => {
-    if (!document.getElementById(`cb${element.ID}-${element.CORRECTA}`).checked) fallos++;
+    letras.forEach((e) => {
+      document.getElementById(`div${element.ID}-${e}`).style.backgroundColor = "white";
+    });
+
+    if (!document.getElementById(`cb${element.ID}-${element.CORRECTA}`).checked) {
+      fallos++;
+      for (i = 0; i < 3; i++) {
+        if (document.getElementById(`cb${element.ID}-${letras[i]}`).checked)
+          document.getElementById(`div${element.ID}-${letras[i]}`).style.backgroundColor = "red";
+      }
+    }
+    document.getElementById(`div${element.ID}-${element.CORRECTA}`).style.backgroundColor = "green";
   });
   if (fallos > 3) console.log("Suspendido con " + fallos + " fallos.");
   else {

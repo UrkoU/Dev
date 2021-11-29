@@ -1,0 +1,17 @@
+* {
+    font-family: Consolas, 'Courier New';
+}
+
+#test{
+    position:absolute;
+    left:40px;
+    top:100px;
+    border:1px solid blue
+}
+
+.test{
+    position:absolute;
+    left:40px;
+    top: 200px;
+    border:1px solid blue
+}
