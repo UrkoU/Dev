@@ -1,0 +1,33 @@
+* {
+  font-family: Consolas, "Courier New";
+}
+
+table,
+td {
+  border: 1px solid black;
+}
+
+thead {
+  font-weight: bold;
+}
+
+#divTabla {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: fit-content; */
+}
+
+#test {
+  position: absolute;
+  left: 40px;
+  top: 100px;
+  border: 1px solid blue;
+}
+
+.test {
+  position: absolute;
+  left: 40px;
+  top: 200px;
+  border: 1px solid blue;
+}

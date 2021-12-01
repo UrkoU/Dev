@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "parcel build index.html",
+    "build": "parcel build index.html --public-url /2daw3/urkou/Public/diw-ejLeaflet",
     "start": "parcel serve index.html --open"
   },
   "devDependencies": {
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
+    "bootstrap-icons": "^1.7.1",
     "leaflet": "^1.7.1"
   },
   "alias": {

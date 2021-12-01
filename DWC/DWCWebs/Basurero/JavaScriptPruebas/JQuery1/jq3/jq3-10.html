@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery</title>
+    <link rel="stylesheet" type="text/css" href="jqpruebas.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<script>
+    $(document).ready(function () {
+      // Pone fondo oscuro a los links que no tengan "target!='_blank'"
+        $("button").click(function () {
+          $("a[target!='_blank']").css("background-color", "red");
+        });
+    });
+</script>
+
+<body>
+    <h2>Encabezado</h2>
+    <p class="intro">Primer párrafo</p>
+    <p>Segundo Párrafo</p>
+    <p>Lista 1:</p>
+    <ul>
+        <li>Cafe</li>
+        <li>Leche</li>
+        <li>Te</li>
+    </ul>
+
+    <p>Lista 2:</p>
+    <ul>
+        <li>Café</li>
+        <li>Lecha</li>
+        <li>Te</li>
+    </ul>
+    <p><a href="http://www.plaiaundi.hezkuntza.net/es//" target="_blank">Plaiaundi</a></p>
+    <p><a href="http://www.google.com/">Google</a></p>
+    <table border="1">
+        <tr>
+          <th>Empresa</th>
+          <th>Pais</th>
+        </tr>
+        <tr>
+          <td>Google</td>
+          <td>EEUU</td>
+        </tr>
+        <tr>
+          <td>Mercedes</td>
+          <td>Alemania</td>
+        </tr>
+        <tr>
+          <td>Dragados y construcciones</td>
+          <td>España</td>
+        </tr>
+        <tr>
+          <td>Aliexpress</td>
+          <td>China</td>
+        </tr>
+        <tr>
+          <td>Honda</td>
+          <td>Japón</td>
+        </tr>
+      </table>
+      <br>
+    <button>Púlsame</button>
+</body>
+
+</html>
+
+</html>
