@@ -220,22 +220,36 @@ function CambiarLinks(i, bPrimeraCarga) {
   aFooterLinks[i].classList.add("active-page");
 }
 
+let aAsignaturas = [
+  "Desarollo Web Entorno Cliente 1ra evaluación",
+  "Desarollo Web Entorno Cliente 2da evaluación",
+  "Diseño de Interfaces 1ra evaluación",
+  "Diseño de Interfaces 2da evaluación",
+];
+
 function CambiarContent(i, bPrimeraCarga = false) {
   // Cambiar el contenido del div principal
   if (iContenidoActual != i || bPrimeraCarga)
     if (i == 1) {
       // Select de ejercicios
-      document.getElementById("divMain").innerHTML = `
-      <div class="subject-selector h-15">
-      <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
-        <option class="selector-option">Desarrollo Web Entorno Cliente</option>
-        <option class="selector-option last-option">Diseño de Interfaces Web</option>
-      </select>
-      </div>
-      <div class="exercises h-85 w-100" id="divExercises"></div>
-      `;
-      // Cargar la vista de ejercicios
-      CargarEjercicios();
+      // document.getElementById("divMain").innerHTML = `
+      // <div class="subject-selector h-15">
+      // <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
+      //   <option class="selector-option">Desarrollo Web Entorno Cliente</option>
+      //   <option class="selector-option last-option">Diseño de Interfaces Web</option>
+      // </select>
+      // </div>
+      // <div class="exercises h-85 w-100" id="divExercises"></div>
+      // `;
+      // // Cargar la vista de ejercicios
+      // CargarEjercicios();
+      let div = "";
+      aAsignaturas.forEach((asignatura) => {
+        div += `<div id="divExercises">${() => {
+          CargarEjercicios();
+        }}</div>`;
+      });
+      $("#divMain").html(div);
     } else {
       divMain.innerHTML = aContenido[i];
     }
@@ -256,6 +270,7 @@ function CambiarAsignatura() {
 function CargarEjercicios() {
   // Carga los ejercicios dependiendo de la asignatura escogida
   var divEjercicios = document.getElementById("divExercises");
+  console.log(divEjercicios);
   var impar = true;
   let divCard = document.createElement("div");
   divCard.classList.add("card-row");
@@ -336,16 +351,6 @@ function CargarEventosBotonFlotante() {
     document.getElementById("divButtonList").style.display = "none";
   });
 }
-
-// $(document).ready(function () {
-//   // Query para hacer funcionar el botón flotante de css
-//   $("#show").mouseover(function () {
-//     $("#divButtonList").css("display", "flex");
-//   });
-//   $("#show").mouseout(function () {
-//     $("#divButtonList").css("display", "none");
-//   });
-// });
 
 // Cookies
 function MandarCookie(sNombre, sValor, fCaducidad = new Date(new Date().getDay + 15)) {

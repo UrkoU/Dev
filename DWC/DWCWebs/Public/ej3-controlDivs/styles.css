@@ -1,0 +1,40 @@
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(31, 28, 30);
+  color: white;
+}
+
+#divNoticias {
+  width: 70%;
+}
+
+.titular {
+  padding-left: 1em;
+  cursor: pointer;
+  background-color: #eeeeee;
+  border: 1px solid black;
+  border-radius: 25px;
+  margin: 1em 0;
+  color: black;
+}
+
+.active {
+  background-color: #b8d5a6;
+}
+
+.img {
+  max-height: 300px;
+  border-radius: 25px;
+}
+
+.contenido {
+  display: flex;
+  flex-direction: row;
+}
+
+.noticia {
+  padding: 1em 2em;
+}
