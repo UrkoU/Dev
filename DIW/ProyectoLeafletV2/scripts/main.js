@@ -3,7 +3,6 @@ import L from "leaflet";
 let sTabla;
 
 let aOfertas = JSON.parse(sOfertas);
-console.log(aOfertas);
 const aCiudades = [
   { name: "Irún", value: "IRUN", lat: "43.338230", long: "-1.789270" },
   { name: "Donostia", value: "DONOSTIA/SAN SEBASTIÁN", lat: "43.320900", long: "-1.984520" },
@@ -48,10 +47,18 @@ aCiudades.forEach((element) => {
   marker.bindPopup(`${element.name}`).openPopup();
   marker.on("click", () => CambiarInfoTabla(element.value));
 });
-
+let setCiudades = new Set();
 function CambiarInfoTabla(selectedValue) {
-  // Cambiar la información de la tabla según el select
-  sTabla = `
+  if (!setCiudades.has(selectedValue)) {
+    setCiudades.add(selectedValue);
+    let sTab = `<li class="nav-item" role="presentation">
+                <button class="nav-link" id="${selectedValue}-tab" data-bs-toggle="tab" data-bs-target="#${selectedValue}" type="button"
+                role="tab" aria-controls="${selectedValue}" aria-selected="true">${selectedValue}&nbsp;<a class="btn-close"></a></button>
+              </li>`;
+    let tabMenu = document.getElementById("myTab");
+    tabMenu.innerHTML += sTab;
+    // Cambiar la información de la tabla según el select
+    sTabla = `
   <div class="container">
     <div class="row">
       <div class="col-2">
@@ -68,8 +75,17 @@ function CambiarInfoTabla(selectedValue) {
       </div>
     </div>`;
 
-  CambiarOfertas(selectedValue);
-  AnadirInfoTabla();
+    CambiarOfertas(selectedValue);
+    AnadirInfoTabla(selectedValue);
+
+    document.querySelectorAll(".btn-close").forEach((item) => {
+      item.addEventListener("click", (ev) => {
+        const details = ev.target.parentElement.getAttribute("aria-controls");
+        ev.target.parentElement.remove();
+        document.getElementById(details).remove();
+      });
+    });
+  }
 }
 
 let aOfertasFiltradas;
@@ -81,7 +97,13 @@ function CambiarOfertas(selectedValue) {
   aOfertasFiltradas = aOfertasFiltradas.sort((a, b) => new Date(b.fecPub).getTime() - new Date(a.fecPub).getTime());
 }
 
-function AnadirInfoTabla() {
+function AnadirInfoTabla(selectedValue) {
+  let div = document.createElement("div");
+  $("tab-pane").removeClass("active");
+  $("tab-pane").removeClass("show");
+  div.innerHTML = `<div class="tab-pane fade show active" id="content${selectedValue}" role="tabpanel" aria-labelledby="${selectedValue}-tab">
+                  ${selectedValue}</div>`;
+
   // Añadir las ofertas en la tabla
   aOfertasFiltradas.forEach((element) => {
     sTabla += `    
@@ -101,7 +123,8 @@ function AnadirInfoTabla() {
     </div>`;
   });
   sTabla += `</div>`;
-  document.getElementById("divTabla").innerHTML = sTabla;
+  $("#myTabContent").append(div);
+  document.getElementById(`content${selectedValue}`).innerHTML = sTabla;
 }
 
 function CentrarUbicacion() {
