@@ -1,0 +1,38 @@
+* {
+  font-family: "Consolas", Courier, monospace;
+  font-size: 14px;
+}
+.Menores {
+  color: black;
+}
+
+.Mayores {
+  color: purple;
+}
+
+.Hombre {
+  text-decoration: underline;
+  text-decoration-color: green;
+}
+
+.Mujer {
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+.datos {
+  display: flex;
+}
+
+.div {
+  min-width: 5%;
+}
+
+#Animales {
+  position: absolute;
+  left: 10px;
+  top: 100px;
+  width: 150px;
+  height: 125px;
+  border: 1px solid blue;
+}

@@ -1,0 +1,54 @@
+{
+  "Alumnos": [
+    {
+      "Nombre": "Ion",
+      "Edad": 17,
+      "Genero": "Hombre"
+    },
+    {
+      "Nombre": "Itziar",
+      "Edad": 23,
+      "Genero": "Mujer"
+    },
+    {
+      "Nombre": "Julian",
+      "Edad": 18,
+      "Genero": "Hombre"
+    },
+    {
+      "Nombre": "Jokin",
+      "Edad": 14,
+      "Genero": "Hombre"
+    },
+    {
+      "Nombre": "Estitxu",
+      "Edad": 22,
+      "Genero": "Mujer"
+    },
+    {
+      "Nombre": "Nagore",
+      "Edad": 23,
+      "Genero": "Mujer"
+    },
+    {
+      "Nombre": "Koldo",
+      "Edad": 26,
+      "Genero": "Hombre"
+    },
+    {
+      "Nombre": "Aingeru",
+      "Edad": 13,
+      "Genero": "Mujer"
+    },
+    {
+      "Nombre": "Alain",
+      "Edad": 15,
+      "Genero": "Hombre"
+    },
+    {
+      "Nombre": "Onintze",
+      "Edad": 28,
+      "Genero": "Mujer"
+    }
+  ]
+}

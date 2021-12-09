@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="EstilosJSON.css" />
+  </head>
+  <body>
+    <div id="Animales"></div>
+    <script>
+      $(document).ready(function () {
+        $.getJSON("Datos.json", function (data, status) {
+          leido(data, status);
+        });
+
+        function leido(oJson, estado) {
+          aDatos = oJson.Animales;
+
+          for (let index = 0; index < aDatos.length; index++) {
+            clase = aDatos[index].Mamifero == "true" ? "M" : "P";
+
+            $("#Animales").append(`<div class= "${clase}">${aDatos[index].Nombre}</div>`);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

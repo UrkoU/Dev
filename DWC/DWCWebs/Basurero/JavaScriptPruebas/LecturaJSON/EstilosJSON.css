@@ -1,0 +1,20 @@
+* {
+  font-family: "Consolas", Courier, monospace;
+  font-size: 14px;
+}
+.M {
+  color: red;
+}
+
+.P {
+  color: green;
+}
+
+#Animales {
+  position: absolute;
+  left: 10px;
+  top: 100px;
+  width: 150px;
+  height: 125px;
+  border: 1px solid blue;
+}

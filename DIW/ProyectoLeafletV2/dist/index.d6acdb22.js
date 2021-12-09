@@ -649,21 +649,21 @@ function CambiarInfoTabla(selectedValue) {
         tabMenu.innerHTML += sTab;
         // Cambiar la información de la tabla según el select
         sTabla = `
-  <div class="container">
-    <div class="row">
-      <div class="col-2">
-        Oferta
-      </div>
-      <div class="col-8">
-        Descripción
-      </div>
-      <div class="col-1">
-        Fecha de publicación
-      </div>
-      <div class="col-1">
-        Link
-      </div>
-    </div>`;
+      <div class="container">
+        <div class="row">
+          <div class="col-2">
+            Oferta
+          </div>
+          <div class="col-8">
+            Descripción
+          </div>
+          <div class="col-1">
+            Fecha de publicación
+          </div>
+          <div class="col-1">
+            Link
+          </div>
+        </div>`;
         CambiarOfertas(selectedValue);
         AnadirInfoTabla(selectedValue);
         document.querySelectorAll(".btn-close").forEach((item)=>{

@@ -1,0 +1,68 @@
+#map {
+  width: 800px;
+  height: 400px;
+}
+
+body {
+  color: white;
+  background-color: #1f1c1e;
+  padding: 1%;
+}
+
+select {
+  padding: 1%;
+  color: white;
+  background-color: #413c3c;
+  border-radius: 25px;
+}
+
+#divTabla {
+  margin-top: 1%;
+  overflow: auto;
+  border: 1px solid #413c3c;
+  border-radius: 25px;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+}
+
+table,
+tr,
+td {
+  border: 1px solid #413c3c;
+}
+
+tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#tdDesEmpleo {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#tdDesPuesto {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+#tdFecPub {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+#tdLink {
+  -webkit-box-flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
+}
+/*# sourceMappingURL=styles.css.map */
