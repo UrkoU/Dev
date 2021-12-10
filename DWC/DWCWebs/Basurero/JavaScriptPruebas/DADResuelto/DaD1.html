@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajedrez</title>
   </head>
+
   <body>
     <!DOCTYPE html>
 
@@ -16,14 +17,14 @@
         <title>Document</title>
         <style>
           .dCasn {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             background-color: white;
           }
 
           .dCasb {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             background-color: aquamarine;
           }
 
@@ -37,53 +38,92 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
+          let aPosibilidades = [];
           var img = new Image();
-          img.id = "Caballo";
-          img.src = "Caballo.png";
-          var aPosibilidades = [];
-
+          img.id = "Alfil";
+          img.src = "wb.png";
+          img.width = "80";
+          img.height = "80";
           $(document).ready(function () {
             $("#pos44").append(img);
             $(".dCasb,.dCasn").attr("draggable", true);
-            let initialId = 44;
 
-            // START
             $(".dCasb,.dCasn").on("dragstart", function (event) {
               if (this.children.length) {
-                initialId = parseInt(this.id.replace(/\D/g, ""));
-                colorCells(initialId);
+                colorCells(this.id);
+                event.originalEvent.dataTransfer.setData("text", this.id);
               } else {
                 event.preventDefault();
               }
-            });
-
-            // DROP
-            $(".dCasb,.dCasn").on("drop", function (event) {
-              let newId = parseInt(this.id.replace(/\D/g, ""));
-              if (aPosibilidades.includes(newId)) {
-                $(`#pos${newId}`).append(img);
-              }
-              unColorCells();
+              console.log("Drag start id: " + this.id);
             });
 
             $(".dCasb,.dCasn").on("dragover", function (event) {
               event.preventDefault();
-              event.stopPropagation();
             });
 
             $(".dCasb,.dCasn").on("dragenter", function (event) {
               event.preventDefault();
-              event.stopPropagation();
             });
 
             $(".dCasb,.dCasn").on("dragleave", function (event) {
               event.preventDefault();
-              event.stopPropagation();
+            });
+            $(".dCasb,.dCasn").on("drop", function (event) {
+              event.preventDefault();
+              let sOrigen = event.originalEvent.dataTransfer.getData("text");
+              let sDestino = this.id;
+
+              if (MovimientoValido(sOrigen, sDestino)) $("#Alfil").appendTo(this);
+              unColorCells();
             });
           });
 
+          function MovimientoValido(sOri, sDes) {
+            let iOrigen = parseInt(sOri.replace(/\D/g, ""));
+            let sDestino = parseInt(sDes.replace(/\D/g, ""));
+
+            // console.log("Origen: " + iOrigen + " Destino: " + sDestino);
+
+            if (aPosibilidades.includes(sDestino)) {
+              console.log("Mover pieza");
+              return true;
+            }
+          }
+
           function colorCells(id) {
-            aPosibilidades = [id - 19, id - 8, id + 12, id + 21, id + 19, id + 8, id - 12, id - 21];
+            let iId = parseInt(id.replace(/\D/g, ""));
+            console.log("iID: " + iId);
+            aPosibilidades = [];
+            let i = iId;
+            while (i > 0) {
+              if (i % 10 > 8 || parseInt(i / 10) > 8) break;
+              i -= 9;
+              console.log(i);
+              aPosibilidades.push(i);
+            }
+            i = iId;
+            while (i < 90) {
+              if (i % 10 > 8 || parseInt(i / 10) > 8) break;
+              console.log(i);
+              i += 9;
+              aPosibilidades.push(i);
+            }
+            i = iId;
+            while (i > 0) {
+              if (i % 10 > 8 || parseInt(i / 10) > 8) break;
+              console.log(i);
+              i -= 11;
+              aPosibilidades.push(i);
+            }
+            i = iId;
+            while (i < 90) {
+              if (i % 10 > 8 || parseInt(i / 10) > 8) break;
+              console.log(i);
+              i += 11;
+              aPosibilidades.push(i);
+            }
+            // aPosibilidades = [iId - 19, iId - 8, iId + 12, iId + 21, iId + 19, iId + 8, iId - 12, iId - 21];
             $(aPosibilidades).each((i) => $(`#pos${aPosibilidades[i]}`).addClass("options"));
           }
 

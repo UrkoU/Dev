@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajedrez</title>
   </head>
+
   <body>
     <!DOCTYPE html>
 
@@ -16,19 +17,15 @@
         <title>Document</title>
         <style>
           .dCasn {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             background-color: white;
           }
 
           .dCasb {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             background-color: aquamarine;
-          }
-
-          .options {
-            background-color: orange;
           }
 
           td {
@@ -37,58 +34,55 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
+          let aPosibilidades = [];
           var img = new Image();
           img.id = "Caballo";
           img.src = "Caballo.png";
-          var aPosibilidades = [];
-
+          img.width = "80";
+          img.height = "80";
           $(document).ready(function () {
             $("#pos44").append(img);
             $(".dCasb,.dCasn").attr("draggable", true);
-            let initialId = 44;
 
-            // START
             $(".dCasb,.dCasn").on("dragstart", function (event) {
               if (this.children.length) {
-                initialId = parseInt(this.id.replace(/\D/g, ""));
-                colorCells(initialId);
+                event.originalEvent.dataTransfer.setData("text", this.id);
               } else {
                 event.preventDefault();
               }
-            });
-
-            // DROP
-            $(".dCasb,.dCasn").on("drop", function (event) {
-              let newId = parseInt(this.id.replace(/\D/g, ""));
-              if (aPosibilidades.includes(newId)) {
-                $(`#pos${newId}`).append(img);
-              }
-              unColorCells();
+              console.log("Drag start id: " + this.id);
             });
 
             $(".dCasb,.dCasn").on("dragover", function (event) {
               event.preventDefault();
-              event.stopPropagation();
             });
 
             $(".dCasb,.dCasn").on("dragenter", function (event) {
               event.preventDefault();
-              event.stopPropagation();
             });
 
             $(".dCasb,.dCasn").on("dragleave", function (event) {
               event.preventDefault();
-              event.stopPropagation();
+            });
+            $(".dCasb,.dCasn").on("drop", function (event) {
+              event.preventDefault();
+              let sOrigen = event.originalEvent.dataTransfer.getData("text");
+              let sDestino = this.id;
+
+              if (MovimientoValido(sOrigen, sDestino)) $("#Caballo").appendTo(this);
             });
           });
 
-          function colorCells(id) {
-            aPosibilidades = [id - 19, id - 8, id + 12, id + 21, id + 19, id + 8, id - 12, id - 21];
-            $(aPosibilidades).each((i) => $(`#pos${aPosibilidades[i]}`).addClass("options"));
-          }
+          function MovimientoValido(sOri, sDes) {
+            let sOrigen = parseInt(sOri.replace(/\D/g, ""));
+            let sDestino = parseInt(sDes.replace(/\D/g, ""));
 
-          function unColorCells() {
-            $(".options").removeClass("options");
+            console.log("Origen: " + sOrigen + " Destino: " + sDestino);
+            aPosibilidades = [sOrigen - 19, sOrigen - 8, sOrigen + 12, sOrigen + 21, sOrigen + 19, sOrigen + 8, sOrigen - 12, sOrigen - 21];
+            if (aPosibilidades.includes(sDestino)) {
+              console.log("Mover pieza");
+              return true;
+            }
           }
         </script>
       </head>

@@ -640,11 +640,12 @@ aCiudades.forEach((element)=>{
 let setCiudades = new Set();
 function CambiarInfoTabla(selectedValue) {
     if (!setCiudades.has(selectedValue)) {
+        $(".show").hide();
         setCiudades.add(selectedValue);
         let sTab = `<li class="nav-item" role="presentation">
-                <button class="nav-link" id="${selectedValue}-tab" data-bs-toggle="tab" data-bs-target="#${selectedValue}" type="button"
-                role="tab" aria-controls="${selectedValue}" aria-selected="true">${selectedValue}&nbsp;<a class="btn-close"></a></button>
-              </li>`;
+                  <button class="nav-link active" id="${selectedValue}-tab" data-bs-toggle="tab" data-bs-target="#${selectedValue}" type="button"
+                  role="tab" aria-controls="${selectedValue}" aria-selected="true">${selectedValue}&nbsp;<a class="btn-close"></a></button>
+                </li>`;
         let tabMenu = document.getElementById("myTab");
         tabMenu.innerHTML += sTab;
         // Cambiar la información de la tabla según el select
@@ -666,18 +667,35 @@ function CambiarInfoTabla(selectedValue) {
         </div>`;
         CambiarOfertas(selectedValue);
         AnadirInfoTabla(selectedValue);
+        // console.log(`#${selectedValue}-tab`);
+        // console.log($(`#${selectedValue}-tab`));
+        $(`#${selectedValue}-tab`).on("click", ()=>{
+            console.log("Here");
+            $(".active").removeClass("active");
+            $(`#content${selectedValue}`).addClass("active");
+            $(".show").hide();
+            $(`#content${selectedValue}`).show();
+        });
         document.querySelectorAll(".btn-close").forEach((item)=>{
             item.addEventListener("click", (ev)=>{
+                ev.preventDefault();
+                ev.stopPropagation();
                 const details = ev.target.parentElement.getAttribute("aria-controls");
                 ev.target.parentElement.remove();
-                document.getElementById(details).remove();
+                $(`#content${details}`).remove();
+                setCiudades.delete(details);
+                let aTemporal = Array.from(setCiudades);
+                $(`#content${aTemporal[aTemporal.length - 1]}`).show();
             });
         });
+    } else {
+        $(".show").hide();
+        $(`#content${selectedValue}`).show();
     }
 }
 let aOfertasFiltradas;
 function CambiarOfertas(selectedValue) {
-    // Cambiar las ofertas filtradas po r municipio
+    // Cambiar las ofertas filtradas por municipio
     aOfertasFiltradas = aOfertas.filter((oferta)=>oferta.municipio == selectedValue
     );
     // Ordenar las ofertas
@@ -686,8 +704,6 @@ function CambiarOfertas(selectedValue) {
 }
 function AnadirInfoTabla(selectedValue) {
     let div = document.createElement("div");
-    $("tab-pane").removeClass("active");
-    $("tab-pane").removeClass("show");
     div.innerHTML = `<div class="tab-pane fade show active" id="content${selectedValue}" role="tabpanel" aria-labelledby="${selectedValue}-tab">
                   ${selectedValue}</div>`;
     // Añadir las ofertas en la tabla
