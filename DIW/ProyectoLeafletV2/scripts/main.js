@@ -5,7 +5,7 @@ let sTabla;
 let aOfertas = JSON.parse(sOfertas);
 const aCiudades = [
   { name: "Irún", value: "IRUN", lat: "43.338230", long: "-1.789270" },
-  { name: "Donostia", value: "DONOSTIA/SAN SEBASTIÁN", lat: "43.320900", long: "-1.984520" },
+  { name: "Donostia", value: "DONOSTIA/SAN.SEBASTIAN", lat: "43.320900", long: "-1.984520" },
   { name: "Errentería", value: "ERRENTERIA", lat: "43.311298", long: "-1.900890" },
   { name: "Hondarribia", value: "HONDARRIBIA", lat: "43.362530", long: "-1.791500" },
   { name: "Deba", value: "DEBA", lat: "43.295559", long: "-2.353890" },
@@ -52,11 +52,12 @@ let setCiudades = new Set();
 
 function CambiarInfoTabla(selectedValue) {
   if (!setCiudades.has(selectedValue)) {
+    $(".active").removeClass("active");
     $(".show").hide();
     setCiudades.add(selectedValue);
     let sTab = `<li class="nav-item" role="presentation">
                   <button class="nav-link active" id="${selectedValue}-tab" data-bs-toggle="tab" data-bs-target="#${selectedValue}" type="button"
-                  role="tab" aria-controls="${selectedValue}" aria-selected="true">${selectedValue}&nbsp;<a class="btn-close"></a></button>
+                  role="tab" aria-controls="${selectedValue}" aria-selected="true" value="${selectedValue}">${selectedValue}&nbsp;<a class="btn-close"></a></button>
                 </li>`;
     let tabMenu = document.getElementById("myTab");
     tabMenu.innerHTML += sTab;
@@ -83,13 +84,6 @@ function CambiarInfoTabla(selectedValue) {
 
     // console.log(`#${selectedValue}-tab`);
     // console.log($(`#${selectedValue}-tab`));
-    $(`#${selectedValue}-tab`).on("click", () => {
-      console.log("Here");
-      $(".active").removeClass("active");
-      $(`#content${selectedValue}`).addClass("active");
-      $(".show").hide();
-      $(`#content${selectedValue}`).show();
-    });
 
     document.querySelectorAll(".btn-close").forEach((item) => {
       item.addEventListener("click", (ev) => {
@@ -103,9 +97,31 @@ function CambiarInfoTabla(selectedValue) {
         $(`#content${aTemporal[aTemporal.length - 1]}`).show();
       });
     });
+
+    let buttons = $(`.nav-link`);
+    $(buttons).each((i) => {
+      $(buttons[i]).on("click", () => {
+        console.log($(buttons[i]).attr("value"));
+        $(".active").removeClass("active");
+        $(".show").hide();
+        $(`#${$(buttons[i]).attr("value")}-tab`).addClass("active");
+        $(`#content${$(buttons[i]).attr("value")}`).show();
+      });
+      // $(`#content${$(buttons[i]).attr("value")}`).show();
+    });
+    // $(`.nav-link`).on("click", () => {
+    //   console.log($(this));
+    //   console.log("Here");
+    //   $(".active").removeClass("active");
+    //   $(`#content${$(this).attr("value")}`).addClass("active");
+    //   $(".show").hide();
+    //   $(`#content${$(this).attr("value")}`).show();
+    // });
   } else {
+    $(".active").removeClass("active");
     $(".show").hide();
     $(`#content${selectedValue}`).show();
+    $(`#${selectedValue}-tab`).addClass("active");
   }
 }
 

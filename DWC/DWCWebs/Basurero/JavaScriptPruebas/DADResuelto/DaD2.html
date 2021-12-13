@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajedrez</title>
+  </head>
+
+  <body>
+    <!DOCTYPE html>
+
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+          .dCasn {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+          }
+
+          .dCasb {
+            width: 80px;
+            height: 80px;
+            background-color: aquamarine;
+          }
+
+          .options {
+            background-color: orange;
+          }
+
+          td {
+            border: 1px solid;
+          }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+          let aPosibilidades = [];
+          var img = new Image();
+          img.id = "Reina";
+          img.src = "Queen.png";
+          img.width = "80";
+          img.height = "80";
+          $(document).ready(function () {
+            $("#pos44").append(img);
+            $(".dCasb,.dCasn").attr("draggable", true);
+
+            $(".dCasb,.dCasn").on("dragstart", function (event) {
+              if (this.children.length) {
+                colorCells(this.id);
+                event.originalEvent.dataTransfer.setData("text", this.id);
+              } else {
+                event.preventDefault();
+              }
+              console.log("Drag start id: " + this.id);
+            });
+
+            $(".dCasb,.dCasn").on("dragover", function (event) {
+              event.preventDefault();
+            });
+
+            $(".dCasb,.dCasn").on("dragenter", function (event) {
+              event.preventDefault();
+            });
+
+            $(".dCasb,.dCasn").on("dragleave", function (event) {
+              event.preventDefault();
+            });
+            $(".dCasb,.dCasn").on("drop", function (event) {
+              event.preventDefault();
+              let sOrigen = event.originalEvent.dataTransfer.getData("text");
+              let sDestino = this.id;
+
+              unColorCells();
+              if (MovimientoValido(sOrigen, sDestino)) $("#Reina").appendTo(this);
+            });
+          });
+
+          function MovimientoValido(sOri, sDes) {
+            let iOrigen = parseInt(sOri.replace(/\D/g, ""));
+            let sDestino = parseInt(sDes.replace(/\D/g, ""));
+
+            if (aPosibilidades.includes(sDestino)) {
+              console.log("Mover pieza");
+              return true;
+            }
+          }
+
+          function colorCells(id) {
+            let iId = parseInt(id.replace(/\D/g, ""));
+            console.log("iID: " + iId);
+            aPosibilidades = [];
+            let zId = iId;
+
+            while (zId > 0) {
+              if (zId % 10 > 8 || parseInt(zId / 10) > 8) break;
+              zId -= 9;
+              aPosibilidades.push(zId);
+            }
+            zId = iId;
+            while (zId < 90) {
+              if (zId % 10 > 8 || parseInt(zId / 10) > 8) break;
+              zId += 9;
+              aPosibilidades.push(zId);
+            }
+            zId = iId;
+            while (zId > 0) {
+              if (zId % 10 > 8 || parseInt(zId / 10) > 8) break;
+              zId -= 11;
+              aPosibilidades.push(zId);
+            }
+            zId = iId;
+            while (zId < 90) {
+              if (zId % 10 > 8 || parseInt(zId / 10) > 8) break;
+              zId += 11;
+              aPosibilidades.push(zId);
+            }
+
+            zId = iId;
+            let x = parseInt(zId / 10);
+            let y = parseInt(zId % 10);
+            for (let i = 1; i < 9; i++) {
+              let iTemp = x.toString() + i.toString();
+              let iTemp2 = i.toString() + y.toString();
+
+              aPosibilidades.push(parseInt(iTemp));
+              aPosibilidades.push(parseInt(iTemp2));
+            }
+            $(aPosibilidades).each((i) => $(`#pos${aPosibilidades[i]}`).addClass("options"));
+            $(`#pos${iId}`).removeClass("options");
+          }
+
+          function unColorCells() {
+            $(".options").removeClass("options");
+          }
+        </script>
+      </head>
+
+      <body>
+        <table style="border: 1px solid black; margin-left: 30px; margin-top: 30px; border-collapse: collapse">
+          <tr>
+            <td>
+              <div class="dCasn" id="pos11"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos12"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos13"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos14"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos15"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos16"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos17"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos18"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="dCasb" id="pos21"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos22"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos23"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos24"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos25"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos26"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos27"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos28"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="dCasn" id="pos31"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos32"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos33"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos34"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos35"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos36"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos37"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos38"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="dCasb" id="pos41"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos42"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos43"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos44"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos45"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos46"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos47"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos48"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="dCasn" id="pos51"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos52"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos53"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos54"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos55"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos56"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos57"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos58"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="dCasb" id="pos61"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos62"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos63"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos64"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos65"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos66"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos67"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos68"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="dCasn" id="pos71"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos72"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos73"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos74"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos75"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos76"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos77"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos78"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="dCasb" id="pos81"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos82"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos83"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos84"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos85"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos86"></div>
+            </td>
+            <td>
+              <div class="dCasb" id="pos87"></div>
+            </td>
+            <td>
+              <div class="dCasn" id="pos88"></div>
+            </td>
+          </tr>
+        </table>
+      </body>
+    </html>
+  </body>
+</html>

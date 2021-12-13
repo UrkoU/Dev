@@ -28,6 +28,10 @@
             background-color: aquamarine;
           }
 
+          .options {
+            background-color: orange;
+          }
+
           td {
             border: 1px solid;
           }
@@ -43,9 +47,9 @@
           $(document).ready(function () {
             $("#pos44").append(img);
             $(".dCasb,.dCasn").attr("draggable", true);
-
             $(".dCasb,.dCasn").on("dragstart", function (event) {
               if (this.children.length) {
+                colorCells(this.id);
                 event.originalEvent.dataTransfer.setData("text", this.id);
               } else {
                 event.preventDefault();
@@ -64,12 +68,14 @@
             $(".dCasb,.dCasn").on("dragleave", function (event) {
               event.preventDefault();
             });
+
             $(".dCasb,.dCasn").on("drop", function (event) {
               event.preventDefault();
               let sOrigen = event.originalEvent.dataTransfer.getData("text");
               let sDestino = this.id;
 
               if (MovimientoValido(sOrigen, sDestino)) $("#Caballo").appendTo(this);
+              unColorCells();
             });
           });
 
@@ -78,11 +84,24 @@
             let sDestino = parseInt(sDes.replace(/\D/g, ""));
 
             console.log("Origen: " + sOrigen + " Destino: " + sDestino);
-            aPosibilidades = [sOrigen - 19, sOrigen - 8, sOrigen + 12, sOrigen + 21, sOrigen + 19, sOrigen + 8, sOrigen - 12, sOrigen - 21];
+
             if (aPosibilidades.includes(sDestino)) {
               console.log("Mover pieza");
               return true;
             }
+          }
+
+          function colorCells(id) {
+            let iId = parseInt(id.replace(/\D/g, ""));
+            console.log("iID: " + iId);
+            aPosibilidades = [];
+            aPosibilidades = [iId - 19, iId - 8, iId + 12, iId + 21, iId + 19, iId + 8, iId - 12, iId - 21];
+            // aPosibilidades = [iId - 19, iId - 8, iId + 12, iId + 21, iId + 19, iId + 8, iId - 12, iId - 21];
+            $(aPosibilidades).each((i) => $(`#pos${aPosibilidades[i]}`).addClass("options"));
+          }
+
+          function unColorCells() {
+            $(".options").removeClass("options");
           }
         </script>
       </head>
