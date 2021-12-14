@@ -1,0 +1,49 @@
+version: "3.1"
+services:
+  app:
+    container_name: servidor_web
+    image: httpd:2.4
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.10
+      red_interna:
+        ipv4_address: 192.168.20.10
+    hostname: servidor_web
+
+  db:
+    container_name: servidor_mariadb
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: asdasd
+    restart: always
+    networks:
+      red_interna:
+        ipv4_address: 192.168.20.20
+    hostname: servidor_mariadb
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8088:80
+    environment:
+      - PMA_HOST=mariadb
+    depends_on:
+      - db
+    networks:
+      red_interna:
+      
+        ipv4_address: 192.168.20.30
+networks:
+  red_web:
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+  red_interna:
+    ipam:
+      config:
+        - subnet: 192.168.20.0/24
+volumes:
+  mariadb-data:
