@@ -41,6 +41,27 @@ services:
       red_interna:
         ipv4_address: 192.168.20.30
 
+  wordpress:
+    #container_name: servidor_wp
+    image: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: admin
+      WORDPRESS_DB_PASSWORD: 1234
+      WORDPRESS_DB_NAME: wordpress
+    ports:
+      - 8090:80
+    depends_on:
+      - db
+    networks:
+      red_web:
+        ipv4_address: 192.168.10.40
+      red_interna:
+        ipv4_address: 192.168.20.40
+    volumes:
+      - wordpress_data:/var/www/html/wp-content
+
 networks:
   red_web:
     ipam:
@@ -53,3 +74,4 @@ networks:
 
 volumes:
   mariadb_data:
+  wordpress_data:

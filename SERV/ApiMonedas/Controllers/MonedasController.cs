@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiMonedas.Models;
 
-namespace ApiMonedas.Controller
+namespace ApiMonedas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class MonedasController : ControllerBase
     {
-        Random random = new Random();
         private readonly MonedasContext _context;
+        Random random = new Random();
 
         public MonedasController(MonedasContext context)
         {
@@ -23,14 +23,26 @@ namespace ApiMonedas.Controller
 
         // GET: api/Monedas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Moneda>>> GetMonedas()
+        public async Task<ActionResult<IEnumerable<Moneda>>> GetMonedaItems()
         {
-            return await _context.Monedas.ToListAsync();
+            foreach (var item in _context.Monedas)
+            {
+                item.ValorUltimo = random.Next();
+
+                if (item.ValorUltimo > item.ValorMaximo)
+                {
+                    item.ValorMaximo = item.ValorUltimo;
+                }
+            }
+
+            _context.SaveChanges();
+
+            return _context.Monedas;
         }
 
         // GET: api/Monedas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Moneda>> GetMoneda(long id)
+        public async Task<ActionResult<Moneda>> GetMonedaItem(string id)
         {
             var moneda = await _context.Monedas.FindAsync(id);
 
@@ -41,20 +53,35 @@ namespace ApiMonedas.Controller
 
 
 
+            moneda.ValorUltimo = random.Next();
+
+            if (moneda.ValorUltimo > moneda.ValorMaximo)
+            {
+                moneda.ValorMaximo = moneda.ValorUltimo;
+            }
+
+            await PutMonedaItem(moneda.Nombre, moneda);
+
             return moneda;
         }
 
         // PUT: api/Monedas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMoneda(long id, Moneda moneda)
+        public async Task<IActionResult> PutMonedaItem(string id, Moneda moneda)
         {
-            if (id != moneda.Id)
+            if (id != moneda.Nombre)
             {
                 return BadRequest();
             }
 
-            moneda.ValorUltimo = random.Next(10000);
+            moneda.ValorUltimo = random.Next();
+
+            if (moneda.ValorUltimo > moneda.ValorMaximo)
+            {
+                moneda.ValorMaximo = moneda.ValorUltimo;
+            }
+
 
             _context.Entry(moneda).State = EntityState.Modified;
 
@@ -64,7 +91,7 @@ namespace ApiMonedas.Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MonedaExists(id))
+                if (!MonedaItemExists(id))
                 {
                     return NotFound();
                 }
@@ -78,36 +105,56 @@ namespace ApiMonedas.Controller
         }
 
         // POST: api/Monedas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754        
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Moneda>> PostTodoItem(Moneda todoItem)
+        public async Task<ActionResult<Moneda>> PostMonedaItem(Moneda moneda)
         {
-            _context.Monedas.Add(todoItem);
-            await _context.SaveChangesAsync();
+            moneda.ValorUltimo = random.Next();
 
-            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
-            return CreatedAtAction(nameof(GetMonedas), new { id = todoItem.Id }, todoItem);
+            if (moneda.ValorUltimo > moneda.ValorMaximo)
+            {
+                moneda.ValorMaximo = moneda.ValorUltimo;
+            }
+
+            _context.Monedas.Add(moneda);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (MonedaItemExists(moneda.Nombre))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtAction(nameof(GetMonedaItem), new { Nombre = moneda.Nombre }, moneda);
         }
 
         // DELETE: api/Monedas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMoneda(long id)
+        public async Task<IActionResult> DeleteMonedaItem(string id)
         {
-            var moneda = await _context.Monedas.FindAsync(id);
-            if (moneda == null)
+            var monedaItem = await _context.Monedas.FindAsync(id);
+            if (monedaItem == null)
             {
                 return NotFound();
             }
 
-            _context.Monedas.Remove(moneda);
+            _context.Monedas.Remove(monedaItem);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MonedaExists(long id)
+        private bool MonedaItemExists(string id)
         {
-            return _context.Monedas.Any(e => e.Id == id);
+            return _context.Monedas.Any(e => e.Nombre == id);
         }
     }
 }

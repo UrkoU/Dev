@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Documento sin título</title>
+
+    <style>
+      table,
+      tbody,
+      tr,
+      td {
+        margin: 15px;
+        padding: 15px;
+        border-collapse: collapse;
+        border: black 2px solid;
+      }
+    </style>
+  </head>
+  <script type="text/javascript">
+    var N = 5,
+      M = 5;
+    var aSituacion = new Array(N);
+    for (f = 0; f < N; f++) {
+      aSituacion[f] = new Array(M);
+      for (c = 0; c < M; c++) {
+        aSituacion[f][c] = 1;
+      }
+    }
+
+    document.write("<table border='1'>");
+    for (i = 0; i < N; i++) {
+      document.write("<tr>");
+      for (x = 0; x < M; x++) {
+        document.write(
+          '<td><img width="51" height="84" src="Baraja/1.png" id="im' + i + x + '" onClick="Cambio(' + i + "," + x + ')"></td>'
+        );
+      }
+      document.write("</tr>");
+    }
+    document.write("</table>");
+
+    //Cada vez que entra una carta a esta funcionmira el scr y lo cambia por un numero superior
+    function Cambio(f, c) {
+      // Si la carta es la 31 la devuelve a la inicial, si no +10
+      if (aSituacion[f][c] < 31) aSituacion[f][c] += 10;
+      else aSituacion[f][c] = 1;
+      // Cambia la carta a la siguiente
+      document.getElementById(`im${f}${c}`).src = `Baraja/${aSituacion[f][c]}.png`;
+    }
+    //Volvemos a crear la tabla
+    function Reset() {
+      // Resetea la tabla y cambia aSituacion a su estado inicial
+      for (let i = 0; i < N; i++) {
+        for (let j = 0; j < M; j++) {
+          aSituacion[i][j] = 1;
+          document.getElementById(`im${i}${j}`).src = `Baraja/${aSituacion[i][j]}.png`;
+        }
+      }
+    }
+
+    //-->
+  </script>
+
+  <body>
+    <input type="button" name="button" id="button" value="Reset" onclick="Reset()" />
+  </body>
+</html>
