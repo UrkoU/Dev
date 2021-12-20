@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="buttons">
+      <div id="button1">
+        <h4>Botón simple</h4>
+        <button id="btn1">Un simple botón</button>
+      </div>
+
+      <div id="button2">
+        <h4>Botón con imagen</h4>
+        <button id="btn2">Deshabilitar botón y spinners</button>
+      </div>
+    </div>
+
+    <div id="spinners">
+      <div id="spinner1">
+        <h4>Spinner de moneda</h4>
+        <p>
+          <label for="spinner">Cantidad a donar:</label>
+          <input id="spinner" name="spinner" value="5" />
+        </p>
+
+        <p>
+          <label for="currency">Moneda</label>
+          <select id="currency" name="currency">
+            <option value="en-US">US $</option>
+            <option value="de-DE">EUR &#x20AC;</option>
+            <option value="ja-JP">YEN &#xA5;</option>
+          </select>
+        </p>
+      </div>
+
+      <div id="spinner2">
+        <h4>Spinner con overflow</h4>
+        <p>
+          <label for="overflow">Selecciona un valor:</label>
+          <input id="overflow" name="value" />
+        </p>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        // Spinner de moneda, pudiendo cambiar el tipo de moneda según la cultura
+        $("#currency").on("change", function () {
+          $("#spinner").spinner("option", "culture", $(this).val());
+        });
+
+        $("#spinner").spinner({
+          min: 5,
+          max: 2500,
+          step: 25,
+          start: 1000,
+          numberFormat: "C",
+        });
+      });
+
+      $(function () {
+        // Spinner con overflow
+        $("#overflow").spinner({
+          spin: function (event, ui) {
+            if (ui.value > 10) {
+              $(this).spinner("value", -10);
+              return false;
+            } else if (ui.value < -10) {
+              $(this).spinner("value", 10);
+              return false;
+            }
+          },
+        });
+      });
+
+      $("#btn1")
+        .button()
+        .click(function () {
+          $("body").append("¡¡Bien hecho!!");
+        })
+        .text("¡Púlsame!");
+
+      $("#btn2")
+        .button({
+          icon: "ui-icon-gear",
+        })
+        .click(function () {
+          if ($("#btn1").button("option", "disabled")) {
+            $("#btn1").button("enable");
+            $("#overflow").spinner("enable");
+            $("#spinner").spinner("enable");
+          } else {
+            $("#btn1").button("disable");
+            $("#overflow").spinner("disable");
+            $("#spinner").spinner("disable");
+          }
+        });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
