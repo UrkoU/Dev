@@ -1,0 +1,29 @@
+version: "3.1"
+services:
+  apache1:
+    image: httpd:2.4
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./index1.html:/usr/local/apache2/htdocs/index.html
+  apache2:
+    image: httpd:2.4
+    restart: always
+    ports:
+      - 8090:80
+    volumes:
+      - ./index2.html:/usr/local/apache2/htdocs/index.html
+  apache3:
+    image: httpd:2.4
+    restart: always
+    ports:
+      - 8070:80
+    volumes:
+      - ./index3.html:/usr/local/apache2/htdocs/index.html
+  proxy:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
