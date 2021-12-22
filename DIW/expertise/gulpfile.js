@@ -1,20 +1,9 @@
-const { series, parallel, src, dest } = require("gulp");
+const { src, dest } = require("gulp");
+const sass = require("gulp-sass")(require("sass"));
 
-function holamundo(cb) {
-  console.log("Hola mundo");
-  cb();
+function compileSass(done) {
+  src("src/styles/*.sass").pipe(sass().on("error", sass.logError)).pipe(dest("dist/css"));
+  done();
 }
 
-function adiosmundo(cb) {
-  console.log("Adiós mundo");
-  cb();
-}
-
-function pipeline() {
-  return src("css/*.css").pipe(dest("dist/"));
-}
-
-exports.holamundo = holamundo;
-exports.adiosmundo = adiosmundo;
-exports.pipeline = pipeline;
-exports.default = series(adiosmundo, holamundo);
+exports.compileSass = compileSass;

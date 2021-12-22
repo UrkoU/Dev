@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  function CargarArchivoTexto()
+  {
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+        document.getElementById("txtPrimero").textContent = xmlhttp.responseText;
+        console.log(xmlhttp.responseText)
+      }
+    }
+    xmlhttp.open("GET" ,"http://185.60.40.210/ajax_info.txt", true);
+    xmlhttp.send();
+  }
+
+  setInterval(CargarArchivoTexto, 5000)
+</script>
+  </head>
+  <body>
+  <h2 id="txtPrimero">Real Sociedad Athletic de Bilbao</h2>
+  </body>
+</html>
