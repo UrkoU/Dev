@@ -14,16 +14,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
     "browser-sync": "^2.27.7",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^4.0.1",
     "gulp-imagemin": "^8.0.0",
     "gulp-sass": "^5.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.1.0",
+    "leaflet": "1.7.1",
     "sass": "^1.45.0"
   },
   "dependencies": {

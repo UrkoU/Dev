@@ -1,9 +1,13 @@
-@import 'mixins';
-@import 'vars';
-@import 'fonts';
-@import 'base';
+@import "mixins";
+@import "vars";
+@import "fonts";
+@import "base";
 
 .container {
-    width: 50vw;
-    margin: 0 auto;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+#map {
+  height: 180px;
 }
