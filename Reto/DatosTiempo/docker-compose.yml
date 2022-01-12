@@ -1,0 +1,9 @@
+version: '3.1'
+services: 
+  back:
+    build:
+      context: .
+      dockerfile:
+    restart: always
+    environment:
+      SEGUNDOS: 3

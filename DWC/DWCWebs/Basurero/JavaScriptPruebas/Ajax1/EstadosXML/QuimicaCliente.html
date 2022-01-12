@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Documento sin título</title>
+  </head>
+  <script>
+    function LeeEstado(sEstado) {
+      var divResultado = document.getElementById("Estado");
+      var xmlhttp;
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          divResultado.innerHTML = xmlhttp.responseText;
+          console.log("Here is the result: " + xmlhttp.responseText);
+          //contenidosRecibidos = xmlhttp.responseText.split(",");
+        }
+      };
+      xmlhttp.open("GET", "LeeXMLQuimicaEstados.php?estado=" + sEstado);
+      xmlhttp.send();
+    }
+  </script>
+  <body>
+    <p>
+      <select onchange="LeeEstado(this.value)">
+        <option value="none">Elige</option>
+        <option value="Líquido">Líquido</option>
+        <option value="Sólido">Sólido</option>
+        <option value="Gas">Gas</option>
+      </select>
+    </p>
+    <p>&nbsp;</p>
+    <div style="font-size: 24px" id="Estado"></div>
+  </body>
+</html>

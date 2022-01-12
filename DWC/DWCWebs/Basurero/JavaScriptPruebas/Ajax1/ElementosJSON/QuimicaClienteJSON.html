@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Documento sin título</title>
+  </head>
+  <script>
+    function LeeElemento(sElemento) {
+      var divResultado = document.getElementById("Elemento");
+      var xmlhttp;
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          jResp = JSON.parse(xmlhttp.responseText);
+          divResultado.innerHTML = jResp[0]["Simbolo"];
+        }
+      };
+      xmlhttp.open("GET", "LeeJSONQuimica.php?elem=" + sElemento);
+      xmlhttp.send();
+    }
+  </script>
+  <body>
+    <p>
+      <select onchange="LeeElemento(this.value)">
+        <option value="none">Elige</option>
+        <option value="Actinio">Actinio</option>
+        <option value="Aluminio">Aluminio</option>
+        <option value="Antimonio">Antimonio</option>
+        <option value="Argón">Argón</option>
+        <option value="Arsénico">Arsénico</option>
+        <option value="Astato">Astato</option>
+        <option value="Azufre">Azufre</option>
+        <option value="Bario">Bario</option>
+        <option value="Berilio">Berilio</option>
+        <option value="Bismuto">Bismuto</option>
+        <option value="Boro">Boro</option>
+        <option value="Bromo">Bromo</option>
+        <option value="Cadmio">Cadmio</option>
+        <option value="Calcio">Calcio</option>
+        <option value="Carbono">Carbono</option>
+        <option value="Cesio">Cesio</option>
+        <option value="Cloro">Cloro</option>
+        <option value="Cobalto">Cobalto</option>
+        <option value="Cobre">Cobre</option>
+        <option value="Criptón">Criptón</option>
+        <option value="Cromo">Cromo</option>
+        <option value="Escandio">Escandio</option>
+        <option value="Estaño">Estaño</option>
+        <option value="Estroncio">Estroncio</option>
+        <option value="Flúor">Flúor</option>
+        <option value="Fósforo">Fósforo</option>
+        <option value="Francio">Francio</option>
+        <option value="Galio">Galio</option>
+        <option value="Germanio">Germanio</option>
+        <option value="Hafnio">Hafnio</option>
+        <option value="Helio">Helio</option>
+        <option value="Hidrógeno">Hidrógeno</option>
+        <option value="Hierro">Hierro</option>
+        <option value="Indio">Indio</option>
+        <option value="Iridio">Iridio</option>
+        <option value="Itrio">Itrio</option>
+        <option value="Lantano">Lantano</option>
+        <option value="Litio">Litio</option>
+        <option value="Magnesio">Magnesio</option>
+        <option value="Manganeso">Manganeso</option>
+        <option value="Mercurio">Mercurio</option>
+        <option value="Molibdeno">Molibdeno</option>
+        <option value="Neón">Neón</option>
+        <option value="Niobio">Niobio</option>
+        <option value="Níquel">Níquel</option>
+        <option value="Nitrógeno">Nitrógeno</option>
+        <option value="Oro">Oro</option>
+        <option value="Osmio">Osmio</option>
+        <option value="Oxígeno">Oxígeno</option>
+        <option value="Paladio">Paladio</option>
+        <option value="Plata">Plata</option>
+        <option value="Platino">Platino</option>
+        <option value="Plomo">Plomo</option>
+        <option value="Polonio">Polonio</option>
+        <option value="Potasio">Potasio</option>
+        <option value="Radio">Radio</option>
+        <option value="Radón">Radón</option>
+        <option value="Renio">Renio</option>
+        <option value="Rodio">Rodio</option>
+        <option value="Rubidio">Rubidio</option>
+        <option value="Rutenio">Rutenio</option>
+        <option value="Selenio">Selenio</option>
+        <option value="Silicio">Silicio</option>
+        <option value="Sodio">Sodio</option>
+        <option value="Talio">Talio</option>
+        <option value="Tántalo">Tántalo</option>
+        <option value="Tecnecio">Tecnecio</option>
+        <option value="Teluro">Teluro</option>
+        <option value="Titanio">Titanio</option>
+        <option value="Torio">Torio</option>
+        <option value="Tungsteno">Tungsteno</option>
+        <option value="Vanadio">Vanadio</option>
+        <option value="Xenón">Xenón</option>
+        <option value="Yodo">Yodo</option>
+        <option value="Zinc">Zinc</option>
+        <option value="Zirconio">Zirconio</option>
+      </select>
+    </p>
+    <p>&nbsp;</p>
+    <div style="font-size: 24px" id="Elemento"></div>
+  </body>
+</html>
