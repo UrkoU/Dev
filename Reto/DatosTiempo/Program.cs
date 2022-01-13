@@ -11,13 +11,16 @@ using System.Threading.Tasks;
 
 namespace DatosTiempo
 {
-    class Program {   
+    class Program
+    {
 
         public static string _path = "Balizas.json";
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
             MainAsync().GetAwaiter().GetResult();
         }
-        private static async Task MainAsync(){
+        private static async Task MainAsync()
+        {
 
             var counter = 0;
             // var max = args.Length != 0 ? Convert.ToInt32(args[0]) : -1;
@@ -43,21 +46,23 @@ namespace DatosTiempo
                 try
                 {
                     foreach (var item in balizasParseadas)
-                    {   
+                    {
                         // Update
-                        if (db.BalizaItem.Any(e => e.Codigo == item.Codigo)) {
+                        if (db.BalizaItem.Any(e => e.Codigo == item.Codigo))
+                        {
                             db.Entry(item).State = EntityState.Modified;
                         }
                         // Insertar
-                        else{
+                        else
+                        {
                             db.BalizaItem.Add(item);
                         }
-                    db.SaveChanges();
+                        db.SaveChanges();
                     }
 
                     Console.WriteLine("Se han guardado las coordenadas en la base de datos");
                 }
-                catch(SqlException e)
+                catch (SqlException e)
                 {
                     Console.WriteLine(e.Message);
                 }
@@ -66,14 +71,15 @@ namespace DatosTiempo
                 try
                 {
                     foreach (var item in balizasParseadas)
-                    {   
+                    {
                         // Para obtener el tiempo al momento
 
                         DateTime date = DateTime.Now;
                         // Update
-                        if (db.TiempoItem.Any(e => e.Municipio == item.Municipio)) {
-                            
-                            var tiempoNuevo = (new TiempoItem {Municipio=item.Municipio, Fecha=date, Temperatura=random.Next(-5, 40), Humedad=random.Next(0,100),VelocidadViento=random.Next(0,150), PrecipitacionAcumulada=random.Next(0,300), CodigoBaliza=item.Codigo});
+                        if (db.TiempoItem.Any(e => e.Municipio == item.Municipio))
+                        {
+
+                            var tiempoNuevo = (new TiempoItem { Municipio = item.Municipio, Fecha = date, Temperatura = random.Next(-5, 40), Humedad = random.Next(0, 100), VelocidadViento = random.Next(0, 150), PrecipitacionAcumulada = random.Next(0, 300), CodigoBaliza = item.Codigo });
                             var local = db.Set<TiempoItem>()
                                 .Local
                                 .FirstOrDefault(entry => entry.Municipio.Equals(item.Municipio));
@@ -91,27 +97,29 @@ namespace DatosTiempo
                             db.SaveChanges();
                         }
                         // Insertar
-                        else{
-                            var tiempoNuevo = (new TiempoItem {Municipio=item.Municipio, Fecha=date, Temperatura=random.Next(-5, 40), Humedad=random.Next(0,100),VelocidadViento=random.Next(0,150), PrecipitacionAcumulada=random.Next(0,300), CodigoBaliza=item.Codigo});
+                        else
+                        {
+                            var tiempoNuevo = (new TiempoItem { Municipio = item.Municipio, Fecha = date, Temperatura = random.Next(-5, 40), Humedad = random.Next(0, 100), VelocidadViento = random.Next(0, 150), PrecipitacionAcumulada = random.Next(0, 300), CodigoBaliza = item.Codigo });
+                            db.TiempoItem.Add(tiempoNuevo);
                         }
-                    db.SaveChanges();
+                        db.SaveChanges();
                     }
 
                     Console.WriteLine("Se han guardado los datos meteorologicos en la base de datos");
                 }
-                catch(SqlException e)
+                catch (SqlException e)
                 {
                     Console.WriteLine(e.Message);
                 }
-            }    
-        
+            }
+
         }
 
         public static string GetBalizas()
         {
             string balizas;
 
-            using(var reader = new StreamReader(_path))
+            using (var reader = new StreamReader(_path))
             {
                 balizas = reader.ReadToEnd();
 

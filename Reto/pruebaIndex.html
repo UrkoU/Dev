@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      //jwt = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJtZXQwMS5hcGlrZXkiLCJpc3MiOiJJRVMgUExBSUFVTkRJIEJISSBJUlVOIiwiZXhwIjoyMjM4MTMxMDAyLCJ2ZXJzaW9uIjoiMS4wLjAiLCJpYXQiOjE2NDE5NzU3NjcsImVtYWlsIjoiaWtiZWZAcGxhaWF1bmRpLm5ldCJ9.eHD32mknl203PVKhvFK6MKqiR0MTn2Nx9tLcvZZFaLBy9T2GeIL04ZsIZBA4JNCe-pSG3IQgydUv-t_sWqfwu0H82cEL3PfQkDrxr-I5ggh_J89qoGaEl7t0aNDui8AgbVKxzaiOWmFJfIjs3tzGLltdlCeObkz8zB_tq2sR_U15_UVNUU512RYEp5WQKNLKtgSy1XrLqFWDmYHaEAW0sBVA5CmH3LzmipgEl6xIPANfDwwYAjGKfK26ZOF5HEr0vekdYi0WeWTlTh6LpWS-bpdQu_u9whe4-APR9nL9Sx7MfQWj94mnw-lWxYgrNu9p4LPe_gSh0woiwaV7axRg';
+      baliza = "C080";
+      $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "https://localhost:5001/api/BalizaItem/" + baliza,
+        headers: {
+          accept: "application/json",
+        },
+      })
+        .done(function (response) {
+          console.log("response: " + response);
+          aDatos = JSON.parse(response);
+          console.log(JSON.parse(response));
+          Estaciones = new Set();
+          aDatos.forEach((item) => {
+            Estaciones.add(item.stationId);
+          });
+          sEstaciones = "";
+          aEstaciones = [];
+          i = 0;
+          Estaciones.forEach((item) => {
+            aEstaciones[i++] = { id: item };
+          });
+          //en aEstaciones tenemos un JSON con los IDs de las estaciones
+        })
+        .fail(function (err) {
+          console.log("error");
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>

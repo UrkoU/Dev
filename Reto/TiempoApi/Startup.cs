@@ -20,11 +20,7 @@ namespace TiempoApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            connString = "Server=(localdb)\\mssqllocaldb;Database=TiempoJennifer;MultipleActiveResultSets=true";
-/*
-
-Server=185.60.40.210\\SQLEXPRESS,58015;Database={BDAlumno};User Id=sa;Password=Pa88word;
-*/
+            connString = "Server=(localdb)\\mssqllocaldb;Database=TiempoUrko;MultipleActiveResultSets=true";
         }
 
         public IConfiguration Configuration { get; }
@@ -34,11 +30,11 @@ Server=185.60.40.210\\SQLEXPRESS,58015;Database={BDAlumno};User Id=sa;Password=P
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors();
             services.AddControllers();
 
             services.AddDbContext<DatosContext>(opt =>
-                                            
+
                                                 opt.UseSqlServer(connString));
 
             services.AddSwaggerGen(c =>
@@ -50,6 +46,13 @@ Server=185.60.40.210\\SQLEXPRESS,58015;Database={BDAlumno};User Id=sa;Password=P
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(builder => builder
+           .AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           );
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

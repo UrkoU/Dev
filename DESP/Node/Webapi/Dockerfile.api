@@ -1,0 +1,4 @@
+FROM node
+WORKDIR /app
+COPY apiserver.js .
+ENTRYPOINT [ "node", "apiserver.js"]

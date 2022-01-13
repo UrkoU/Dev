@@ -140,12 +140,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"aW2rT":[function(require,module,exports) {
+})({"7Jtn7":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4a236f9275d0a351";
-module.bundle.HMR_BUNDLE_ID = "3d3c2bfad6acdb22";
+module.bundle.HMR_BUNDLE_ID = "d6e4214d715cc062";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -458,16 +458,64 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"7ylHC":[function(require,module,exports) {
-let aBalizas;
-$("document").ready(function() {
-    ObtenerBalizas();
-});
-async function ObtenerBalizas() {
-    aBalizas = await GetBalizas();
-    console.log(aBalizas[0].codigo);
+},{}],"9Rzt5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _leaflet = require("leaflet");
+var _leafletDefault = parcelHelpers.interopDefault(_leaflet);
+let map = _leafletDefault.default.map("map").setView([
+    43.32,
+    -1.98
+], 11);
+_leafletDefault.default.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+function CargarMarcadores() {
+    // Cargar los marcadores de cada valiza
+    aBalizas.forEach((item)=>{
+        const marker = _leafletDefault.default.marker([
+            item.latwgS84,
+            item.lonwgS84
+        ]).addTo(map);
+        marker.bindPopup(`${item.nombre}`);
+        marker.on("click", ()=>console.log(item.codigo)
+        );
+    });
 }
+window.CargarMarcadores = CargarMarcadores;
 
-},{}]},["aW2rT","7ylHC"], "7ylHC", "parcelRequire10c2")
+},{"leaflet":"1Rhcw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1Rhcw":[function(require,module,exports) {
+module.exports = L;
 
-//# sourceMappingURL=index.d6acdb22.js.map
+},{}],"ciiiV":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["7Jtn7","9Rzt5"], "9Rzt5", "parcelRequire10c2")
+
+//# sourceMappingURL=index.715cc062.js.map

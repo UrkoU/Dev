@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TiempoApi.Migrations
 {
     [DbContext(typeof(DatosContext))]
-    [Migration("20220112091435_inicial")]
-    partial class inicial
+    [Migration("20220113070735_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
