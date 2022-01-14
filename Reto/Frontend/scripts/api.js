@@ -1,26 +1,25 @@
 const url = "https://localhost:5001/api/";
 
 function GetBalizas() {
-  let aDatos;
-  let Balizas = Promise.resolve(
-    $.ajax({
-      type: "GET",
-      dataType: "html",
-      url: url + "BalizaItem",
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .done(function (response) {
-        aDatos = JSON.parse(response);
-      })
-      .fail(function (err) {
-        console.log("error");
-        console.log(err);
-      })
-  );
-  console.log(Balizas);
-  return Balizas;
+  return $.ajax({
+    type: "GET",
+    dataType: "html",
+    url: url + "BalizaItem",
+    headers: {
+      accept: "application/json",
+    },
+  }).fail(function (err) {
+    console.log("ERROR: " + err);
+  });
+}
+
+function testAjax() {
+  return $.ajax({
+    url: "https://localhost:5001/api/BalizaItem",
+    headers: {
+      accept: "application/json",
+    },
+  });
 }
 
 function GetBaliza(id = "C080") {
