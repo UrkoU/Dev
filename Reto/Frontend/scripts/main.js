@@ -2,6 +2,8 @@ let aBalizas;
 
 $("document").ready(function () {
   ObtenerBalizas();
+  var bootstrap_enabled = typeof $().modal == "function";
+  console.log("Bootstrap: " + bootstrap_enabled);
 });
 
 function ObtenerBalizas() {

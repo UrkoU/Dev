@@ -462,21 +462,25 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _leaflet = require("leaflet");
 var _leafletDefault = parcelHelpers.interopDefault(_leaflet);
-const map = _leafletDefault.default.map("map").setView([
+let aMarcadores = [];
+let aGuardados = [];
+// Máximo de Marcadores guardados
+let iMaxGuardados = 10;
+const mapa = _leafletDefault.default.map("map").setView([
     42.983333333333,
     -2.6166666666667
-], 8.7);
+], 8.4);
 _leafletDefault.default.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-var markerIcon = _leafletDefault.default.icon({
+}).addTo(mapa);
+var iconoDefecto = _leafletDefault.default.icon({
     iconUrl: "../images/marker-green.png",
     iconSize: [
         41,
         41
     ]
 });
-var selectedIcon = _leafletDefault.default.icon({
+var iconoSeleccionado = _leafletDefault.default.icon({
     iconUrl: "../images/marker-selected.png",
     iconSize: [
         41,
@@ -486,19 +490,34 @@ var selectedIcon = _leafletDefault.default.icon({
 function CargarMarcadores() {
     // Cargar los marcadores de cada baliza
     aBalizas.forEach((item)=>{
-        const marker = _leafletDefault.default.marker([
+        const marcador = _leafletDefault.default.marker([
             item.latwgS84,
             item.lonwgS84
         ], {
-            icon: markerIcon
-        }).addTo(map);
-        marker.bindPopup(`${item.nombre}`);
-        marker.on("click", (e)=>{
-            console.log(item.codigo);
-            e.target.setIcon(selectedIcon);
+            icon: iconoDefecto
+        }).addTo(mapa);
+        marcador.bindPopup(`${item.nombre}`);
+        marcador.on("click", (e)=>{
+            // CambiarIcono(e, item);
+            AnadirAMapa(e, item);
         });
+        aMarcadores.push(marcador);
     });
-// map.setView([43.32, -1.98], 9);
+}
+function CambiarIcono(element, icono) {
+    element.target.setIcon(icono);
+// aMarcadores.forEach((i) => {
+//   i.setIcon(iconoDefecto);
+// });
+// console.log(item.codigo);
+// element.target.setIcon(iconoSeleccionado);
+}
+function AnadirAMapa(element, item) {
+    if (aGuardados.length < iMaxGuardados) {
+        CambiarIcono(element, iconoSeleccionado);
+        $("#divPrincipal").append(`<div id="div${item.codigo}">${item.codigo}</div>`);
+        aGuardados.push(item);
+    }
 }
 window.CargarMarcadores = CargarMarcadores;
 

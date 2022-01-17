@@ -7,7 +7,7 @@ $yellow: rgb(247, 247, 151)
 $purple: rgb(223, 151, 247)
 $red: rgb(247, 151, 151)
 
-$background-color: $not-so-dark-gray
+$body-bg: $not-so-dark-gray
 $background-color-2: $dark-gray
 
 $text-white: rgb(255, 255, 255)
@@ -16,6 +16,15 @@ $text-color: $text-white
 
 $main-color: $green
 	
+
+body 
+	color: white 
+	background-color: $body-bg
+	// padding: 1% 
+
+#divPrincipal
+	background-color: $blue
+
 #mapContainer
 	position: absolute
 	bottom:0
@@ -28,6 +37,7 @@ $main-color: $green
 #map 
 	height: 20rem
 	width: 40rem
+	border-radius: 5px
 
 #mapTop
 	height: 1.5rem
@@ -35,8 +45,3 @@ $main-color: $green
 	background-color: $main-color
 	display: flex
 	justify-content: flex-end
-
-body 
-	color: white 
-	background-color: $dark-gray
-	padding: 1% 
