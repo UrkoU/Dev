@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TiempoApi.Migrations
+namespace DatosTiempo.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,17 +34,18 @@ namespace TiempoApi.Migrations
                 name: "TiempoItem",
                 columns: table => new
                 {
-                    Municipio = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CodigoBaliza = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Municipio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Temperatura = table.Column<int>(type: "int", nullable: false),
                     Humedad = table.Column<int>(type: "int", nullable: false),
                     VelocidadViento = table.Column<int>(type: "int", nullable: false),
-                    PrecipitacionAcumulada = table.Column<int>(type: "int", nullable: false),
-                    CodigoBaliza = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PrecipitacionAcumulada = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TiempoItem", x => x.Municipio);
+                    table.PrimaryKey("PK_TiempoItem", x => x.CodigoBaliza);
                 });
         }
 

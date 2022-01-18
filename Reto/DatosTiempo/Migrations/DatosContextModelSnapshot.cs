@@ -66,17 +66,20 @@ namespace DatosTiempo.Migrations
 
             modelBuilder.Entity("TiempoItem", b =>
                 {
-                    b.Property<string>("Municipio")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CodigoBaliza")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Humedad")
                         .HasColumnType("int");
+
+                    b.Property<string>("Municipio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PrecipitacionAcumulada")
                         .HasColumnType("int");
@@ -87,7 +90,7 @@ namespace DatosTiempo.Migrations
                     b.Property<int>("VelocidadViento")
                         .HasColumnType("int");
 
-                    b.HasKey("Municipio");
+                    b.HasKey("CodigoBaliza");
 
                     b.ToTable("TiempoItem");
                 });

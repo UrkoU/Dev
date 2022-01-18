@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace TiempoApi.Migrations
+namespace DatosTiempo.Migrations
 {
     [DbContext(typeof(DatosContext))]
-    [Migration("20220113070735_Inicial")]
-    partial class Inicial
+    [Migration("20220118102333_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,17 +68,20 @@ namespace TiempoApi.Migrations
 
             modelBuilder.Entity("TiempoItem", b =>
                 {
-                    b.Property<string>("Municipio")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CodigoBaliza")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Humedad")
                         .HasColumnType("int");
+
+                    b.Property<string>("Municipio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PrecipitacionAcumulada")
                         .HasColumnType("int");
@@ -89,7 +92,7 @@ namespace TiempoApi.Migrations
                     b.Property<int>("VelocidadViento")
                         .HasColumnType("int");
 
-                    b.HasKey("Municipio");
+                    b.HasKey("CodigoBaliza");
 
                     b.ToTable("TiempoItem");
                 });

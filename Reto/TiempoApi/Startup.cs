@@ -21,6 +21,10 @@ namespace TiempoApi
         {
             Configuration = configuration;
             connString = "Server=(localdb)\\mssqllocaldb;Database=TiempoUrko;MultipleActiveResultSets=true";
+            /*
+
+            Server=185.60.40.210\\SQLEXPRESS,58015;Database={BDAlumno};User Id=sa;Password=Pa88word;
+            */
         }
 
         public IConfiguration Configuration { get; }
@@ -46,12 +50,12 @@ namespace TiempoApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(builder => builder
-           .AllowAnyOrigin()
-           .AllowAnyMethod()
-           .AllowAnyHeader()
-           );
 
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            );
 
             if (env.IsDevelopment())
             {

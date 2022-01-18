@@ -1,7 +1,7 @@
 import L from "leaflet";
 
 let aMarcadores = [];
-
+// Balizas guardadas
 let aGuardados = [];
 
 // Máximo de Marcadores guardados
@@ -50,7 +50,17 @@ function AnadirAMapa(element, item) {
     $("#divPrincipal").append(`<div id="div${item.codigo}">${item.codigo}</div>`);
     aGuardados.push(item);
   } else {
+    MostrarError();
   }
+}
+
+let tTimeout;
+
+function MostrarError() {
+  $("#divError").removeClass("hidden");
+  tTimeout = setTimeout(() => {
+    $("#divError").addClass("hidden");
+  }, 2000);
 }
 
 window.CargarMarcadores = CargarMarcadores;

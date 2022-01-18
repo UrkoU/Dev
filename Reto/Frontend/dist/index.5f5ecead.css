@@ -7,6 +7,14 @@ body {
   background-color: #97d2f7;
 }
 
+#divError {
+  position: fixed;
+  z-index: 75;
+  background-color: rgba(168, 50, 50, 0.8);
+  border: 5px dashed #a83232;
+  border-radius: 25px;
+}
+
 #mapContainer {
   position: absolute;
   bottom: 0;
@@ -14,6 +22,7 @@ body {
   padding: 5px;
   border-radius: 5px;
   background-color: #97f7ba;
+  z-index: 100;
 }
 
 #map {
@@ -28,5 +37,9 @@ body {
   background-color: #97f7ba;
   display: flex;
   justify-content: flex-end;
+}
+
+.hidden {
+  visibility: hidden;
 }
 /*# sourceMappingURL=index.5f5ecead.css.map */

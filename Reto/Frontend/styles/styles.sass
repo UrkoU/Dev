@@ -15,15 +15,25 @@ $text-black: rgb(0, 0, 0)
 $text-color: $text-white
 
 $main-color: $green
+
+// Z index
+$front: 100
+$almost-front: 75
 	
 
 body 
 	color: white 
 	background-color: $body-bg
-	// padding: 1% 
 
 #divPrincipal
 	background-color: $blue
+
+#divError
+	position: fixed
+	z-index: $almost-front
+	background-color: rgba(168, 50, 50, 0.8)
+	border: 5px dashed rgba(168, 50, 50, 1)
+	border-radius: 25px
 
 #mapContainer
 	position: absolute
@@ -33,6 +43,7 @@ body
 	// padding: 5px
 	border-radius: 5px	
 	background-color: $main-color
+	z-index: $front
 
 #map 
 	height: 20rem
@@ -45,3 +56,6 @@ body
 	background-color: $main-color
 	display: flex
 	justify-content: flex-end
+
+.hidden
+	visibility: hidden

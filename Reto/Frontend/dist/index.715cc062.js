@@ -463,6 +463,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _leaflet = require("leaflet");
 var _leafletDefault = parcelHelpers.interopDefault(_leaflet);
 let aMarcadores = [];
+// Balizas guardadas
 let aGuardados = [];
 // Máximo de Marcadores guardados
 let iMaxGuardados = 10;
@@ -517,7 +518,14 @@ function AnadirAMapa(element, item) {
         CambiarIcono(element, iconoSeleccionado);
         $("#divPrincipal").append(`<div id="div${item.codigo}">${item.codigo}</div>`);
         aGuardados.push(item);
-    }
+    } else MostrarError();
+}
+let tTimeout;
+function MostrarError() {
+    $("#divError").removeClass("hidden");
+    tTimeout = setTimeout(()=>{
+        $("#divError").addClass("hidden");
+    }, 2000);
 }
 window.CargarMarcadores = CargarMarcadores;
 

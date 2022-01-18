@@ -10,27 +10,27 @@ namespace TiempoApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TiempoItemController : ControllerBase
+    public class TiempoItemsController : ControllerBase
     {
         private readonly DatosContext _context;
 
-        public TiempoItemController(DatosContext context)
+        public TiempoItemsController(DatosContext context)
         {
             _context = context;
         }
 
-        // GET: api/TiempoItem
+        // GET: api/TiempoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TiempoItem>>> GetTiempoItem()
         {
             return await _context.TiempoItem.ToListAsync();
         }
 
-        // GET: api/TiempoItem/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TiempoItem>> GetTiempoItem(string id)
+        // GET: api/TiempoItems/5
+        [HttpGet("{fk}")]
+        public async Task<ActionResult<TiempoItem>> GetTiempoItem(string fk)
         {
-            var tiempoItem = await _context.TiempoItem.FindAsync(id);
+            var tiempoItem =  await  _context.TiempoItem.Where(o => o.CodigoBaliza == fk).FirstAsync();
 
             if (tiempoItem == null)
             {
@@ -42,7 +42,7 @@ namespace TiempoApi.Controllers
 
         private bool TiempoItemExists(string id)
         {
-            return _context.TiempoItem.Any(e => e.Municipio == id);
+            return _context.TiempoItem.Any(e => e.CodigoBaliza == id);
         }
     }
 }
