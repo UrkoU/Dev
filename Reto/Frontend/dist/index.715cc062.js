@@ -464,9 +464,23 @@ var _leaflet = require("leaflet");
 var _leafletDefault = parcelHelpers.interopDefault(_leaflet);
 let aMarcadores = [];
 // Balizas guardadas
-let aGuardados = [];
+let aGuardados = new Set();
 // Máximo de Marcadores guardados
-let iMaxGuardados = 10;
+let iMaxGuardados = 5;
+const iconoDefecto = _leafletDefault.default.icon({
+    iconUrl: "../images/marker-green.png",
+    iconSize: [
+        41,
+        41
+    ]
+});
+const iconoSeleccionado = _leafletDefault.default.icon({
+    iconUrl: "../images/marker-selected.png",
+    iconSize: [
+        41,
+        41
+    ]
+});
 const mapa = _leafletDefault.default.map("map").setView([
     42.983333333333,
     -2.6166666666667
@@ -474,20 +488,6 @@ const mapa = _leafletDefault.default.map("map").setView([
 _leafletDefault.default.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mapa);
-var iconoDefecto = _leafletDefault.default.icon({
-    iconUrl: "../images/marker-green.png",
-    iconSize: [
-        41,
-        41
-    ]
-});
-var iconoSeleccionado = _leafletDefault.default.icon({
-    iconUrl: "../images/marker-selected.png",
-    iconSize: [
-        41,
-        41
-    ]
-});
 function CargarMarcadores() {
     // Cargar los marcadores de cada baliza
     aBalizas.forEach((item)=>{
@@ -507,27 +507,23 @@ function CargarMarcadores() {
 }
 function CambiarIcono(element, icono) {
     element.target.setIcon(icono);
-// aMarcadores.forEach((i) => {
-//   i.setIcon(iconoDefecto);
-// });
-// console.log(item.codigo);
-// element.target.setIcon(iconoSeleccionado);
 }
-function AnadirAMapa(element, item) {
-    if (aGuardados.length < iMaxGuardados) {
-        CambiarIcono(element, iconoSeleccionado);
-        $("#divPrincipal").append(`<div id="div${item.codigo}">${item.codigo}</div>`);
-        aGuardados.push(item);
-    } else MostrarError();
+function AnadirAMapa(clickedElement, oBaliza) {
+    if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
+        CambiarIcono(clickedElement, iconoSeleccionado);
+        $("#divPrincipal").append(`<div id="div${oBaliza.codigo}">${oBaliza.codigo}</div>`);
+        ObtenerTiempo(oBaliza.codigo);
+        aGuardados.add(oBaliza.codigo);
+    } else if (aGuardados.has(oBaliza.codigo)) MostrarError(existsError);
+    else MostrarError(limitError);
 }
-let tTimeout;
-function MostrarError() {
-    $("#divError").removeClass("hidden");
-    tTimeout = setTimeout(()=>{
-        $("#divError").addClass("hidden");
-    }, 2000);
+function AnadirTiempo(oTiempo, oBaliza) {
+    console.log(oTiempo);
+    console.log(oBaliza);
+    $(`#div${oBaliza.codigo}`).append(`<div>${oTiempo.temperatura}</div>`);
 }
 window.CargarMarcadores = CargarMarcadores;
+window.AnadirTiempo = AnadirTiempo;
 
 },{"leaflet":"1Rhcw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1Rhcw":[function(require,module,exports) {
 module.exports = L;
