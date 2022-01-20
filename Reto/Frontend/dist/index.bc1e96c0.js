@@ -23,7 +23,7 @@ function ObtenerTiempo(id = "C080") {
         AnadirTiempo(oTiempo, oBaliza);
     });
 }
-$("#hideButton").click(()=>{
+$("#mapTop").click(()=>{
     $("#map").toggle("fade", 100);
 });
 let tTimeout;

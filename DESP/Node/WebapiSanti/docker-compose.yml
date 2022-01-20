@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  # app:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile.app
+  #   image: nodeapp
+  #   ports:
+  #     - 80:3000
+  app:
+    image: node
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - API=10.10.17.117:5000
+    entrypoint: node
+    command: [ "webserver.js","6000"]
+    ports:
+      - 80:6000
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      - WORLD=andoitz
+    image: srlopez/nodeapi:1.0
+    ports:
+      - 5000:4000

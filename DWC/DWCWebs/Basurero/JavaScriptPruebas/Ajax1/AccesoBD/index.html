@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Documento sin título</title>
+  </head>
+  <script>
+    function Ajax() {
+      var xmlhttp;
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          console.log(xmlhttp.responseText);
+        }
+      };
+
+      xmlhttp.open("GET", "PruebaProvincias.php");
+      xmlhttp.send();
+    }
+  </script>
+
+  <body>
+    <button id="btnAjax" onClick="Ajax();">CLICAME</button>
+  </body>
+</html>

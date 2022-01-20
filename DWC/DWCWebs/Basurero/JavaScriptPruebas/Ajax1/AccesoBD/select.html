@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select onchange="LeeElemento(this.value)">
+      <option value="none">Elige</option>
+      <option value="AND">Andalucía</option>
+      <option value="ARA">Aragón</option>
+      <option value="AST">Principado de Asturias</option>
+      <option value="BAL">Isalas Baleares</option>
+      <option value="ICA">Canarias</option>
+      <option value="CAN">Cantabria</option>
+      <option value="CAM">Castilla La Mancha</option>
+      <option value="CAL">Castilla y León</option>
+      <option value="CAT">Cataluña</option>
+      <option value="VAL">Comunidad Valenciana</option>
+      <option value="EXT">Extremadura</option>
+      <option value="GAL">Galicia</option>
+      <option value="RIO">La Rioja</option>
+      <option value="MAD">Comunidad de Madrid</option>
+      <option value="MUR">Región de Murcia</option>
+      <option value="NAV">Comunidad Foral de Navarra</option>
+      <option value="PAV">País Vasco</option>
+    </select>
+    <div id="provincias"></div>
+    <script>
+      function LeeElemento(value) {
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            let provs = JSON.parse(xmlhttp.responseText);
+            console.log(provs);
+            document.getElementById("provincias").innerHTML = "";
+            for (i = 0; i < provs.length; i++) {
+              document.getElementById("provincias").innerHTML += `<p>${provs[i].Provincia}</p>`;
+            }
+          }
+        };
+
+        xmlhttp.open("GET", "PruebaProvincias.php/?comunidad=" + value);
+        xmlhttp.send();
+      }
+    </script>
+  </body>
+</html>

@@ -25,7 +25,7 @@ function ObtenerTiempo(id = "C080") {
   });
 }
 
-$("#hideButton").click(() => {
+$("#mapTop").click(() => {
   $("#map").toggle("fade", 100);
 });
 

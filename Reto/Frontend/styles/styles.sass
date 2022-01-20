@@ -15,49 +15,73 @@ $text-black: rgb(0, 0, 0)
 $text-color: $text-white
 
 $main-color: $green
+$secondary-color: $blue
 
 // Z index
 $front: 100
-$almost-front: 75
+$low-front: 50
+$mid-front: 75
 	
 
 body 
 	color: white 
-	background-color: $body-bg
+	background-color: $body-bg !important
 
 #divPrincipal
-	background-color: $blue
+	background-color: $main-color
+	padding: 2rem 6rem
+	border-radius: 60px
 
-#divError
-	position: fixed
-	z-index: $almost-front
-	background-color: rgba(168, 50, 50, 0.8)
-	border: 5px dashed rgba(168, 50, 50, 1)
-	border-radius: 25px
-	font-size: 3rem
-	text-align: center
+	#tituloPrincipal
+		text-align: center
+
+	#divContainer
+		overflow: auto
+
 
 #mapContainer
 	position: absolute
 	bottom:0
 	left: 0
 	padding: 5px
-	// padding: 5px
-	border-radius: 5px	
-	background-color: $main-color
-	z-index: $front
+	border-bottom: none
+	border-top-right-radius: 15px
+	background-color: $secondary-color
+	z-index: $mid-front
 
-#map 
-	height: 20rem
-	width: 40rem
-	border-radius: 5px
+	#mapTop
+		height: 1.5rem
+		width: 40rem
+		background-color: $secondary-color
+		display: flex
+		justify-content: flex-end
+		cursor: pointer
+		border-radius: 15px
 
-#mapTop
-	height: 1.5rem
-	width: 40rem
-	background-color: $main-color
-	display: flex
-	justify-content: flex-end
+	#map
+		position: absolute 
+		height: 20rem
+		width: 40rem
+		// border-top-right-radius: 15px
 
-.hidden
-	visibility: hidden
+	#divError
+		position: absolute
+		height: 20rem
+		width: 40rem
+		// border-top-right-radius: 15px
+		// position: fixed
+		// height: 20rem
+		// width: 40rem
+		// z-index: 1000
+		// background-color: #c94242
+		// border: 5px dashed rgba(168, 50, 50, 1)
+		// border-radius: 25px
+		// font-size: 3rem
+		// text-align: center
+
+.infoTiempo
+	margin: 1rem
+	padding: 2rem
+	border-radius: 25px
+	background-color:  $body-bg
+	color: $text-color

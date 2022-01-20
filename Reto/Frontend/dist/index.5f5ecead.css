@@ -1,20 +1,18 @@
 body {
   color: white;
-  background-color: #4f4848;
+  background-color: #4f4848 !important;
 }
 
 #divPrincipal {
-  background-color: #97d2f7;
+  background-color: #97f7ba;
+  padding: 2rem 6rem;
+  border-radius: 60px;
 }
-
-#divError {
-  position: fixed;
-  z-index: 75;
-  background-color: rgba(168, 50, 50, 0.8);
-  border: 5px dashed #a83232;
-  border-radius: 25px;
-  font-size: 3rem;
+#divPrincipal #tituloPrincipal {
   text-align: center;
+}
+#divPrincipal #divContainer {
+  overflow: auto;
 }
 
 #mapContainer {
@@ -22,26 +20,36 @@ body {
   bottom: 0;
   left: 0;
   padding: 5px;
-  border-radius: 5px;
-  background-color: #97f7ba;
-  z-index: 100;
+  border-bottom: none;
+  border-top-right-radius: 15px;
+  background-color: #97d2f7;
+  z-index: 75;
 }
-
-#map {
-  height: 20rem;
-  width: 40rem;
-  border-radius: 5px;
-}
-
-#mapTop {
+#mapContainer #mapTop {
   height: 1.5rem;
   width: 40rem;
-  background-color: #97f7ba;
+  background-color: #97d2f7;
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
+  border-radius: 15px;
+}
+#mapContainer #map {
+  position: absolute;
+  height: 20rem;
+  width: 40rem;
+}
+#mapContainer #divError {
+  position: absolute;
+  height: 20rem;
+  width: 40rem;
 }
 
-.hidden {
-  visibility: hidden;
+.infoTiempo {
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 25px;
+  background-color: #4f4848;
+  color: white;
 }
 /*# sourceMappingURL=index.5f5ecead.css.map */

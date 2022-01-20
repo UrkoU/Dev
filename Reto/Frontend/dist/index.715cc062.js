@@ -511,7 +511,7 @@ function CambiarIcono(element, icono) {
 function AnadirAMapa(clickedElement, oBaliza) {
     if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
         CambiarIcono(clickedElement, iconoSeleccionado);
-        $("#divPrincipal").append(`<div id="div${oBaliza.codigo}">${oBaliza.codigo}</div>`);
+        $("#divContainer").append(`<div id="div${oBaliza.codigo}" class="infoTiempo mw-50"><h4>${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`);
         ObtenerTiempo(oBaliza.codigo);
         aGuardados.add(oBaliza.codigo);
     } else if (aGuardados.has(oBaliza.codigo)) MostrarError(existsError);
@@ -520,7 +520,7 @@ function AnadirAMapa(clickedElement, oBaliza) {
 function AnadirTiempo(oTiempo, oBaliza) {
     console.log(oTiempo);
     console.log(oBaliza);
-    $(`#div${oBaliza.codigo}`).append(`<div>${oTiempo.temperatura}</div>`);
+    $(`#div${oBaliza.codigo}`).append(`<div>${oTiempo.temperatura} º</div>`);
 }
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;

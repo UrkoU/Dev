@@ -7,6 +7,7 @@
     <title>Leaflet</title>
     <!-- Our styling -->
     <link rel="stylesheet" href="/index.5f5ecead.css">
+    <link rel="stylesheet" href="/index.773a97e4.css">
     <!-- Leaflet styling -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- JQuery -->
@@ -17,8 +18,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
   <body class="w-100 h-100 d-flex justify-content-center align-items-center">
-    <div id="divPrincipal" class="w-75 h-75"></div>
-    <div id="divError" class="w-50 h-50 hidden d-flex justify-content-center align-items-center">ERROR</div>
+    <div id="divPrincipal" class="w-75 h-85">
+      <div class="h-100 w-100">
+        <div class="h-15 d-flex align-items-center justify-content-center w-100">
+          <h1 id="tituloPrincipal">Información Metereológica</h1>
+        </div>
+        <div class="h-15 d-flex align-items-center justify-content-center w-100">
+          <h1 id="tituloPrincipal">Botoncitos draggables</h1>
+        </div>
+        <div id="divContainer" class="w-100 h-60"></div>
+      </div>
+    </div>
+    <!-- <div id="divError" class="w-50 h-50 hidden d-flex justify-content-center align-items-center">ERROR</div> -->
 
     <!-- Map -->
     <div id="mapContainer">
@@ -27,6 +38,7 @@
         <button id="hideButton">-</button>
       </div>
       <div id="map"></div>
+      <div id="divError" class="w-100 h-100 hidden">ERROR</div>
     </div>
 
     <!-- SCRIPTS -->

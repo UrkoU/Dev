@@ -7,6 +7,7 @@
     <title>Leaflet</title>
     <!-- Our styling -->
     <link rel="stylesheet" href="styles/styles.sass" />
+    <link rel="stylesheet" href="styles/consts.sass" />
     <!-- Leaflet styling -->
     <link
       rel="stylesheet"
@@ -36,8 +37,18 @@
     />
   </head>
   <body class="w-100 h-100 d-flex justify-content-center align-items-center">
-    <div id="divPrincipal" class="w-75 h-75"></div>
-    <div id="divError" class="w-50 h-50 hidden d-flex justify-content-center align-items-center">ERROR</div>
+    <div id="divPrincipal" class="w-75 h-85">
+      <div class="h-100 w-100">
+        <div class="h-15 d-flex align-items-center justify-content-center w-100">
+          <h1 id="tituloPrincipal">Información Metereológica</h1>
+        </div>
+        <div class="h-15 d-flex align-items-center justify-content-center w-100">
+          <h1 id="tituloPrincipal">Botoncitos draggables</h1>
+        </div>
+        <div id="divContainer" class="w-100 h-60"></div>
+      </div>
+    </div>
+    <!-- <div id="divError" class="w-50 h-50 hidden d-flex justify-content-center align-items-center">ERROR</div> -->
 
     <!-- Map -->
     <div id="mapContainer">
@@ -46,6 +57,7 @@
         <button id="hideButton">-</button>
       </div>
       <div id="map"></div>
+      <div id="divError" class="w-100 h-100 hidden">ERROR</div>
     </div>
 
     <!-- SCRIPTS -->
