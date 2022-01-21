@@ -3,6 +3,22 @@ body {
   background-color: #4f4848 !important;
 }
 
+.divImages {
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgDraggable {
+  height: 5rem;
+}
+
+.imgDraggableSmall {
+  height: 4rem;
+}
+
 #divPrincipal {
   background-color: #97f7ba;
   padding: 2rem 6rem;

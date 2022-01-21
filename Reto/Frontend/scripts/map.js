@@ -43,7 +43,7 @@ function AnadirAMapa(clickedElement, oBaliza) {
   if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
     CambiarIcono(clickedElement, iconoSeleccionado);
     $("#divContainer").append(
-      `<div id="div${oBaliza.codigo}" class="infoTiempo mw-50"><h4>${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`
+      `<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`
     );
     ObtenerTiempo(oBaliza.codigo);
     aGuardados.add(oBaliza.codigo);
@@ -59,7 +59,22 @@ function AnadirAMapa(clickedElement, oBaliza) {
 function AnadirTiempo(oTiempo, oBaliza) {
   console.log(oTiempo);
   console.log(oBaliza);
-  $(`#div${oBaliza.codigo}`).append(`<div>${oTiempo.temperatura} º</div>`);
+  $(`#div${oBaliza.codigo}`).append(
+    `<div id="info${oTiempo.codigoBaliza}" >
+        <div id="temp${oTiempo.codigoBaliza}">${oTiempo.temperatura} º</div>
+        <div id="humedad${oTiempo.codigoBaliza}">${oTiempo.humedad} %</div>
+        <div id="precip${oTiempo.codigoBaliza}">${oTiempo.precipitacionAcumulada} l/m2</div>
+        <div id="vel${oTiempo.codigoBaliza}">${oTiempo.velocidadViento} km/h</div>
+      </div>`
+  );
+  $(`#precip${oTiempo.codigoBaliza}`).hide();
+  $(`#vel${oTiempo.codigoBaliza}`).hide();
+
+  $(".droppableItem").droppable({
+    drop: function (event, ui) {
+      console.log("HERE");
+    },
+  });
 }
 
 window.CargarMarcadores = CargarMarcadores;

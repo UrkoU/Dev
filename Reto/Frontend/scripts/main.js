@@ -39,3 +39,7 @@ function MostrarError(error = limitError) {
     $("#divError").addClass("hidden");
   }, 2000);
 }
+
+$(".imgDraggable").draggable({
+  revert: "invalid",
+});
