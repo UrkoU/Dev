@@ -530,7 +530,7 @@ function AnadirTiempo(oTiempo, oBaliza) {
     $(`#vel${oTiempo.codigoBaliza}`).hide();
     $(".droppableItem").droppable({
         drop: function(event, ui) {
-            console.log("HERE");
+            console.log(ui.draggable[0].id);
         }
     });
 }

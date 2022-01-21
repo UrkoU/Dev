@@ -72,7 +72,7 @@ function AnadirTiempo(oTiempo, oBaliza) {
 
   $(".droppableItem").droppable({
     drop: function (event, ui) {
-      console.log("HERE");
+      console.log(ui.draggable[0].id);
     },
   });
 }

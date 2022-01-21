@@ -37,7 +37,9 @@ function MostrarError(error = limitError) {
     }, 2000);
 }
 $(".imgDraggable").draggable({
-    revert: "invalid"
+    revert: true,
+    drag: function(params) {
+    }
 });
 
 //# sourceMappingURL=index.bc1e96c0.js.map

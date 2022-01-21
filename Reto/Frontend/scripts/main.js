@@ -41,5 +41,8 @@ function MostrarError(error = limitError) {
 }
 
 $(".imgDraggable").draggable({
-  revert: "invalid",
+  revert: true,
+  drag:function (params) {
+    
+  }
 });
