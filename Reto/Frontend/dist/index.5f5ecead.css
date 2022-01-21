@@ -35,14 +35,27 @@ body {
   border-radius: 15px;
 }
 #mapContainer #map {
-  position: absolute;
+  position: relative;
   height: 20rem;
   width: 40rem;
 }
 #mapContainer #divError {
   position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 20rem;
   width: 40rem;
+  border-top-right-radius: 15px;
+  height: 20rem;
+  width: 40rem;
+  z-index: 1000;
+  background-color: #c94242;
+  border: 5px dashed #a83232;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .infoTiempo {
