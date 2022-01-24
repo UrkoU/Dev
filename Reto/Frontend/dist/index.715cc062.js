@@ -514,12 +514,13 @@ function AnadirAMapa(clickedElement, oBaliza) {
         $("#divContainer").append(`<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`);
         ObtenerTiempo(oBaliza.codigo);
         aGuardados.add(oBaliza.codigo);
-    } else if (aGuardados.has(oBaliza.codigo)) MostrarError(existsError);
-    else MostrarError(limitError);
+    } else if (aGuardados.has(oBaliza.codigo)) {
+        aGuardados.delete(oBaliza.codigo);
+        $(`#div${oBaliza.codigo}`).remove();
+        CambiarIcono(clickedElement, iconoDefecto);
+    } else MostrarError(limitError);
 }
 function AnadirTiempo(oTiempo, oBaliza) {
-    console.log(oTiempo);
-    console.log(oBaliza);
     $(`#div${oBaliza.codigo}`).append(`<div id="info${oTiempo.codigoBaliza}" >
         <div id="temp${oTiempo.codigoBaliza}">${oTiempo.temperatura} º</div>
         <div id="humedad${oTiempo.codigoBaliza}">${oTiempo.humedad} %</div>
@@ -528,14 +529,11 @@ function AnadirTiempo(oTiempo, oBaliza) {
       </div>`);
     $(`#precip${oTiempo.codigoBaliza}`).hide();
     $(`#vel${oTiempo.codigoBaliza}`).hide();
-    $(".droppableItem").droppable({
-        drop: function(event, ui) {
-            console.log(ui.draggable[0].id);
-        }
-    });
+    CrearDroppables();
 }
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;
+window.aGuardados = aGuardados;
 
 },{"leaflet":"1Rhcw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1Rhcw":[function(require,module,exports) {
 module.exports = L;

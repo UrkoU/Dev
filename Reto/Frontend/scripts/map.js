@@ -49,7 +49,9 @@ function AnadirAMapa(clickedElement, oBaliza) {
     aGuardados.add(oBaliza.codigo);
   } else {
     if (aGuardados.has(oBaliza.codigo)) {
-      MostrarError(existsError);
+      aGuardados.delete(oBaliza.codigo);
+      $(`#div${oBaliza.codigo}`).remove();
+      CambiarIcono(clickedElement, iconoDefecto);
     } else {
       MostrarError(limitError);
     }
@@ -57,8 +59,6 @@ function AnadirAMapa(clickedElement, oBaliza) {
 }
 
 function AnadirTiempo(oTiempo, oBaliza) {
-  console.log(oTiempo);
-  console.log(oBaliza);
   $(`#div${oBaliza.codigo}`).append(
     `<div id="info${oTiempo.codigoBaliza}" >
         <div id="temp${oTiempo.codigoBaliza}">${oTiempo.temperatura} º</div>
@@ -70,12 +70,9 @@ function AnadirTiempo(oTiempo, oBaliza) {
   $(`#precip${oTiempo.codigoBaliza}`).hide();
   $(`#vel${oTiempo.codigoBaliza}`).hide();
 
-  $(".droppableItem").droppable({
-    drop: function (event, ui) {
-      console.log(ui.draggable[0].id);
-    },
-  });
+  CrearDroppables();
 }
 
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;
+window.aGuardados = aGuardados;

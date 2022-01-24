@@ -11,17 +11,9 @@ body {
   align-items: center;
 }
 
-.imgDraggable {
-  height: 5rem;
-}
-
-.imgDraggableSmall {
-  height: 4rem;
-}
-
 #divPrincipal {
   background-color: #97f7ba;
-  padding: 2rem 6rem;
+  padding: 0rem 6rem;
   border-radius: 60px;
 }
 #divPrincipal #tituloPrincipal {
@@ -74,11 +66,34 @@ body {
   font-size: 2rem;
 }
 
+.imgDraggableList {
+  width: 30rem;
+  margin: auto;
+  background-color: #4f4848;
+  border-radius: 25px;
+}
+
+.imgDraggable {
+  height: 5rem;
+}
+
+.imgDraggableSmall {
+  height: 4rem;
+}
+
 .infoTiempo {
   margin: 1rem;
   padding: 2rem;
   border-radius: 25px;
   background-color: #4f4848;
   color: white;
+}
+
+.canAccept {
+  background-color: #426a12;
+}
+
+.cannotAccept {
+  background-color: #6c0a0a;
 }
 /*# sourceMappingURL=index.5f5ecead.css.map */
