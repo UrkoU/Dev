@@ -1,5 +1,6 @@
 import L from "leaflet";
 
+// Así se pueden guardar
 let aMarcadores = new L.layerGroup();
 // Balizas guardadas
 let aGuardados = new Set();
@@ -23,11 +24,15 @@ function CargarMarcadores() {
   // console.log();
   aMarcadores.clearLayers();
   // Cargar los marcadores de cada baliza
-  aBalizas.forEach((item) => {
-    const marcador = L.marker([item.latwgS84, item.lonwgS84], { icon: iconoDefecto });
-    marcador.bindPopup(`${item.nombre}`);
-    marcador.on("click", (element) => {
-      AnadirAMapa(element, item);
+  aBalizas.forEach((baliza) => {
+    let icono;
+    if (aGuardados.has(baliza.codigo)) {
+      icono = iconoSeleccionado;
+    } else icono = iconoDefecto;
+    const marcador = L.marker([baliza.latwgS84, baliza.lonwgS84], { customId: `marcador${baliza.codigo}`, icon: icono });
+    marcador.bindPopup(`${baliza.nombre}`);
+    marcador.on("click", (marc) => {
+      AnadirAMapa(marc, baliza);
     });
     aMarcadores.addLayer(marcador);
   });
@@ -43,6 +48,12 @@ function CambiarIconoMarcador(element, icono) {
 }
 
 function AnadirAMapa(clickedElement, oBaliza) {
+  // const marker = aMarcadores.forEach((element) => {
+  //   // Recorremos los Id y se guarda el correspondiente
+  //   if (element.options.customId == `marcador${oBaliza.codigo}`) {
+  //     marker = element;
+  //   }
+  // });
   // Comprueba límite de guardados y que no esté ya seleccionado
   if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
     CambiarIconoMarcador(clickedElement, iconoSeleccionado);
@@ -51,10 +62,13 @@ function AnadirAMapa(clickedElement, oBaliza) {
     );
     ObtenerTiempo(oBaliza.codigo);
     aGuardados.add(oBaliza.codigo);
+    MarcadoresAStorage();
   } else {
     if (aGuardados.has(oBaliza.codigo)) {
-      // Si el código ya está, elimina la baliza
+      // Si el código ya está, elimina la baliza y lo guarda en el local storage
       aGuardados.delete(oBaliza.codigo);
+      MarcadoresAStorage();
+
       $(`#div${oBaliza.codigo}`).remove();
       CambiarIconoMarcador(clickedElement, iconoDefecto);
     } else {
@@ -82,3 +96,4 @@ function AnadirTiempo(oTiempo, oBaliza) {
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;
 window.aGuardados = aGuardados;
+window.aMarcadores = aMarcadores;

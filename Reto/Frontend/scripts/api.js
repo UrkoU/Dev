@@ -26,7 +26,6 @@ function GetBaliza(id = "C080") {
     })
       .done(function (response) {
         aDatos = JSON.parse(response);
-        console.log(aDatos);
       })
       .fail(function (err) {
         console.log("error");

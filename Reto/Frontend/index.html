@@ -50,20 +50,10 @@
             <img id="humedad" class="imgDraggable" src="images/humidity-white.png" alt="Humedad" />
           </div>
           <div class="divImages">
-            <img
-              id="precip"
-              class="imgDraggable imgDraggableSmall"
-              src="images/umbrella-white.png"
-              alt="Precipitaciones"
-            />
+            <img id="precip" class="imgDraggable imgDraggableSmall" src="images/umbrella-white.png" alt="Precipitaciones" />
           </div>
           <div class="divImages">
-            <img
-              id="vel"
-              class="imgDraggable imgDraggableSmall"
-              src="images/wind-white.png"
-              alt="Velocidad del viento"
-            />
+            <img id="vel" class="imgDraggable imgDraggableSmall" src="images/wind-white.png" alt="Velocidad del viento" />
           </div>
         </div>
         <div id="divContainer" class="w-100 h-60"></div>
@@ -74,8 +64,8 @@
     <!-- Map -->
     <div id="mapContainer">
       <div id="mapTop">
-        <!-- <p>Mapa</p> -->
-        <button id="hideButton">-</button>
+        <p>Mapa</p>
+        <!-- <button id="hideButton">-</button> -->
       </div>
       <div id="map"></div>
       <div id="divError" class="w-100 h-100 hidden">ERROR</div>
@@ -87,12 +77,14 @@
           <button class="color-button settings"></button>
         </div>
       </div>
-      <div class="color-button-list hidden" id="divButtonList"></div>
+      <div class="color-button-list hidden" id="divColoresSecundarios"></div>
+      <div class="color-button-list hidden" id="divColoresPrincipales"></div>
     </div>
     <!-- SCRIPTS -->
     <!-- Our scripts -->
     <script src="scripts/main.js"></script>
     <script src="scripts/consts.js"></script>
+    <script src="scripts/storageHelper.js"></script>
     <script src="scripts/api.js"></script>
     <script src="scripts/dad.js"></script>
     <script src="scripts/map.js" type="module"></script>

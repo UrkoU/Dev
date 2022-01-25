@@ -462,6 +462,7 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _leaflet = require("leaflet");
 var _leafletDefault = parcelHelpers.interopDefault(_leaflet);
+// Así se pueden guardar
 let aMarcadores = new _leafletDefault.default.layerGroup();
 // Balizas guardadas
 let aGuardados = new Set();
@@ -487,16 +488,20 @@ function CargarMarcadores() {
     // console.log();
     aMarcadores.clearLayers();
     // Cargar los marcadores de cada baliza
-    aBalizas.forEach((item)=>{
+    aBalizas.forEach((baliza)=>{
+        let icono;
+        if (aGuardados.has(baliza.codigo)) icono = iconoSeleccionado;
+        else icono = iconoDefecto;
         const marcador = _leafletDefault.default.marker([
-            item.latwgS84,
-            item.lonwgS84
+            baliza.latwgS84,
+            baliza.lonwgS84
         ], {
-            icon: iconoDefecto
+            customId: `marcador${baliza.codigo}`,
+            icon: icono
         });
-        marcador.bindPopup(`${item.nombre}`);
-        marcador.on("click", (element)=>{
-            AnadirAMapa(element, item);
+        marcador.bindPopup(`${baliza.nombre}`);
+        marcador.on("click", (marc)=>{
+            AnadirAMapa(marc, baliza);
         });
         aMarcadores.addLayer(marcador);
     });
@@ -509,15 +514,23 @@ function CambiarIconoMarcador(element, icono) {
     element.target.setIcon(icono);
 }
 function AnadirAMapa(clickedElement, oBaliza) {
+    // const marker = aMarcadores.forEach((element) => {
+    //   // Recorremos los Id y se guarda el correspondiente
+    //   if (element.options.customId == `marcador${oBaliza.codigo}`) {
+    //     marker = element;
+    //   }
+    // });
     // Comprueba límite de guardados y que no esté ya seleccionado
     if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
         CambiarIconoMarcador(clickedElement, iconoSeleccionado);
         $("#divContainer").append(`<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`);
         ObtenerTiempo(oBaliza.codigo);
         aGuardados.add(oBaliza.codigo);
+        MarcadoresAStorage();
     } else if (aGuardados.has(oBaliza.codigo)) {
-        // Si el código ya está, elimina la baliza
+        // Si el código ya está, elimina la baliza y lo guarda en el local storage
         aGuardados.delete(oBaliza.codigo);
+        MarcadoresAStorage();
         $(`#div${oBaliza.codigo}`).remove();
         CambiarIconoMarcador(clickedElement, iconoDefecto);
     } else MostrarError(limitError);
@@ -537,6 +550,7 @@ function AnadirTiempo(oTiempo, oBaliza) {
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;
 window.aGuardados = aGuardados;
+window.aMarcadores = aMarcadores;
 
 },{"leaflet":"1Rhcw","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1Rhcw":[function(require,module,exports) {
 module.exports = L;
