@@ -21,13 +21,21 @@
     <div id="divPrincipal" class="w-75 h-85">
       <div class="h-100 w-100">
         <div class="h-15 d-flex align-items-center justify-content-center w-100">
-          <h1 id="tituloPrincipal">Información Metereológica</h1>
+          <h1 id="tituloPrincipal">Información Meteorológica</h1>
         </div>
         <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
-          <div class="divImages"><img id="temp" class="imgDraggable" src="/thermometer-white.8c080ed6.png"></div>
-          <div class="divImages"><img id="humedad" class="imgDraggable" src="/humidity-white.68c58aa3.png"></div>
-          <div class="divImages"><img id="precip" class="imgDraggable imgDraggableSmall" src="/umbrella-white.2ed8c3cd.png"></div>
-          <div class="divImages"><img id="vel" class="imgDraggable imgDraggableSmall" src="/wind-white.b03f484d.png"></div>
+          <div class="divImages">
+            <img id="temp" class="imgDraggable" src="/thermometer-white.8c080ed6.png" alt="Termómetro">
+          </div>
+          <div class="divImages">
+            <img id="humedad" class="imgDraggable" src="/humidity-white.68c58aa3.png" alt="Humedad">
+          </div>
+          <div class="divImages">
+            <img id="precip" class="imgDraggable imgDraggableSmall" src="/umbrella-white.2ed8c3cd.png" alt="Precipitaciones">
+          </div>
+          <div class="divImages">
+            <img id="vel" class="imgDraggable imgDraggableSmall" src="/wind-white.b03f484d.png" alt="Velocidad del viento">
+          </div>
         </div>
         <div id="divContainer" class="w-100 h-60"></div>
       </div>
@@ -43,10 +51,19 @@
       <div id="map"></div>
       <div id="divError" class="w-100 h-100 hidden">ERROR</div>
     </div>
-
+    <!-- Floating buttons to change color -->
+    <div id="show">
+      <div class="d-flex justify-content-center align-items-center color-button-div-parent">
+        <div class="color-button-div d-flex justify-content-center align-items-center" id="divBotonColor">
+          <button class="color-button settings"></button>
+        </div>
+      </div>
+      <div class="color-button-list hidden" id="divButtonList"></div>
+    </div>
     <!-- SCRIPTS -->
     <!-- Our scripts -->
     <script src="/index.bc1e96c0.js"></script>
+    <script src="/index.add6ba19.js"></script>
     <script src="/index.32339e13.js"></script>
     <script src="/index.95395cc1.js"></script>
     <script src="/index.715cc062.js" defer=""></script>

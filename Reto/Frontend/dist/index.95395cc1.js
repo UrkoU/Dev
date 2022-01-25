@@ -19,11 +19,8 @@ $(".imgDraggable").draggable({
 function CrearDroppables() {
     $(".droppableItem").droppable({
         drop: function(event, ui) {
-            // console.log(ui.draggable[0].id);
-            // console.log(event.target.id);
             let destId = event.target.id;
             destId = destId.replace("div", "");
-            // console.log(destId);
             $(`#${ui.draggable[0].id}${destId}`).show();
         }
     });

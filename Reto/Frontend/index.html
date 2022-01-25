@@ -40,13 +40,31 @@
     <div id="divPrincipal" class="w-75 h-85">
       <div class="h-100 w-100">
         <div class="h-15 d-flex align-items-center justify-content-center w-100">
-          <h1 id="tituloPrincipal">Información Metereológica</h1>
+          <h1 id="tituloPrincipal">Información Meteorológica</h1>
         </div>
         <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
-          <div class="divImages"><img id="temp" class="imgDraggable" src="images/thermometer-white.png" /></div>
-          <div class="divImages"><img id="humedad" class="imgDraggable" src="images/humidity-white.png" /></div>
-          <div class="divImages"><img id="precip" class="imgDraggable imgDraggableSmall" src="images/umbrella-white.png" /></div>
-          <div class="divImages"><img id="vel" class="imgDraggable imgDraggableSmall" src="images/wind-white.png" /></div>
+          <div class="divImages">
+            <img id="temp" class="imgDraggable" src="images/thermometer-white.png" alt="Termómetro" />
+          </div>
+          <div class="divImages">
+            <img id="humedad" class="imgDraggable" src="images/humidity-white.png" alt="Humedad" />
+          </div>
+          <div class="divImages">
+            <img
+              id="precip"
+              class="imgDraggable imgDraggableSmall"
+              src="images/umbrella-white.png"
+              alt="Precipitaciones"
+            />
+          </div>
+          <div class="divImages">
+            <img
+              id="vel"
+              class="imgDraggable imgDraggableSmall"
+              src="images/wind-white.png"
+              alt="Velocidad del viento"
+            />
+          </div>
         </div>
         <div id="divContainer" class="w-100 h-60"></div>
       </div>
@@ -62,10 +80,19 @@
       <div id="map"></div>
       <div id="divError" class="w-100 h-100 hidden">ERROR</div>
     </div>
-
+    <!-- Floating buttons to change color -->
+    <div id="show">
+      <div class="d-flex justify-content-center align-items-center color-button-div-parent">
+        <div class="color-button-div d-flex justify-content-center align-items-center" id="divBotonColor">
+          <button class="color-button settings"></button>
+        </div>
+      </div>
+      <div class="color-button-list hidden" id="divButtonList"></div>
+    </div>
     <!-- SCRIPTS -->
     <!-- Our scripts -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/consts.js"></script>
     <script src="scripts/api.js"></script>
     <script src="scripts/dad.js"></script>
     <script src="scripts/map.js" type="module"></script>

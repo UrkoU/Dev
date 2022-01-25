@@ -1,38 +1,46 @@
-$dark-gray: rgb(31, 28, 30)
-$not-so-dark-gray: rgb(79, 72, 72)
+/**
+	* Aunque sea SASS, estoy utilizando las variables de CSS
+	* Sé que no es lo lógico, pero es para poder cambiar sus valores desde JS
+	* Al compilar evidentemente las variables de SASS no pueden cambiar, 
+	* sin embargo las de CSS sí
+	*/
 
-$blue: rgb(151, 210, 247)
-$green: rgb(151, 247, 186)
-$yellow: rgb(247, 247, 151)
-$purple: rgb(223, 151, 247)
-$red: rgb(247, 151, 151)
+:root
+	--dark-gray: rgb(31, 28, 30)
+	--not-so-dark-gray: rgb(79, 72, 72)
 
-$background-color: $not-so-dark-gray
-$background-color-2: $dark-gray
+	--blue: rgb(151, 210, 247)
+	--green: rgb(151, 247, 186)
+	--yellow: rgb(247, 247, 151)
+	--purple: rgb(223, 151, 247)
+	--red: rgb(247, 151, 151)
 
-$text-white: rgb(255, 255, 255)
-$text-black: rgb(0, 0, 0)
-$text-color: $text-white
+	--background-color: var(--not-so-dark-gray)
+	--background-color-2: var(--dark-gray)
 
-$droppable:rgb(66,106,18)
-$not-droppable:rgb(108,10,10)
+	--text-white: rgb(255, 255, 255)
+	--text-black: rgb(0, 0, 0)
+	--text-color: var(--text-white)
 
-$main-color: $green
-$secondary-color: $blue
+	--main-color: var(--green)
+	--secondary-color: var(--blue)
 
-$border-radius-l: 60px
-$border-radius-m: 25px
-$border-radius-s: 15px
+	--droppable:rgb(66,106,18)
+	--not-droppable:rgb(108,10,10)
 
-// Z index
-$front: 100
-$low-front: 50
-$mid-front: 75
-	
+	--border-radius-l: 60px
+	--border-radius-m: 25px
+	--border-radius-s: 15px
 
-body 
+	// Z index
+	--front: 100
+	--low-front: 50
+	--mid-front: 75
+
+body
 	color: white 
-	background-color: $background-color !important
+	background-color: var(--background-color) !important
+	overflow: hidden
 
 .divImages
 	height: 5rem
@@ -42,9 +50,9 @@ body
 	align-items: center
 
 #divPrincipal
-	background-color: $main-color
+	background-color: var(--main-color)
 	padding: 0rem 6rem
-	border-radius: $border-radius-l
+	border-radius: var(--border-radius-l)
 
 	#tituloPrincipal
 		text-align: center
@@ -59,18 +67,18 @@ body
 	left: 0
 	padding: 5px
 	border-bottom: none
-	border-top-right-radius: $border-radius-s
-	background-color: $secondary-color
-	z-index: $mid-front
+	border-top-right-radius: var(--border-radius-s)
+	background-color: var(--secondary-color)
+	z-index: var(--mid-front)
 
 	#mapTop
 		height: 1.5rem
 		width: 40rem
-		background-color: $secondary-color
+		background-color: var(--secondary-color)
 		display: flex
 		justify-content: flex-end
 		cursor: pointer
-		border-radius: $border-radius-s
+		border-radius: var(--border-radius-s)
 
 	#map
 		position: relative 
@@ -87,7 +95,7 @@ body
 		align-items: center
 		height: 20rem
 		width: 40rem
-		border-top-right-radius: $border-radius-s
+		border-top-right-radius: var(--border-radius-s)
 		height: 20rem
 		width: 40rem
 		z-index: 1000
@@ -99,8 +107,8 @@ body
 .imgDraggableList
 	width: 30rem
 	margin: auto
-	background-color: $background-color
-	border-radius: $border-radius-m
+	background-color: var(--background-color)
+	border-radius: var(--border-radius-m)
 
 .imgDraggable
 	height: 5rem
@@ -111,13 +119,64 @@ body
 .infoTiempo
 	margin: 1rem
 	padding: 2rem
-	border-radius: $border-radius-m
-	background-color:  $background-color
-	color: $text-color
+	border-radius: var(--border-radius-m)
+	background-color:  var(--background-color)
+	color: var(--text-color)
 
 .canAccept
-	background-color: $droppable
+	background-color: var(--droppable)
 
 .cannotAccept
-	background-color: $not-droppable
+	background-color: var(--not-droppable)
 
+// SETTINGS DIV
+
+.color-button-div 
+	position: fixed
+	/* width: 60px
+	height: 60px
+	width: 4em
+	height: 4em
+	bottom: 1em
+	right: 1em
+	border-radius: 100px
+	background-color: var(--main-color)
+	box-shadow: 2px 2px 3px black
+
+.color-button-div-parent 
+	position: fixed
+	width: 4em
+	height: 4em
+	bottom: 1em
+	right: 1em
+
+.color-button 
+	background-color: var(--main-color)
+	width: 3.7em
+	height: 3.7em
+	border-radius: 100px
+	border: 3px solid var(--background-color-2)
+	text-align: center
+
+.settings
+	background: url(../images/settings-stopped.gif)
+	background-repeat: no-repeat
+	background-position: center
+	background-size: 3.5em
+
+.color-button-small 
+	width: 3.5em
+	height: 3.5em
+	margin-top: 0.5em
+
+.color-button-list 
+	position: fixed
+	flex-direction: column
+	width: 5em
+	align-items: center
+	bottom: 5em
+	right: 0.5em
+	padding-bottom: 0.5em
+
+.hidden
+	display: none

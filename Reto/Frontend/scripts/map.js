@@ -1,16 +1,11 @@
 import L from "leaflet";
 
-let aMarcadores = [];
+let aMarcadores = new L.layerGroup();
 // Balizas guardadas
 let aGuardados = new Set();
 
 // Máximo de Marcadores guardados
 let iMaxGuardados = 5;
-
-const iconoDefecto = L.icon({
-  iconUrl: "../images/marker-green.png",
-  iconSize: [41, 41],
-});
 
 const iconoSeleccionado = L.icon({
   iconUrl: "../images/marker-selected.png",
@@ -23,25 +18,34 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(mapa);
 
 function CargarMarcadores() {
+  EliminarMarcadores();
+  aMarcadores = new L.LayerGroup();
+  // console.log();
+  aMarcadores.clearLayers();
   // Cargar los marcadores de cada baliza
   aBalizas.forEach((item) => {
-    const marcador = L.marker([item.latwgS84, item.lonwgS84], { icon: iconoDefecto }).addTo(mapa);
+    const marcador = L.marker([item.latwgS84, item.lonwgS84], { icon: iconoDefecto });
     marcador.bindPopup(`${item.nombre}`);
-    marcador.on("click", (e) => {
-      // CambiarIcono(e, item);
-      AnadirAMapa(e, item);
+    marcador.on("click", (element) => {
+      AnadirAMapa(element, item);
     });
-    aMarcadores.push(marcador);
+    aMarcadores.addLayer(marcador);
   });
+  mapa.addLayer(aMarcadores);
 }
 
-function CambiarIcono(element, icono) {
+function EliminarMarcadores() {
+  mapa.removeLayer(aMarcadores);
+}
+
+function CambiarIconoMarcador(element, icono) {
   element.target.setIcon(icono);
 }
 
 function AnadirAMapa(clickedElement, oBaliza) {
+  // Comprueba límite de guardados y que no esté ya seleccionado
   if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
-    CambiarIcono(clickedElement, iconoSeleccionado);
+    CambiarIconoMarcador(clickedElement, iconoSeleccionado);
     $("#divContainer").append(
       `<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`
     );
@@ -49,9 +53,10 @@ function AnadirAMapa(clickedElement, oBaliza) {
     aGuardados.add(oBaliza.codigo);
   } else {
     if (aGuardados.has(oBaliza.codigo)) {
+      // Si el código ya está, elimina la baliza
       aGuardados.delete(oBaliza.codigo);
       $(`#div${oBaliza.codigo}`).remove();
-      CambiarIcono(clickedElement, iconoDefecto);
+      CambiarIconoMarcador(clickedElement, iconoDefecto);
     } else {
       MostrarError(limitError);
     }
@@ -59,6 +64,7 @@ function AnadirAMapa(clickedElement, oBaliza) {
 }
 
 function AnadirTiempo(oTiempo, oBaliza) {
+  // Añade los datos de tiempo, aunque ocultos todos menos la temperatura y humedad
   $(`#div${oBaliza.codigo}`).append(
     `<div id="info${oTiempo.codigoBaliza}" >
         <div id="temp${oTiempo.codigoBaliza}">${oTiempo.temperatura} º</div>
