@@ -51,6 +51,8 @@ function CargarLocalStorage() {
   sColorSecundario = localStorage.getItem("sColorSecundario") || "blue";
 
   aGuardados = ObtenerMarcadores();
+  console.log("CargarLocalStorage");
+  console.log(aGuardados);
 }
 
 function CargarColorInicial() {

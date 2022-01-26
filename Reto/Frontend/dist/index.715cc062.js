@@ -526,11 +526,12 @@ function AnadirAMapa(clickedElement, oBaliza) {
         $("#divContainer").append(`<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`);
         ObtenerTiempo(oBaliza.codigo);
         aGuardados.add(oBaliza.codigo);
-        MarcadoresAStorage();
+        console.log(aGuardados);
+        GuardarMarcadores(aGuardados);
     } else if (aGuardados.has(oBaliza.codigo)) {
         // Si el código ya está, elimina la baliza y lo guarda en el local storage
         aGuardados.delete(oBaliza.codigo);
-        MarcadoresAStorage();
+        if (aGuardados.size > 0) GuardarMarcadores();
         $(`#div${oBaliza.codigo}`).remove();
         CambiarIconoMarcador(clickedElement, iconoDefecto);
     } else MostrarError(limitError);

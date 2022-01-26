@@ -55,6 +55,7 @@ function AnadirAMapa(clickedElement, oBaliza) {
   //   }
   // });
   // Comprueba límite de guardados y que no esté ya seleccionado
+
   if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
     CambiarIconoMarcador(clickedElement, iconoSeleccionado);
     $("#divContainer").append(
@@ -62,12 +63,13 @@ function AnadirAMapa(clickedElement, oBaliza) {
     );
     ObtenerTiempo(oBaliza.codigo);
     aGuardados.add(oBaliza.codigo);
-    MarcadoresAStorage();
+    console.log(aGuardados);
+    GuardarMarcadores(aGuardados);
   } else {
     if (aGuardados.has(oBaliza.codigo)) {
       // Si el código ya está, elimina la baliza y lo guarda en el local storage
       aGuardados.delete(oBaliza.codigo);
-      MarcadoresAStorage();
+      if (aGuardados.size > 0) GuardarMarcadores();
 
       $(`#div${oBaliza.codigo}`).remove();
       CambiarIconoMarcador(clickedElement, iconoDefecto);
