@@ -3,7 +3,7 @@ import L from "leaflet";
 // Así se pueden guardar
 let aMarcadores = new L.layerGroup();
 // Balizas guardadas
-let aGuardados = new Set();
+// let aGuardados = new Set();
 
 // Máximo de Marcadores guardados
 let iMaxGuardados = 5;
@@ -24,6 +24,8 @@ function CargarMarcadores() {
   // console.log();
   aMarcadores.clearLayers();
   // Cargar los marcadores de cada baliza
+  console.log("aGuardados");
+  console.log(aGuardados);
   aBalizas.forEach((baliza) => {
     let icono;
     if (aGuardados.has(baliza.codigo)) {
@@ -58,19 +60,15 @@ function AnadirAMapa(clickedElement, oBaliza) {
 
   if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
     CambiarIconoMarcador(clickedElement, iconoSeleccionado);
-    $("#divContainer").append(
-      `<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`
-    );
+
     ObtenerTiempo(oBaliza.codigo);
     aGuardados.add(oBaliza.codigo);
-    console.log(aGuardados);
     GuardarMarcadores(aGuardados);
   } else {
     if (aGuardados.has(oBaliza.codigo)) {
       // Si el código ya está, elimina la baliza y lo guarda en el local storage
       aGuardados.delete(oBaliza.codigo);
-      if (aGuardados.size > 0) GuardarMarcadores();
-
+      GuardarMarcadores(aGuardados);
       $(`#div${oBaliza.codigo}`).remove();
       CambiarIconoMarcador(clickedElement, iconoDefecto);
     } else {
@@ -80,6 +78,9 @@ function AnadirAMapa(clickedElement, oBaliza) {
 }
 
 function AnadirTiempo(oTiempo, oBaliza) {
+  $("#divContainer").append(
+    `<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`
+  );
   // Añade los datos de tiempo, aunque ocultos todos menos la temperatura y humedad
   $(`#div${oBaliza.codigo}`).append(
     `<div id="info${oTiempo.codigoBaliza}" >
@@ -97,5 +98,4 @@ function AnadirTiempo(oTiempo, oBaliza) {
 
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;
-window.aGuardados = aGuardados;
 window.aMarcadores = aMarcadores;

@@ -6,6 +6,8 @@ let sColorSecundario = "";
 
 let iconoDefecto;
 
+let aGuardados = new Set();
+
 $("document").ready(function () {
   CargarLocalStorage();
   CargarColorInicial();
@@ -19,6 +21,7 @@ function ObtenerBalizas() {
   promise.then(function (data) {
     aBalizas = JSON.parse(data);
     CargarMarcadores();
+    CargarCartas(aGuardados);
   });
 }
 
@@ -36,6 +39,7 @@ $("#mapTop").click(() => {
 });
 
 let tTimeout;
+
 function MostrarError(error = limitError) {
   clearTimeout(tTimeout);
   $("#divError").text(error);
@@ -44,6 +48,13 @@ function MostrarError(error = limitError) {
   tTimeout = setTimeout(() => {
     $("#divError").addClass("hidden");
   }, 2000);
+}
+
+function CargarCartas(balizas) {
+  console.log();
+  balizas.forEach((element) => {
+    ObtenerTiempo(element);
+  });
 }
 
 function CargarLocalStorage() {
@@ -93,8 +104,6 @@ function CargarBotonesColor() {
   let divColoresPrincipales = document.getElementById("divColoresPrincipales");
   let divColoresSecundarios = document.getElementById("divColoresSecundarios");
 
-  divColoresPrincipales.innerHTML = "";
-
   sColorPrincipal = localStorage.getItem("sColorPrimario");
   sColorSecundario = localStorage.getItem("sColorSecundario");
   aColores.forEach((oColor) => {
@@ -121,12 +130,8 @@ $(".settings").mouseleave(function () {
 
 // Eventos botón flotante
 $("#show").on("mouseover", function () {
-  $("#divColoresPrincipales").removeClass("hidden");
-  $("#divColoresPrincipales").css("display", "flex");
-  $("#divColoresSecundarios").removeClass("hidden");
-  $("#divColoresSecundarios").css("display", "flex");
+  $("#colores").removeClass("hidden");
 });
 $("#show").on("mouseout", function () {
-  $("#divColoresPrincipales").addClass("hidden");
-  $("#divColoresSecundarios").addClass("hidden");
+  $("#colores").addClass("hidden");
 });

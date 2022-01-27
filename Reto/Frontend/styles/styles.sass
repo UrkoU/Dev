@@ -133,7 +133,10 @@ body
 
 // SETTINGS DIV
 
-.color-button-div 
+#show
+	// background-color: red 
+
+.color-button-div 	
 	position: fixed
 	/* width: 60px
 	height: 60px
@@ -172,13 +175,34 @@ body
 	margin-top: 0.5em
 
 .color-button-list 
+	padding: 0em 1em
+	align-items: center
+	background-color: var(--main-color)
+	border: 1em solid var(--background-color-2)
 	position: fixed
-	flex-direction: column
-	width: 5em
+	flex-direction: row
+	align-items: center
+	bottom: 10em
+	right: 1em
+	padding-bottom: 0.5em
+	border-radius: 25px
+
+.color-button-list-2
+	padding: 0em 1em
+	align-items: center
+	background-color: var(--secondary-color)
+	border: 1em solid var(--background-color-2)
+	position: fixed
+	flex-direction: row
 	align-items: center
 	bottom: 5em
-	right: 0.5em
+	right: 1em
 	padding-bottom: 0.5em
+	border-radius: 25px
+
+.color-title
+	// transform: rotate(-90deg)
+	width: 20px
 
 .hidden
 	display: none

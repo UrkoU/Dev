@@ -1,0 +1,46 @@
+# === Comandos de paquetes necesarios
+
+dotnet restore #instala los paquetes
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 5
+dotnet add package Microsoft.EntityFrameworkCore.Design -v 5
+dotnet new tool-manifest
+dotnet tool install dotnet-ef --local --version 5
+
+# === Crear y actualizar la base de datos
+
+dotnet ef migrations add {MigracionNombre}
+dotnet ef database update
+
+# === Linq Collectiones
+Where
+OrderBy, OrderByDescending
+Select => un dato, o un nuevo tipo
+        Select(a=>a.Nombre)
+        SelectMany(a => new {
+                Nombre = a.Nombre,
+                Rico = a.Efectivo >= 150,
+            })
+SelectMany => Indicamos una propiedad de navegacion, y luego lo mismo que Select
+        SelectMany(a => a.Matriculas)
+        SelectMany(al => al.Matriculas, (a, m) => new {
+                mat = m.MatriculaId,
+                rico = a.Efectivo >= 150,
+                pelo = a.Pelo,
+                creditos = m.Modulo.Créditos
+            })
+GroupBy => Indicamos los campos por los que agrupar
+           Y Luego hemos de hacer una Select para los agregados
+            GroupBy(a => a.pelo)
+            .Select(g => new
+                        {
+                            pelo = g.Key,
+                            total = g.Count()
+                        })
+            GroupBy(a => new { a.rico, a.pelo })
+                        .Select(g => new
+                        {
+                            rico = g.Key.rico,
+                            pelo = g.Key.pelo,
+                            total = g.Sum(a => a.creditos)
+                        })
+

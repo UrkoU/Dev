@@ -1,0 +1,8 @@
+# Estos comando NO LOS NECESITAS ya que se te proporciona el patrón de controlodar.
+
+dotnet aspnet-codegenerator controller -name CarteraController -async -api -m Cartera -dc CrytoContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name QueryController -async -api  -outDir Controllers -f
+
+Es posible que necesites
+[System.Text.Json.Serialization.JsonIgnore]
+En la propiedades de navegacion si no deseas que se muestre en la response
