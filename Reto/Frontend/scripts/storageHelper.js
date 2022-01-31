@@ -18,5 +18,5 @@ function ObtenerMarcadores() {
       setGuardados.add(element);
     });
     return setGuardados;
-  } else return null;
+  } else return new Set();
 }

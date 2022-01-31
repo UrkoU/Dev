@@ -1,10 +1,10 @@
-const url = "https://localhost:5001/api/";
+const url = "https://localhost:5001/api/Meteorologia/";
 
 function GetBalizas() {
   return $.ajax({
     type: "GET",
     dataType: "html",
-    url: url + "BalizaItem",
+    url: url,
     headers: {
       accept: "application/json",
     },
@@ -13,33 +13,11 @@ function GetBalizas() {
   });
 }
 
-function GetBaliza(id = "C080") {
-  let aDatos;
-  let Balizas = Promise.resolve(
-    $.ajax({
-      type: "GET",
-      dataType: "html",
-      url: url + "BalizaItem/" + id,
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .done(function (response) {
-        aDatos = JSON.parse(response);
-      })
-      .fail(function (err) {
-        console.log("error");
-        console.log(err);
-      })
-  );
-  return Balizas;
-}
-
 function GetTiempo(id = "C080") {
   return $.ajax({
     type: "GET",
     dataType: "html",
-    url: url + "TiempoItems/" + id,
+    url: url + id,
     headers: {
       accept: "application/json",
     },

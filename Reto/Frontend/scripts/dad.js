@@ -1,6 +1,7 @@
 // Crea las imágenes draggables
 $(".imgDraggable").draggable({
   revert: true,
+  clone: true,
   revertDuration: 700,
   start: function (ui, event) {
     // Recorre los divs y añade color rojo/verde según acepten

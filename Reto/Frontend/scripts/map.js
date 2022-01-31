@@ -31,7 +31,7 @@ function CargarMarcadores() {
     if (aGuardados.has(baliza.codigo)) {
       icono = iconoSeleccionado;
     } else icono = iconoDefecto;
-    const marcador = L.marker([baliza.latwgS84, baliza.lonwgS84], { customId: `marcador${baliza.codigo}`, icon: icono });
+    const marcador = L.marker([baliza.latitud, baliza.longitud], { customId: `marcador${baliza.codigo}`, icon: icono });
     marcador.bindPopup(`${baliza.nombre}`);
     marcador.on("click", (marc) => {
       AnadirAMapa(marc, baliza);
@@ -79,19 +79,19 @@ function AnadirAMapa(clickedElement, oBaliza) {
 
 function AnadirTiempo(oTiempo, oBaliza) {
   $("#divContainer").append(
-    `<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4>${oBaliza.municipio}</div>`
+    `<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4></div>`
   );
   // Añade los datos de tiempo, aunque ocultos todos menos la temperatura y humedad
   $(`#div${oBaliza.codigo}`).append(
-    `<div id="info${oTiempo.codigoBaliza}" >
-        <div id="temp${oTiempo.codigoBaliza}">${oTiempo.temperatura} º</div>
-        <div id="humedad${oTiempo.codigoBaliza}">${oTiempo.humedad} %</div>
-        <div id="precip${oTiempo.codigoBaliza}">${oTiempo.precipitacionAcumulada} l/m2</div>
-        <div id="vel${oTiempo.codigoBaliza}">${oTiempo.velocidadViento} km/h</div>
+    `<div id="info${oBaliza.codigo}" >
+        <div id="temp${oBaliza.codigo}">${oTiempo.temperatura} º</div>
+        <div id="humedad${oBaliza.codigo}">${oTiempo.humedad} %</div>
+        <div id="precip${oBaliza.codigo}">${oTiempo.precipitacionAcumulada} l/m2</div>
+        <div id="vel${oBaliza.codigo}">${oTiempo.velocidadViento} km/h</div>
       </div>`
   );
-  $(`#precip${oTiempo.codigoBaliza}`).hide();
-  $(`#vel${oTiempo.codigoBaliza}`).hide();
+  $(`#precip${oBaliza.codigo}`).hide();
+  $(`#vel${oBaliza.codigo}`).hide();
 
   CrearDroppables();
 }
