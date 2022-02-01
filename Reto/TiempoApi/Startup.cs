@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using TiempoApi.Settings;
+using TiempoApi.Middleware;
+using TiempoApi.Auth;
 
 namespace TiempoApi
 {
@@ -20,11 +23,9 @@ namespace TiempoApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            connString = "Server=(localdb)\\mssqllocaldb;Database=TiempoUrko;MultipleActiveResultSets=true";
-            /*
+            var database = "DB13Urko";
+            connString = $"Server=185.60.40.210\\SQLEXPRESS,58015;Database={database};User Id=sa;Password=Pa88word;";
 
-            Server=185.60.40.210\\SQLEXPRESS,58015;Database={BDAlumno};User Id=sa;Password=Pa88word;
-            */
         }
 
         public IConfiguration Configuration { get; }
@@ -37,6 +38,12 @@ namespace TiempoApi
             services.AddCors();
             services.AddControllers();
 
+            // configure strongly typed settings object
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            // configure DI for application services
+            services.AddScoped<IAuthService, AuthService>();
+
             services.AddDbContext<DatosContext>(opt =>
 
                                                 opt.UseSqlServer(connString));
@@ -44,6 +51,32 @@ namespace TiempoApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TiempoApi", Version = "v1" });
+
+                // Manejo de Authorize en swagger
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] { }
+                }
+                });
+                // Fin authorize
+
             });
         }
 
@@ -51,6 +84,7 @@ namespace TiempoApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
+            app.UseRouting();
             app.UseCors(builder => builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
@@ -64,11 +98,13 @@ namespace TiempoApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TiempoApi v1"));
             }
 
+
             app.UseHttpsRedirection();
 
-            app.UseRouting();
-
             app.UseAuthorization();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

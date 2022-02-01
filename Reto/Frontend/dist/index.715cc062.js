@@ -475,13 +475,16 @@ const iconoSeleccionado = _leafletDefault.default.icon({
         41
     ]
 });
-const mapa = _leafletDefault.default.map("map").setView([
-    42.983333333333,
-    -2.6166666666667
-], 8.4);
-_leafletDefault.default.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(mapa);
+var mapa;
+function CargarMapa() {
+    mapa = _leafletDefault.default.map("map").setView([
+        42.983333333333,
+        -2.6166666666667
+    ], 8.4);
+    _leafletDefault.default.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mapa);
+}
 function CargarMarcadores() {
     EliminarMarcadores();
     aMarcadores = new _leafletDefault.default.LayerGroup();
@@ -549,6 +552,7 @@ function AnadirTiempo(oTiempo, oBaliza) {
     $(`#vel${oBaliza.codigo}`).hide();
     CrearDroppables();
 }
+window.CargarMapa = CargarMapa;
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;
 window.aMarcadores = aMarcadores;

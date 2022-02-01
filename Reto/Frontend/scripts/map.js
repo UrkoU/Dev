@@ -13,10 +13,14 @@ const iconoSeleccionado = L.icon({
   iconSize: [41, 41],
 });
 
-const mapa = L.map("map").setView([42.983333333333, -2.6166666666667], 8.4);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(mapa);
+var mapa;
+
+function CargarMapa() {
+  mapa = L.map("map").setView([42.983333333333, -2.6166666666667], 8.4);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(mapa);
+}
 
 function CargarMarcadores() {
   EliminarMarcadores();
@@ -96,6 +100,7 @@ function AnadirTiempo(oTiempo, oBaliza) {
   CrearDroppables();
 }
 
+window.CargarMapa = CargarMapa;
 window.CargarMarcadores = CargarMarcadores;
 window.AnadirTiempo = AnadirTiempo;
 window.aMarcadores = aMarcadores;

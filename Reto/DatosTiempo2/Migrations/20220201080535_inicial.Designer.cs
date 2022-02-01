@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatosTiempo.Migrations
 {
     [DbContext(typeof(DatosContext))]
-    [Migration("20220131082133_inicial")]
+    [Migration("20220201080535_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

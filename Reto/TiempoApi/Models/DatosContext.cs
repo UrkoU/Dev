@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
         {
         }
 
-        public DbSet<BalizaItem> BalizaItem { get; set; }
-        public DbSet<TiempoItem> TiempoItem { get; set; }
+        public DbSet<Meteorologia> MeteorologiaItem { get; set; }
 
     }

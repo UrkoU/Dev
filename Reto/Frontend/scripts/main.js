@@ -4,6 +4,8 @@ let oTiempo = {};
 let sColorPrincipal = "";
 let sColorSecundario = "";
 
+let bLogueado = "";
+
 let iconoDefecto;
 
 let aGuardados = new Set();
@@ -11,9 +13,20 @@ let aGuardados = new Set();
 $("document").ready(function () {
   CargarLocalStorage();
   CargarColorInicial();
-  CargarBotonesColor();
+  if ((bLogueado == true || bLogueado == "true") && window.location.href.indexOf("index.html") == -1) {
+    console.log(window.location.href);
+    window.location = "index.html";
+    console.log("HERE" + bLogueado);
+    CargarMapa();
+    CargarBotonesColor();
 
-  ObtenerBalizas();
+    ObtenerBalizas();
+  } else {
+    if (window.location.href.indexOf("login.html") == -1) {
+      console.log("LOGIN" + bLogueado);
+      window.location = "login.html";
+    }
+  }
 });
 
 function ObtenerBalizas() {
@@ -61,6 +74,8 @@ function CargarLocalStorage() {
   sColorPrincipal = localStorage.getItem("sColorPrimario") || "green";
   sColorSecundario = localStorage.getItem("sColorSecundario") || "blue";
 
+  bLogueado = localStorage.getItem("logueado") || false;
+
   aGuardados = ObtenerMarcadores();
   console.log("CargarLocalStorage");
   console.log(aGuardados);
@@ -68,8 +83,6 @@ function CargarLocalStorage() {
 
 function CargarColorInicial() {
   // Carga el color inicial según el local storage
-  sColorPrincipal = localStorage.getItem("sColorPrimario") || "green";
-  sColorSecundario = localStorage.getItem("sColorSecundario") || "blue";
   let sValor, sValorSecundario;
   aColores.forEach((element) => {
     if (element.nombre == sColorPrincipal) {

@@ -13,8 +13,9 @@ public class DatosContext : DbContext
 
     public DatosContext()
     {
-        var database = "UrkoDB";
-        connString = $"Server=(localdb)\\mssqllocaldb;Database={database};MultipleActiveResultSets=true";
+        var database = "DB13Urko";
+        connString = $"Server=185.60.40.210\\SQLEXPRESS,58015;Database={database};User Id=sa;Password=Pa88word;";
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
