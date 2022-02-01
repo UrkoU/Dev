@@ -29,13 +29,36 @@
   --low-front: 50;
   --mid-front: 75;
 }
-body {
-  color: white;
+#divBlur {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  z-index: var(--mid-front);
+  backdrop-filter: blur(1px);
+}
+#divLoginContainer {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 #divLogin {
-  border-radius: 25px;
-  background-color: var(--main-color);
+  display: none;
   padding: 1em;
+  border-radius: 25px;
+  border: 1px solid black;
+  background-color: var(--main-color);
 }
 #divButton {
   margin-bottom: 0;
@@ -98,7 +121,7 @@ body {
   border-bottom: none;
   border-top-right-radius: var(--border-radius-s);
   background-color: var(--secondary-color);
-  z-index: var(--mid-front);
+  z-index: var(--low-front);
 }
 #mapContainer #mapTop {
   height: 1.5rem;

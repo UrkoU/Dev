@@ -6,6 +6,8 @@ let sColorSecundario = "";
 
 let bLogueado = "";
 
+let tTimeout;
+
 let iconoDefecto;
 
 let aGuardados = new Set();
@@ -13,19 +15,15 @@ let aGuardados = new Set();
 $("document").ready(function () {
   CargarLocalStorage();
   CargarColorInicial();
-  if ((bLogueado == true || bLogueado == "true") && window.location.href.indexOf("index.html") == -1) {
-    console.log(window.location.href);
-    window.location = "index.html";
+  CargarBotonesColor();
+  if (bLogueado == true || bLogueado == "true") {
     console.log("HERE" + bLogueado);
     CargarMapa();
-    CargarBotonesColor();
 
     ObtenerBalizas();
   } else {
-    if (window.location.href.indexOf("login.html") == -1) {
-      console.log("LOGIN" + bLogueado);
-      window.location = "login.html";
-    }
+    console.log("Not logged");
+    MostrarLogin();
   }
 });
 
@@ -43,6 +41,7 @@ function ObtenerTiempo(id = "C080") {
   promise.then(function (data) {
     oTiempo = JSON.parse(data);
     let oBaliza = aBalizas.find((element) => element.codigo == id);
+    console.log("OBALIZA" + oBaliza);
     AnadirTiempo(oTiempo, oBaliza);
   });
 }
@@ -51,7 +50,17 @@ $("#mapTop").click(() => {
   $("#map").toggle("fade", 100);
 });
 
-let tTimeout;
+function MostrarLogin() {
+  $("#divBlur").css("display", "flex");
+  $("#divLoginContainer").css("display", "flex");
+  $("#divLogin").css("display", "flex");
+}
+
+function OcultarLogin() {
+  $("#divBlur").css("display", "none");
+  $("#divLoginContainer").css("display", "none");
+  $("#divLogin").css("display", "none");
+}
 
 function MostrarError(error = limitError) {
   clearTimeout(tTimeout);
@@ -64,21 +73,11 @@ function MostrarError(error = limitError) {
 }
 
 function CargarCartas(balizas) {
-  console.log();
+  // if (oGuardados[test].length >= 0)
   balizas.forEach((element) => {
+    console.log(element);
     ObtenerTiempo(element);
   });
-}
-
-function CargarLocalStorage() {
-  sColorPrincipal = localStorage.getItem("sColorPrimario") || "green";
-  sColorSecundario = localStorage.getItem("sColorSecundario") || "blue";
-
-  bLogueado = localStorage.getItem("logueado") || false;
-
-  aGuardados = ObtenerMarcadores();
-  console.log("CargarLocalStorage");
-  console.log(aGuardados);
 }
 
 function CargarColorInicial() {

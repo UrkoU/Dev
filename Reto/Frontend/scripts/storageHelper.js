@@ -1,5 +1,21 @@
+function CargarLocalStorage() {
+  sColorPrincipal = localStorage.getItem("sColorPrimario") || "green";
+  sColorSecundario = localStorage.getItem("sColorSecundario") || "blue";
+
+  bLogueado = localStorage.getItem("logueado") || false;
+
+  usuario = localStorage.getItem("usuario");
+
+  sToken = localStorage.getItem("sToken");
+
+  aGuardados = ObtenerMarcadores();
+  // console.log("CargarLocalStorage");
+  // console.log(aGuardados);
+}
+
 function GuardarMarcadores(marcadores) {
   console.log(marcadores);
+  // let arrayGuardados = Array.from(marcadores);
   let arrayGuardados = Array.from(marcadores);
   localStorage.setItem("aGuardados", JSON.stringify(arrayGuardados));
 }

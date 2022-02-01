@@ -462,12 +462,11 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _leaflet = require("leaflet");
 var _leafletDefault = parcelHelpers.interopDefault(_leaflet);
-// Así se pueden guardar
+// Así se pueden guardar los marcadores para cambiar el color
 let aMarcadores = new _leafletDefault.default.layerGroup();
-// Balizas guardadas
-// let aGuardados = new Set();
 // Máximo de Marcadores guardados
 let iMaxGuardados = 5;
+let mapa;
 const iconoSeleccionado = _leafletDefault.default.icon({
     iconUrl: "../images/marker-selected.png",
     iconSize: [
@@ -475,7 +474,6 @@ const iconoSeleccionado = _leafletDefault.default.icon({
         41
     ]
 });
-var mapa;
 function CargarMapa() {
     mapa = _leafletDefault.default.map("map").setView([
         42.983333333333,
@@ -519,12 +517,6 @@ function CambiarIconoMarcador(element, icono) {
     element.target.setIcon(icono);
 }
 function AnadirAMapa(clickedElement, oBaliza) {
-    // const marker = aMarcadores.forEach((element) => {
-    //   // Recorremos los Id y se guarda el correspondiente
-    //   if (element.options.customId == `marcador${oBaliza.codigo}`) {
-    //     marker = element;
-    //   }
-    // });
     // Comprueba límite de guardados y que no esté ya seleccionado
     if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
         CambiarIconoMarcador(clickedElement, iconoSeleccionado);
@@ -543,14 +535,22 @@ function AnadirTiempo(oTiempo, oBaliza) {
     $("#divContainer").append(`<div id="div${oBaliza.codigo}" class="infoTiempo mw-50 droppableItem"><h4 id="nombre${oBaliza.codigo}">${oBaliza.nombre}</h4></div>`);
     // Añade los datos de tiempo, aunque ocultos todos menos la temperatura y humedad
     $(`#div${oBaliza.codigo}`).append(`<div id="info${oBaliza.codigo}" >
-        <div id="temp${oBaliza.codigo}">${oTiempo.temperatura} º</div>
+        <div id="temperatura${oBaliza.codigo}">${oTiempo.temperatura} º</div>
         <div id="humedad${oBaliza.codigo}">${oTiempo.humedad} %</div>
-        <div id="precip${oBaliza.codigo}">${oTiempo.precipitacionAcumulada} l/m2</div>
-        <div id="vel${oBaliza.codigo}">${oTiempo.velocidadViento} km/h</div>
+        <div id="presionAtmosferica${oBaliza.codigo}">${oTiempo.presionAtmosferica} l/m2</div>
+        <div id="velocidadViento${oBaliza.codigo}">${oTiempo.velocidadViento} km/h</div>
       </div>`);
-    $(`#precip${oBaliza.codigo}`).hide();
-    $(`#vel${oBaliza.codigo}`).hide();
+    // for (prop in aGuardados[usuario]) {
+    //   console.log("PROP" + prop);
+    //   if (!aGuardados[usuario][prop]) {
+    //     $(`#${prop}${oBaliza.codigo}`).hide();
+    //   }
+    // }
     CrearDroppables();
+}
+function bBalizaExiste(codigoBaliza) {
+    return aGuardados[usuario].filter((e)=>e.baliza === codigoBaliza
+    ).length > 0;
 }
 window.CargarMapa = CargarMapa;
 window.CargarMarcadores = CargarMarcadores;

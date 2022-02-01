@@ -34,8 +34,30 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!-- CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
   </head>
   <body class="w-100 h-100 d-flex justify-content-center align-items-center">
+    <div id="divBlur"></div>
+    <div id="divLoginContainer" class="w-100 h-100 justify-content-center align-items-center">
+      <div id="divLogin">
+        <form>
+          <div id="divUser" class="form-group">
+            <label for="inputUser" class="label" placeholder="Escriba el usuario">Usuario</label>
+            <input id="inputUser" type="user" class="form-control input" />
+          </div>
+          <div id="divPass" class="form-group">
+            <label for="inputPass" class="label" placeholder="Escriba la contraseña">Contraseña</label>
+            <input id="inputPass" type="password" class="form-control input" />
+          </div>
+          <div id="divButton" class="form-group d-flex justify-content-end">
+            <button id="btnLogin" type="button" class="btn btn-primary boton-login text-black-50 fw-bold">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div id="divPrincipal" class="w-75 h-85">
       <div class="h-100 w-100">
         <div class="h-15 d-flex align-items-center justify-content-center w-100">
@@ -43,16 +65,26 @@
         </div>
         <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
           <div class="divImages">
-            <img id="temp" class="imgDraggable" src="images/thermometer-white.png" alt="Termómetro" />
+            <img id="temperatura" class="imgDraggable" src="images/thermometer-white.png" alt="Termómetro" />
           </div>
           <div class="divImages">
             <img id="humedad" class="imgDraggable" src="images/humidity-white.png" alt="Humedad" />
           </div>
           <div class="divImages">
-            <img id="precip" class="imgDraggable imgDraggableSmall" src="images/umbrella-white.png" alt="Precipitaciones" />
+            <img
+              id="presionAtmosferica"
+              class="imgDraggable imgDraggableSmall"
+              src="images/umbrella-white.png"
+              alt="Precipitaciones"
+            />
           </div>
           <div class="divImages">
-            <img id="vel" class="imgDraggable imgDraggableSmall" src="images/wind-white.png" alt="Velocidad del viento" />
+            <img
+              id="velocidadViento"
+              class="imgDraggable imgDraggableSmall"
+              src="images/wind-white.png"
+              alt="Velocidad del viento"
+            />
           </div>
         </div>
         <div id="divContainer" class="w-100 h-60"></div>
@@ -77,7 +109,9 @@
         </div>
       </div>
       <div id="colores" class="d-flex flex-column hidden">
-        <div class="color-button-list-2" id="divColoresSecundarios"><span class="color-title">Color secundario</span></div>
+        <div class="color-button-list-2" id="divColoresSecundarios">
+          <span class="color-title">Color secundario</span>
+        </div>
         <div class="color-button-list" id="divColoresPrincipales"><span class="color-title">Color principal</span></div>
       </div>
     </div>

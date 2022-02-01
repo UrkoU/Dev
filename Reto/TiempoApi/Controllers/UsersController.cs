@@ -28,7 +28,7 @@ namespace TiempoApi.Controllers
             return Ok(response);
         }
 
-        [Authorize] //<-- Error Atrrrributrrro
+        [Authorize]
         [HttpGet]
         public IActionResult GetAll()
         {

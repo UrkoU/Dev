@@ -20,6 +20,7 @@ namespace TiempoApi.Controllers
         }
 
         // GET: api/Meteorologia
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Meteorologia>>> GetMeteorologiaItem()
         {
@@ -27,6 +28,7 @@ namespace TiempoApi.Controllers
         }
 
         // GET: api/Meteorologia/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Meteorologia>> GetMeteorologia(string id)
         {
