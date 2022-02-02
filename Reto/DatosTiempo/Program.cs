@@ -26,7 +26,7 @@ namespace DatosTiempo
         private async static Task Actualizar()
         {
             var client = new HttpClient();
-            var ciudades = GetMeteorologia();
+            var ciudades = GetCiudades();
             var ciudadesParseadas = DeserializarArchivoJson(ciudades);
             var i = 0;
 
@@ -187,7 +187,7 @@ namespace DatosTiempo
 
         }
 
-        public static string GetMeteorologia()
+        public static string GetCiudades()
         {
             string meteorologias;
             using (var reader = new StreamReader(_path))

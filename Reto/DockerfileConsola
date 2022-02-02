@@ -1,0 +1,12 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /source
+COPY DatosTiempo/. .
+RUN dotnet restore
+RUN dotnet publish -c Release -o /App --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
+WORKDIR /App
+COPY --from=build /App ./
+# ÑAPA
+COPY --from=build /source/ciudades.json ./
+ENTRYPOINT ["dotnet", "DatosTiempo.dll"]

@@ -1,4 +1,4 @@
-const url = "http://10.10.17.164:5000/";
+const url = "http://localhost/";
 let sToken = "";
 
 function GetBalizas() {

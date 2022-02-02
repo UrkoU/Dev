@@ -7310,19 +7310,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\2daw3\\.nuget\\packages\\": {}
+    "C:\\Users\\Dev\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2daw3\\Dev\\Reto\\TiempoApi\\TiempoApi.csproj",
+      "projectUniqueName": "C:\\Users\\Dev\\Desktop\\DAW\\Dev\\Reto\\TiempoApi\\TiempoApi.csproj",
       "projectName": "TiempoApi",
-      "projectPath": "C:\\Users\\2daw3\\Dev\\Reto\\TiempoApi\\TiempoApi.csproj",
-      "packagesPath": "C:\\Users\\2daw3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2daw3\\Dev\\Reto\\TiempoApi\\obj\\",
+      "projectPath": "C:\\Users\\Dev\\Desktop\\DAW\\Dev\\Reto\\TiempoApi\\TiempoApi.csproj",
+      "packagesPath": "C:\\Users\\Dev\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dev\\Desktop\\DAW\\Dev\\Reto\\TiempoApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\2daw3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7381,6 +7381,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.12, 5.0.12]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7389,7 +7395,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
