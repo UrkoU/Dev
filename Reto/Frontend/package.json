@@ -4,9 +4,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "parcel build index.html --public-url /2daw3/urkou/Public/diw-ejLeaflet",
     "prebuild": "(test -d dist || mkdir dist)  && cp -rv images dist",
     "prestart": "yarn prebuild",
+    "build": "parcel build *.html",
     "start": "parcel serve *.html --open"
   },
   "devDependencies": {

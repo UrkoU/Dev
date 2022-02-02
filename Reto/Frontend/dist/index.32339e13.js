@@ -1,4 +1,4 @@
-const url = "https://localhost:5001/";
+const url = "http://10.10.17.164:5000/";
 let sToken = "";
 function GetBalizas() {
     return $.ajax({
@@ -26,11 +26,13 @@ function GetTiempo(id = "C080") {
         console.log("ERROR: " + err);
     });
 }
-function DevolverDato(codigo) {
+function GetOpcionesUsuario(id = 1) {
+    console.log("sToken");
+    console.log(sToken);
     return $.ajax({
         type: "GET",
         dataType: "html",
-        url: url + "Meteorologia/" + codigo,
+        url: url + "/api/OpcionesUsuario/" + id,
         headers: {
             accept: "application/json",
             authorization: "Bearer " + sToken
@@ -44,7 +46,7 @@ function LoginApi(user, pass) {
         type: "POST",
         dataType: "json",
         contentType: "application/json",
-        url: "https://localhost:5001/Users/Authenticate/",
+        url: url + "Users/authenticate",
         data: JSON.stringify({
             username: user,
             password: pass

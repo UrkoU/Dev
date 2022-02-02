@@ -21,16 +21,10 @@ namespace TiempoApi.Auth
 
     public class AuthService : IAuthService
     {
+
         // users list
-        private List<User> _users = new List<User>
-        {
-            new User {  Id = 1, FirstName = "Test", LastName = "User", 
-                        Role = "User",
-                        Username = "test", Password = "test" },
-            new User {  Id = 2, FirstName = "Jennifer", LastName = "Dos Reis", 
-                        Role = "Admin",
-                        Username = "jenni", Password = "jenni" }
-        };
+        private List<User> _users = new DatosContext().UsuarioItem.ToList();
+
 
         private readonly AppSettings _appSettings;
 
@@ -84,15 +78,15 @@ namespace TiempoApi.Auth
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] 
-                { 
+                Subject = new ClaimsIdentity(new[]
+                {
                     new Claim("id", user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Username),
                     new Claim(ClaimTypes.Role, user.Role),
                 }),
                 Expires = DateTime.UtcNow.AddDays(dias),
                 SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(key), 
+                    new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
