@@ -28,15 +28,15 @@ function CargarMarcadores() {
   // Cargar los marcadores de cada baliza
   console.log("aGuardados");
   console.log(aGuardados);
-  aBalizas.forEach((baliza) => {
+  aBalizas.forEach((oBaliza) => {
     let icono;
-    if (aGuardados.has(baliza.codigo)) {
+    if (bBalizaExiste(oBaliza.codigo)) {
       icono = iconoSeleccionado;
     } else icono = iconoDefecto;
-    const marcador = L.marker([baliza.latitud, baliza.longitud], { customId: `marcador${baliza.codigo}`, icon: icono });
-    marcador.bindPopup(`${baliza.nombre}`);
+    const marcador = L.marker([oBaliza.latitud, oBaliza.longitud], { customId: `marcador${oBaliza.codigoBaliza}`, icon: icono });
+    marcador.bindPopup(`${oBaliza.nombre}`);
     marcador.on("click", (marc) => {
-      AnadirAMapa(marc, baliza);
+      AnadirAMapa(marc, oBaliza);
     });
     aMarcadores.addLayer(marcador);
   });
@@ -54,14 +54,25 @@ function CambiarIconoMarcador(element, icono) {
 function AnadirAMapa(clickedElement, oBaliza) {
   // Comprueba límite de guardados y que no esté ya seleccionado
 
-  if (aGuardados.size < iMaxGuardados && !aGuardados.has(oBaliza.codigo)) {
+  if (aGuardados.length < iMaxGuardados && !bBalizaExiste(oBaliza.codigo)) {
     CambiarIconoMarcador(clickedElement, iconoSeleccionado);
 
     ObtenerTiempo(oBaliza.codigo);
-    aGuardados.add(oBaliza.codigo);
+    aGuardados.push({
+      idUsuario: usuario.id,
+      codigoBaliza: oBaliza.codigo,
+      temperatura: true,
+      sensacionTermica: true,
+      humedad: true,
+      velocidadViento: false,
+      direccionViento: false,
+      horaAmanecer: false,
+      horaAtardecer: false,
+      presionAtmosferica: false,
+    });
     GuardarMarcadores(aGuardados);
   } else {
-    if (aGuardados.has(oBaliza.codigo)) {
+    if (bBalizaExiste(oBaliza.codigo)) {
       // Si el código ya está, elimina la baliza y lo guarda en el local storage
       aGuardados.delete(oBaliza.codigo);
       GuardarMarcadores(aGuardados);
@@ -86,17 +97,11 @@ function AnadirTiempo(oTiempo, oBaliza) {
         <div id="velocidadViento${oBaliza.codigo}">${oTiempo.velocidadViento} km/h</div>
       </div>`
   );
-  // for (prop in aGuardados[usuario]) {
-  //   console.log("PROP" + prop);
-  //   if (!aGuardados[usuario][prop]) {
-  //     $(`#${prop}${oBaliza.codigo}`).hide();
-  //   }
-  // }
   CrearDroppables();
 }
 
 function bBalizaExiste(codigoBaliza) {
-  return aGuardados[usuario].filter((e) => e.baliza === codigoBaliza).length > 0;
+  return aGuardados.filter((e) => e.codigo === codigoBaliza).length > 0;
 }
 
 window.CargarMapa = CargarMapa;

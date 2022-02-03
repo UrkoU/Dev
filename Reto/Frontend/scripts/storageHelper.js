@@ -4,17 +4,16 @@ function CargarLocalStorage() {
 
   bLogueado = localStorage.getItem("logueado") || false;
 
-  usuario = localStorage.getItem("usuario");
+  usuario = JSON.parse(localStorage.getItem("usuario")) || null;
 
   sToken = localStorage.getItem("sToken");
-
-  aGuardados = ObtenerMarcadores();
   // console.log("CargarLocalStorage");
   // console.log(aGuardados);
 }
 
 function GuardarMarcadores(marcadores) {
-  console.log(marcadores);
+  console.log("GUARDAR MARCADORES");
+  PutOpcionesUsuario(usuario.id, JSON.stringify(marcadores));
   // let arrayGuardados = Array.from(marcadores);
   let arrayGuardados = Array.from(marcadores);
   localStorage.setItem("aGuardados", JSON.stringify(arrayGuardados));
@@ -25,14 +24,9 @@ function EliminarMarcadoresLS() {
 }
 
 function ObtenerMarcadores() {
-  let setGuardados = new Set();
-  let sGuardados = localStorage.getItem("aGuardados");
-  if (sGuardados != null) {
-    sGuardados = JSON.parse(sGuardados);
-    console.log(sGuardados);
-    sGuardados.forEach((element) => {
-      setGuardados.add(element);
-    });
-    return setGuardados;
-  } else return new Set();
+  var marcadores;
+  var promesa = GetOpcionesUsuario(usuario.id);
+  promesa.then((res) => {
+    marcadores = res;
+  });
 }

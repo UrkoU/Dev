@@ -10,17 +10,22 @@ let tTimeout;
 
 let iconoDefecto;
 
-let aGuardados = new Set();
-
 $("document").ready(function () {
   CargarLocalStorage();
   CargarColorInicial();
   CargarBotonesColor();
   if (bLogueado == true || bLogueado == "true") {
     console.log("HERE" + bLogueado);
-    CargarMapa();
-
-    ObtenerBalizas();
+    var promesa2 = GetOpcionesUsuario(usuario.id);
+    promesa2.then((res) => {
+      aGuardados = JSON.parse(res);
+      console.log(aGuardados);
+      OcultarLogin();
+      CargarMapa();
+      ObtenerBalizas();
+      localStorage.setItem("logueado", true);
+      localStorage.setItem("sToken", sToken);
+    });
   } else {
     console.log("Not logged");
     MostrarLogin();
@@ -76,7 +81,7 @@ function CargarCartas(balizas) {
   // if (oGuardados[test].length >= 0)
   balizas.forEach((element) => {
     console.log(element);
-    ObtenerTiempo(element);
+    ObtenerTiempo(element.codigoBaliza);
   });
 }
 

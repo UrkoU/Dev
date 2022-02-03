@@ -1,5 +1,5 @@
 $("#btnLogin").on("click", IniciarSesion);
-let usuario = "";
+let usuario = {};
 
 const passPhrase = "fjosiddnkadbalseelfeaono";
 
@@ -9,20 +9,21 @@ function IniciarSesion() {
   console.log(sUser);
   if (sUser.length != 0 && sPass.length != 0) {
     var promesa = LoginApi(sUser, sPass);
-    promesa.then((result) => {
-      usuario = sUser;
-      console.log(result.id);
+    promesa.then(async (result) => {
+      usuario = result;
+      console.log(usuario);
       sToken = result.token;
-      localStorage.setItem("usuario", usuario);
-      localStorage.setItem("logueado", true);
-      localStorage.setItem("sToken", sToken);
-      OcultarLogin();
-      CargarMapa();
-      ObtenerBalizas();
-      // var prom = GetOpcionesUsuario(result.id);
-      // prom.then((data) => {
-      //   console.log(data);
-      // });
+      var promesa2 = GetOpcionesUsuario(usuario.id);
+      promesa2.then((res) => {
+        aGuardados = JSON.parse(res);
+        console.log(aGuardados);
+        OcultarLogin();
+        CargarMapa();
+        ObtenerBalizas();
+        localStorage.setItem("usuario", JSON.stringify(usuario));
+        localStorage.setItem("logueado", true);
+        localStorage.setItem("sToken", sToken);
+      });
     });
   }
 }

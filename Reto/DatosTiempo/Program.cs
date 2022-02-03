@@ -19,7 +19,11 @@ namespace DatosTiempo
         public static string _path = "ciudades.json";
         static void Main(string[] args)
         {
-            Actualizar().Wait();
+            while (true)
+            {
+                Actualizar().Wait();
+                System.Threading.Thread.Sleep(180000);
+            }
             //MainAsync().GetAwaiter().GetResult();
         }
 

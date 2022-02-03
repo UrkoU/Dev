@@ -1,11 +1,12 @@
-const url = "http://localhost/";
+// const url = "http://10.10.17.164/api/";
+const url = "http://localhost:5000/api/";
 let sToken = "";
 
 function GetBalizas() {
   return $.ajax({
     type: "GET",
     dataType: "html",
-    url: url + "api/Meteorologia/",
+    url: url + "Meteorologia/",
     headers: {
       accept: "application/json",
       authorization: "Bearer " + sToken,
@@ -19,7 +20,7 @@ function GetTiempo(id = "C080") {
   return $.ajax({
     type: "GET",
     dataType: "html",
-    url: url + "api/Meteorologia/" + id,
+    url: url + "Meteorologia/" + id,
     headers: {
       accept: "application/json",
       authorization: "Bearer " + sToken,
@@ -35,7 +36,7 @@ function GetOpcionesUsuario(id = 1) {
   return $.ajax({
     type: "GET",
     dataType: "html",
-    url: url + "/api/OpcionesUsuario/" + id,
+    url: url + "OpcionesUsuario/" + id,
     headers: {
       accept: "application/json",
       authorization: "Bearer " + sToken,
@@ -45,7 +46,24 @@ function GetOpcionesUsuario(id = 1) {
   });
 }
 
-function LoginApi(user, pass) {
+function PutOpcionesUsuario(id = 1, opciones) {
+  console.log("PutOpcionesUsuario" + id);
+  return $.ajax({
+    type: "PUT",
+    dataType: "html",
+    url: url + "OpcionesUsuario/" + id,
+    headers: {
+      accept: "application/json",
+      contenttype: "application/json",
+      authorization: "Bearer " + sToken,
+    },
+    data: opciones,
+  }).fail(function (err) {
+    console.log("ERROR: " + err);
+  });
+}
+
+function LoginApi(user = "Deagle50", pass = "pass") {
   return $.ajax({
     type: "POST",
     dataType: "json",

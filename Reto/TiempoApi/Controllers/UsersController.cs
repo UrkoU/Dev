@@ -10,7 +10,7 @@ using System.Linq;
 namespace TiempoApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private IAuthService _userService;
@@ -31,30 +31,6 @@ namespace TiempoApi.Controllers
 
             return Ok(response);
         }
-
-
-        // [HttpPut]
-        // public async Task<ActionResult<Models.User>> PutUsuario(User usuario)
-        // {
-        //     var _context = new DatosContext();
-        //     Console.WriteLine("PUT  ", usuario.Id.ToString());
-        //     bool exists = UsuarioExists(usuario.Id);
-        //     Console.WriteLine("EXISTS" + exists);
-        //     if (!exists)
-        //     {
-        //         Console.WriteLine("Not found");
-        //         _context.UsuarioItem.Add(usuario);
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine("Found");
-        //         // _context.OpcionesUsuarioItem.Remove(opciones);
-        //         // _context.OpcionesUsuarioItem.Add(opciones);
-        //         _context.Entry(usuario).State = EntityState.Modified;
-        //     }
-        //     await _context.SaveChangesAsync();
-        //     return usuario;
-        // }
 
         [HttpPost]
         public async Task<ActionResult<Models.User>> PostUsuario(User usuario)

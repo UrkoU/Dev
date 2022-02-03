@@ -1,1 +1,103 @@
-<!DOCTYPE html><html lang="en" class="h-100 w-100"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Leaflet</title><link rel="stylesheet" href="/index.e1718174.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin referrerpolicy="no-referrer"><script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin></script><script src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.js" integrity="sha256-tYLuvehjddL4JcVWw1wRMB0oPSz7fKEpdZrIWf3rWNA=" crossorigin></script><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin><script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script></head><body class="align-items-center d-flex h-100 justify-content-center w-100"> <div id="divBlur"></div> <div id="divLoginContainer" class="align-items-center h-100 justify-content-center w-100"> <div id="divLogin"> <form> <div id="divUser" class="form-group"> <label for="inputUser" class="label" placeholder="Escriba el usuario">Usuario</label> <input id="inputUser" type="user" class="form-control input"> </div> <div id="divPass" class="form-group"> <label for="inputPass" class="label" placeholder="Escriba la contraseña">Contraseña</label> <input id="inputPass" type="password" class="form-control input"> </div> <div id="divButton" class="d-flex form-group justify-content-end"> <button id="btnLogin" type="button" class="boton-login btn btn-primary fw-bold text-black-50"> Iniciar sesión </button> </div> </form> </div> </div> <div id="divPrincipal" class="h-85 w-75"> <div class="h-100 w-100"> <div class="align-items-center d-flex h-15 justify-content-center w-100"> <h1 id="tituloPrincipal">Información Meteorológica</h1> </div> <div class="align-items-center d-flex h-15 imgDraggableList justify-content-center"> <div class="divImages"> <img id="temperatura" class="imgDraggable" src="/thermometer-white.7ac56899.png" alt="Termómetro"> </div> <div class="divImages"> <img id="humedad" class="imgDraggable" src="/humidity-white.3c70da13.png" alt="Humedad"> </div> <div class="divImages"> <img id="presionAtmosferica" class="imgDraggable imgDraggableSmall" src="/umbrella-white.67a01151.png" alt="Precipitaciones"> </div> <div class="divImages"> <img id="velocidadViento" class="imgDraggable imgDraggableSmall" src="/wind-white.b8131e60.png" alt="Velocidad del viento"> </div> </div> <div id="divContainer" class="h-60 w-100"></div> </div> </div>   <div id="mapContainer"> <div id="mapTop"> <p>Mapa</p>  </div> <div id="map"></div> <div id="divError" class="h-100 hidden w-100">ERROR</div> </div>  <div id="show"> <div class="align-items-center color-button-div-parent d-flex justify-content-center"> <div class="align-items-center color-button-div d-flex justify-content-center" id="divBotonColor"> <button class="color-button settings"></button> </div> </div> <div id="colores" class="d-flex flex-column hidden"> <div class="color-button-list-2" id="divColoresSecundarios"> <span class="color-title">Color secundario</span> </div> <div class="color-button-list" id="divColoresPrincipales"><span class="color-title">Color principal</span></div> </div> </div>   <script src="/index.f9f97dcb.js"></script> <script src="/index.fdf4eb16.js"></script> <script src="/index.1dea10d9.js"></script> <script src="/index.f9466a1e.js"></script> <script src="/index.11eeeeef.js"></script> <script src="/index.43d7a250.js"></script> <script src="/index.d30df50f.js" type="module"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin referrerpolicy="no-referrer"></script>  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin></script> </body></html>
+<!DOCTYPE html>
+<html lang="en" class="w-100 h-100">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet</title>
+    <!-- Our styling -->
+    <link rel="stylesheet" href="/index.5f5ecead.css">
+    <!-- Leaflet styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- JQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.js" integrity="sha256-tYLuvehjddL4JcVWw1wRMB0oPSz7fKEpdZrIWf3rWNA=" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  </head>
+  <body class="w-100 h-100 d-flex justify-content-center align-items-center">
+    <div id="divBlur"></div>
+    <div id="divLoginContainer" class="w-100 h-100 justify-content-center align-items-center">
+      <div id="divLogin">
+        <form>
+          <div id="divUser" class="form-group">
+            <label for="inputUser" class="label" placeholder="Escriba el usuario">Usuario</label>
+            <input id="inputUser" type="user" class="form-control input">
+          </div>
+          <div id="divPass" class="form-group">
+            <label for="inputPass" class="label" placeholder="Escriba la contraseña">Contraseña</label>
+            <input id="inputPass" type="password" class="form-control input">
+          </div>
+          <div id="divButton" class="form-group d-flex justify-content-end">
+            <button id="btnLogin" type="button" class="btn btn-primary boton-login text-black-50 fw-bold">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="divPrincipal" class="w-75 h-85">
+      <div class="h-100 w-100">
+        <div class="h-15 d-flex align-items-center justify-content-center w-100">
+          <h1 id="tituloPrincipal">Información Meteorológica</h1>
+        </div>
+        <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
+          <div class="divImages">
+            <img id="temperatura" class="imgDraggable" src="/thermometer-white.8c080ed6.png" alt="Termómetro">
+          </div>
+          <div class="divImages">
+            <img id="humedad" class="imgDraggable" src="/humidity-white.68c58aa3.png" alt="Humedad">
+          </div>
+          <div class="divImages">
+            <img id="presionAtmosferica" class="imgDraggable imgDraggableSmall" src="/umbrella-white.2ed8c3cd.png" alt="Precipitaciones">
+          </div>
+          <div class="divImages">
+            <img id="velocidadViento" class="imgDraggable imgDraggableSmall" src="/wind-white.b03f484d.png" alt="Velocidad del viento">
+          </div>
+        </div>
+        <div id="divContainer" class="w-100 h-60"></div>
+      </div>
+    </div>
+    <!-- <div id="divError" class="w-50 h-50 hidden d-flex justify-content-center align-items-center">ERROR</div> -->
+
+    <!-- Map -->
+    <div id="mapContainer">
+      <div id="mapTop">
+        <p>Mapa</p>
+        <!-- <button id="hideButton">-</button> -->
+      </div>
+      <div id="map"></div>
+      <div id="divError" class="w-100 h-100 hidden">ERROR</div>
+    </div>
+    <!-- Floating buttons to change color -->
+    <div id="show">
+      <div class="d-flex justify-content-center align-items-center color-button-div-parent">
+        <div class="color-button-div d-flex justify-content-center align-items-center" id="divBotonColor">
+          <button class="color-button settings"></button>
+        </div>
+      </div>
+      <div id="colores" class="d-flex flex-column hidden">
+        <div class="color-button-list-2" id="divColoresSecundarios">
+          <span class="color-title">Color secundario</span>
+        </div>
+        <div class="color-button-list" id="divColoresPrincipales"><span class="color-title">Color principal</span></div>
+      </div>
+    </div>
+    <!-- SCRIPTS -->
+    <!-- Our scripts -->
+    <script src="/index.bc1e96c0.js"></script>
+    <script src="/index.add6ba19.js"></script>
+    <script src="/index.777fa4b9.js"></script>
+    <script src="/index.32339e13.js"></script>
+    <script src="/index.95395cc1.js"></script>
+    <script src="/index.70a2b1e4.js"></script>
+    <script src="/index.715cc062.js" defer=""></script>
+    <!-- Leaflet script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

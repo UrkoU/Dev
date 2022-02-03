@@ -58,7 +58,7 @@ namespace TiempoApi.Controllers
         public async Task<IActionResult> DeleteOpciones(int id)
         {
             // var usuario = await _context.UsuarioItem.FindAsync(id);
-            Console.WriteLine("DELETE ", id.ToString());
+            Console.WriteLine($"DELETE {id.ToString()}");
             if (!UsuarioExists(id))
             {
                 Console.WriteLine("User not found");
@@ -67,6 +67,7 @@ namespace TiempoApi.Controllers
             var lista = _context.OpcionesUsuarioItem.Where(opc => opc.IdUsuario == id);
             foreach (var item in lista)
             {
+                Console.WriteLine($"DELETED {item.CodigoBaliza}");
                 _context.OpcionesUsuarioItem.Remove(item);
             }
             await _context.SaveChangesAsync();
@@ -74,20 +75,6 @@ namespace TiempoApi.Controllers
             return NoContent();
         }
 
-        // // GET: api/Meteorologia/5
-        // [Authorize]
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult<Meteorologia>> GetMeteorologia(string id)
-        // {
-        //     var meteorologia = await _context.MeteorologiaItem.FindAsync(id);
-
-        //     if (meteorologia == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return meteorologia;
-        // }
         private bool OpcionesUsuarioExists(int id, string codigo)
         {
             return _context.OpcionesUsuarioItem.Any(e => e.IdUsuario == id && e.CodigoBaliza == codigo);
