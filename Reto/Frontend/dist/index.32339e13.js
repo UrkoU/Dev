@@ -1,5 +1,5 @@
 // const url = "http://10.10.17.164/api/";
-const url = "http://localhost:5000/api/";
+const url = "https://localhost:5001/api/";
 let sToken = "";
 function GetBalizas() {
     return $.ajax({
@@ -28,8 +28,6 @@ function GetTiempo(id = "C080") {
     });
 }
 function GetOpcionesUsuario(id = 1) {
-    console.log("sToken");
-    console.log(sToken);
     return $.ajax({
         type: "GET",
         dataType: "html",
@@ -43,17 +41,26 @@ function GetOpcionesUsuario(id = 1) {
     });
 }
 function PutOpcionesUsuario(id = 1, opciones) {
-    console.log("PutOpcionesUsuario" + id);
-    return $.ajax({
+    $.ajax({
         type: "PUT",
-        dataType: "html",
         url: url + "OpcionesUsuario/" + id,
+        data: JSON.stringify(opciones),
+        contentType: "application/json",
         headers: {
-            accept: "application/json",
-            contenttype: "application/json",
             authorization: "Bearer " + sToken
-        },
-        data: opciones
+        }
+    }).fail(function(err) {
+        console.log("ERROR: " + err);
+    });
+}
+function DeleteOpcionUsuario(id, codigo) {
+    $.ajax({
+        type: "DELETE",
+        url: url + "OpcionesUsuario/" + id + "/" + codigo,
+        contentType: "application/json",
+        headers: {
+            authorization: "Bearer " + sToken
+        }
     }).fail(function(err) {
         console.log("ERROR: " + err);
     });

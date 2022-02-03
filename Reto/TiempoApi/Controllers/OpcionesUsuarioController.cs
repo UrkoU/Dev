@@ -31,7 +31,7 @@ namespace TiempoApi.Controllers
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<ActionResult<OpcionesUsuario>> PutOpcionesUsuario(OpcionesUsuario opciones)
+        public async Task<ActionResult<OpcionesUsuario>> PutOpcionUsuario(OpcionesUsuario opciones)
         {
             Console.WriteLine("PUT  ", opciones.IdUsuario.ToString() + " " + opciones.CodigoBaliza);
             bool exists = OpcionesUsuarioExists(opciones.IdUsuario, opciones.CodigoBaliza);
@@ -58,7 +58,7 @@ namespace TiempoApi.Controllers
         public async Task<IActionResult> DeleteOpciones(int id)
         {
             // var usuario = await _context.UsuarioItem.FindAsync(id);
-            Console.WriteLine($"DELETE {id.ToString()}");
+            Console.WriteLine($"DELETE {id}");
             if (!UsuarioExists(id))
             {
                 Console.WriteLine("User not found");
@@ -72,7 +72,26 @@ namespace TiempoApi.Controllers
             }
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
+        }
+
+        // DELETE: api/OpcionesUsuario/5
+        [Authorize]
+        [HttpDelete("{id}/{codigo}")]
+        public async Task<IActionResult> DeleteOpcion(int id, string codigo)
+        {
+            // var usuario = await _context.UsuarioItem.FindAsync(id);
+            Console.WriteLine($"DELETE {id}");
+            if (!UsuarioExists(id))
+            {
+                Console.WriteLine("User not found");
+                return NotFound();
+            }
+            var item = await _context.OpcionesUsuarioItem.Where(opc => opc.IdUsuario == id && opc.CodigoBaliza == codigo).FirstAsync();
+            _context.OpcionesUsuarioItem.Remove(item);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         private bool OpcionesUsuarioExists(int id, string codigo)

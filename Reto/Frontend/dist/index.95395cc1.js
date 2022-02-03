@@ -6,14 +6,14 @@ $(".imgDraggable").draggable({
     start: function(ui, event) {
         // Recorre los divs y añade color rojo/verde según acepten
         aGuardados.forEach((element)=>{
-            if ($(`#${ui.target.id}${element}`).is(":visible")) $(`#div${element}`).addClass("cannotAccept");
-            else $(`#div${element}`).addClass("canAccept");
+            if ($(`#${ui.target.id}${element.codigoBaliza}`).is(":visible")) $(`#div${element.codigoBaliza}`).addClass("cannotAccept");
+            else $(`#div${element.codigoBaliza}`).addClass("canAccept");
         });
     },
     stop: function(ui, event) {
         aGuardados.forEach((element)=>{
-            $(`#div${element}`).removeClass("cannotAccept");
-            $(`#div${element}`).removeClass("canAccept");
+            $(`#div${element.codigoBaliza}`).removeClass("cannotAccept");
+            $(`#div${element.codigoBaliza}`).removeClass("canAccept");
         });
     }
 });
@@ -22,11 +22,37 @@ function CrearDroppables() {
         drop: function(event, ui) {
             let destId = event.target.id;
             destId = destId.replace("div", "");
-            $(`#${ui.draggable[0].id}${destId}`).show();
+            if (!$(`#${ui.draggable[0].id}${destId}`).is(":visible")) {
+                $(`#${ui.draggable[0].id}${destId}`).show();
+                let indice = ObtenerIndiceGuardado(destId);
+                aGuardados[indice][ui.draggable[0].id] = true;
+                PutOpcionesUsuario(usuario.id, aGuardados[indice]);
+            }
         }
     });
     $(".droppableItem").disableSelection();
     $(".droppableItem").css("cursor", "default");
+}
+function CrearSlider() {
+    console.log("Crear slider");
+    $("#spanMaximoMunicipios").text(iMaxGuardados);
+    $("#slider").slider({
+        range: "max",
+        min: 3,
+        max: 10,
+        value: iMaxGuardados,
+        classes: {
+            "ui-slider": "slider",
+            "ui-slider-handle": "slider-handle",
+            "ui-slider-range": "slider-range"
+        },
+        slide: function(event, ui) {
+            let max = ui.value;
+            $("#spanMaximoMunicipios").text(max);
+            iMaxGuardados = max;
+            localStorage.setItem("iMaxGuardados", max);
+        }
+    });
 }
 
 //# sourceMappingURL=index.95395cc1.js.map

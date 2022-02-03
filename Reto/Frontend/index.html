@@ -27,6 +27,7 @@
       integrity="sha256-tYLuvehjddL4JcVWw1wRMB0oPSz7fKEpdZrIWf3rWNA="
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -65,16 +66,23 @@
         </div>
         <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
           <div class="divImages">
-            <img id="temperatura" class="imgDraggable" src="images/thermometer-white.png" alt="Termómetro" />
+            <img
+              id="temperatura"
+              class="imgDraggable"
+              title="Temperatura"
+              src="images/thermometer-white.png"
+              alt="Termómetro"
+            />
           </div>
           <div class="divImages">
-            <img id="humedad" class="imgDraggable" src="images/humidity-white.png" alt="Humedad" />
+            <img id="humedad" class="imgDraggable" title="Humedad" src="images/humidity-white.png" alt="Humedad" />
           </div>
           <div class="divImages">
             <img
               id="presionAtmosferica"
               class="imgDraggable imgDraggableSmall"
-              src="images/umbrella-white.png"
+              title="Presión Atmosférica"
+              src="images/barometer-white.png"
               alt="Precipitaciones"
             />
           </div>
@@ -82,8 +90,27 @@
             <img
               id="velocidadViento"
               class="imgDraggable imgDraggableSmall"
+              title="Velocidad del viento"
               src="images/wind-white.png"
               alt="Velocidad del viento"
+            />
+          </div>
+          <div class="divImages">
+            <img
+              id="horaAmanecer"
+              class="imgDraggable imgDraggableSmall"
+              title="Amanecer"
+              src="images/sunrise-white.png"
+              alt="Atardecer"
+            />
+          </div>
+          <div class="divImages">
+            <img
+              id="horaAtardecer"
+              class="imgDraggable imgDraggableSmall"
+              title="Atardecer"
+              src="images/sunset-white.png"
+              alt="Atardecer"
             />
           </div>
         </div>
@@ -109,10 +136,16 @@
         </div>
       </div>
       <div id="colores" class="d-flex flex-column hidden">
-        <div class="color-button-list-2" id="divColoresSecundarios">
-          <span class="color-title">Color secundario</span>
+        <p class="text-white text-center">Máximo de municipios: <span id="spanMaximoMunicipios"></span></p>
+        <div id="slider"></div>
+        <p class="text-white text-center">Color primario</p>
+        <div class="color-button-list" id="divColoresPrincipales">
+          <!-- <span class="color-title">Color principal</span> -->
         </div>
-        <div class="color-button-list" id="divColoresPrincipales"><span class="color-title">Color principal</span></div>
+        <p class="text-white text-center">Color secundario</p>
+        <div class="color-button-list-2" id="divColoresSecundarios">
+          <!-- <span class="color-title">Color secundario</span> -->
+        </div>
       </div>
     </div>
     <!-- SCRIPTS -->

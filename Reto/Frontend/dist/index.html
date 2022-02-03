@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <!-- JQuery UI -->
     <script src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.js" integrity="sha256-tYLuvehjddL4JcVWw1wRMB0oPSz7fKEpdZrIWf3rWNA=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- CryptoJS -->
@@ -46,16 +47,22 @@
         </div>
         <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
           <div class="divImages">
-            <img id="temperatura" class="imgDraggable" src="/thermometer-white.8c080ed6.png" alt="Termómetro">
+            <img id="temperatura" class="imgDraggable" title="Temperatura" src="/thermometer-white.8c080ed6.png" alt="Termómetro">
           </div>
           <div class="divImages">
-            <img id="humedad" class="imgDraggable" src="/humidity-white.68c58aa3.png" alt="Humedad">
+            <img id="humedad" class="imgDraggable" title="Humedad" src="/humidity-white.68c58aa3.png" alt="Humedad">
           </div>
           <div class="divImages">
-            <img id="presionAtmosferica" class="imgDraggable imgDraggableSmall" src="/umbrella-white.2ed8c3cd.png" alt="Precipitaciones">
+            <img id="presionAtmosferica" class="imgDraggable imgDraggableSmall" title="Presión Atmosférica" src="/barometer-white.b9f77458.png" alt="Precipitaciones">
           </div>
           <div class="divImages">
-            <img id="velocidadViento" class="imgDraggable imgDraggableSmall" src="/wind-white.b03f484d.png" alt="Velocidad del viento">
+            <img id="velocidadViento" class="imgDraggable imgDraggableSmall" title="Velocidad del viento" src="/wind-white.b03f484d.png" alt="Velocidad del viento">
+          </div>
+          <div class="divImages">
+            <img id="horaAmanecer" class="imgDraggable imgDraggableSmall" title="Amanecer" src="/sunrise-white.8d7edcd3.png" alt="Atardecer">
+          </div>
+          <div class="divImages">
+            <img id="horaAtardecer" class="imgDraggable imgDraggableSmall" title="Atardecer" src="/sunset-white.dd83ecff.png" alt="Atardecer">
           </div>
         </div>
         <div id="divContainer" class="w-100 h-60"></div>
@@ -80,10 +87,16 @@
         </div>
       </div>
       <div id="colores" class="d-flex flex-column hidden">
-        <div class="color-button-list-2" id="divColoresSecundarios">
-          <span class="color-title">Color secundario</span>
+        <p class="text-white text-center">Máximo de municipios: <span id="spanMaximoMunicipios"></span></p>
+        <div id="slider"></div>
+        <p class="text-white text-center">Color primario</p>
+        <div class="color-button-list" id="divColoresPrincipales">
+          <!-- <span class="color-title">Color principal</span> -->
         </div>
-        <div class="color-button-list" id="divColoresPrincipales"><span class="color-title">Color principal</span></div>
+        <p class="text-white text-center">Color secundario</p>
+        <div class="color-button-list-2" id="divColoresSecundarios">
+          <!-- <span class="color-title">Color secundario</span> -->
+        </div>
       </div>
     </div>
     <!-- SCRIPTS -->

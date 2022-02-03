@@ -166,6 +166,9 @@ body {
 .imgDraggable {
   height: 5rem;
 }
+.imgDraggable:hover {
+  cursor: pointer;
+}
 .imgDraggableSmall {
   height: 4rem;
 }
@@ -175,6 +178,13 @@ body {
   border-radius: var(--border-radius-m);
   background-color: var(--background-color);
   color: var(--text-color);
+}
+.cardTitle {
+  font-size: 1.2rem;
+}
+.cardImg {
+  height: 3rem;
+  width: 3rem;
 }
 .canAccept {
   background-color: var(--droppable);
@@ -220,30 +230,50 @@ body {
   height: 3.5em;
   margin-top: 0.5em;
 }
-.color-button-list {
-  padding: 0em 1em;
-  align-items: center;
-  background-color: var(--main-color);
-  border: 3px solid var(--background-color-2);
+#colores {
   position: fixed;
+  bottom: 5em;
+  right: 1em;
+  z-index: var(--low-front);
+  flex-direction: column;
+  padding: 1em;
+  background-color: var(--background-color-2);
+  border-radius: 25px;
+}
+.slider {
+  background-color: red;
+  border-radius: 25px;
+  height: 1.5em !important;
+  margin: 0em 1em;
+  margin-bottom: 0.5em;
+}
+.slider-handle {
+  height: 2em !important;
+  width: 2em !important;
+  background: none !important;
+  background-color: var(--secondary-color) !important;
+  border-radius: 25px;
+}
+.slider-range {
+  height: 2em !important;
+  border-radius: 25px;
+}
+.color-button-list {
   flex-direction: row;
   align-items: center;
-  bottom: 12em;
-  right: 1em;
+  padding: 0em 1em;
   padding-bottom: 0.5em;
+  background-color: var(--main-color);
+  border: 3px solid var(--background-color-2);
   border-radius: 25px;
 }
 .color-button-list-2 {
-  padding: 0em 1em;
-  align-items: center;
-  background-color: var(--secondary-color);
-  border: 3px solid var(--background-color-2);
-  position: fixed;
   flex-direction: row;
   align-items: center;
-  bottom: 5em;
-  right: 1em;
+  padding: 0em 1em;
   padding-bottom: 0.5em;
+  background-color: var(--secondary-color);
+  border: 3px solid var(--background-color-2);
   border-radius: 25px;
 }
 .color-title {

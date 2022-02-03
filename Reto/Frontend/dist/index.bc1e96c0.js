@@ -1,31 +1,33 @@
 let aBalizas = [];
-let oTiempo = {
+let oTiempo1 = {
 };
 let sColorPrincipal = "";
 let sColorSecundario = "";
 let bLogueado = "";
 let tTimeout;
 let iconoDefecto;
-$("document").ready(function() {
+// Máximo de Marcadores guardados
+let iMaxGuardados = 5;
+function PreLogin() {
     CargarLocalStorage();
     CargarColorInicial();
     CargarBotonesColor();
-    if (bLogueado == true || bLogueado == "true") {
-        console.log("HERE" + bLogueado);
-        var promesa2 = GetOpcionesUsuario(usuario.id);
-        promesa2.then((res)=>{
-            aGuardados = JSON.parse(res);
-            console.log(aGuardados);
-            OcultarLogin();
-            CargarMapa();
-            ObtenerBalizas();
-            localStorage.setItem("logueado", true);
-            localStorage.setItem("sToken", sToken);
-        });
-    } else {
-        console.log("Not logged");
-        MostrarLogin();
-    }
+    CrearSlider();
+}
+function PostLogin() {
+    var promesa2 = GetOpcionesUsuario(usuario.id);
+    promesa2.then((res)=>{
+        aGuardados = JSON.parse(res);
+        OcultarLogin();
+        CargarMapa();
+        ObtenerBalizas();
+        setInterval(ActualizarDatos, 10000);
+    });
+}
+$("document").ready(function() {
+    PreLogin();
+    if (bLogueado == true || bLogueado == "true") PostLogin();
+    else MostrarLogin();
 });
 function ObtenerBalizas() {
     var promise = GetBalizas();
@@ -35,18 +37,15 @@ function ObtenerBalizas() {
         CargarCartas(aGuardados);
     });
 }
-function ObtenerTiempo(id = "C080") {
+function ObtenerTiempo(id) {
     var promise = GetTiempo(id);
     promise.then(function(data) {
-        oTiempo = JSON.parse(data);
-        let oBaliza = aBalizas.find((element)=>element.codigo == id
-        );
-        console.log("OBALIZA" + oBaliza);
-        AnadirTiempo(oTiempo, oBaliza);
+        oTiempo1 = JSON.parse(data);
+        AnadirCarta(oTiempo1);
     });
 }
 $("#mapTop").click(()=>{
-    $("#map").toggle("fade", 100);
+    $("#map").toggle();
 });
 function MostrarLogin() {
     $("#divBlur").css("display", "flex");
@@ -57,6 +56,11 @@ function OcultarLogin() {
     $("#divBlur").css("display", "none");
     $("#divLoginContainer").css("display", "none");
     $("#divLogin").css("display", "none");
+}
+function MostrarCartaGrande(oTiempo, oOpciones) {
+    console.log(oTiempo);
+    console.log(oOpciones);
+    console.log("Not implemented");
 }
 function MostrarError(error = limitError) {
     clearTimeout(tTimeout);
@@ -70,7 +74,6 @@ function MostrarError(error = limitError) {
 function CargarCartas(balizas) {
     // if (oGuardados[test].length >= 0)
     balizas.forEach((element)=>{
-        console.log(element);
         ObtenerTiempo(element.codigoBaliza);
     });
 }
