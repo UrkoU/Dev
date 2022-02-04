@@ -473,6 +473,7 @@ const iconoSeleccionado = _leafletDefault.default.icon({
     ]
 });
 function CargarMapa() {
+    if (mapa) mapa.remove();
     mapa = _leafletDefault.default.map("map").setView([
         42.983333333333,
         -2.6166666666667
@@ -529,7 +530,6 @@ function AnadirAMapa(clickedElement, oBaliza) {
             horaAtardecer: false,
             presionAtmosferica: false
         });
-        console.log("AÑADIR A MAPA " + aGuardados.length + "/" + iMaxGuardados);
         GuardarMarcadores(aGuardados);
     } else if (bBalizaExiste(oBaliza.codigo)) {
         // Si el código ya está, elimina la baliza y lo guarda en el local storage
@@ -545,7 +545,7 @@ function AnadirAMapa(clickedElement, oBaliza) {
 }
 function AnadirCarta(oTiempo) {
     let oOpciones = ObtenerGuardadoPorId(oTiempo.codigo);
-    $("#divContainer").append(`<div id="div${oTiempo.codigo}" class="infoTiempo mw-50 droppableItem"><p class="cardTitle" id="nombre${oTiempo.codigo}">${oTiempo.nombre}</p><img id="img${oTiempo.codigo}" class="cardImg" src="images/${oTiempo.descripcion.toLowerCase()}-white.png" ></div>`);
+    $("#divContainer").append(`<div id="div${oTiempo.codigo}" class="infoTiempo mw-50 droppableItem"><p class="cardTitle" id="nombre${oTiempo.codigo}">${oTiempo.nombre}</p><img id="img${oTiempo.codigo}" class="cardImg" alt="${oTiempo.descripcion}" src="images/${oTiempo.descripcion.toLowerCase()}-white.png" ></div>`);
     $(`#div${oTiempo.codigo}`).on("click", ()=>{
         MostrarCartaGrande(oTiempo, oOpciones);
     });

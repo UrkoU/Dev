@@ -1,0 +1,2 @@
+$("#btnLogin").on("click",IniciarSesion);let usuario={};const passPhrase="fjosiddnkadbalseelfeaono";function IniciarSesion(){let e=$("#inputUser").val(),n=$("#inputPass").val();0!=e.length&&0!=n.length&&LoginApi(e,n).then((async e=>{usuario=e,sToken=e.token,localStorage.setItem("logueado",!0),localStorage.setItem("sToken",sToken),localStorage.setItem("usuario",JSON.stringify(usuario)),PostLogin()}))}function Encriptar(e){return CryptoJS.AES.encrypt(e,passPhrase)}function Desencriptar(e){return CryptoJS.AES.decrypt(e,passPhrase)}
+//# sourceMappingURL=index.b46b8bc1.js.map

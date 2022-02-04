@@ -52,9 +52,7 @@
             <input id="inputPass" type="password" class="form-control input" />
           </div>
           <div id="divButton" class="form-group d-flex justify-content-end">
-            <button id="btnLogin" type="button" class="btn btn-primary boton-login text-black-50 fw-bold">
-              Iniciar sesión
-            </button>
+            <button id="btnLogin" type="button" class="btn btn-primary boton-login text-black-50 fw-bold">Iniciar sesión</button>
           </div>
         </form>
       </div>
@@ -66,13 +64,7 @@
         </div>
         <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
           <div class="divImages">
-            <img
-              id="temperatura"
-              class="imgDraggable"
-              title="Temperatura"
-              src="images/thermometer-white.png"
-              alt="Termómetro"
-            />
+            <img id="temperatura" class="imgDraggable" title="Temperatura" src="images/thermometer-white.png" alt="Termómetro" />
           </div>
           <div class="divImages">
             <img id="humedad" class="imgDraggable" title="Humedad" src="images/humidity-white.png" alt="Humedad" />
@@ -96,13 +88,7 @@
             />
           </div>
           <div class="divImages">
-            <img
-              id="horaAmanecer"
-              class="imgDraggable imgDraggableSmall"
-              title="Amanecer"
-              src="images/sunrise-white.png"
-              alt="Atardecer"
-            />
+            <img id="horaAmanecer" class="imgDraggable imgDraggableSmall" title="Amanecer" src="images/sunrise-white.png" alt="Atardecer" />
           </div>
           <div class="divImages">
             <img
@@ -132,17 +118,25 @@
     <div id="show">
       <div class="d-flex justify-content-center align-items-center color-button-div-parent">
         <div class="color-button-div d-flex justify-content-center align-items-center" id="divBotonColor">
-          <button class="color-button settings"></button>
+          <button class="color-button settings" name="Ajustes" aria-label="Ajustes"></button>
         </div>
       </div>
       <div id="colores" class="d-flex flex-column hidden">
+        <div class="d-flex justify-content-between">
+          <div id="textUser" class="text-white"></div>
+          <div id="btnLogout" class="d-flex justify-content-end logout">
+            <span class="text-white">Cerrar sesión</span>
+            <img src="images/logout-white.png" class="logoutButton" alt="Logout" />
+          </div>
+        </div>
+
         <p class="text-white text-center">Máximo de municipios: <span id="spanMaximoMunicipios"></span></p>
         <div id="slider"></div>
-        <p class="text-white text-center">Color primario</p>
+        <p class="text-white text-center color-title">Color primario</p>
         <div class="color-button-list" id="divColoresPrincipales">
           <!-- <span class="color-title">Color principal</span> -->
         </div>
-        <p class="text-white text-center">Color secundario</p>
+        <p class="text-white text-center color-title">Color secundario</p>
         <div class="color-button-list-2" id="divColoresSecundarios">
           <!-- <span class="color-title">Color secundario</span> -->
         </div>

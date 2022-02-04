@@ -17,6 +17,14 @@ function IniciarSesion() {
         });
     }
 }
+function Logout() {
+    localStorage.setItem("sToken", "");
+    localStorage.setItem("logueado", false);
+    localStorage.setItem("usuario", JSON.stringify({
+    }));
+    localStorage.setItem("iMaxGuardados", 5);
+    MostrarLogin();
+}
 function Encriptar(message) {
     return CryptoJS.AES.encrypt(message, passPhrase);
 }

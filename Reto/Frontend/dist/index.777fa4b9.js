@@ -52,7 +52,7 @@ Date.prototype.customFormat = function(formatString) {
         "September",
         "October",
         "November",
-        "December", 
+        "December"
     ][M - 1]).substring(0, 3);
     DD = (D = this.getDate()) < 10 ? "0" + D : D;
     DDD = (DDDD = [

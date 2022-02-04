@@ -179,6 +179,9 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
+.infoTiempo:hover {
+  background-color: var(--background-color-2);
+}
 .cardTitle {
   font-size: 1.2rem;
 }
@@ -240,23 +243,19 @@ body {
   background-color: var(--background-color-2);
   border-radius: 25px;
 }
-.slider {
-  background-color: red;
-  border-radius: 25px;
-  height: 1.5em !important;
-  margin: 0em 1em;
-  margin-bottom: 0.5em;
+#textUser {
+  margin: 0.3em 0em 0.5em 1em;
 }
-.slider-handle {
-  height: 2em !important;
-  width: 2em !important;
-  background: none !important;
-  background-color: var(--secondary-color) !important;
-  border-radius: 25px;
+.logout {
+  margin: 0.3em 1em 0.5em;
 }
-.slider-range {
-  height: 2em !important;
-  border-radius: 25px;
+.logout:hover {
+  cursor: pointer;
+}
+.logoutButton {
+  height: 2em;
+  width: 2em;
+  margin-left: 0.5em;
 }
 .color-button-list {
   flex-direction: row;
@@ -277,9 +276,58 @@ body {
   border-radius: 25px;
 }
 .color-title {
-  width: 150px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 .hidden {
   display: none;
 }
+.slider {
+  background: none !important;
+  background-color: var(--secondary-color) !important;
+  border: none !important;
+  border-radius: 25px;
+  height: 0.5em !important;
+  margin: 0em 1em;
+  margin-right: 2em;
+  margin-bottom: 1em;
+}
+.slider-handle {
+  height: 1.45em !important;
+  width: 1.45em !important;
+  background: none !important;
+  background-color: var(--secondary-color) !important;
+  border: none !important;
+  border-radius: 25px;
+  margin-top: -0.2em;
+}
+.slider-range {
+  margin-top: -0.7em;
+  background-color: var(--secondary-color) !important;
+  height: 2em !important;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+/*#region Scrollbar*/
+::-webkit-scrollbar {
+  margin-right: 1%;
+  width: 40px;
+  background-color: var(--background-color-2);
+  border-radius: 25px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--main-color);
+  border-radius: 25px;
+  border: 18px solid transparent;
+  background-clip: content-box;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 25px;
+  border: 8px solid transparent;
+  background-clip: content-box;
+}
+/*#endregion */
 /*# sourceMappingURL=index.5f5ecead.css.map */

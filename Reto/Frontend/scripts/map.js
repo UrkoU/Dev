@@ -11,6 +11,7 @@ const iconoSeleccionado = L.icon({
 });
 
 function CargarMapa() {
+  if (mapa) mapa.remove();
   mapa = L.map("map").setView([42.983333333333, -2.6166666666667], 8.4);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -71,7 +72,6 @@ function AnadirAMapa(clickedElement, oBaliza) {
       horaAtardecer: false,
       presionAtmosferica: false,
     });
-    console.log("AÑADIR A MAPA " + aGuardados.length + "/" + iMaxGuardados);
     GuardarMarcadores(aGuardados);
   } else {
     if (bBalizaExiste(oBaliza.codigo)) {
@@ -92,11 +92,11 @@ function AnadirAMapa(clickedElement, oBaliza) {
 function AnadirCarta(oTiempo) {
   let oOpciones = ObtenerGuardadoPorId(oTiempo.codigo);
   $("#divContainer").append(
-    `<div id="div${oTiempo.codigo}" class="infoTiempo mw-50 droppableItem"><p class="cardTitle" id="nombre${
-      oTiempo.codigo
-    }">${oTiempo.nombre}</p><img id="img${
-      oTiempo.codigo
-    }" class="cardImg" src="images/${oTiempo.descripcion.toLowerCase()}-white.png" ></div>`
+    `<div id="div${oTiempo.codigo}" class="infoTiempo mw-50 droppableItem"><p class="cardTitle" id="nombre${oTiempo.codigo}">${
+      oTiempo.nombre
+    }</p><img id="img${oTiempo.codigo}" class="cardImg" alt="${
+      oTiempo.descripcion
+    }" src="images/${oTiempo.descripcion.toLowerCase()}-white.png" ></div>`
   );
 
   $(`#div${oTiempo.codigo}`).on("click", () => {

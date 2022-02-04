@@ -37,7 +37,7 @@ function CrearSlider() {
     console.log("Crear slider");
     $("#spanMaximoMunicipios").text(iMaxGuardados);
     $("#slider").slider({
-        range: "max",
+        range: "min",
         min: 3,
         max: 10,
         value: iMaxGuardados,

@@ -11,13 +11,13 @@ let iMaxGuardados = 5;
 function PreLogin() {
     CargarLocalStorage();
     CargarColorInicial();
-    CargarBotonesColor();
     CrearSlider();
 }
 function PostLogin() {
     var promesa2 = GetOpcionesUsuario(usuario.id);
     promesa2.then((res)=>{
         aGuardados = JSON.parse(res);
+        CargarAjustes();
         OcultarLogin();
         CargarMapa();
         ObtenerBalizas();
@@ -72,6 +72,7 @@ function MostrarError(error = limitError) {
     }, 2000);
 }
 function CargarCartas(balizas) {
+    $(`#divContainer`).empty();
     // if (oGuardados[test].length >= 0)
     balizas.forEach((element)=>{
         ObtenerTiempo(element.codigoBaliza);
@@ -105,10 +106,13 @@ function CambiarColorSecundario(sColor, sValor) {
     localStorage.setItem("sColorSecundario", sColor);
     document.documentElement.style.setProperty("--secondary-color", sValor);
 }
-function CargarBotonesColor() {
+function CargarAjustes() {
     // Carga los botones de los colores != mainColor
     let divColoresPrincipales = document.getElementById("divColoresPrincipales");
     let divColoresSecundarios = document.getElementById("divColoresSecundarios");
+    divColoresPrincipales.innerHTML = "";
+    divColoresSecundarios.innerHTML = "";
+    $(`#textUser`).html(usuario.username);
     sColorPrincipal = localStorage.getItem("sColorPrimario");
     sColorSecundario = localStorage.getItem("sColorSecundario");
     aColores.forEach((oColor)=>{
@@ -117,6 +121,9 @@ function CargarBotonesColor() {
         divColoresSecundarios.innerHTML += `<button class="color-button color-button-small" style="background-color: ${oColor.valor}" onclick="CambiarColorSecundario('${oColor.nombre}', '${oColor.valor}')"></button>`;
     });
 }
+$(`#btnLogout`).on("click", ()=>{
+    Logout();
+});
 // Gif de ajustes en hover
 $(".settings").hover(function() {
     $(this).css("background", "url(../images/settings.gif)");
