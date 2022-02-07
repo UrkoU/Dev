@@ -1,3 +1,7 @@
+/**
+ * Funciones del login, para iniciar sesión, cerrar, encriptar y desencriptar
+ */
+
 $("#btnLogin").on("click", IniciarSesion);
 let usuario = {};
 
@@ -12,8 +16,8 @@ function IniciarSesion() {
       usuario = result;
       sToken = result.token;
       localStorage.setItem("logueado", true);
-      localStorage.setItem("sToken", sToken);
-      localStorage.setItem("usuario", JSON.stringify(usuario));
+      localStorage.setItem("sToken", Encriptar(sToken));
+      localStorage.setItem("usuario", Encriptar(JSON.stringify(usuario)));
       PostLogin();
     });
   }
@@ -28,9 +32,9 @@ function Logout() {
 }
 
 function Encriptar(message) {
-  return CryptoJS.AES.encrypt(message, passPhrase);
+  return CryptoJS.AES.encrypt(message, passPhrase).toString();
 }
 
 function Desencriptar(message) {
-  return CryptoJS.AES.decrypt(message, passPhrase);
+  return CryptoJS.AES.decrypt(message, passPhrase).toString(CryptoJS.enc.Utf8);
 }

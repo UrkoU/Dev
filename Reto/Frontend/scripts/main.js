@@ -1,10 +1,14 @@
+/**
+ * Funciones principales
+ */
+
 let aBalizas = [];
 let oTiempo = {};
 
 let sColorPrincipal = "";
 let sColorSecundario = "";
 
-let bLogueado = "";
+let bLogueado = false;
 
 let tTimeout;
 
@@ -13,6 +17,17 @@ let iconoDefecto;
 // Máximo de Marcadores guardados
 let iMaxGuardados = 5;
 
+$("document").ready(function () {
+  PreLogin();
+  if (bLogueado == true && usuario) {
+    console.log(usuario);
+    PostLogin();
+  } else {
+    MostrarLogin();
+  }
+});
+
+// Funciones antes del login
 function PreLogin() {
   CargarLocalStorage();
   CargarColorInicial();
@@ -20,6 +35,7 @@ function PreLogin() {
   CrearSlider();
 }
 
+// Funciones después del login
 function PostLogin() {
   var promesa2 = GetOpcionesUsuario(usuario.id);
   promesa2.then((res) => {
@@ -32,15 +48,7 @@ function PostLogin() {
   });
 }
 
-$("document").ready(function () {
-  PreLogin();
-  if (bLogueado == true || bLogueado == "true") {
-    PostLogin();
-  } else {
-    MostrarLogin();
-  }
-});
-
+// Obtener todas las balizas
 function ObtenerBalizas() {
   var promise = GetBalizas();
   promise.then(function (data) {
@@ -50,6 +58,7 @@ function ObtenerBalizas() {
   });
 }
 
+// Obtener la baliza deseada
 function ObtenerTiempo(id) {
   var promise = GetTiempo(id);
   promise.then(function (data) {
@@ -58,6 +67,7 @@ function ObtenerTiempo(id) {
   });
 }
 
+// Cambiar estado del mapa
 $("#mapTop").click(() => {
   $("#map").toggle();
 });
@@ -74,12 +84,36 @@ function OcultarLogin() {
   $("#divLogin").css("display", "none");
 }
 
-function MostrarCartaGrande(oTiempo, oOpciones) {
+// Mostrar carta de información en grande
+function MostrarCartaGrande(oTiempo) {
+  $("#divBlur").show();
+  $("#divCartaGrande").css("display", "flex");
+  $("#grTitulo").text(oTiempo.nombre);
+  $("#grTemperatura").text(oTiempo.temperatura);
+  $("#grSensacionTermica").text(oTiempo.sensacionTermica);
+  $("#grHumedad").text(oTiempo.humedad);
+  $("#grPresionAtmosferica").text(oTiempo.presionAtmosferica);
+  $("#grVelocidadViento").text(oTiempo.velocidadViento);
+  $("#grHoraAmanecer").text(new Date(parseInt(oTiempo.horaAmanecer) * 1000).customFormat("#hhhh#:#mm#"));
+  $("#grHoraAtardecer").text(new Date(parseInt(oTiempo.horaAtardecer) * 1000).customFormat("#hhhh#:#mm#"));
+  $("#grLatitud").text(oTiempo.latitud);
+  $("#grLongitud").text(oTiempo.longitud);
+  $("#divBlur").click(() => {
+    OcultarCartaGrande();
+  });
+  $(`#grImg`).attr("src", `./images/${oTiempo.descripcion.toLowerCase()}-white.png`);
+  $(`#grFlecha`).attr("src", `./images/arrow-${sColorPrincipal}.png`);
+  $(`#grFlecha`).css({ transform: "rotate(" + oTiempo.direccionViento + "deg)" });
   console.log(oTiempo);
-  console.log(oOpciones);
-  console.log("Not implemented");
 }
 
+function OcultarCartaGrande() {
+  $("#divBlur").hide();
+  $("#divCartaGrande").css("display", "none");
+  console.log("OCULTAR CARTA GRANDE");
+}
+
+// Mostrar el error en el contenedor del mapa
 function MostrarError(error = limitError) {
   clearTimeout(tTimeout);
   $("#divError").text(error);
@@ -90,6 +124,7 @@ function MostrarError(error = limitError) {
   }, 2000);
 }
 
+// Carga todas las cartas
 function CargarCartas(balizas) {
   $(`#divContainer`).empty();
   // if (oGuardados[test].length >= 0)
@@ -113,6 +148,7 @@ function CargarColorInicial() {
 }
 
 function CambiarColorPrimario(sColor, sValor, bInicio = false) {
+  sColorPrincipal = sColor;
   // Cambia el color predominante de la web, cambiando la variable --main-color del css
   localStorage.setItem("sColorPrimario", sColor);
   document.documentElement.style.setProperty("--main-color", sValor);
@@ -125,6 +161,7 @@ function CambiarColorPrimario(sColor, sValor, bInicio = false) {
 }
 
 function CambiarColorSecundario(sColor, sValor) {
+  sColorSecundario = sColor;
   localStorage.setItem("sColorSecundario", sColor);
   document.documentElement.style.setProperty("--secondary-color", sValor);
 }

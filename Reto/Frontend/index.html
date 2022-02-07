@@ -39,24 +39,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
   </head>
   <body class="w-100 h-100 d-flex justify-content-center align-items-center">
-    <div id="divBlur"></div>
-    <div id="divLoginContainer" class="w-100 h-100 justify-content-center align-items-center">
-      <div id="divLogin">
-        <form>
-          <div id="divUser" class="form-group">
-            <label for="inputUser" class="label" placeholder="Escriba el usuario">Usuario</label>
-            <input id="inputUser" type="user" class="form-control input" />
-          </div>
-          <div id="divPass" class="form-group">
-            <label for="inputPass" class="label" placeholder="Escriba la contraseña">Contraseña</label>
-            <input id="inputPass" type="password" class="form-control input" />
-          </div>
-          <div id="divButton" class="form-group d-flex justify-content-end">
-            <button id="btnLogin" type="button" class="btn btn-primary boton-login text-black-50 fw-bold">Iniciar sesión</button>
-          </div>
-        </form>
-      </div>
-    </div>
     <div id="divPrincipal" class="w-75 h-85">
       <div class="h-100 w-100">
         <div class="h-15 d-flex align-items-center justify-content-center w-100">
@@ -64,7 +46,13 @@
         </div>
         <div class="h-15 d-flex align-items-center justify-content-center imgDraggableList">
           <div class="divImages">
-            <img id="temperatura" class="imgDraggable" title="Temperatura" src="images/thermometer-white.png" alt="Termómetro" />
+            <img
+              id="temperatura"
+              class="imgDraggable"
+              title="Temperatura"
+              src="images/thermometer-white.png"
+              alt="Termómetro"
+            />
           </div>
           <div class="divImages">
             <img id="humedad" class="imgDraggable" title="Humedad" src="images/humidity-white.png" alt="Humedad" />
@@ -88,7 +76,13 @@
             />
           </div>
           <div class="divImages">
-            <img id="horaAmanecer" class="imgDraggable imgDraggableSmall" title="Amanecer" src="images/sunrise-white.png" alt="Atardecer" />
+            <img
+              id="horaAmanecer"
+              class="imgDraggable imgDraggableSmall"
+              title="Amanecer"
+              src="images/sunrise-white.png"
+              alt="Atardecer"
+            />
           </div>
           <div class="divImages">
             <img
@@ -100,7 +94,61 @@
             />
           </div>
         </div>
-        <div id="divContainer" class="w-100 h-60"></div>
+        <div id="divContainer" class="w-100 h-60 d-flex flex-wrap justify-content-center"></div>
+      </div>
+    </div>
+    <div id="divCartaGrande" class="">
+      <div id="grContenido">
+        <h1 id="grTitulo">Hola buenas tardes</h1>
+        <div class="d-flex flex-column align-content-around h-100">
+          <div class="d-flex flex-grow-1">
+            <div>Temperatura:&nbsp;<span id="grTemperatura">34</span>º</div>
+            &nbsp; &nbsp;&nbsp;&nbsp;
+            <div>Sensación Térmica:&nbsp;<span id="grSensacionTermica">35</span>º</div>
+          </div>
+          <div class="flex-grow-1">Humedad:&nbsp;<span id="grHumedad">34</span>%</div>
+          <div class="flex-grow-1">Presión atmosférica: &nbsp;<span id="grPresionAtmosferica">1032</span>hPa</div>
+          <div class="flex-grow-1">Velocidad del viento: &nbsp;<span id="grVelocidadViento">34</span>km/h</div>
+          <div class="flex-grow-1">Amanecer: <span id="grHoraAmanecer">12:34</span>&nbsp;horas</div>
+          <div class="flex-grow-1">Atardecer: <span id="grHoraAtardecer">12:34</span>&nbsp;horas</div>
+          <div id="grUbicacion" class="flex-grow-1">
+            Ubicación:
+            <div id="divUbicacion">
+              &nbsp;&nbsp;Latitud:&nbsp;<span id="grLatitud">&nbsp;43</span>º Longitud:&nbsp;<span id="grLongitud"
+                >&nbsp;-2</span
+              >º
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="grImagenes">
+        <div class="d-flex justify-content-center align-items-center" style="flex: 1">
+          <img id="grImg" class="grImg" src="./images/cloudy-white.png" />
+        </div>
+        <div class="d-flex justify-content-center align-items-center" style="flex: 1">
+          <img id="grBrujula" class="imgWind grImg" src="./images/compass-white.png" />
+          <img id="grFlecha" style="height: 6rem; width: 6rem" class="imgWind grImg" src="./images/arrow.png" />
+        </div>
+      </div>
+    </div>
+    <div id="divBlur"></div>
+    <div id="divLoginContainer" class="w-100 h-100 justify-content-center align-items-center">
+      <div id="divLogin">
+        <form>
+          <div id="divUser" class="form-group">
+            <label for="inputUser" class="label" placeholder="Escriba el usuario">Usuario</label>
+            <input id="inputUser" type="user" class="form-control input" />
+          </div>
+          <div id="divPass" class="form-group">
+            <label for="inputPass" class="label" placeholder="Escriba la contraseña">Contraseña</label>
+            <input id="inputPass" type="password" class="form-control input" />
+          </div>
+          <div id="divButton" class="form-group d-flex justify-content-end">
+            <button id="btnLogin" type="button" class="btn btn-primary boton-login text-black-50 fw-bold">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
       </div>
     </div>
     <!-- <div id="divError" class="w-50 h-50 hidden d-flex justify-content-center align-items-center">ERROR</div> -->
@@ -146,7 +194,7 @@
     <!-- Our scripts -->
     <script src="scripts/main.js"></script>
     <script src="scripts/consts.js"></script>
-    <script src="scripts/storageHelper.js"></script>
+    <script src="scripts/generalHelper.js"></script>
     <script src="scripts/api.js"></script>
     <script src="scripts/dad.js"></script>
     <script src="scripts/login.js"></script>

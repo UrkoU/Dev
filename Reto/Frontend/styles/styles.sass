@@ -6,7 +6,7 @@ body
 	color: white 
 	background-color: var(--background-color) !important
 	overflow: hidden
-
+	
 .divImages
 	height: 5rem
 	width: 5rem
@@ -23,7 +23,35 @@ body
 		text-align: center
 
 	#divContainer
-		overflow: auto
+		overflow-y: auto
+
+#divCartaGrande
+	display: none
+	position: fixed
+	z-index: var(--front)
+	width: 50%
+	height: 50%
+	background-color: var(--background-color)
+	border-radius: 25px
+	padding: 4rem
+
+	#grContenido
+		flex: 2
+		color: white
+
+		#grTitulo
+			color: white
+
+	#grImagenes
+		flex:1
+		display: flex
+		flex-direction: column
+
+		.grImg
+			height: 10rem
+
+		#grFlecha
+			position: absolute
 
 
 #mapContainer
@@ -87,8 +115,9 @@ body
 	height: 4rem
 
 .infoTiempo
-	margin: 1rem
+	margin: 1rem 1%
 	padding: 2rem
+	width: 31%
 	border-radius: var(--border-radius-m)
 	background-color:  var(--background-color)
 	color: var(--text-color)
@@ -207,6 +236,15 @@ body
 .hidden
 	display: none
 
+.slider:hover
+	cursor: pointer
+
+.slider-handle:hover
+	cursor: pointer
+
+.slider-range:hover
+	cursor: pointer
+
 .slider
 	background: none !important
 	background-color: var(--secondary-color) !important
@@ -239,7 +277,7 @@ body
 ::-webkit-scrollbar 
 	margin-right: 1%
 	width: 40px
-	background-color: var(--background-color-2)
+	background-color: var(--background-color)
 	border-radius: 25px
 
 

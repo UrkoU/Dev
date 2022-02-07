@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+      #Votos {
+        margin: 1rem 0;
+      }
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body onload="Ajax()">
+    <h1>Simulación de votos</h1>
+
+    <form action="GrabaVotos.php" method="post">
+      <div id="Select">
+        <label for="">Elige partido:</label>
+      </div>
+
+      <div id="Votos">
+        <label for="">Votos:</label>
+        <input type="number" name="Votos" />
+      </div>
+
+      <input type="submit" value="Actualizar" />
+    </form>
+    <script>
+      function Ajax() {
+        var xmlhttp;
+
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(JSON.parse(xmlhttp.responseText));
+            var aTabla = JSON.parse(xmlhttp.responseText);
+
+            let divSelect = document.getElementById("Select");
+            let sSelect = "";
+
+            sSelect += `<select name="Partido">`;
+
+            aTabla.forEach((element) => {
+              sSelect += `<option value="${element["Partido"]}">${element["Partido"]}</option>`;
+            });
+            sSelect += `</select>`;
+            divSelect.innerHTML += sSelect;
+          }
+        };
+      }
+    </script>
+  </body>
+</html>

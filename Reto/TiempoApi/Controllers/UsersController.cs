@@ -55,13 +55,12 @@ namespace TiempoApi.Controllers
             return usuario;
         }
 
-        // DELETE: api/OpcionesUsuario/5
+        // DELETE: api/User/5
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
             var _context = new DatosContext();
-            // var usuario = await _context.UsuarioItem.FindAsync(id);
             Console.WriteLine("DELETE ", id.ToString());
             if (!UsuarioExists(id))
             {
@@ -78,14 +77,6 @@ namespace TiempoApi.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-            return Ok(users);
         }
 
         private bool UsuarioExists(int id)

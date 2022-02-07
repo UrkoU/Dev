@@ -1,3 +1,7 @@
+/**
+ * Constantes usadas en todo el proyecto, declaradas aquí para facilidad de edición
+ */
+
 const aColores = [
   { nombre: "blue", valor: "rgb(151, 210, 247)" },
   { nombre: "green", valor: "rgb(151, 247, 186)" },

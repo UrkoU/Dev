@@ -1,3 +1,7 @@
+/**
+ * Drag'n drop y slider, todo de Jquery UI
+ */
+
 // Crea las imágenes draggables
 $(".imgDraggable").draggable({
   revert: true,

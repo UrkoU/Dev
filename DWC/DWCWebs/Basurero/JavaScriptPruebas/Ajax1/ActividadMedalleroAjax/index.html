@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olimpiadas Londres</title>
+  </head>
+  <body onload="Ajax()">
+    <h1>Olimpiadas de Londres</h1>
+    <table>
+      <thead>
+        <td>País</td>
+        <td>Medallas</td>
+      </thead>
+      <tbody id="tBody"></tbody>
+    </table>
+    <script>
+      function Ajax() {
+        var xmlhttp;
+
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(JSON.parse(xmlhttp.responseText));
+            var aTabla = JSON.parse(xmlhttp.responseText);
+            let table = document.getElementById("tBody");
+            aTabla.forEach((element) => {
+              table.innerHTML += `<tr><td>${element.Pais}</td><td id="tdImg${element.Pais}"></td></tr>`;
+              for (let index = 0; index < element.Oro; index++) {
+                document.getElementById(`tdImg${element.Pais}`).innerHTML += `<img src="Images/Oro.gif">`;
+              }
+              for (let index = 0; index < element.Plata; index++) {
+                document.getElementById(`tdImg${element.Pais}`).innerHTML += `<img src="Images/Plata.gif">`;
+              }
+              for (let index = 0; index < element.Bronce; index++) {
+                document.getElementById(`tdImg${element.Pais}`).innerHTML += `<img src="Images/Bronce.gif">`;
+              }
+            });
+          }
+        };
+
+        xmlhttp.open("GET", "Servicio.php");
+        xmlhttp.send();
+      }
+    </script>
+  </body>
+</html>

@@ -15,16 +15,15 @@ namespace DatosTiempo
 {
     class Program
     {
-
         public static string _path = "ciudades.json";
         static void Main(string[] args)
         {
             while (true)
             {
                 Actualizar().Wait();
+                Console.WriteLine("Cooldown de 3 minutos para actualizar datos");
                 System.Threading.Thread.Sleep(180000);
             }
-            //MainAsync().GetAwaiter().GetResult();
         }
 
         private async static Task Actualizar()
@@ -41,7 +40,6 @@ namespace DatosTiempo
                 {
                     foreach (var ciudad in ciudadesParseadas)
                     {
-                        Console.WriteLine(ciudad);
                         var key = "f43e142eed6e87e4db851249359cb464";
                         var url = $"http://api.openweathermap.org/data/2.5/weather?q={ciudad},es&appid={key}";
                         //Esperamos a recibir la respuesta de la API
@@ -57,8 +55,6 @@ namespace DatosTiempo
                         var temperatura = (Math.Truncate((double)Convert.ToDecimal(jsonObjectMeteorologia.main.temp, new CultureInfo("en-US")) - 273.15)).ToString();
                         var sensacionTermica = (Math.Truncate((double)Convert.ToDecimal(jsonObjectMeteorologia.main.feels_like, new CultureInfo("en-US")) - 273.15)).ToString();
                         var id = $"{jsonObjectMeteorologia.name.ToString().Substring(0, 2)}{jsonObjectMeteorologia.id}";
-                        Console.WriteLine(temperatura);
-                        Console.WriteLine(jsonObjectMeteorologia);
                         // Creamos un objeto meteorologia, que añadimos a la bd si no existe
 
                         if (db.MeteorologiaItem.Any(e => e.Codigo == id))
@@ -124,19 +120,7 @@ namespace DatosTiempo
                             db.SaveChanges();
                             Console.WriteLine("Esperar un minuto para hacer más llamadas");
                             System.Threading.Thread.Sleep(60000);
-                        }
-                        // // Update
-                        // if (db.MeteorologiaItem.Any(e => e.Codigo == ciudad)) {
-                        //     db.Entry(ciudad).State = EntityState.Modified;
-                        // }
-                        // // Insertar
-                        // else{
-                        //     //db.MeteorologiaItem.Add(item.Codigo,item.Nombre);
-                        // }
-                        // db.SaveChanges();
-                        // }
-                        // Console.WriteLine("Se han guardado las coordenadas en la base de datos");
-                    }
+                        }}
                     db.SaveChanges();
                 }
 
@@ -144,49 +128,6 @@ namespace DatosTiempo
                 {
                     Console.WriteLine(e.Message);
                 }
-
-                //GENERADOR DE LA TABLA CON LOS DATOS METEOROLOGICOS
-                // try
-                // {
-                //     foreach (var item in balizasParseadas)
-                //     {   
-                //         // Para obtener el tiempo al momento
-
-                //         DateTime date = DateTime.Now;
-                //         // Update
-                //         if (db.MeteorologiaItem.Any(e => e.Codigo == item.Codigo)) {
-
-                //             var tiempoNuevo = (new Meteorologia {Codigo=item.Codigo, Nombre=item.Nombre, Latitud=item.Latitud, Longitud=item.Longitud, Descripcion=item.Descripcion,Temperatura=item.Temperatura, Humedad=item.Humedad});
-                //             var local = db.Set<MeteorologiaItem>()
-                //                 .Local
-                //                 .FirstOrDefault(entry => entry.CodigoBaliza.Equals(item.Codigo));
-
-                //             // check if local is not null 
-                //             if (local != null)
-                //             {
-                //                 // detach
-                //                 db.Entry(local).State = EntityState.Detached;
-                //             }
-                //             // set Modified flag in your entry
-                //             db.Entry(tiempoNuevo).State = EntityState.Modified;
-
-                //             // save 
-                //             db.SaveChanges();
-                //         }
-                //         // Insertar
-                //         else{
-                //             var tiempoNuevo = (new Meteorologia {Codigo=item.Codigo, Nombre=item.Nombre, Latitud=item.Latitud, Longitud=item.Longitud, Descripcion=item.Descripcion,Temperatura=item.Temperatura, Humedad=item.Humedad});
-                //             db.MeteorologiaItem.Add(tiempoNuevo);
-                //         }
-                //     db.SaveChanges();
-                //     }
-
-                //     Console.WriteLine("Se han guardado los datos meteorologicos en la base de datos");
-                // }
-                // catch(SqlException e)
-                // {
-                //     Console.WriteLine(e.Message);
-                // }
             }
 
         }
