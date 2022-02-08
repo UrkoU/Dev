@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Votos</title>
+  </head>
+  <body onload="Fetch()">
+    <table >
+      <th><td>Partido</td><td>Votos</td><td>Concejales</td></th>
+      <tbody id="tTabla"></tbody>
+    </table>
+    <img id="imgPartido">
+
+    <script>
+        setInterval(Fetch, 5000);
+        function Fetch(){
+            fetch("Votos.php")
+                .then((response) => response.json())
+                .then((data) => {
+                    let tabla = document.getElementById("tTabla");
+                    tabla.innerHTML=""
+                    let i=0;
+                    let concejales;
+                    data.forEach(element => {
+                        i==0?concejales=20:i==1?concejales=10:i==2?concejales=5:concejales=0;
+                        tabla.innerHTML += `<tr><td>${element.Partido}</td><td>${element.Votos}</td><td>${concejales}</td></tr>`
+                        i++;
+                    });
+                    document.getElementById("imgPartido").src=`Partidos/${data[0].Partido}.jpg`
+                });
+                
+        }
+      
+    </script>
+  </body>
+</html>
