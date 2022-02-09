@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+      table,
+      td,
+      th {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Gestión de Números</h1>
+    <table>
+      <thead>
+        <td>Sección</td>
+        <td>Número</td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PESCADERÍA</td>
+          <td><button onclick="Siguiente(1)">SIGUIENTE</button></td>
+        </tr>
+        <tr>
+          <td>CARNICERÍA</td>
+          <td><button onclick="Siguiente(2)">SIGUIENTE</button></td>
+        </tr>
+        <tr>
+          <td>EMBUTIDOS</td>
+          <td><button onclick="Siguiente(5)">SIGUIENTE</button></td>
+        </tr>
+        <tr>
+          <td>PASTELERÍA</td>
+          <td><button onclick="Siguiente(6)">SIGUIENTE</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <p><a href="./super.html">Volver al supermercado</a></p>
+    <script>
+      function Siguiente(id) {
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            // Hace un log del nuevo número
+            console.log(xmlhttp.responseText);
+          }
+        };
+        // Va a esa dirección para incrementar y obtener el nuevo número
+        xmlhttp.open("GET", "gestion.php/?id=" + id);
+        xmlhttp.send();
+      }
+    </script>
+  </body>
+</html>

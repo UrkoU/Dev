@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJ1</title>
+    <style>
+      td {
+        border: 1px solid;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <td>Sección</td>
+        <td>Número</td>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="./Imagenes/Pescaderia.jpg" /></td>
+          <td id="Pescaderia"></td>
+        </tr>
+        <tr>
+          <td><img src="./Imagenes/Carniceria.jpg" /></td>
+          <td id="Carniceria"></td>
+        </tr>
+        <tr>
+          <td><img src="./Imagenes/Embutidos.jpg" /></td>
+          <td id="Embutidos"></td>
+        </tr>
+        <tr>
+          <td><img src="./Imagenes/Pasteleria.jpg" /></td>
+          <td id="Pasteleria"></td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="./gestion.html">Cola</a>
+    <script>
+      function Ajax() {
+        $.ajax({
+          url: "super.php",
+          type: "GET",
+          success: function (response) {
+            // Cambia el valor de las columnas según su número o si está cerrado
+            var aRespuesta = JSON.parse(response);
+            aRespuesta.forEach((element) => {
+              if (element.Numero == 0) {
+                $(`#${element.Seccion}`).text("CERRADO");
+              } else $(`#${element.Seccion}`).text(element.Numero);
+            });
+          },
+        });
+      }
+
+      Ajax();
+      setInterval(Ajax, 10000);
+    </script>
+  </body>
+</html>
