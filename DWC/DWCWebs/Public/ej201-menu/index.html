@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="EstilosBotones.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="divContextMenu">
+      <p><a id="aGoogle" href="https://www.google.es/search?q=" target="_blank">Google</a></p>
+      <p><a id="aYahoo" href="https://search.yahoo.com/search?p=" target="_blank">Yahoo</a></p>
+      <p><a id="aBing" href="https://bing.com/search?q=" target="_blank">Bing</a></p>
+    </div>
+    <p>
+      Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su
+      diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como
+      por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer.
+    </p>
+    <div class="divBoton">Botón Pulsado: <span id="Boton">?</span></div>
+    <div class="divPosicion">Posición: <span id="Posicion">x - y</span></div>
+
+    <script>
+      var bContextMenuOpen = false;
+      const boton = ["Izquierdo", "Central", "Derecho"];
+      let divBoton = document.getElementsByClassName("divBoton")[0];
+      let posicion = document.getElementById("Posicion");
+
+      divBoton.addEventListener("mousedown", (event) => {
+        if (event.button == 2) {
+          event.preventDefault();
+        }
+        document.getElementById("Boton").innerText = boton[event.button];
+      });
+
+      function ShowContextMenu(event) {
+        // Boolean to know if context menu is open
+        bContextMenuOpen = true;
+        let divContextMenu = document.getElementById("divContextMenu");
+        // left and top for the menu
+        let x, y;
+        divContextMenu.style.display = "block";
+        // If x or y are higher put at
+        if (
+          divContextMenu.clientHeight + event.clientY >= window.innerHeight &&
+          divContextMenu.clientWidth + event.clientX <= window.innerWidth
+        ) {
+          x = event.clientX;
+          y = event.clientY - divContextMenu.clientHeight;
+        } else if (
+          divContextMenu.clientHeight + event.clientY <= window.innerHeight &&
+          divContextMenu.clientWidth + event.clientX >= window.innerWidth
+        ) {
+          x = event.clientX - divContextMenu.clientWidth;
+          y = event.clientY;
+        } else if (
+          divContextMenu.clientWidth + event.clientX >= window.innerWidth &&
+          divContextMenu.clientHeight + event.clientY >= window.innerHeight
+        ) {
+          x = event.clientX - divContextMenu.clientWidth;
+          y = event.clientY - divContextMenu.clientHeight;
+        } else {
+          x = event.clientX;
+          y = event.clientY;
+        }
+
+        divContextMenu.style.left = x + "px";
+        divContextMenu.style.top = y + "px";
+      }
+
+      function HiddeContextMenu() {
+        bContextMenuOpen = false;
+        document.getElementById("divContextMenu").style.display = "none";
+      }
+
+      document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        ShowContextMenu(event);
+      });
+
+      document.addEventListener("mousedown", (event) => {
+        // Si se clicka en cualquier parte (menos el menú) con botón izquierdo o derecho, oculta el menú
+        if (event.button == 0 || event.button == 1) {
+          if (!document.getElementById("divContextMenu").contains(event.target)) HiddeContextMenu();
+        }
+      });
+
+      document.addEventListener("mousemove", (event) => {
+        document.getElementById("Posicion").innerText = "x: " + event.clientX + " - y: " + event.clientY;
+      });
+
+      document.addEventListener("selectionchange", () => {
+        let sBusqueda = window.getSelection();
+        document.getElementById("aGoogle").href = "https://www.google.es/search?q=" + sBusqueda;
+        document.getElementById("aYahoo").href = "https://search.yahoo.com/search?q=" + sBusqueda;
+        document.getElementById("aBing").href = "https://bing.com/search?q=" + sBusqueda;
+      });
+
+      document.addEventListener("keydown", () => {
+        if (event.key === "Escape" && bContextMenuOpen) {
+          HiddeContextMenu();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -178,6 +178,54 @@ const aEjercicios = [
       href: "../Public/ej10-carrito/index.html",
       image: "./imagenes/ej10-carrito.jpg",
     },
+    {
+      nombre: "Menú Contextual",
+      descripcion: "Un simple menú contextual para sobreescribir el por defecto del navegador",
+      href: "../Public/ej201-menu/index.html",
+      image: "./imagenes/ej201-menu.png",
+    },
+    {
+      nombre: "Selectores en jQuery",
+      descripcion: "Colección de mini-ejercicios para aprender los selectores de Jquery",
+      href: "../Public/ej202-jquery/index.html",
+      image: "./imagenes/ej202-jquery.png",
+    },
+    {
+      nombre: "Control de divs",
+      descripcion: "Primera interacción con sessionstorage para simular un carrito de la compra, con actualizaciones y pago",
+      href: "../Public/ej203-divs/index.html",
+      image: "./imagenes/ej203-divs.png",
+    },
+    {
+      nombre: "Drag'n Drop",
+      descripcion: "Simulación del movimiento de varias piezas de ajedrez, usando el drag'n drop de jquery ui",
+      href: "../Public/ej204-dad/index.html",
+      image: "./imagenes/ej204-dad.png",
+    },
+    {
+      nombre: "Ajax el tiempo",
+      descripcion: "Primera interacción con ajax, para ver que cambiando los datos manualmente en BBDD se actualiza la vista",
+      href: "../Public/ej205-tiempo/index.html",
+      image: "./imagenes/ej205-tiempo.png",
+    },
+    {
+      nombre: "Medallero",
+      descripcion: "Prueba sencilla de Ajax y js",
+      href: "../Public/ej206-medallero/index.html",
+      image: "./imagenes/ej206-medallero.png",
+    },
+    {
+      nombre: "Elecciones",
+      descripcion: "Ejercicio con ajax para hacer select y update.",
+      href: "../Public/ej207-elecciones/index.html",
+      image: "./imagenes/ej207-elecciones.png",
+    },
+    {
+      nombre: "Diccionario",
+      descripcion: "Ejercicio con ajax para hacer select, insert, y delete.",
+      href: "../Public/ej208-diccionario/index.html",
+      image: "./imagenes/ej208-diccionario.png",
+    },
   ],
   // DIW
   [
@@ -232,24 +280,24 @@ function CambiarContent(i, bPrimeraCarga = false) {
   if (iContenidoActual != i || bPrimeraCarga)
     if (i == 1) {
       // Select de ejercicios
-      // document.getElementById("divMain").innerHTML = `
-      // <div class="subject-selector h-15">
-      // <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
-      //   <option class="selector-option">Desarrollo Web Entorno Cliente</option>
-      //   <option class="selector-option last-option">Diseño de Interfaces Web</option>
-      // </select>
-      // </div>
-      // <div class="exercises h-85 w-100" id="divExercises"></div>
-      // `;
-      // // Cargar la vista de ejercicios
-      // CargarEjercicios();
-      let div = "";
-      aAsignaturas.forEach((asignatura) => {
-        div += `<div id="divExercises">${() => {
-          CargarEjercicios();
-        }}</div>`;
-      });
-      $("#divMain").html(div);
+      document.getElementById("divMain").innerHTML = `
+      <div class="subject-selector h-15">
+      <select class="selector" id="subject-selector" onchange="CambiarAsignatura()">
+        <option class="selector-option">Desarrollo Web Entorno Cliente</option>
+        <option class="selector-option last-option">Diseño de Interfaces Web</option>
+      </select>
+      </div>
+      <div class="exercises h-85 w-100" id="divExercises"></div>
+      `;
+      // Cargar la vista de ejercicios
+      CargarEjercicios();
+      // let div = "";
+      // aAsignaturas.forEach((asignatura) => {
+      //   div += `<div id="divExercises">${() => {
+      //     CargarEjercicios();
+      //   }}</div>`;
+      // });
+      // $("#divMain").html(div);
     } else {
       divMain.innerHTML = aContenido[i];
     }

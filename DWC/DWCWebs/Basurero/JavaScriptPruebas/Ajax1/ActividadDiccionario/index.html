@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%; width: 100%">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diccionario</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      table,
+      tr,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      .form {
+        width: 10em;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body onload="Fetch()" style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center">
+    <table>
+      <thead>
+        <td>P</td>
+        <td>Hitza</td>
+        <td>Palabra</td>
+        <td>Word</td>
+        <td>Parole</td>
+        <td>Eliminar</td>
+      </thead>
+      <tbody id="tTabla"></tbody>
+    </table>
+    <div style="padding: 1em">
+      <div class="form">
+        <label for="">Euskera</label>
+        <input type="text" id="Hitza" />
+      </div>
+      <div class="form">
+        <label for="">Castellano</label>
+        <input type="text" id="Palabra" />
+      </div>
+      <div class="form">
+        <label for="">Inglés</label>
+        <input type="text" id="Word" />
+      </div>
+      <div class="form">
+        <label for="">Francés</label>
+        <input type="text" id="Parole" />
+      </div>
+      <button onclick="Agregar()">Agregar</button>
+    </div>
+    <script>
+      setInterval(Fetch, 5000);
+      function Fetch() {
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            let tabla = document.getElementById("tTabla");
+            tabla.innerHTML = "";
+            let data = JSON.parse(xmlhttp.responseText);
+
+            data.forEach((element) => {
+              tabla.innerHTML += `<tr><td>${element.Id}</td><td>${element.Hitza}</td><td>${element.Palabra}</td><td>${element.Word}</td><td>${element.Parole}</td><td><button onclick="Eliminar(${element.Id})">Eliminar</button></td></tr>`;
+            });
+          }
+        };
+
+        xmlhttp.open("GET", "palabras.php");
+        xmlhttp.send();
+      }
+
+      function Eliminar(id) {
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            let data = xmlhttp.responseText;
+            Fetch();
+          }
+        };
+
+        xmlhttp.open("GET", `eliminar.php/?id=${id}`);
+        xmlhttp.send();
+      }
+
+      function Agregar() {
+        let hitza = document.getElementById("Hitza").value;
+        let palabra = document.getElementById("Palabra").value;
+        let word = document.getElementById("Word").value;
+        let parole = document.getElementById("Parole").value;
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            let data = xmlhttp.responseText;
+            console.log(data);
+            Fetch();
+          }
+        };
+
+        xmlhttp.open("GET", `agregar.php/?hitza=${hitza}&palabra=${palabra}&word=${word}&parole=${parole}`);
+        xmlhttp.send();
+      }
+    </script>
+  </body>
+</html>

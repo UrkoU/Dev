@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Documento sin título</title>
+  </head>
+  <script>
+    let aTabla = [];
+    Ajax();
+    setInterval(Ajax, 4000);
+
+    function Ajax() {
+      var xmlhttp;
+
+      xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          console.log(JSON.parse(xmlhttp.responseText));
+          aTabla = JSON.parse(xmlhttp.responseText);
+          MostrarTabla();
+        }
+      };
+
+      xmlhttp.open("GET", "Servicio.php");
+      xmlhttp.send();
+    }
+
+    function MostrarTabla() {
+      var table = document.getElementById("tblTiempo");
+      table.innerHTML = `<thead>
+        <td>Ciudad</td>
+        <td>Tiempo</td>
+      </thead>`;
+      aTabla.forEach((element) => {
+        var row = table.insertRow(table.rows.length);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = element.Ciudad;
+        cell2.innerHTML = `<img src="./letras/${element.Tiempo.charAt(0)}.gif">`;
+      });
+    }
+  </script>
+
+  <body>
+    <table id="tblTiempo">
+      <thead>
+        <td>Ciudad</td>
+        <td>Tiempo</td>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+</html>

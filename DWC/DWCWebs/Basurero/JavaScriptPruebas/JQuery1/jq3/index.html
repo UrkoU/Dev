@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" style="height:100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery</title>
+    <link rel="stylesheet" type="text/css" href="jqpruebas.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<script>
+  let tabla = [
+          {desc:"Todos los elementos", jquery:`$("*")`, link:"jq3-1.html", ejercicio:"pone todo el texto en negrita"},
+          {desc:"El elemento sobre el que se pincha", jquery:`$(this)`, link:"jq3-2.html", ejercicio:"Oculta el botón de púlsame"},
+          {desc:"Todos los elementos p con clase intro", jquery:`$("p.intro")`, link:"jq3-3.html", ejercicio:`Establece el tamaño de la fuente del párrafo con clase "intro" en 20px`},
+          {desc:"El primer elemento párrafo", jquery:`$("p:first")`, link:"jq3-4.html", ejercicio:"Subraya el primer párrafo"},
+          {desc:"El tercer párrafo", jquery:`$("p:eq(2)")`, link:"jq3-5.html", ejercicio:"El tercer párrafo será rojo"},
+          {desc:"El primer elemento li que esté en un ul", jquery:`$("ul li:first")`, link:"jq3-6.html", ejercicio:"El tamaño del primer elemento de la lista será de 10px"},
+          {desc:"El primer elemento li de cada ul", jquery:`$("ul li:first-child")`, link:"jq3-7.html", ejercicio:"Cambiar a verde todos los primeros elementos li en listas ul"},
+          {desc:"Todos los elementos que tengan href", jquery:`$("[href]")`, link:"jq3-8.html", ejercicio:"Los links estarán en morado como si se hubieran visitado"},
+          {desc:"Los links con target='blank", jquery:`$("a[target='_blank']")`, link:"jq3-9.html", ejercicio:`Cambia la fuente de los links con "target='_blank'" a Verdana`},
+          {desc:"Los links que no tengan target='blank", jquery:`$("a[target!='_blank']")`, link:"jq3-10.html", ejercicio:`Pone fondo oscuro a los links que no tengan "target!='_blank'"`},
+          {desc:"Los input type button", jquery:`$(":button")`, link:"jq3-11.html", ejercicio:"Redondea los bordes de los botones"},
+          {desc:"Los table row impares", jquery:`$("tr:even")`, link:"jq3-12.html", ejercicio:"Oscurece las filas impares de la tabla"},
+          {desc:"Los table row pares", jquery:`$("tr:odd")`, link:"jq3-13.html", ejercicio:"Alterna la visibilidad de los elementos pares"},
+        ]
+    $(document).ready(function () {
+      let sTable = `<table>
+          <thead>
+            <td>JQuery</td>
+            <td>Selecciona...</td>
+            <td>Ejercicio</td>
+            <td>Link</td>
+          </thead>
+        `;
+
+      tabla.forEach(e=>{
+        sTable+=`
+        <tr>
+          <td>${e.jquery}</td>
+          <td>${e.desc}</td>
+          <td>${e.ejercicio}</td>
+          <td><a href="${e.link}">Link</a></td>
+        </tr>
+        `
+      })
+      $('#divTabla').html(sTable)
+    });
+</script>
+
+<body style="height:100%; display: flex; justify-content: center; align-content: center;">
+    <div id="divTabla"></div>
+</body>
+
+</html>
+
+</html>

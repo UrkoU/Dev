@@ -1,0 +1,56 @@
+* {
+  font-family: "Consolas", Courier, monospace;
+  font-size: 14px;
+}
+.divBoton {
+  font-size: 24px;
+  width: 280px;
+  height: 40px;
+  border: 1px solid red;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+}
+
+.divPosicion {
+  font-size: 24px;
+  width: 280px;
+  height: 40px;
+  border: 1px solid blue;
+  position: absolute;
+  top: 260px;
+  left: 200px;
+}
+
+.Menu {
+  padding: 8px;
+  font-size: 12px;
+  width: 180px;
+  height: 100px;
+  border: 1px solid blue;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /* visibility: hidden; */
+  line-height: 30px;
+  background-color: rgb(233, 228, 218);
+}
+.item:hover {
+  background-color: #dcdcdc;
+  cursor: pointer;
+}
+.item {
+  padding: 5px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#divContextMenu {
+  display: none;
+  z-index: 3;
+  background-color: white;
+  position: absolute;
+  border: 1px solid black;
+}
